@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 
     public bool isInteracting;
 
+    public bool canDoCombo;
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
@@ -22,7 +24,10 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         inputManager.HandleAllInputs();
+
+        canDoCombo = animator.GetBool("canDoCombo");
     }
+
 
     private void FixedUpdate()
     {

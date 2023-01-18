@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     Character character;
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
+    PlayerManager playerManager;
     
     #region Values
     public Vector2 movementInput;
@@ -25,6 +26,7 @@ public class InputManager : MonoBehaviour
     public bool sprint_Input;
     public bool attack_Input;
     public bool Heavy_attack_Input;
+    public bool comboFlag;
     #endregion
 
     private void Awake()
@@ -33,6 +35,7 @@ public class InputManager : MonoBehaviour
         character = GetComponent<Character>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
+        playerManager = GetComponent<PlayerManager>();
      
     }
 
@@ -107,10 +110,22 @@ public class InputManager : MonoBehaviour
 
     private void HandleAttackInput()
     {
-        // Attack handles the RIGHT hand weapon's light attack
        if(attack_Input)
         {
-            playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            if(playerManager.canDoCombo)
+            {
+                comboFlag = true;
+                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                comboFlag = false;
+            }
+            else
+            {
+                if (playerManager.isInteracting)
+                    return;
+                if (playerManager.canDoCombo)
+                    return;
+                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            }         
         }
 
        if(Heavy_attack_Input)
