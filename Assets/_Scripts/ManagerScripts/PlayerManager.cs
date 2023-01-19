@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
         character = GetComponent<Character>();
     }
 
-    private void Update()
+    void Update()
     {
         inputManager.HandleAllInputs();
 
@@ -43,6 +43,10 @@ public class PlayerManager : MonoBehaviour
         animator.SetBool("isGrounded", character.isGrounded);
 
         inputManager.attack_Input = false;
-        inputManager.Heavy_attack_Input = false; 
+        inputManager.Heavy_attack_Input = false;
+        inputManager.d_Pad_Up = false;
+        inputManager.d_Pad_Down = false;
+        inputManager.d_Pad_Left = false;
+        inputManager.d_Pad_Right = false;
     }
 }

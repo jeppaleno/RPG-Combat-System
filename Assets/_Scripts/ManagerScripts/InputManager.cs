@@ -22,6 +22,11 @@ public class InputManager : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
 
+    public bool d_Pad_Up;
+    public bool d_Pad_Down;
+    public bool d_Pad_Left;
+    public bool d_Pad_Right;
+
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
@@ -70,6 +75,7 @@ public class InputManager : MonoBehaviour
         HandleJumpingInput();
         HandleSprintingInput();
         HandleAttackInput();
+        HandleQuickSlotsInput();
     }
 
     private void HandleMovementInput()
@@ -131,6 +137,20 @@ public class InputManager : MonoBehaviour
        if(Heavy_attack_Input)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+        }
+    }
+
+    private void HandleQuickSlotsInput()
+    {
+        playerControls.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
+        playerControls.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
+        if (d_Pad_Right)
+        {
+            playerInventory.changeRightWeapon();
+        }
+        else if(d_Pad_Left)
+        {
+            playerInventory.changeLeftWeapon();
         }
     }
 
