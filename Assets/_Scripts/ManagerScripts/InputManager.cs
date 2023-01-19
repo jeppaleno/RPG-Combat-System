@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
 
+    public bool a_Input; //Action Input
     public bool d_Pad_Up;
     public bool d_Pad_Down;
     public bool d_Pad_Left;
@@ -54,6 +55,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
 
+            playerControls.PlayerActions.A_Input.performed += i => a_Input = true;
+
             playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; //cancels when released
 
@@ -76,6 +79,7 @@ public class InputManager : MonoBehaviour
         HandleSprintingInput();
         HandleAttackInput();
         HandleQuickSlotsInput();
+        HandleInteractingButtonInput();
     }
 
     private void HandleMovementInput()
@@ -152,6 +156,11 @@ public class InputManager : MonoBehaviour
         {
             playerInventory.changeLeftWeapon();
         }
+    }
+
+    private void HandleInteractingButtonInput()
+    {
+        
     }
 
 }

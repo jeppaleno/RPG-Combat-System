@@ -13,7 +13,7 @@ public abstract class Character : MonoBehaviour
     #region Values
     Vector3 moveDirection;
     Transform cameraObject;
-    Rigidbody playerRigidbody;
+    public Rigidbody playerRigidbody;
 
     [Header("Falling")]
     public float inAirTimer;
