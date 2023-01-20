@@ -219,6 +219,15 @@
             "id": "9d68cd65-e77c-4d74-9b62-4ec85c64a295",
             "actions": [
                 {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "a9325715-1e41-41bc-b17a-2663754d10ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "5641b2da-054e-4d88-8afb-224d81714068",
@@ -474,6 +483,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "A_Input",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b46575dd-a981-4892-8590-4413ce77776a",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d85ec47-379f-4b04-9b66-449f38813bd6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

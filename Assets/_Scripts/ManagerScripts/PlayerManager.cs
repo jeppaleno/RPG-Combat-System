@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         inputManager.d_Pad_Left = false;
         inputManager.d_Pad_Right = false;
         inputManager.a_Input = false;
+        inputManager.inventory_Input = false;
     }
 
     public void CheckForInteractableObject()

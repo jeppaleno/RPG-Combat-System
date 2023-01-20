@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     PlayerManager playerManager;
+    UIManager uiManager;
     
     #region Values
     public Vector2 movementInput;
@@ -27,12 +28,15 @@ public class InputManager : MonoBehaviour
     public bool d_Pad_Down;
     public bool d_Pad_Left;
     public bool d_Pad_Right;
+    public bool inventory_Input;
 
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
     public bool Heavy_attack_Input;
+
     public bool comboFlag;
+    public bool inventoryFlag;
     #endregion
 
     private void Awake()
@@ -42,6 +46,7 @@ public class InputManager : MonoBehaviour
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
+        uiManager = FindObjectOfType<UIManager>();
      
     }
 
@@ -80,6 +85,7 @@ public class InputManager : MonoBehaviour
         HandleAttackInput();
         HandleQuickSlotsInput();
         HandleInteractingButtonInput();
+        HandleInventoryInput();
     }
 
     private void HandleMovementInput()
@@ -161,6 +167,25 @@ public class InputManager : MonoBehaviour
     private void HandleInteractingButtonInput()
     {
         
+    }
+
+    private void HandleInventoryInput()
+    {
+        playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
+        if (inventory_Input)
+        {
+            inventoryFlag = !inventoryFlag;
+
+            if (inventoryFlag)
+            {
+                uiManager.OpenSelectWindow();
+            }
+            else
+            {
+                uiManager.CloseSelectWindow();
+            }
+        }
     }
 
 }
