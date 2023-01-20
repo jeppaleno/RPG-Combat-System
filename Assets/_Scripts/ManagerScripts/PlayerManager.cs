@@ -9,6 +9,10 @@ public class PlayerManager : MonoBehaviour
     Animator animator;
     Character character;
 
+    InteractableUI interactableUI;
+    public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
+    public GameObject itemInteractableGameObject; // Shows what item that was picked up
+
     public bool isInteracting;
 
     public bool canDoCombo;
@@ -19,6 +23,11 @@ public class PlayerManager : MonoBehaviour
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
+    }
+
+    void Start()
+    {
+        interactableUI = FindObjectOfType<InteractableUI>();
     }
 
     void Update()
@@ -65,13 +74,25 @@ public class PlayerManager : MonoBehaviour
                 if(interactableObject != null)
                 {
                     string interactableText = interactableObject.interactbleText;
-                    //Set the ui text to the interactebla objects text
-                    //set the text pop to true
-                    if(inputManager.a_Input)
+                    interactableUI.interactableText.text = interactableText;  //Set the ui text to the interactebla objects text
+                    interactbleUIGameObject.SetActive(true); //set the text pop to true
+                    if (inputManager.a_Input)
                     {
                         hit.collider.GetComponent<Interactable>().Interact(this);
                     }
                 }
+            }
+        }
+        else
+        {
+            if (interactbleUIGameObject != null)
+            {
+                interactbleUIGameObject.SetActive(false);
+            }
+
+            if (itemInteractableGameObject != null && inputManager.a_Input)
+            {
+                itemInteractableGameObject.SetActive(false);
             }
         }
     }
