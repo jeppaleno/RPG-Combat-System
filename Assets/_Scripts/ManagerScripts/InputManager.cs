@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     PlayerManager playerManager;
+    CameraManager cameraManager;
     UIManager uiManager;
     
     #region Values
@@ -29,13 +30,14 @@ public class InputManager : MonoBehaviour
     public bool d_Pad_Left;
     public bool d_Pad_Right;
     public bool inventory_Input;
-
+    public bool lockOnInput;
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
     public bool Heavy_attack_Input;
 
     public bool comboFlag;
+    public bool lockOnFlag;
     public bool inventoryFlag;
     #endregion
 
@@ -47,6 +49,7 @@ public class InputManager : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
         uiManager = FindObjectOfType<UIManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
      
     }
 
@@ -72,6 +75,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
 
             playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
+            playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
         }
 
         playerControls.Enable();
@@ -90,6 +95,7 @@ public class InputManager : MonoBehaviour
         HandleAttackInput();
         HandleQuickSlotsInput();
         HandleInventoryInput();
+        HandleLockOnInput();
     }
 
     private void HandleMovementInput()
@@ -186,6 +192,27 @@ public class InputManager : MonoBehaviour
                 uiManager.CloseAllInventoryWindows();
                 uiManager.hudWindow.SetActive(true);
             }
+        }
+    }
+
+    private void HandleLockOnInput()
+    {
+        if (lockOnInput && lockOnFlag == false)
+        {
+            cameraManager.ClearLockOnTargets();
+            lockOnInput = false;
+            cameraManager.HandleLockOn();
+            if (cameraManager.nearestLockOnTarget != null)
+            {
+                cameraManager.currentLockOnTarget = cameraManager.nearestLockOnTarget;
+                lockOnFlag = true;
+            }
+        }
+        else if (lockOnInput && lockOnFlag)
+        {
+            lockOnInput = false;
+            lockOnFlag = false;
+            cameraManager.ClearLockOnTargets();
         }
     }
 

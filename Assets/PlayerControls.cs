@@ -329,6 +329,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""c52acb25-ee0e-4383-8fcd-c4d60d267b34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -529,6 +538,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""A_Input"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd2b2f5e-3e10-483d-a7ad-24c7932753c4"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99db85aa-fe8e-4425-ac3e-7ea86c3c9c63"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -551,6 +582,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_DPadLeft = m_PlayerActions.FindAction("D-Pad Left", throwIfNotFound: true);
         m_PlayerActions_DPadRight = m_PlayerActions.FindAction("D-Pad Right", throwIfNotFound: true);
         m_PlayerActions_A_Input = m_PlayerActions.FindAction("A_Input", throwIfNotFound: true);
+        m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -661,6 +693,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_DPadLeft;
     private readonly InputAction m_PlayerActions_DPadRight;
     private readonly InputAction m_PlayerActions_A_Input;
+    private readonly InputAction m_PlayerActions_LockOn;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -675,6 +708,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @DPadLeft => m_Wrapper.m_PlayerActions_DPadLeft;
         public InputAction @DPadRight => m_Wrapper.m_PlayerActions_DPadRight;
         public InputAction @A_Input => m_Wrapper.m_PlayerActions_A_Input;
+        public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -714,6 +748,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @A_Input.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnA_Input;
                 @A_Input.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnA_Input;
                 @A_Input.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnA_Input;
+                @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
+                @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
+                @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -748,6 +785,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @A_Input.started += instance.OnA_Input;
                 @A_Input.performed += instance.OnA_Input;
                 @A_Input.canceled += instance.OnA_Input;
+                @LockOn.started += instance.OnLockOn;
+                @LockOn.performed += instance.OnLockOn;
+                @LockOn.canceled += instance.OnLockOn;
             }
         }
     }
@@ -769,5 +809,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnDPadLeft(InputAction.CallbackContext context);
         void OnDPadRight(InputAction.CallbackContext context);
         void OnA_Input(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
     }
 }
