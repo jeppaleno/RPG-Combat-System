@@ -117,7 +117,7 @@ public class InputManager : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         if (lockOnFlag && sprint_Input == false)
         {
-            animatorManager.UpdateAnimatorValues(verticalInput, horizontalInput, character.isSprinting);
+            animatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, character.isSprinting);
         }
         else
         {
