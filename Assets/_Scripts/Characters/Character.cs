@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     #region Calls
+    CameraManager cameraManager;
     PlayerManager playerManager;
     AnimatorManager animatorManager;
     InputManager inputManager;
@@ -46,6 +47,7 @@ public abstract class Character : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         playerRigidbody = GetComponent<Rigidbody>();
         cameraObject = Camera.main.transform;
+        cameraManager = FindObjectOfType<CameraManager>();
     }
 
     public void HandleAllMovement()
@@ -92,25 +94,58 @@ public abstract class Character : MonoBehaviour
 
     protected void HandleRotation()
     {
-        if (isJumping)
-            return;
+        if (inputManager.lockOnFlag)
+        {
+            if (inputManager.sprint_Input)
+            {
+                Vector3 targetDirection = Vector3.zero;
+                targetDirection = cameraManager.cameraTransform.forward * inputManager.verticalInput;
+                targetDirection += cameraManager.cameraTransform.right * inputManager.horizontalInput;
+                targetDirection.Normalize();
+                targetDirection.y = 0;
 
-        Vector3 targetDirection = Vector3.zero;
+                if (targetDirection == Vector3.zero)
+                {
+                    targetDirection = transform.forward;
+                }
 
-        targetDirection = cameraObject.forward * inputManager.verticalInput;
-        targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInput;
-        targetDirection.Normalize();
-        targetDirection.y = 0;
+                Quaternion tr = Quaternion.LookRotation(targetDirection);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
 
-        // Keeps the looking rotation after the player has stopped
-        if (targetDirection == Vector3.zero)
-            targetDirection = transform.forward;
+                transform.rotation = targetRotation;
+            }
+            else
+            {
+                Vector3 rotationDirection = moveDirection;
+                rotationDirection = cameraManager.currentLockOnTarget.position - transform.position;
+                rotationDirection.y = 0;
+                rotationDirection.Normalize();
+                Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                transform.rotation = targetRotation;
+            }
+           
+        }
+        else
+        {
+            Vector3 targetDirection = Vector3.zero;
 
-        // Rotates towards where the player is looking
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            targetDirection = cameraObject.forward * inputManager.verticalInput;
+            targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInput;
+            targetDirection.Normalize();
+            targetDirection.y = 0;
 
-        transform.rotation = playerRotation;
+
+            // Keeps the looking rotation after the player has stopped
+            if (targetDirection == Vector3.zero)
+                targetDirection = transform.forward;
+
+            // Rotates towards where the player is looking
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            transform.rotation = playerRotation;
+        }
     }
 
     protected void HandleFallingAndLanding()

@@ -115,7 +115,15 @@ public class InputManager : MonoBehaviour
 
         // combines value of horizontal and vertical inputs from the joystick
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        animatorManager.UpdateAnimatorValues(0, moveAmount, character.isSprinting);
+        if (lockOnFlag && sprint_Input == false)
+        {
+            animatorManager.UpdateAnimatorValues(verticalInput, horizontalInput, character.isSprinting);
+        }
+        else
+        {
+            animatorManager.UpdateAnimatorValues(0, moveAmount, character.isSprinting);
+        }
+        
     }
 
     private void HandleSprintingInput() 
@@ -230,7 +238,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        else if (lockOnFlag && right_Stick_Right_Input)
+        if (lockOnFlag && right_Stick_Right_Input)
         {
             right_Stick_Right_Input = false;
             cameraManager.HandleLockOn();
@@ -239,6 +247,8 @@ public class InputManager : MonoBehaviour
                 cameraManager.currentLockOnTarget = cameraManager.rightLockOnTarget; 
             }
         }
+
+        cameraManager.SetCameraHeight();
     }
 
 }
