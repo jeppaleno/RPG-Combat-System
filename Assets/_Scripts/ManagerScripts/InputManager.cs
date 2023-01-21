@@ -29,8 +29,11 @@ public class InputManager : MonoBehaviour
     public bool d_Pad_Down;
     public bool d_Pad_Left;
     public bool d_Pad_Right;
+
     public bool inventory_Input;
     public bool lockOnInput;
+    public bool right_Stick_Right_Input;
+    public bool right_Stick_Left_Input;
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
@@ -77,6 +80,9 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
 
             playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
+
+            playerControls.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
+            playerControls.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
         }
 
         playerControls.Enable();
@@ -199,7 +205,6 @@ public class InputManager : MonoBehaviour
     {
         if (lockOnInput && lockOnFlag == false)
         {
-            cameraManager.ClearLockOnTargets();
             lockOnInput = false;
             cameraManager.HandleLockOn();
             if (cameraManager.nearestLockOnTarget != null)
@@ -213,6 +218,26 @@ public class InputManager : MonoBehaviour
             lockOnInput = false;
             lockOnFlag = false;
             cameraManager.ClearLockOnTargets();
+        }
+
+        if (lockOnFlag && right_Stick_Left_Input)
+        {
+            right_Stick_Left_Input = false;
+            cameraManager.HandleLockOn();
+            if (cameraManager.leftLockOnTarget != null)
+            {
+                cameraManager.currentLockOnTarget = cameraManager.leftLockOnTarget;
+            }
+        }
+
+        else if (lockOnFlag && right_Stick_Right_Input)
+        {
+            right_Stick_Right_Input = false;
+            cameraManager.HandleLockOn();
+            if(cameraManager.rightLockOnTarget != null)
+            {
+                cameraManager.currentLockOnTarget = cameraManager.rightLockOnTarget; 
+            }
         }
     }
 
