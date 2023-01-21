@@ -67,6 +67,11 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.Attack.performed += i => attack_Input = true;
             playerControls.PlayerActions.HeavyAttack.performed += i => Heavy_attack_Input = true;
+
+            playerControls.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
+            playerControls.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
+
+            playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
         }
 
         playerControls.Enable();
@@ -84,7 +89,6 @@ public class InputManager : MonoBehaviour
         HandleSprintingInput();
         HandleAttackInput();
         HandleQuickSlotsInput();
-        HandleInteractingButtonInput();
         HandleInventoryInput();
     }
 
@@ -152,8 +156,6 @@ public class InputManager : MonoBehaviour
 
     private void HandleQuickSlotsInput()
     {
-        playerControls.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
-        playerControls.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
         if (d_Pad_Right)
         {
             playerInventory.changeRightWeapon();
@@ -162,11 +164,6 @@ public class InputManager : MonoBehaviour
         {
             playerInventory.changeLeftWeapon();
         }
-    }
-
-    private void HandleInteractingButtonInput()
-    {
-        
     }
 
     private void HandleInventoryInput()
