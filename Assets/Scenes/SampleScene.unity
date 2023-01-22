@@ -702,6 +702,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9087377459096612533, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
   m_PrefabInstance: {fileID: 8761296622678265230}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &66959159 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8455236765977424906, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+  m_PrefabInstance: {fileID: 8761296622678265230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &74209996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 017dba9d3f86e55429403ce249b9d374, type: 3}
@@ -3044,7 +3049,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24866
+  m_Name: pb_Mesh24892
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3385,9 +3390,9 @@ Light:
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: 1
+    m_Resolution: 3
     m_CustomResolution: -1
-    m_Strength: 0.099
+    m_Strength: 0.82
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -4533,7 +4538,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 100
-  field of view: 60
+  field of view: 65.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -17732,7 +17737,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25188
+  m_Name: pb_Mesh25238
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19112,13 +19117,18 @@ MonoBehaviour:
   targetTransform: {fileID: 41989245}
   cameraTransform: {fileID: 963194228}
   cameraPivot: {fileID: 461243684}
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cameraFollowSpeed: 0.2
-  cameraLookSpeed: 0.2
-  cameraPivotSpeed: 0.1
+  cameraLookSpeed: 0.4
+  cameraPivotSpeed: 0.2
   lookAngle: 0
   pivotAngle: 0
   minimumPivotAngle: -35
   maximumPivotAngle: 35
+  lockedPivotPosition: 2.25
+  unlockedPivotPosition: 1.65
   currentLockOnTarget: {fileID: 0}
   nearestLockOnTarget: {fileID: 0}
   leftLockOnTarget: {fileID: 0}
@@ -19151,7 +19161,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24994
+  m_Name: pb_Mesh25028
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19867,7 +19877,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25202
+  m_Name: pb_Mesh25252
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20658,9 +20668,25 @@ PrefabInstance:
       propertyPath: itemInteractableGameObject
       value: 
       objectReference: {fileID: 1784269819}
+    - target: {fileID: 8455236765977424905, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455236765977424905, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455236765977424905, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8455236765977424906, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455236765977424906, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8455236765977424911, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: m_Name
@@ -20671,12 +20697,28 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: jumpHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: runningSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: sprintingSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: fallingVelocity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: playerRigidbody
+      value: 
+      objectReference: {fileID: 66959159}
+    - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
+      propertyPath: gravityIntensity
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8455236765977424927, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: leftWeapon

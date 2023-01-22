@@ -24,7 +24,9 @@ public class InputManager : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
 
-    public bool a_Input; //Action Input
+    public bool a_Input; 
+    public bool x_Input;
+
     public bool d_Pad_Up;
     public bool d_Pad_Down;
     public bool d_Pad_Left;
@@ -67,6 +69,7 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
 
             playerControls.PlayerActions.A_Input.performed += i => a_Input = true;
+            playerControls.PlayerActions.X.performed += i => x_Input = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; //cancels when released
@@ -102,6 +105,7 @@ public class InputManager : MonoBehaviour
         HandleQuickSlotsInput();
         HandleInventoryInput();
         HandleLockOnInput();
+        HandleDodgeInput();
     }
 
     private void HandleMovementInput()
@@ -249,6 +253,15 @@ public class InputManager : MonoBehaviour
         }
 
         cameraManager.SetCameraHeight();
+    }
+
+    private void HandleDodgeInput()
+    {
+        if (x_Input)
+        {
+            x_Input = false;
+            character.HandleDodge();
+        }
     }
 
 }

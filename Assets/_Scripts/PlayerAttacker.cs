@@ -23,7 +23,7 @@ public class PlayerAttacker : MonoBehaviour
             animatorManager.animator.SetBool("canDoCombo", false);
             if (lastAttack == weapon.OH_Light_Attack_1)
             {
-                animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_2, true);
+                animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_2, true, true); // Attack with root motion
             }
         }
     }
@@ -31,14 +31,14 @@ public class PlayerAttacker : MonoBehaviour
     public void HandleLightAttack(WeaponItem weapon)
     {
         weaponSlotManager.attackingWeapon = weapon;
-        animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
+        animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_1, true, true); // attack with root motion
         lastAttack = weapon.OH_Light_Attack_1;
     }
 
     public void HandleHeavyAttack(WeaponItem weapon)
     {
         weaponSlotManager.attackingWeapon = weapon;
-        animatorManager.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
+        animatorManager.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true, true); // Attack with root motion
         lastAttack = weapon.OH_Light_Attack_1;
     }
 }

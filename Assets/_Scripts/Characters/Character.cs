@@ -213,4 +213,12 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    public void HandleDodge()
+    {
+        if (playerManager.isInteracting) // Can't dodge if we're doing something else
+            return;
+
+        animatorManager.PlayTargetAnimation("Dodge", true, true);
+    }
+
 }

@@ -14,6 +14,7 @@ public class PlayerManager : CharacterManager
     public GameObject itemInteractableGameObject; // Shows what item that was picked up
 
     public bool isInteracting;
+    public bool isUsingRootMotion;
 
     public bool canDoCombo;
 
@@ -50,6 +51,7 @@ public class PlayerManager : CharacterManager
         cameraManager.HandleAllCameraMovement();
 
         isInteracting = animator.GetBool("isInteracting");
+        isUsingRootMotion = animator.GetBool("isUsingRootMotion");
         character.isJumping = animator.GetBool("isJumping");
         animator.SetBool("isGrounded", character.isGrounded);
 

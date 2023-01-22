@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
     public float pivotAngle; //Camera looking left and right
     public float minimumPivotAngle = -35;
     public float maximumPivotAngle = 35;
-    public float lockedPivotPosition = 2.25f; // Height on camera angle while locked on target
+    public float lockedPivotPosition = 1.8f; // Height on camera angle while locked on target
     public float unlockedPivotPosition = 1.65f;
 
     public Transform currentLockOnTarget;
