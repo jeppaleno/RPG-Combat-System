@@ -702,11 +702,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9087377459096612533, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
   m_PrefabInstance: {fileID: 8761296622678265230}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &66959159 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 8455236765977424906, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
-  m_PrefabInstance: {fileID: 8761296622678265230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &74209996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 017dba9d3f86e55429403ce249b9d374, type: 3}
@@ -19127,7 +19122,7 @@ MonoBehaviour:
   pivotAngle: 0
   minimumPivotAngle: -35
   maximumPivotAngle: 35
-  lockedPivotPosition: 2.25
+  lockedPivotPosition: 2
   unlockedPivotPosition: 1.65
   currentLockOnTarget: {fileID: 0}
   nearestLockOnTarget: {fileID: 0}
@@ -20715,7 +20710,7 @@ PrefabInstance:
     - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: playerRigidbody
       value: 
-      objectReference: {fileID: 66959159}
+      objectReference: {fileID: 0}
     - target: {fileID: 8455236765977424923, guid: 7a4c7e029fdda9d498880eff01d1ed14, type: 3}
       propertyPath: gravityIntensity
       value: -10

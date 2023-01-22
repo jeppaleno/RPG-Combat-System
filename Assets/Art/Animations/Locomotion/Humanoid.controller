@@ -41,7 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBool: canDoCombo
   status: 0
-  isUsingRootMotionBool: 
+  isUsingRootMotionBool: isUsingRootMotion
   isUsingRootMotionStatus: 0
 --- !u!1102 &-7733118744254381218
 AnimatorState:
