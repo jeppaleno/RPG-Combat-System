@@ -409,6 +409,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Y"",
+                    ""type"": ""Button"",
+                    ""id"": ""b95d8db1-0a4f-4cff-a6d8-013ace729019"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -653,6 +662,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""X"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f5bcbe8-36f3-40a6-a925-6dfb6bd79a23"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bf7eaa1-4b9c-4184-a5b8-5ca65cf4de8e"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -679,6 +710,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_A_Input = m_PlayerActions.FindAction("A_Input", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_X = m_PlayerActions.FindAction("X", throwIfNotFound: true);
+        m_PlayerActions_Y = m_PlayerActions.FindAction("Y", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -807,6 +839,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_A_Input;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_X;
+    private readonly InputAction m_PlayerActions_Y;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -823,6 +856,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @A_Input => m_Wrapper.m_PlayerActions_A_Input;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @X => m_Wrapper.m_PlayerActions_X;
+        public InputAction @Y => m_Wrapper.m_PlayerActions_Y;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -868,6 +902,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @X.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnX;
                 @X.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnX;
                 @X.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnX;
+                @Y.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
+                @Y.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
+                @Y.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -908,6 +945,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @X.started += instance.OnX;
                 @X.performed += instance.OnX;
                 @X.canceled += instance.OnX;
+                @Y.started += instance.OnY;
+                @Y.performed += instance.OnY;
+                @Y.canceled += instance.OnY;
             }
         }
     }
@@ -933,5 +973,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnA_Input(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnX(InputAction.CallbackContext context);
+        void OnY(InputAction.CallbackContext context);
     }
 }

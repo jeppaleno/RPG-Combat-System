@@ -10,10 +10,11 @@ public class InputManager : MonoBehaviour
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     PlayerManager playerManager;
+    WeaponSlotManager weaponSlotManager;
     CameraManager cameraManager;
     UIManager uiManager;
     
-    #region Values
+    #region Variables
     public Vector2 movementInput;
     public Vector2 cameraInput;
 
@@ -26,6 +27,7 @@ public class InputManager : MonoBehaviour
 
     public bool a_Input; 
     public bool x_Input;
+    public bool y_Input;
 
     public bool d_Pad_Up;
     public bool d_Pad_Down;
@@ -42,6 +44,7 @@ public class InputManager : MonoBehaviour
     public bool Heavy_attack_Input;
 
     public bool comboFlag;
+    public bool twohandFlag;
     public bool lockOnFlag;
     public bool inventoryFlag;
     #endregion
@@ -53,8 +56,10 @@ public class InputManager : MonoBehaviour
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         uiManager = FindObjectOfType<UIManager>();
         cameraManager = FindObjectOfType<CameraManager>();
+
      
     }
 
@@ -70,6 +75,7 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.A_Input.performed += i => a_Input = true;
             playerControls.PlayerActions.X.performed += i => x_Input = true;
+            playerControls.PlayerActions.Y.performed += i => y_Input = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; //cancels when released
@@ -106,6 +112,7 @@ public class InputManager : MonoBehaviour
         HandleInventoryInput();
         HandleLockOnInput();
         HandleDodgeInput();
+        HandleTwoHandInput();
     }
 
     private void HandleMovementInput()
@@ -261,6 +268,28 @@ public class InputManager : MonoBehaviour
         {
             x_Input = false;
             character.HandleDodge();
+        }
+    }
+
+    private void HandleTwoHandInput()
+    {
+        if (y_Input)
+        {
+            y_Input = false;
+
+            twohandFlag = !twohandFlag;
+
+            if (twohandFlag)
+            {
+                //Enable two handing
+                weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+            }
+            else
+            {
+                //Disable two handing
+                weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+            }
         }
     }
 
