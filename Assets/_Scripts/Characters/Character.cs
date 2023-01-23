@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public class Character : MonoBehaviour
 {
     #region Calls
     CameraManager cameraManager;
@@ -61,7 +61,7 @@ public abstract class Character : MonoBehaviour
         HandleRotation();
     }
 
-    protected virtual void HandleMovement()
+    private void HandleMovement()
     {
         if (isJumping)
             return;
@@ -92,7 +92,7 @@ public abstract class Character : MonoBehaviour
         playerRigidbody.velocity = movementVelocity;
     }
 
-    protected void HandleRotation()
+    private void HandleRotation()
     {
         if (inputManager.lockOnFlag)
         {
@@ -148,7 +148,7 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    protected void HandleFallingAndLanding()
+    private void HandleFallingAndLanding()
     {
         RaycastHit hit;
         Vector3 rayCastOrigin = transform.position;
