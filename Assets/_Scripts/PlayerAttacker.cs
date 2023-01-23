@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerAttacker : MonoBehaviour
 {
-    AnimatorManager animatorManager;
+    AnimatorManager animatorHandler;
     InputManager inputManager;
     WeaponSlotManager weaponSlotManager;
     public string lastAttack;
 
     private void Awake()
     {
-        animatorManager = GetComponentInChildren<AnimatorManager>();
+        animatorHandler = GetComponentInChildren<AnimatorManager>();
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         inputManager = GetComponent<InputManager>();
     }
@@ -20,15 +20,15 @@ public class PlayerAttacker : MonoBehaviour
     {
         if(inputManager.comboFlag)
         {
-            animatorManager.animator.SetBool("canDoCombo", false);
+            animatorHandler.animator.SetBool("canDoCombo", false);
 
             if (lastAttack == weapon.OH_Light_Attack_1)
             {
-                animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_2, true, true); // Attack with root motion
+                animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_2, true, true); // Attack with root motion
             }
             else if (lastAttack == weapon.th_light_attack_01)
             {
-                animatorManager.PlayTargetAnimation(weapon.th_light_attack_02, true, true);
+                animatorHandler.PlayTargetAnimation(weapon.th_light_attack_02, true, true);
             }
         }
     }
@@ -39,13 +39,13 @@ public class PlayerAttacker : MonoBehaviour
 
         if (inputManager.twohandFlag)
         {
-            animatorManager.PlayTargetAnimation(weapon.th_light_attack_01, true, true);
+            animatorHandler.PlayTargetAnimation(weapon.th_light_attack_01, true, true);
             lastAttack = weapon.th_light_attack_01;
         }
         else
         {
             
-            animatorManager.PlayTargetAnimation(weapon.OH_Light_Attack_1, true, true); // attack with root motion
+            animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_1, true, true); // attack with root motion
             lastAttack = weapon.OH_Light_Attack_1;
         }
         
@@ -61,7 +61,7 @@ public class PlayerAttacker : MonoBehaviour
         }
         else
         {
-            animatorManager.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true, true); // Attack with root motion
+            animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true, true); // Attack with root motion
             lastAttack = weapon.OH_Light_Attack_1;
         }
         
