@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : CharacterManager
 {
     EnemyLocomotionManager enemyLocomotionManager;
     EnemyAnimatorManager enemyAnimationManager;
     EnemyStats enemyStats;
-
+    
     public State currentState;
     public CharacterStats currentTarget;
+    public NavMeshAgent navmeshAgent;
+    public Rigidbody enemyRigidBody;
 
     public bool isPerformingAction;
+    public float distanceFromTarget;
+    public float rotationSpeed = 15;
+    public float maximumAttackRange = 1.5f;
 
     [Header("A.I Settings")]
     public float detectionRadius = 20;
@@ -26,6 +32,14 @@ public class EnemyManager : CharacterManager
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         enemyAnimationManager = GetComponentInChildren<EnemyAnimatorManager>();
         enemyStats = GetComponent<EnemyStats>();
+        enemyRigidBody = GetComponent<Rigidbody>();
+        navmeshAgent = GetComponentInChildren<NavMeshAgent>();
+        navmeshAgent.enabled = false;
+    }
+
+    private void Start()
+    {
+        enemyRigidBody.isKinematic = false;
     }
 
     private void Update()
