@@ -10,9 +10,9 @@ public class AttackState : State
     public EnemyAttackAction currentAttack;
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     {
-        Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+        Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position; //change
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
-        float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+        float viewableAngle = Vector3.Angle(targetDirection, transform.forward); 
 
 
         if (enemyManager.isPerformingAction)
