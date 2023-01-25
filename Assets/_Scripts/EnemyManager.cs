@@ -15,6 +15,7 @@ public class EnemyManager : CharacterManager
     public Rigidbody enemyRigidBody;
 
     public bool isPerformingAction;
+    public bool isInteracting;
     public float distanceFromTarget;
     public float rotationSpeed = 15;
     public float maximumAttackRange = 1.5f;
@@ -46,6 +47,8 @@ public class EnemyManager : CharacterManager
     private void Update()
     {
         HandleRecoveryTimer();
+
+        isInteracting = enemyAnimationManager.animator.GetBool("isInteracting");
     }
 
     private void FixedUpdate()
