@@ -12,11 +12,11 @@ public class PursueTargetState : State
             return this;
 
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-        float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
+        enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
         
-        if (distanceFromTarget > enemyManager.maximumAttackRange)
+        if (enemyManager.distanceFromTarget > enemyManager.maximumAttackRange)
         {
             enemyAnimatorManager.animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
         }

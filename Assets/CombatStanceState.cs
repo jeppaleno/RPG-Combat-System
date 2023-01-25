@@ -12,11 +12,6 @@ public class CombatStanceState : State
         enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
         //potentially circle player or walk around them
 
-
-        //Check for attack range
-
-        //If in attack range return attack state
-        //if we are in a cool down after attacking, return this state and continue circling the player
         if ( enemyManager.currentRecoveryTime <= 0 && enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
         {
             return attackState;
@@ -25,7 +20,9 @@ public class CombatStanceState : State
         {
             return pursueTargetState;
         }
-        //If the player runs out of range return the pursuetarget state
-        return this;
+        else
+        {
+            return this;
+        }
     }
 }
