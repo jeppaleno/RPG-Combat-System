@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
+    PlayerManager playerManager;
+
     public WeaponItem attackingWeapon;
 
     WeaponHolderSlot leftHandSlot;
@@ -22,6 +24,7 @@ public class WeaponSlotManager : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerStats = GetComponentInParent<PlayerStats>();
@@ -111,25 +114,25 @@ public class WeaponSlotManager : MonoBehaviour
         rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
     }
 
-    public void OpenRightDamageCollider()
+    public void OpenDamageCollider()
     {
-        rightHandDamageCollider.EnableDamageCollider();
+        if (playerManager.isUsingRightHand)
+        {
+            rightHandDamageCollider.EnableDamageCollider();
+        }
+        else if (playerManager.isUsingLeftHand)
+        {
+            leftHandDamageCollider.EnableDamageCollider();
+        }
     }
 
-    public void OpenLeftDamageCollider()
-    {
-        leftHandDamageCollider.EnableDamageCollider();
-    }
 
-    public void CloseRightHandDamageCollider()
+    public void CloseDamageCollider()
     {
         rightHandDamageCollider.DisableDamageCollider();
-    }
-
-    public void CloseLeftHandDamageCollider()
-    {
         leftHandDamageCollider.DisableDamageCollider();
     }
+
     #endregion
 
     #region Handle Weapon's Stamina Drainage

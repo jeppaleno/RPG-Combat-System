@@ -17,6 +17,8 @@ public class PlayerManager : CharacterManager
     public bool isUsingRootMotion;
 
     public bool canDoCombo;
+    public bool isUsingRightHand;
+    public bool isUsingLeftHand;
 
     private void Awake()
     {
@@ -36,6 +38,8 @@ public class PlayerManager : CharacterManager
         inputManager.HandleAllInputs();
 
         canDoCombo = animator.GetBool("canDoCombo");
+        isUsingRightHand = animator.GetBool("isUsingRightHand");
+        isUsingLeftHand = animator.GetBool("isUsingLeftHand");
 
         CheckForInteractableObject();
     }
