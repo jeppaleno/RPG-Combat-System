@@ -38,6 +38,9 @@ public class Character : MonoBehaviour
     [Header("Jump Speeds")]
     public float jumpHeight = 3;
     public float gravityIntensity = -15;
+
+    public CapsuleCollider characterCollider;
+    public CapsuleCollider characterCollisionBlockerCollider;
     #endregion
 
     private void Awake()
@@ -48,6 +51,11 @@ public class Character : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         cameraObject = Camera.main.transform;
         cameraManager = FindObjectOfType<CameraManager>();
+    }
+
+    void Start()
+    {
+        Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
     }
 
     public void HandleAllMovement()

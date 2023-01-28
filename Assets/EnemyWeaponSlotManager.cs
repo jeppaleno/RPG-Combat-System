@@ -4,11 +4,35 @@ using UnityEngine;
 
 public class EnemyWeaponSlotManager : MonoBehaviour
 {
+    public WeaponItem rightHandWeapon;
+    public WeaponItem leftHandWeapon;
+
     WeaponHolderSlot rightHandSlot;
     WeaponHolderSlot leftHandSlot;
 
     DamageCollider leftHandDamageCollider;
     DamageCollider rightHandDamageCollider;
+
+    private void Awake()
+    {
+        WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
+        foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
+        {
+            if (weaponSlot.isLeftHandSlot)
+            {
+                leftHandSlot = weaponSlot;
+            }
+            else if (weaponSlot.isRightHandSlot)
+            {
+                rightHandSlot = weaponSlot;
+            }
+        }
+    }
+
+    private void Start()
+    {
+        LoadWeaponsOnBothHands();
+    }
 
     public void LoadWeaponOnSlot (WeaponItem weapon, bool isLeft)
     {
@@ -23,6 +47,18 @@ public class EnemyWeaponSlotManager : MonoBehaviour
             rightHandSlot.currentWeapon = weapon;
             rightHandSlot.LoadWeaponModel(weapon);
             LoadWeaponsDamageCollider(false);
+        }
+    }
+
+    public void LoadWeaponsOnBothHands()
+    {
+        if (rightHandWeapon != null)
+        {
+            LoadWeaponOnSlot(rightHandWeapon, false);
+        }
+        if (leftHandWeapon != null)
+        {
+            LoadWeaponOnSlot(leftHandWeapon, true);
         }
     }
 
@@ -47,4 +83,26 @@ public class EnemyWeaponSlotManager : MonoBehaviour
     {
         rightHandDamageCollider.DisableDamageCollider();
     }
+
+    public void DrainStaminaLightAttack()
+    {
+       
+    }
+
+    public void DrainStaminaHeavyAttack()
+    {
+        
+    }
+
+    public void EnableCombo()
+    {
+        //animator.SetBool("canDoCombo", true);
+    }
+
+    public void DisableCombo()
+    {
+        //animator.SetBool("canDoCombo", false);
+    }
+
+
 }

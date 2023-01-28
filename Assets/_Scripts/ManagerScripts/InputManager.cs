@@ -59,8 +59,6 @@ public class InputManager : MonoBehaviour
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         uiManager = FindObjectOfType<UIManager>();
         cameraManager = FindObjectOfType<CameraManager>();
-
-     
     }
 
     private void OnEnable()
@@ -175,6 +173,7 @@ public class InputManager : MonoBehaviour
                     return;
                 if (playerManager.canDoCombo)
                     return;
+                animatorManager.animator.SetBool("isUsingRightHand", true);
                 playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
             }         
         }
