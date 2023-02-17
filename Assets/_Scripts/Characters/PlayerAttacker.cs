@@ -6,6 +6,7 @@ public class PlayerAttacker : MonoBehaviour
 {
     AnimatorManager animatorManager;
     PlayerManager playerManager;
+    PlayerStats playerStats;
     PlayerInventory playerInventory;
     InputManager inputManager;
     WeaponSlotManager weaponSlotManager;
@@ -15,6 +16,7 @@ public class PlayerAttacker : MonoBehaviour
     {
         animatorManager = GetComponentInChildren<AnimatorManager>();
         playerManager = GetComponentInParent<PlayerManager>();
+        playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         inputManager = GetComponent<InputManager>();
@@ -112,9 +114,14 @@ public class PlayerAttacker : MonoBehaviour
             if (playerInventory.currentSpell != null && playerInventory.currentSpell.isFaithSpell)
             {
                 //Check for fop
-                //Attempt to cast spell
+                playerInventory.currentSpell.AttemptToCastSpell(animatorManager, playerStats);
             }
         }
+    }
+
+    private void SucessfullyCastSpell()
+    {
+        playerInventory.currentSpell.SucessfullyCastSpell(animatorManager, playerStats);
     }
 
     #endregion
