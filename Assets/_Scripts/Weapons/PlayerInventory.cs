@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
     WeaponSlotManager weaponSlotManager;
 
     [Header("Weapons")]
+    public SpellItem currentSpell;
     public WeaponItem rightWeapon;
     public WeaponItem leftWeapon;
 

@@ -161,21 +161,7 @@ public class InputManager : MonoBehaviour
     {
        if(attack_Input)
         {
-            if(playerManager.canDoCombo)
-            {
-                comboFlag = true;
-                playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                comboFlag = false;
-            }
-            else
-            {
-                if (playerManager.isInteracting)
-                    return;
-                if (playerManager.canDoCombo)
-                    return;
-                animatorManager.animator.SetBool("isUsingRightHand", true);
-                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-            }         
+            playerAttacker.HandleAttackAction();     
         }
 
        if(Heavy_attack_Input)
