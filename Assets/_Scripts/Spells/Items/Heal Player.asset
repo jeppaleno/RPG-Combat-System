@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Heal Player
-  spellWarmUpFX: {fileID: 0}
-  SpellCastFX: {fileID: 0}
-  spellAnimation: 
+  spellWarmUpFX: {fileID: 111946, guid: 3e142e58a407a7048856096aab4c9f5e, type: 3}
+  SpellCastFX: {fileID: 168292, guid: 13755b5fbb6b69b4c81b942c6e32a512, type: 3}
+  spellAnimation: Spell_Heal_start
   isFaithSpell: 1
   isMagicSpell: 0
   isPyroSpell: 0
   spellDescription: 
-  healAmount: 0
+  healAmount: 50
