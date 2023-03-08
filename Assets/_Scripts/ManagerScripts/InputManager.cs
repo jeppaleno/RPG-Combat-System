@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour
     public bool lockOnInput;
     public bool right_Stick_Right_Input;
     public bool right_Stick_Left_Input;
+    public bool critical_Attack_Input;
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
@@ -47,6 +48,8 @@ public class InputManager : MonoBehaviour
     public bool twohandFlag;
     public bool lockOnFlag;
     public bool inventoryFlag;
+
+    public Transform criticalRayCastStartPoint;
     #endregion
 
     private void Awake()
@@ -90,6 +93,8 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
             playerControls.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
+
+            playerControls.PlayerActions.CriticalAttack.performed += i => critical_Attack_Input = true;
         }
 
         playerControls.Enable();
@@ -111,6 +116,7 @@ public class InputManager : MonoBehaviour
         HandleLockOnInput();
         HandleDodgeInput();
         HandleTwoHandInput();
+        HandleCriticalAttackInput();
     }
 
     private void HandleMovementInput()
@@ -275,6 +281,15 @@ public class InputManager : MonoBehaviour
                 weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
                 weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
             }
+        }
+    }
+
+    private void HandleCriticalAttackInput()
+    {
+        if (critical_Attack_Input)
+        {
+            critical_Attack_Input = false;
+            playerAttacker.AttemptBackStabOrRiposte();
         }
     }
 

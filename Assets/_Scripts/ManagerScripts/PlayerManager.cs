@@ -26,6 +26,7 @@ public class PlayerManager : CharacterManager
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
+        backStabCollider = GetComponentInChildren<BackStabCollider>();
     }
 
     void Start()

@@ -5,16 +5,19 @@ using UnityEngine;
 public class PlayerAttacker : MonoBehaviour
 {
     AnimatorManager animatorManager;
+    PreAnimatorManager preAnimatorManager;
     PlayerManager playerManager;
     PlayerStats playerStats;
     PlayerInventory playerInventory;
     InputManager inputManager;
     WeaponSlotManager weaponSlotManager;
     public string lastAttack;
+    LayerMask backStabLayer = 1 << 12;
 
     private void Awake()
     {
         animatorManager = GetComponentInChildren<AnimatorManager>();
+        preAnimatorManager = GetComponentInChildren<PreAnimatorManager>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
@@ -125,4 +128,36 @@ public class PlayerAttacker : MonoBehaviour
     }
 
     #endregion
+
+    public void AttemptBackStabOrRiposte()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(inputManager.criticalRayCastStartPoint.position,
+            transform.TransformDirection(Vector3.forward), out hit, 0.5f, backStabLayer))
+        {
+            CharacterManager enemyCharacterManager = hit.transform.gameObject.GetComponentInParent<CharacterManager>();
+
+            if (enemyCharacterManager != null)
+            {
+                // Check for team I.D (So you cant back stab friends or yourself?)
+                // Pull is into a transform behind the enemy so the backstab looks clean
+                playerManager.transform.position = enemyCharacterManager.backStabCollider.backStabberStandPoint.position;
+                // rotate us towards that transform
+                Vector3 rotationDirection = playerManager.transform.root.eulerAngles;
+                rotationDirection = hit.transform.position - playerManager.transform.position;
+                rotationDirection.y = 0;
+                rotationDirection.Normalize();
+                Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
+                playerManager.transform.rotation = targetRotation;
+                // play animation
+                preAnimatorManager.PlayTargetAnimation("Back Stab", true);
+                enemyCharacterManager.GetComponentInChildren<PreAnimatorManager>().PlayTargetAnimation("Back stabbed", true);
+                
+                // make enemy play animation
+                // do damage
+            }
+        }
+    }
 }
