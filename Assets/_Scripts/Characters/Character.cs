@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     #region Calls
     CameraManager cameraManager;
     PlayerManager playerManager;
+    PlayerStats playerStats;
     AnimatorManager animatorManager;
     InputManager inputManager;
     #endregion 
@@ -39,6 +40,11 @@ public class Character : MonoBehaviour
     public float jumpHeight = 3;
     public float gravityIntensity = -15;
 
+    [Header("Stamina Costs")]
+    [SerializeField]
+    int rollStaminaCost = 15;
+    int backstepStaminaCost = 12;
+
     public CapsuleCollider characterCollider;
     public CapsuleCollider characterCollisionBlockerCollider;
     #endregion
@@ -46,6 +52,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerStats = GetComponent<PlayerStats>();
         animatorManager = GetComponent<AnimatorManager>();
         inputManager = GetComponent<InputManager>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -81,6 +88,9 @@ public class Character : MonoBehaviour
 
         if (isSprinting)
         {
+            if (playerStats.currentStamina <= 0)
+                return;
+
             moveDirection = moveDirection * sprintingSpeed; 
         }
         else
@@ -212,6 +222,9 @@ public class Character : MonoBehaviour
 
     public void HandleJumping()
     {
+        if (playerStats.currentStamina <= 0)
+            return;
+
         if (isGrounded)
         {
             
@@ -231,6 +244,7 @@ public class Character : MonoBehaviour
             return;
 
         animatorManager.PlayTargetAnimation("Dodge", true, true);
+        playerStats.TakeStaminaDamage(backstepStaminaCost);
     }
 
 }
