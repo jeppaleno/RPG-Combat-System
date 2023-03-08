@@ -10,6 +10,7 @@ public class AnimatorManager : PreAnimatorManager
     Character character;
     int horizontal;
     int vertical;
+    //public bool canRotate;
 
     private void Awake()
     {
@@ -83,6 +84,16 @@ public class AnimatorManager : PreAnimatorManager
 
         animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
         animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
+    }
+
+    public void CanRotate()
+    {
+        animator.SetBool("canRotate", true);
+    }
+
+    public void stopRotation()
+    {
+        animator.SetBool("canRotate", false);
     }
 
     private void OnAnimatorMove()

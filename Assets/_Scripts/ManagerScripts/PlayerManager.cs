@@ -7,6 +7,7 @@ public class PlayerManager : CharacterManager
     InputManager inputManager;
     CameraManager cameraManager;
     Animator animator;
+    AnimatorManager animatorManager;
     Character character;
     PlayerStats playerStats;
 
@@ -24,6 +25,7 @@ public class PlayerManager : CharacterManager
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
+        animatorManager = GetComponent<AnimatorManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
         playerStats = GetComponent<PlayerStats>();
@@ -45,6 +47,8 @@ public class PlayerManager : CharacterManager
         isUsingLeftHand = animator.GetBool("isUsingLeftHand");
         animator.SetBool("isDead", playerStats.isDead);
 
+        animatorManager.canRotate = animator.GetBool("canRotate");
+
         CheckForInteractableObject();
     }
 
@@ -52,6 +56,7 @@ public class PlayerManager : CharacterManager
     private void FixedUpdate()
     {
         character.HandleAllMovement();
+        character.HandleRotation();
     }
 
     private void LateUpdate()
