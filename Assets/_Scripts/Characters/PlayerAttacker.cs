@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerAttacker : MonoBehaviour
 {
     AnimatorManager animatorManager;
-    PreAnimatorManager preAnimatorManager;
     PlayerManager playerManager;
     PlayerStats playerStats;
     PlayerInventory playerInventory;
@@ -17,7 +16,6 @@ public class PlayerAttacker : MonoBehaviour
     private void Awake()
     {
         animatorManager = GetComponentInChildren<AnimatorManager>();
-        preAnimatorManager = GetComponentInChildren<PreAnimatorManager>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
@@ -152,8 +150,8 @@ public class PlayerAttacker : MonoBehaviour
                 Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
                 playerManager.transform.rotation = targetRotation;
                 // play animation
-                preAnimatorManager.PlayTargetAnimation("Back Stab", true);
-                enemyCharacterManager.GetComponentInChildren<PreAnimatorManager>().PlayTargetAnimation("Back stabbed", true);
+                animatorManager.PlayTargetAnimation("Back Stab", true);
+                enemyCharacterManager.GetComponentInChildren<PreAnimatorManager>().PlayTargetAnimation("Back Stabbed", true);
                 
                 // make enemy play animation
                 // do damage

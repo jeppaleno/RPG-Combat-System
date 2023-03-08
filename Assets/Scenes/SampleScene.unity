@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 41989245}
-  backStabBoxCollider: {fileID: 0}
-  backStabCollider: {fileID: 256473117}
+  backStabBoxCollider: {fileID: 256473117}
+  backStabCollider: {fileID: 0}
   currentState: {fileID: 987894707}
   currentTarget: {fileID: 0}
   navmeshAgent: {fileID: 0}
@@ -1626,7 +1626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256473115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: -0.405}
+  m_LocalPosition: {x: 0, y: 1.25, z: -0.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23273,6 +23273,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838463406301325535, guid: d987a316519e6224cb652127212864d2, type: 3}
       propertyPath: backStabCollider
+      value: 
+      objectReference: {fileID: 1055286848}
+    - target: {fileID: 3838463406301325535, guid: d987a316519e6224cb652127212864d2, type: 3}
+      propertyPath: backStabBoxCollider
       value: 
       objectReference: {fileID: 1055286848}
     - target: {fileID: 3838463406301325535, guid: d987a316519e6224cb652127212864d2, type: 3}
