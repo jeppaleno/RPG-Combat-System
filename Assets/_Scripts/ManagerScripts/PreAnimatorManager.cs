@@ -11,4 +11,9 @@ public class PreAnimatorManager : MonoBehaviour
         animator.SetBool("isUsingRootMotion", useRootMotion);
         animator.CrossFade(targetAnimation, 0.2f);
     }
+
+    public virtual void TakeCriticalDamageAnimationEvent()
+    {
+
+    }
 }

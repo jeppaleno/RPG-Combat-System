@@ -30,7 +30,7 @@ public class EnemyManager : CharacterManager
     public void Awake()
     {
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
-        enemyAnimationManager = GetComponentInChildren<EnemyAnimatorManager>();
+        enemyAnimationManager = GetComponent<EnemyAnimatorManager>();
         enemyStats = GetComponent<EnemyStats>();
         enemyRigidBody = GetComponent<Rigidbody>();
         backStabCollider = GetComponentInChildren<BackStabCollider>();
@@ -48,6 +48,7 @@ public class EnemyManager : CharacterManager
         HandleRecoveryTimer();
 
         isInteracting = enemyAnimationManager.animator.GetBool("isInteracting");
+        enemyAnimationManager.animator.SetBool("isDead", enemyStats.isDead);
     }
 
     private void FixedUpdate()

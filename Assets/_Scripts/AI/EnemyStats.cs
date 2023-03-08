@@ -9,7 +9,7 @@ public class EnemyStats : CharacterStats
 
     private void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -23,6 +23,17 @@ public class EnemyStats : CharacterStats
     {
         maxHealth = healthLevel * 10;
         return maxHealth;
+    }
+
+    public void TakeDamageNoAnimation(int damage)
+    {
+        currentHealth = currentHealth - damage;
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            isDead = true;
+        }
     }
 
     public void TakeDamage(int damage)

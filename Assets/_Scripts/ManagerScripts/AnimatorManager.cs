@@ -6,6 +6,7 @@ public class AnimatorManager : PreAnimatorManager
 {
     
     PlayerManager playerManager;
+    PlayerStats playerStats;
     Character character;
     int horizontal;
     int vertical;
@@ -14,6 +15,7 @@ public class AnimatorManager : PreAnimatorManager
     {
         animator = GetComponent<Animator>();
         playerManager = GetComponent<PlayerManager>();
+        playerStats = GetComponent<PlayerStats>();
         character = GetComponent<Character>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
@@ -105,6 +107,12 @@ public class AnimatorManager : PreAnimatorManager
     public void DisableCombo()
     {
         animator.SetBool("canDoCombo", false);
+    }
+
+    public override void TakeCriticalDamageAnimationEvent()
+    {
+        playerStats.TakeDamageNoAnimation(playerManager.pendingCriticalDamage);
+        playerManager.pendingCriticalDamage = 0;
     }
 
 }

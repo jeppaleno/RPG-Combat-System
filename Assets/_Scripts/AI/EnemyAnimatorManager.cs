@@ -5,11 +5,19 @@ using UnityEngine;
 public class EnemyAnimatorManager : PreAnimatorManager
 {
     EnemyManager enemyManager;
+    EnemyStats enemyStats;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        enemyManager = GetComponentInParent<EnemyManager>();
+        enemyManager = GetComponent<EnemyManager>();
+        enemyStats = GetComponent<EnemyStats>();
+    }
+
+    public override void TakeCriticalDamageAnimationEvent()
+    {
+        enemyStats.TakeDamageNoAnimation(enemyManager.pendingCriticalDamage);
+        enemyManager.pendingCriticalDamage = 0;
     }
 
     private void OnAnimatorMove()

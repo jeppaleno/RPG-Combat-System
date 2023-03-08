@@ -8,6 +8,7 @@ public class PlayerManager : CharacterManager
     CameraManager cameraManager;
     Animator animator;
     Character character;
+    PlayerStats playerStats;
 
     InteractableUI interactableUI;
     public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
@@ -25,6 +26,7 @@ public class PlayerManager : CharacterManager
         inputManager = GetComponent<InputManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
         character = GetComponent<Character>();
         backStabCollider = GetComponentInChildren<BackStabCollider>();
     }
@@ -41,6 +43,7 @@ public class PlayerManager : CharacterManager
         canDoCombo = animator.GetBool("canDoCombo");
         isUsingRightHand = animator.GetBool("isUsingRightHand");
         isUsingLeftHand = animator.GetBool("isUsingLeftHand");
+        animator.SetBool("isDead", playerStats.isDead);
 
         CheckForInteractableObject();
     }
