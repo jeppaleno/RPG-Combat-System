@@ -42,6 +42,7 @@ public class InputManager : MonoBehaviour
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
+    public bool lt_Input; //Left trigger
     public bool Heavy_attack_Input;
 
     public bool comboFlag;
@@ -83,6 +84,8 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.Attack.performed += i => attack_Input = true;
             playerControls.PlayerActions.HeavyAttack.performed += i => Heavy_attack_Input = true;
+
+            playerControls.PlayerActions.LT.performed += i => lt_Input = true;
 
             playerControls.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
             playerControls.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
@@ -173,6 +176,20 @@ public class InputManager : MonoBehaviour
        if(Heavy_attack_Input)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+        }
+
+       if (lt_Input)
+        {
+            if (twohandFlag)
+            {
+                // if two handing handle weapon art
+            }
+            else
+            {
+                // else handle light attack if melee weapon
+                playerAttacker.HandleLTAction();
+            }
+            //handle weapon art if shield
         }
     }
 

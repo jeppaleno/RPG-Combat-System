@@ -70,6 +70,7 @@ public class PlayerManager : CharacterManager
 
         inputManager.attack_Input = false;
         inputManager.Heavy_attack_Input = false;
+        inputManager.lt_Input = false;
         inputManager.d_Pad_Up = false;
         inputManager.d_Pad_Down = false;
         inputManager.d_Pad_Left = false;
