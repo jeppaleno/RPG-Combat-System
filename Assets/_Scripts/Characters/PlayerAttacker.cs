@@ -12,6 +12,7 @@ public class PlayerAttacker : MonoBehaviour
     WeaponSlotManager weaponSlotManager;
     public string lastAttack;
     LayerMask backStabLayer = 1 << 12;
+    LayerMask riposteLayer = 1 << 13;
 
     private void Awake()
     {
@@ -153,7 +154,7 @@ public class PlayerAttacker : MonoBehaviour
             {
                 // Check for team I.D (So you cant back stab friends or yourself?)
                 // Pull is into a transform behind the enemy so the backstab looks clean
-                playerManager.transform.position = enemyCharacterManager.backStabCollider.backStabberStandPoint.position;
+                playerManager.transform.position = enemyCharacterManager.backStabCollider.criticalDamagerStandPosition.position;
                 // rotate us towards that transform
                 Vector3 rotationDirection = playerManager.transform.root.eulerAngles;
                 rotationDirection = hit.transform.position - playerManager.transform.position;
@@ -171,6 +172,32 @@ public class PlayerAttacker : MonoBehaviour
                 
                 // make enemy play animation
                 // do damage
+            }
+        }
+        else if (Physics.Raycast(inputManager.criticalRayCastStartPoint.position,
+                transform.TransformDirection(Vector3.forward), out hit, 0.5f, riposteLayer))
+        {
+            // Check for team I.D (future task)
+            CharacterManager enemyCharacterManager = hit.transform.gameObject.GetComponentInParent<CharacterManager>();
+            DamageCollider rightWeapon = weaponSlotManager.rightHandDamageCollider;
+
+            if (enemyCharacterManager != null && enemyCharacterManager.canBeRiposted)
+            {
+                playerManager.transform.position = enemyCharacterManager.riposteCollider.criticalDamagerStandPosition.position;
+
+                Vector3 rotationDirection = playerManager.transform.root.eulerAngles;
+                rotationDirection = hit.transform.position - playerManager.transform.position;
+                rotationDirection.y = 0;
+                rotationDirection.Normalize();
+                Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
+                playerManager.transform.rotation = targetRotation;
+
+                int criticalDamage = playerInventory.rightWeapon.criticalDamageMultiplier * rightWeapon.currentWeaponDamage;
+                enemyCharacterManager.pendingCriticalDamage = criticalDamage;
+
+                animatorManager.PlayTargetAnimation("Riposte", true);
+                enemyCharacterManager.GetComponentInChildren<PreAnimatorManager>().PlayTargetAnimation("Riposted", true);
             }
         }
     }

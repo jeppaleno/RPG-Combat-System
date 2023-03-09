@@ -30,7 +30,7 @@ public class PlayerManager : CharacterManager
         animator = GetComponent<Animator>();
         playerStats = GetComponent<PlayerStats>();
         character = GetComponent<Character>();
-        backStabCollider = GetComponentInChildren<BackStabCollider>();
+        backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
     }
 
     void Start()
