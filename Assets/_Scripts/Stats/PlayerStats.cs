@@ -101,4 +101,9 @@ public class PlayerStats : CharacterStats
 
         regen = null;
     }
+
+    public void AddSouls(int souls)
+    {
+        soulCount = soulCount + souls;
+    }
 }

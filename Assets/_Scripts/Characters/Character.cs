@@ -42,8 +42,9 @@ public class Character : MonoBehaviour
 
     [Header("Stamina Costs")]
     [SerializeField]
-    int rollStaminaCost = 15;
+    //int rollStaminaCost = 15;
     int backstepStaminaCost = 12;
+    int sprintStaminaCost = 1;
 
     public CapsuleCollider characterCollider;
     public CapsuleCollider characterCollisionBlockerCollider;
@@ -91,7 +92,8 @@ public class Character : MonoBehaviour
             if (playerStats.currentStamina <= 0)
                 return;
 
-            moveDirection = moveDirection * sprintingSpeed; 
+            moveDirection = moveDirection * sprintingSpeed;
+            playerStats.TakeStaminaDamage(sprintStaminaCost);
         }
         else
         {
