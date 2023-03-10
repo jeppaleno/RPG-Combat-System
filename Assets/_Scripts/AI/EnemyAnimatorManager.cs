@@ -20,6 +20,26 @@ public class EnemyAnimatorManager : PreAnimatorManager
         enemyManager.pendingCriticalDamage = 0;
     }
 
+    public void CanRotate()
+    {
+        animator.SetBool("canRotate", true);
+    }
+
+    public void stopRotation()
+    {
+        animator.SetBool("canRotate", false);
+    }
+
+    public void EnableCombo()
+    {
+        animator.SetBool("canDoCombo", true);
+    }
+
+    public void DisableCombo()
+    {
+        animator.SetBool("canDoCombo", false);
+    }
+
     public void EnableIsParrying()
     {
         enemyManager.isParrying = true;

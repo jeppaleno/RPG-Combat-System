@@ -19,6 +19,9 @@ public class EnemyManager : CharacterManager
     public float rotationSpeed = 15;
     public float maximumAttackRange = 1.5f;
 
+    [Header("Combat Flags")]
+    public bool canDoCombo;
+
     [Header("A.I Settings")]
     public float detectionRadius = 20;
     //The higher, and lower, respectively these angles are, the greater detection field of view (like eye sight)
@@ -48,6 +51,7 @@ public class EnemyManager : CharacterManager
         HandleStateMachine();
 
         isInteracting = enemyAnimationManager.animator.GetBool("isInteracting");
+        canDoCombo = enemyAnimationManager.animator.GetBool("canDoCombo");
         enemyAnimationManager.animator.SetBool("isDead", enemyStats.isDead);
     }
 

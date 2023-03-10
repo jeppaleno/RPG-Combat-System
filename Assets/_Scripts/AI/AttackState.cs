@@ -8,11 +8,24 @@ public class AttackState : State
 
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
+
+    bool isComboing = false;
+
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     {
-        if (enemyManager.isInteracting)
+        if (enemyManager.isInteracting && enemyManager.canDoCombo == false)
+        {
             return this;
-
+        }
+        else if (enemyManager.isInteracting && enemyManager.canDoCombo)
+        {
+            if (isComboing)
+            {
+                enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
+                isComboing = false;
+            }
+        }
+            
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position; //change
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
@@ -20,9 +33,10 @@ public class AttackState : State
         HandleRotateTowardstarget(enemyManager);
 
         if (enemyManager.isPerformingAction)
+        {
             return combatStanceState;
-
-        
+        }
+     
         if (currentAttack != null)
         {
             //If we are too close to the enemy to perform current attack, get a new attack
