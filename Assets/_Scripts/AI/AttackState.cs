@@ -41,11 +41,20 @@ public class AttackState : State
                     {
                         enemyAnimatorManager.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
                         enemyAnimatorManager.animator.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
-                        enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
+                        enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true, true);
                         enemyManager.isPerformingAction = true;
-                        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
-                        currentAttack = null;
-                        return combatStanceState;
+
+                        if (currentAttack.canCombo)
+                        {
+                            currentAttack = currentAttack.comboAction;
+                            return this;
+                        }
+                        else
+                        {
+                            enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+                            currentAttack = null;
+                            return combatStanceState;
+                        }
                     }
                 }
             }

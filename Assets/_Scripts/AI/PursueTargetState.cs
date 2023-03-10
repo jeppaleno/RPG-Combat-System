@@ -8,7 +8,7 @@ public class PursueTargetState : State
 
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     {
-        if (enemyManager.isInteracting)
+       if (enemyManager.isInteracting)
             return this;
 
         if (enemyManager.isPerformingAction)
@@ -29,8 +29,6 @@ public class PursueTargetState : State
       
 
         HandleRotateTowardstarget(enemyManager);
-        enemyManager.navmeshAgent.transform.localPosition = Vector3.zero;
-        enemyManager.navmeshAgent.transform.localRotation = Quaternion.identity;
 
         if (distanceFromTarget <= enemyManager.maximumAttackRange)
         {

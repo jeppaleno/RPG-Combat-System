@@ -41,7 +41,7 @@ public class PlayerManager : CharacterManager
     void Update()
     {
         inputManager.HandleAllInputs();
-
+        
         canDoCombo = animator.GetBool("canDoCombo");
         isUsingRightHand = animator.GetBool("isUsingRightHand");
         isUsingLeftHand = animator.GetBool("isUsingLeftHand");
