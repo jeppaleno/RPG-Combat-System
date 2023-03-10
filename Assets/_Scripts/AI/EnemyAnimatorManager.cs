@@ -20,6 +20,26 @@ public class EnemyAnimatorManager : PreAnimatorManager
         enemyManager.pendingCriticalDamage = 0;
     }
 
+    public void EnableIsParrying()
+    {
+        enemyManager.isParrying = true;
+    }
+
+    public void DisableIsParrying()
+    {
+        enemyManager.isParrying = false;
+    }
+
+    public void EnableCanBeRiposted()
+    {
+        enemyManager.canBeRiposted = true;
+    }
+
+    public void DisableCanBeRiposted()
+    {
+        enemyManager.canBeRiposted = false;
+    }
+
     public void AwardSoulsOnDeath()
     {
         PlayerStats playerStats = FindObjectOfType<PlayerStats>();

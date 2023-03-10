@@ -8,6 +8,9 @@ public class PursueTargetState : State
 
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     {
+        if (enemyManager.isInteracting)
+            return this;
+
         if (enemyManager.isPerformingAction)
         {
             enemyAnimatorManager.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);

@@ -25,8 +25,8 @@ public class WeaponSlotManager : MonoBehaviour
 
     private void Awake()
     {
-        playerManager = GetComponent<PlayerManager>();
-        playerInventory = GetComponent<PlayerInventory>();
+        playerManager = GetComponentInChildren<PlayerManager>();
+        playerInventory = GetComponentInChildren<PlayerInventory>();
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerStats = GetComponent<PlayerStats>();
