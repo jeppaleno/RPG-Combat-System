@@ -75,6 +75,7 @@ public class Character : MonoBehaviour
 
         HandleMovement();
         HandleRotation();
+        HandleRolling();
     }
 
     private void HandleMovement()
@@ -247,6 +248,30 @@ public class Character : MonoBehaviour
 
         animatorManager.PlayTargetAnimation("Dodge", true, true);
         playerStats.TakeStaminaDamage(backstepStaminaCost);
+    }
+
+    public void HandleRolling()
+    {
+        if (animatorManager.animator.GetBool("isInteracting"))
+            return;
+
+        if (inputManager.rollFlag)
+        {
+            moveDirection = cameraObject.forward * inputManager.verticalInput;
+            moveDirection += cameraObject.right * inputManager.horizontalInput;
+
+            if (inputManager.moveAmount > 0)
+            {
+                animatorManager.PlayTargetAnimation("Rolling", true);
+                moveDirection.y = 0;
+                Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = rollRotation;
+            }
+            else
+            {
+                animatorManager.PlayTargetAnimation("Dodge", true);
+            }
+        }
     }
 
 }

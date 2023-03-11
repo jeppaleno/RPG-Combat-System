@@ -26,7 +26,8 @@ public class InputManager : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
 
-    public bool a_Input; 
+    public bool a_Input;
+    public bool b_input;
     public bool x_Input;
     public bool y_Input;
 
@@ -47,6 +48,7 @@ public class InputManager : MonoBehaviour
     public bool lt_Input; //Left trigger
     public bool Heavy_attack_Input;
 
+    public bool rollFlag;
     public bool comboFlag;
     public bool twohandFlag;
     public bool lockOnFlag;
@@ -104,6 +106,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
 
             playerControls.PlayerActions.CriticalAttack.performed += i => critical_Attack_Input = true;
+
+            playerControls.PlayerActions.Roll.performed += i => b_input = true;
         }
 
         playerControls.Enable();
@@ -126,6 +130,7 @@ public class InputManager : MonoBehaviour
         HandleDodgeInput();
         HandleTwoHandInput();
         HandleCriticalAttackInput();
+        HandleRollInput();
     }
 
     private void HandleMovementInput()
@@ -327,6 +332,14 @@ public class InputManager : MonoBehaviour
         {
             critical_Attack_Input = false;
             playerAttacker.AttemptBackStabOrRiposte();
+        }
+    }
+
+    private void HandleRollInput()
+    {
+        if (b_input)
+        {
+            rollFlag = true;
         }
     }
 
