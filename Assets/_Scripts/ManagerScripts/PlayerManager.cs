@@ -18,7 +18,9 @@ public class PlayerManager : CharacterManager
     public bool isInteracting;
     public bool isUsingRootMotion;
 
+    [Header("Player Flags")]
     public bool canDoCombo;
+    public bool isBlocking;
     public bool isUsingRightHand;
     public bool isUsingLeftHand;
 
@@ -45,6 +47,7 @@ public class PlayerManager : CharacterManager
         canDoCombo = animator.GetBool("canDoCombo");
         isUsingRightHand = animator.GetBool("isUsingRightHand");
         isUsingLeftHand = animator.GetBool("isUsingLeftHand");
+        animator.SetBool("isBlocking", isBlocking);
         animator.SetBool("isDead", playerStats.isDead);
 
         animatorManager.canRotate = animator.GetBool("canRotate");

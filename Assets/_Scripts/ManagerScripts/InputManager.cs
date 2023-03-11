@@ -42,6 +42,7 @@ public class InputManager : MonoBehaviour
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
+    public bool lb_Input; // Left shoulder/Q
     public bool lt_Input; //Left trigger
     public bool Heavy_attack_Input;
 
@@ -85,6 +86,9 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Attack.performed += i => attack_Input = true;
             playerControls.PlayerActions.HeavyAttack.performed += i => Heavy_attack_Input = true;
 
+            playerControls.PlayerActions.LB.performed += i => lb_Input = true;
+            playerControls.PlayerActions.LB.canceled += i => lb_Input = false;
+
             playerControls.PlayerActions.LT.performed += i => lt_Input = true;
 
             playerControls.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
@@ -113,7 +117,7 @@ public class InputManager : MonoBehaviour
         HandleMovementInput();
         HandleJumpingInput();
         HandleSprintingInput();
-        HandleAttackInput();
+        HandleCombatInput();
         HandleQuickSlotsInput();
         HandleInventoryInput();
         HandleLockOnInput();
@@ -166,7 +170,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleAttackInput()
+    private void HandleCombatInput() // (float delta)?
     {
        if(attack_Input)
         {
@@ -176,6 +180,15 @@ public class InputManager : MonoBehaviour
        if(Heavy_attack_Input)
         {
             playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+        }
+
+       if (lb_Input)
+        {
+            playerAttacker.HandleLBAction();
+        }
+       else
+        {
+            playerManager.isBlocking = false;
         }
 
        if (lt_Input)

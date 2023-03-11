@@ -13,6 +13,7 @@ public class PursueTargetState : State
 
         if (enemyManager.isPerformingAction)
         {
+           
             enemyAnimatorManager.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             return this;
         }
