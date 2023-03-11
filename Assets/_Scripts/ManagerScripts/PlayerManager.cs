@@ -20,7 +20,6 @@ public class PlayerManager : CharacterManager
 
     [Header("Player Flags")]
     public bool canDoCombo;
-    public bool isBlocking;
     public bool isUsingRightHand;
     public bool isUsingLeftHand;
 

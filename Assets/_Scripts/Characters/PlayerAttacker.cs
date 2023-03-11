@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttacker : MonoBehaviour
 {
     AnimatorManager animatorManager;
+    PlayerEquipmentManager playerEquipmentManager;
     PlayerManager playerManager;
     PlayerStats playerStats;
     PlayerInventory playerInventory;
@@ -17,6 +18,7 @@ public class PlayerAttacker : MonoBehaviour
     private void Awake()
     {
         animatorManager = GetComponentInChildren<AnimatorManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
@@ -179,6 +181,7 @@ public class PlayerAttacker : MonoBehaviour
             return;
 
         animatorManager.PlayTargetAnimation("Block_Start", false, true, true);
+        playerEquipmentManager.OpenBlockingCollider();
         playerManager.isBlocking = true;
     }
     #endregion
