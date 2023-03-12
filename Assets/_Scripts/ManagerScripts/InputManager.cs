@@ -49,6 +49,7 @@ public class InputManager : MonoBehaviour
     public bool Heavy_attack_Input;
 
     public bool rollFlag;
+    public bool isInteracting;
     public bool comboFlag;
     public bool twohandFlag;
     public bool lockOnFlag;
@@ -340,6 +341,8 @@ public class InputManager : MonoBehaviour
         if (b_input)
         {
             rollFlag = true;
+            b_input = false;
+            character.HandleRolling();
         }
     }
 

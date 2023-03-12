@@ -75,7 +75,6 @@ public class Character : MonoBehaviour
 
         HandleMovement();
         HandleRotation();
-        HandleRolling();
     }
 
     private void HandleMovement()
@@ -262,14 +261,14 @@ public class Character : MonoBehaviour
 
             if (inputManager.moveAmount > 0)
             {
-                animatorManager.PlayTargetAnimation("Rolling", true);
+                animatorManager.PlayTargetAnimation("Rolling", true, true);
                 moveDirection.y = 0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 transform.rotation = rollRotation;
             }
             else
             {
-                animatorManager.PlayTargetAnimation("Dodge", true);
+                animatorManager.PlayTargetAnimation("Dodge", true, true);
             }
         }
     }

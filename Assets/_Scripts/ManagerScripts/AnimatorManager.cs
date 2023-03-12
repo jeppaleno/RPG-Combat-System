@@ -6,6 +6,7 @@ public class AnimatorManager : PreAnimatorManager
 {
     
     PlayerManager playerManager;
+    InputManager inputManager;
     PlayerStats playerStats;
     Character character;
     int horizontal;
@@ -15,6 +16,7 @@ public class AnimatorManager : PreAnimatorManager
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        inputManager = GetComponent<InputManager>();
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
         character = GetComponent<Character>();
