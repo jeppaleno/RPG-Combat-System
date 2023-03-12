@@ -9,7 +9,7 @@ public class AttackState : State
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
 
-    bool isComboing = false;
+    bool willDoComboOnNextAttack = false;
 
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     {
@@ -19,10 +19,10 @@ public class AttackState : State
         }
         else if (enemyManager.isInteracting && enemyManager.canDoCombo)
         {
-            if (isComboing)
+            if (willDoComboOnNextAttack)
             {
+                willDoComboOnNextAttack = false;
                 enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
-                isComboing = false;
             }
         }
             
@@ -57,8 +57,9 @@ public class AttackState : State
                         enemyAnimatorManager.animator.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
                         enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true, true);
                         enemyManager.isPerformingAction = true;
+                        RollForComboChance(enemyManager);
 
-                        if (currentAttack.canCombo)
+                        if (currentAttack.canCombo && willDoComboOnNextAttack)
                         {
                             currentAttack = currentAttack.comboAction;
                             return this;
@@ -158,6 +159,16 @@ public class AttackState : State
             enemyManager.navmeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
             enemyManager.enemyRigidBody.velocity = targetVelocity;
             enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navmeshAgent.transform.rotation, enemyManager.rotationSpeed / Time.deltaTime);
+        }
+    }
+
+    private void RollForComboChance(EnemyManager enemyManager)
+    {
+        float comboChance = Random.Range(0, 100);
+
+        if (enemyManager.allowAIToPerformCombos && comboChance <= enemyManager.comboLikelyHood)
+        {
+            willDoComboOnNextAttack = true;
         }
     }
 }

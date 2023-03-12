@@ -241,6 +241,8 @@ MonoBehaviour:
   maximumDetectionAngle: 90
   minimumDetectionAngle: -90
   currentRecoveryTime: 1
+  allowAIToPerformCombos: 1
+  comboLikelyHood: 100
 --- !u!114 &38032396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3784,6 +3786,8 @@ MonoBehaviour:
   maximumDetectionAngle: 90
   minimumDetectionAngle: -90
   currentRecoveryTime: 0
+  allowAIToPerformCombos: 0
+  comboLikelyHood: 0
 --- !u!136 &689212495
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19917,6 +19921,8 @@ MonoBehaviour:
   maximumDetectionAngle: 90
   minimumDetectionAngle: -90
   currentRecoveryTime: 0
+  allowAIToPerformCombos: 0
+  comboLikelyHood: 0
 --- !u!136 &1483499085
 CapsuleCollider:
   m_ObjectHideFlags: 0

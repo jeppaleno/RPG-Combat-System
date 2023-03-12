@@ -27,8 +27,11 @@ public class EnemyManager : CharacterManager
     //The higher, and lower, respectively these angles are, the greater detection field of view (like eye sight)
     public float maximumDetectionAngle = 80;
     public float minimumDetectionAngle = -80;
-
     public float currentRecoveryTime = 0;
+
+    [Header("A.I Combat Settings")]
+    public bool allowAIToPerformCombos;
+    public float comboLikelyHood;
 
     public void Awake()
     {
