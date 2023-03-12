@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyStats : CharacterStats
 {
     EnemyAnimatorManager enemyAnimatorManager;
+
+    public UIEnemyHealthBar enemyHealthBar;
 
     public int soulsAwardedOnDeath = 50;
 
@@ -17,6 +20,7 @@ public class EnemyStats : CharacterStats
     {
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
+        enemyHealthBar.SetMaxHealth(maxHealth);
         
     }
 
@@ -29,6 +33,8 @@ public class EnemyStats : CharacterStats
     public void TakeDamageNoAnimation(int damage)
     {
         currentHealth = currentHealth - damage;
+
+        enemyHealthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -43,8 +49,9 @@ public class EnemyStats : CharacterStats
             return;
 
         currentHealth = currentHealth - damage;
+        enemyHealthBar.SetHealth(currentHealth);
 
-        enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true);
+        enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
 
         if (currentHealth <= 0)
         {
