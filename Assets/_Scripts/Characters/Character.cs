@@ -139,7 +139,7 @@ public class Character : MonoBehaviour
                 else
                 {
                     Vector3 rotationDirection = moveDirection;
-                    rotationDirection = cameraManager.currentLockOnTarget.position - transform.position;
+                    rotationDirection = cameraManager.currentLockOnTarget.transform.position - transform.position;
                     rotationDirection.y = 0;
                     rotationDirection.Normalize();
                     Quaternion tr = Quaternion.LookRotation(rotationDirection);
