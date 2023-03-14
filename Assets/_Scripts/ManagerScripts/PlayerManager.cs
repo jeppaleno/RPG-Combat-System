@@ -82,6 +82,7 @@ public class PlayerManager : CharacterManager
         inputManager.inventory_Input = false;
     }
 
+    #region Player Interactions
     public void CheckForInteractableObject()
     {
         RaycastHit hit;
@@ -116,4 +117,13 @@ public class PlayerManager : CharacterManager
             }
         }
     }
+
+    public void OpenChestInteraction(Transform playerStandsHereWhenOpeningChest)
+    {
+        character.playerRigidbody.velocity = Vector3.zero; // Stops the player from skating
+        transform.position = playerStandsHereWhenOpeningChest.transform.position;
+        animatorManager.PlayTargetAnimation("Open Chest", true, true);
+    }
+
+    #endregion
 }
