@@ -9,8 +9,8 @@ public class WeaponSlotManager : MonoBehaviour
 
     public WeaponItem attackingWeapon;
 
-    WeaponHolderSlot leftHandSlot;
-    WeaponHolderSlot rightHandSlot;
+    public WeaponHolderSlot leftHandSlot;
+    public WeaponHolderSlot rightHandSlot;
     WeaponHolderSlot backSlot;
 
     public DamageCollider leftHandDamageCollider;
@@ -25,8 +25,8 @@ public class WeaponSlotManager : MonoBehaviour
 
     private void Awake()
     {
-        playerManager = GetComponentInChildren<PlayerManager>();
-        playerInventory = GetComponentInChildren<PlayerInventory>();
+        playerManager = GetComponentInParent<PlayerManager>();
+        playerInventory = GetComponentInParent<PlayerInventory>();
         animator = GetComponent<Animator>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
         playerStats = GetComponent<PlayerStats>();

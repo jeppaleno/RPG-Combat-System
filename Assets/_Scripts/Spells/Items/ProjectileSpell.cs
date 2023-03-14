@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/Healing spell")]
-public class HealingSpell : SpellItem
+public class ProjectileSpell : SpellItem
 {
-    public int healAmount;
+    public float baseDamage;
+    public float projectileVelocity;
+    Rigidbody rigidBody;
 
     public override void AttemptToCastSpell(
         AnimatorManager animatorManager,
@@ -13,17 +14,17 @@ public class HealingSpell : SpellItem
         WeaponSlotManager weaponSlotManager)
     {
         base.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
-        GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, animatorManager.transform);
+        // Instantiate the spell in the casting hand of the player
+        GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, weaponSlotManager.rightHandSlot.transform);
+        instantiatedWarmUpSpellFX.gameObject.transform.localScale = new Vector3(100, 100, 100); //change size here
         animatorManager.PlayTargetAnimation(spellAnimation, true);
-        Debug.Log("Attempting to cast spell...");
+        // Play animation
     }
 
     public override void SucessfullyCastSpell(
         AnimatorManager animatorManager, 
         PlayerStats playerStats)
     {
-        GameObject instantiatedSpellFX = Instantiate(SpellCastFX, animatorManager.transform);
-        playerStats.HealPlayer(healAmount);
-        Debug.Log("successfully cast spell...");
+        base.SucessfullyCastSpell(animatorManager, playerStats);
     }
 }

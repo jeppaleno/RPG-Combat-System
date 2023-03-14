@@ -102,6 +102,18 @@ public class PlayerStats : CharacterStats
         regen = null;
     }
 
+    public void HealPlayer(int healAmount)
+    {
+        currentHealth = currentHealth + healAmount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        healthbar.SetCurrentHealth(currentHealth);
+    }
+
     public void AddSouls(int souls)
     {
         soulCount = soulCount + souls;

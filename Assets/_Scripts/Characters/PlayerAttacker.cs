@@ -144,8 +144,12 @@ public class PlayerAttacker : MonoBehaviour
             if (playerInventory.currentSpell != null && playerInventory.currentSpell.isFaithSpell)
             {
                 //Check for fop
-                playerInventory.currentSpell.AttemptToCastSpell(animatorManager, playerStats);
+                playerInventory.currentSpell.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
             }
+        }
+        else if (weapon.isPyroCaster)
+        {
+
         }
     }
 
