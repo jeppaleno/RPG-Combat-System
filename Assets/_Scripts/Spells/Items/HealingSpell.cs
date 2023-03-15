@@ -22,6 +22,7 @@ public class HealingSpell : SpellItem
         AnimatorManager animatorManager, 
         PlayerStats playerStats)
     {
+        base.SucessfullyCastSpell(animatorManager, playerStats);
         GameObject instantiatedSpellFX = Instantiate(SpellCastFX, animatorManager.transform);
         playerStats.HealPlayer(healAmount);
         Debug.Log("successfully cast spell...");

@@ -17,7 +17,7 @@ public class ProjectileSpell : SpellItem
         // Instantiate the spell in the casting hand of the player
         GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, weaponSlotManager.rightHandSlot.transform);
         instantiatedWarmUpSpellFX.gameObject.transform.localScale = new Vector3(100, 100, 100); //change size here
-        animatorManager.PlayTargetAnimation(spellAnimation, true);
+        animatorManager.PlayTargetAnimation(spellAnimation, true, true);
         // Play animation
     }
 

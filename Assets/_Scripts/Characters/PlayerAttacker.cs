@@ -139,12 +139,21 @@ public class PlayerAttacker : MonoBehaviour
 
     private void PerformAttackMagicAction(WeaponItem weapon)
     {
+        if (playerManager.isInteracting)
+            return;
+
         if (weapon.isFaithCaster)
         {
             if (playerInventory.currentSpell != null && playerInventory.currentSpell.isFaithSpell)
             {
-                //Check for fop
-                playerInventory.currentSpell.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
+                if (playerStats.currentFocusPoints >= playerInventory.currentSpell.focusPointCost)
+                {
+                    playerInventory.currentSpell.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
+                }
+                else
+                {
+                    animatorManager.PlayTargetAnimation("shrug", true, true);
+                }
             }
         }
         else if (weapon.isPyroCaster)

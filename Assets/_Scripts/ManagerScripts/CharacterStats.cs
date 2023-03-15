@@ -14,5 +14,9 @@ public class CharacterStats : MonoBehaviour
 
     public int soulCount = 0;
 
+    public int focusLevel = 10;
+    public int maxFocusPoints;
+    public int currentFocusPoints;
+
     public bool isDead;
 }
