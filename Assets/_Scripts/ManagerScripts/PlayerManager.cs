@@ -47,6 +47,7 @@ public class PlayerManager : CharacterManager
         canDoCombo = animator.GetBool("canDoCombo");
         isUsingRightHand = animator.GetBool("isUsingRightHand");
         isUsingLeftHand = animator.GetBool("isUsingLeftHand");
+        isFiringSpell = animator.GetBool("isFiringSpell");
         animator.SetBool("isBlocking", isBlocking);
         animator.SetBool("isDead", playerStats.isDead);
 

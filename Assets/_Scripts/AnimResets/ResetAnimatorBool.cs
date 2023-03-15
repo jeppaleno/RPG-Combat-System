@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ResetAnimatorBool : StateMachineBehaviour
 {
-    public string targetBool;
-    public bool status;
+    public string isInteractingBool = "isInteracting";
+    public bool isInteractingStatus = false;
 
-    public string isUsingRootMotionBool;
-    public bool isUsingRootMotionStatus;
+    public string isFiringSpellBool = "isFiringSpell";
+    public bool isFiringSpellStatus = false;
+    //public string isUsingRootMotionBool;
+    //public bool isUsingRootMotionStatus;
+
+    public string canRotateBool = "canRotate";
+    public bool canRotateStatus = true;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(targetBool, status);
-        animator.SetBool(isUsingRootMotionBool, isUsingRootMotionStatus);
+        animator.SetBool(isInteractingBool, isInteractingStatus);
+        animator.SetBool(isFiringSpellBool, isFiringSpellStatus);
+        animator.SetBool(canRotateBool, canRotateStatus);
+        //animator.SetBool(isUsingRootMotionBool, isUsingRootMotionStatus);
     }
 }
