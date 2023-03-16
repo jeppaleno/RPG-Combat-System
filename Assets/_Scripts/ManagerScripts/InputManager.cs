@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     PlayerManager playerManager;
+    PlayerEffectsManager playerEffectsManager;
     BlockingCollider blockingCollider;
     WeaponSlotManager weaponSlotManager;
     CameraManager cameraManager;
@@ -64,6 +65,7 @@ public class InputManager : MonoBehaviour
         character = GetComponent<Character>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerInventory = GetComponent<PlayerInventory>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerManager = GetComponent<PlayerManager>();
         weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         blockingCollider = GetComponentInChildren<BlockingCollider>();
@@ -128,10 +130,11 @@ public class InputManager : MonoBehaviour
         HandleQuickSlotsInput();
         HandleInventoryInput();
         HandleLockOnInput();
-        HandleDodgeInput();
+        //HandleDodgeInput();
         HandleTwoHandInput();
         HandleCriticalAttackInput();
         HandleRollInput();
+        HandleUseConsumableInput();
     }
 
     private void HandleMovementInput()
@@ -296,14 +299,14 @@ public class InputManager : MonoBehaviour
         cameraManager.SetCameraHeight();
     }
 
-    private void HandleDodgeInput()
-    {
-        if (x_Input)
-        {
-            x_Input = false;
-            character.HandleDodge();
-        }
-    }
+    //private void HandleDodgeInput()
+    //{
+        //if (x_Input)
+        //{
+           // x_Input = false;
+            //character.HandleDodge();
+       // }
+    //}
 
     private void HandleTwoHandInput()
     {
@@ -343,6 +346,16 @@ public class InputManager : MonoBehaviour
             rollFlag = true;
             b_input = false;
             character.HandleRolling();
+        }
+    }
+
+    private void HandleUseConsumableInput()
+    {
+        if (x_Input)
+        {
+            x_Input = false;
+            // Use Current consumable
+            playerInventory.currentConsumable.AttemptToConsumeItem(animatorManager, weaponSlotManager, playerEffectsManager);
         }
     }
 

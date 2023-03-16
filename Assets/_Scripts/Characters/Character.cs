@@ -43,7 +43,7 @@ public class Character : MonoBehaviour
     [Header("Stamina Costs")]
     [SerializeField]
     //int rollStaminaCost = 15;
-    int backstepStaminaCost = 12;
+    //int backstepStaminaCost = 12;
     int sprintStaminaCost = 1;
 
     public CapsuleCollider characterCollider;
@@ -240,14 +240,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void HandleDodge()
+    /*public void HandleDodge()
     {
         if (playerManager.isInteracting) // Can't dodge if we're doing something else
             return;
 
         animatorManager.PlayTargetAnimation("Dodge", true, true);
         playerStats.TakeStaminaDamage(backstepStaminaCost);
-    }
+    }*/
 
     public void HandleRolling()
     {
