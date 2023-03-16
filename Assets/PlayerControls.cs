@@ -668,6 +668,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f0379a1d-d9b4-4b34-82b5-29add7f89846"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A_Input"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""dd2b2f5e-3e10-483d-a7ad-24c7932753c4"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
