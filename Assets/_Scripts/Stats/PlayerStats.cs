@@ -55,7 +55,7 @@ public class PlayerStats : CharacterStats
         return maxFocusPoints;
     }
 
-    public void TakeDamage(int damage, string damageAnimation = "Damage_01")
+    public override void TakeDamage(int damage, string damageAnimation = "Damage_01")
     {
         if (isDead)
             return;

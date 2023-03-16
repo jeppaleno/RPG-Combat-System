@@ -20,9 +20,11 @@ public class HealingSpell : SpellItem
 
     public override void SucessfullyCastSpell(
         AnimatorManager animatorManager, 
-        PlayerStats playerStats)
+        PlayerStats playerStats,
+        CameraManager cameraManager,
+        WeaponSlotManager weaponSlotManager)
     {
-        base.SucessfullyCastSpell(animatorManager, playerStats);
+        base.SucessfullyCastSpell(animatorManager, playerStats, cameraManager, weaponSlotManager);
         GameObject instantiatedSpellFX = Instantiate(SpellCastFX, animatorManager.transform);
         playerStats.HealPlayer(healAmount);
         Debug.Log("successfully cast spell...");

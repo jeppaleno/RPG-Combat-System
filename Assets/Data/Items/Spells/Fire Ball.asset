@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4995575b8f307743bad3b487294e460, type: 3}
   m_Name: Fire Ball
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: c2ce2097e7b7b1642a1010c4d45ae8ce, type: 3}
   itemName: Fire Ball
   spellWarmUpFX: {fileID: 103198, guid: 9605c717c819c30489174afc6e87daec, type: 3}
   SpellCastFX: {fileID: 103198, guid: 8258160a97af4b74d812940c094cdb7f, type: 3}
@@ -22,5 +22,8 @@ MonoBehaviour:
   isMagicSpell: 0
   isPyroSpell: 1
   spellDescription: 
-  baseDamage: 0
-  projectileVelocity: 0
+  baseDamage: 75
+  projectileForwardVelocity: 500
+  projectileUpwardVelocity: 150
+  projectileMass: 25
+  isEffectedByGravity: 1

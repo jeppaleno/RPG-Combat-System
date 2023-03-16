@@ -6,6 +6,7 @@ public class DamageCollider : MonoBehaviour
 {
     public CharacterManager characterManager;
     Collider damageCollider;
+    public bool enabledDamageColliderOnStartUp = false;
 
     public int currentWeaponDamage = 25;
 
@@ -14,7 +15,7 @@ public class DamageCollider : MonoBehaviour
         damageCollider = GetComponent<Collider>();
         damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
-        damageCollider.enabled = false;
+        damageCollider.enabled = enabledDamageColliderOnStartUp;
     }
 
     public void EnableDamageCollider()

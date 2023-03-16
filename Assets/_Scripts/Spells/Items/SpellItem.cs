@@ -28,7 +28,10 @@ public class SpellItem : Item
     }
 
     public virtual void SucessfullyCastSpell(
-        AnimatorManager animatorManager, PlayerStats playerStats)
+        AnimatorManager animatorManager, 
+        PlayerStats playerStats,
+        CameraManager cameraManager,
+        WeaponSlotManager weaponSlotManager)
     {
         Debug.Log("You sucessfully cast a spell!");
         playerStats.DeductFocusPoints(focusPointCost);

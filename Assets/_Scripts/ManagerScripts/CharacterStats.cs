@@ -19,4 +19,9 @@ public class CharacterStats : MonoBehaviour
     public int currentFocusPoints;
 
     public bool isDead;
+
+    public virtual void TakeDamage(int damage, string damageAnimation = "Damage_01")
+    {
+
+    }
 }

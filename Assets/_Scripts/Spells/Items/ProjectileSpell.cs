@@ -5,8 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spells/Projectile spell")]
 public class ProjectileSpell : SpellItem
 {
+    [Header("Projectile Damage")]
     public float baseDamage;
-    public float projectileVelocity;
+
+    [Header("Projectile Physics")]
+    public float projectileForwardVelocity;
+    public float projectileUpwardVelocity;
+    public float projectileMass;
+    public bool isEffectedByGravity;
     Rigidbody rigidBody;
 
     public override void AttemptToCastSpell(
@@ -24,8 +30,28 @@ public class ProjectileSpell : SpellItem
 
     public override void SucessfullyCastSpell(
         AnimatorManager animatorManager, 
-        PlayerStats playerStats)
+        PlayerStats playerStats, 
+        CameraManager cameraManager,
+        WeaponSlotManager weaponSlotManager)
     {
-        base.SucessfullyCastSpell(animatorManager, playerStats);
+        base.SucessfullyCastSpell(animatorManager, playerStats, cameraManager, weaponSlotManager);
+        GameObject instantiatedSpellFX = Instantiate(SpellCastFX, weaponSlotManager.rightHandSlot.transform.position, cameraManager.cameraPivot.rotation);
+        rigidBody = instantiatedSpellFX.GetComponent<Rigidbody>();
+        //spellDamageCollider = instantiatedSpellFX.GetComponent<SpellDamageCollider>();
+
+        if (cameraManager.currentLockOnTarget != null)
+        {
+            instantiatedSpellFX.transform.LookAt(cameraManager.currentLockOnTarget.transform);
+        }
+        else
+        {
+            instantiatedSpellFX.transform.rotation = Quaternion.Euler(cameraManager.cameraPivot.eulerAngles.x, playerStats.transform.eulerAngles.y, 0);
+        }
+
+        rigidBody.AddForce(instantiatedSpellFX.transform.forward * projectileForwardVelocity);
+        rigidBody.AddForce(instantiatedSpellFX.transform.up * projectileUpwardVelocity);
+        rigidBody.useGravity = isEffectedByGravity;
+        rigidBody.mass = projectileMass;
+        instantiatedSpellFX.transform.parent = null;
     }
 }
