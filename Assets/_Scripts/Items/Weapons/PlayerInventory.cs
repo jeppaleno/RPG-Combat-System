@@ -7,11 +7,14 @@ public class PlayerInventory : MonoBehaviour
    
     WeaponSlotManager weaponSlotManager;
 
-    [Header("Weapons")]
+    [Header("Quick Slot Items")]
     public SpellItem currentSpell;
     public WeaponItem rightWeapon;
     public WeaponItem leftWeapon;
     public ConsumableItem currentConsumable;
+
+    [Header("Current Equipment")]
+    public HelmetEquipment currentHelmetEquipment;
 
     public WeaponItem unarmedWeapon;
 
