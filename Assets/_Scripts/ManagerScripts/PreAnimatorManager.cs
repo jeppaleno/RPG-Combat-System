@@ -15,6 +15,14 @@ public class PreAnimatorManager : MonoBehaviour
         animator.CrossFade(targetAnimation, 0.2f);
     }
 
+    public void PlayTargetAnimationWithRootRotation(string targetAnimation, bool isInteracting)
+    {
+        animator.applyRootMotion = isInteracting;
+        animator.SetBool("isRotatingWithRootMotion", true);
+        animator.SetBool("isInteracting", isInteracting);
+        animator.CrossFade(targetAnimation, 0.2f);
+    }
+
     public virtual void TakeCriticalDamageAnimationEvent()
     {
 
