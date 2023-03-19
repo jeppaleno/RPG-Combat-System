@@ -95,5 +95,12 @@ public class DamageCollider : MonoBehaviour
                 enemyStats.TakeDamage(currentWeaponDamage);
             }
         }
+
+        if (collision.tag == "Illusionary Wall")
+        {
+            IllusionaryWall illusionaryWall = collision.GetComponent<IllusionaryWall>();
+
+            illusionaryWall.wallHasBeenHit = true;
+        }
     }
 }
