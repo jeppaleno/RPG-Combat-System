@@ -49,6 +49,8 @@ public class EnemyStats : CharacterStats
     public override void TakeDamage(int damage, string damageAnimation = "Damage_01")
     {
         //base.TakeDamage(damage, damageAnimation = "Damage_01");
+        if (isDead)
+            return;
 
         if (!isBoss)
         {
