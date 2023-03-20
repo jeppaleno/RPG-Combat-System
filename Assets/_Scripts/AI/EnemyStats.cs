@@ -6,22 +6,25 @@ using UnityEngine.UI;
 public class EnemyStats : CharacterStats
 {
     EnemyAnimatorManager enemyAnimatorManager;
-
+    EnemyBossManager enemyBossManager;
     public UIEnemyHealthBar enemyHealthBar;
-
     public int soulsAwardedOnDeath = 50;
 
+    public bool isBoss;
     private void Awake()
     {
         enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
+        enemyBossManager = GetComponent<EnemyBossManager>();
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
     }
 
     void Start()
     {
-        enemyHealthBar.SetMaxHealth(maxHealth);
-        
+        if (!isBoss)
+        {
+            enemyHealthBar.SetMaxHealth(maxHealth);
+        }
     }
 
     private int SetMaxHealthFromHealthLevel()
@@ -45,11 +48,18 @@ public class EnemyStats : CharacterStats
 
     public override void TakeDamage(int damage, string damageAnimation = "Damage_01")
     {
-        if (isDead)
-            return;
+        //base.TakeDamage(damage, damageAnimation = "Damage_01");
 
-        currentHealth = currentHealth - damage;
-        enemyHealthBar.SetHealth(currentHealth);
+        if (!isBoss)
+        {
+            currentHealth = currentHealth - damage;
+            enemyHealthBar.SetHealth(currentHealth);
+        }
+        else if (isBoss && enemyBossManager != null)
+        {
+            currentHealth = currentHealth - damage;
+            enemyBossManager.UpdateBossHealthBar(currentHealth);
+        }
 
         enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
 

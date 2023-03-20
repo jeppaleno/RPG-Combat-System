@@ -20,6 +20,11 @@ public class EnemyBossManager : MonoBehaviour
         bossHealthBar.SetBossName(bossName);
         bossHealthBar.SetBossMaxHealth(enemyStats.maxHealth);
     }
+
+    public void UpdateBossHealthBar(int currentHealth)
+    {
+        bossHealthBar.SetBossCurrentHealth(currentHealth);
+    }
     //Handle Switching phases
     //handle switching attack patterns
 }
