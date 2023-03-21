@@ -147,4 +147,16 @@ public class AnimatorManager : PreAnimatorManager
         playerManager.pendingCriticalDamage = 0;
     }
 
+    public void DisableCollision()
+    {
+        character.characterCollider.enabled = false;
+        character.characterCollisionBlockerCollider.enabled = false;
+    }
+
+    public void EnableCollision()
+    {
+        character.characterCollider.enabled = true;
+        character.characterCollisionBlockerCollider.enabled = true;
+    }
+
 }
