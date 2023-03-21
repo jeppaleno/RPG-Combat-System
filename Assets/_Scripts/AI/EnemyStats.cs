@@ -60,7 +60,7 @@ public class EnemyStats : CharacterStats
         else if (isBoss && enemyBossManager != null)
         {
             currentHealth = currentHealth - damage;
-            enemyBossManager.UpdateBossHealthBar(currentHealth);
+            enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 
         enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
