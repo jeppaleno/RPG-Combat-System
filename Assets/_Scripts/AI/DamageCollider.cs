@@ -92,7 +92,14 @@ public class DamageCollider : MonoBehaviour
 
             if (enemyStats != null)
             {
-                enemyStats.TakeDamage(currentWeaponDamage);
+                if (enemyStats.isBoss)
+                {
+                    enemyStats.TakeDamageNoAnimation(currentWeaponDamage);
+                }
+                else
+                {
+                    enemyStats.TakeDamage(currentWeaponDamage);
+                }
             }
         }
 

@@ -32,8 +32,9 @@ public class EnemyBossManager : MonoBehaviour
     {
         bossHealthBar.SetBossCurrentHealth(currentHealth);
 
-        if (currentHealth <= maxHealth / 2)
+        if (currentHealth <= maxHealth / 2 && !bossCombatStanceState.hasPhaseShifted)
         {
+            bossCombatStanceState.hasPhaseShifted = true;
             ShiftToSecondPhase();
         }
     }
@@ -41,7 +42,9 @@ public class EnemyBossManager : MonoBehaviour
     public void ShiftToSecondPhase()
     {
         //PLAY AN ANIMATION W AN EVENT THAT TRIGGES PARTICLE FX/WEAPON FX
-        enemyAnimatorManager.PlayTargetAnimation("Phase shift", true);
+        //enemyAnimatorManager.animator.SetBool("isInvulnerable", true);
+        enemyAnimatorManager.animator.SetBool("isPhaseShifting", true);
+        enemyAnimatorManager.PlayTargetAnimation("Phase Shift", true);
         //SWITCH ATTACK ACTIONS TO NEW PHASE PATTERNS
         bossCombatStanceState.hasPhaseShifted = true;
     }

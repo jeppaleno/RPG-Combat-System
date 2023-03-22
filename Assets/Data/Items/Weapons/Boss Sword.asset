@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea03ae3f8df7c994f9dae62fa1fe5f36, type: 3}
+  m_Name: Boss Sword
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: bfb9620e626481449a98b279695da417, type: 3}
+  itemName: Sword
+  modelPrefab: {fileID: 7187455618724288987, guid: 6cf2186189a3f1e499e359c693fee69f, type: 3}
+  isUnarmed: 0
+  baseDamage: 25
+  criticalDamageMultiplier: 4
+  physicalDamageAbsorption: 0
+  right_hand_Idle: Right_Arm_Idle_01
+  left_hand_Idle: Left_Arm_Idle_01
+  th_idle: TH_Idle_01
+  OH_Light_Attack_1: OH_Light_Attack_01
+  OH_Light_Attack_2: OH_Light_Attack_2
+  OH_Heavy_Attack_1: OH_Heavy_Attack_01
+  th_light_attack_01: TH_Sword_Attack_01
+  th_light_attack_02: TH_Sword_Attack_02
+  weapon_art: 
+  baseStamina: 20
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2
+  isSpellCaster: 0
+  isFaithCaster: 0
+  isPyroCaster: 0
+  isMeleeWeapon: 1
+  isShieldWeapon: 0

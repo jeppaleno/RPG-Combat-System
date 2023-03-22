@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyStats : CharacterStats
 {
+    EnemyManager enemyManager;
     EnemyAnimatorManager enemyAnimatorManager;
     EnemyBossManager enemyBossManager;
     public UIEnemyHealthBar enemyHealthBar;
@@ -13,6 +14,7 @@ public class EnemyStats : CharacterStats
     public bool isBoss;
     private void Awake()
     {
+        enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
         enemyBossManager = GetComponent<EnemyBossManager>();
         maxHealth = SetMaxHealthFromHealthLevel();
@@ -37,7 +39,18 @@ public class EnemyStats : CharacterStats
     {
         currentHealth = currentHealth - damage;
 
-        enemyHealthBar.SetHealth(currentHealth);
+        if (!isBoss)
+        {
+            //currentHealth = currentHealth - damage;
+            enemyHealthBar.SetHealth(currentHealth);
+        }
+        else if (isBoss && enemyBossManager != null)
+        {
+            //currentHealth = currentHealth - damage;
+            enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+        }
+
+        //enemyHealthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -48,18 +61,19 @@ public class EnemyStats : CharacterStats
 
     public override void TakeDamage(int damage, string damageAnimation = "Damage_01")
     {
-        //base.TakeDamage(damage, damageAnimation = "Damage_01");
-        if (isDead)
-            return;
+        /*if (isDead)
+            return;*/
 
+        base.TakeDamage(damage, damageAnimation = "Damage_01");
+        
         if (!isBoss)
         {
-            currentHealth = currentHealth - damage;
+            //currentHealth = currentHealth - damage;
             enemyHealthBar.SetHealth(currentHealth);
         }
         else if (isBoss && enemyBossManager != null)
         {
-            currentHealth = currentHealth - damage;
+            //currentHealth = currentHealth - damage;
             enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 

@@ -5,13 +5,16 @@ using UnityEngine;
 public class EnemyAnimatorManager : PreAnimatorManager
 {
     EnemyManager enemyManager;
+    EnemyBossManager enemyBossManager;
     EnemyStats enemyStats;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         enemyManager = GetComponent<EnemyManager>();
+        enemyBossManager = GetComponent<EnemyBossManager>();
         enemyStats = GetComponent<EnemyStats>();
+
     }
 
     public override void TakeCriticalDamageAnimationEvent()
@@ -74,6 +77,13 @@ public class EnemyAnimatorManager : PreAnimatorManager
                 soulCountBar.SetSoulCountText(playerStats.soulCount);
             }
         }
+    }
+
+    public void InstantiateBossParticlesFX()
+    {
+        BossFXTransform bossFXTransform = GetComponentInChildren<BossFXTransform>();
+
+        GameObject phaseFX = Instantiate(enemyBossManager.particleFX, bossFXTransform.transform);
     }
 
     private void OnAnimatorMove()
