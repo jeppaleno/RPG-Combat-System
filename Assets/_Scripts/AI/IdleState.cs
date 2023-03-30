@@ -7,7 +7,7 @@ public class IdleState : State
     public PursueTargetState pursueTargetState;
     public LayerMask detectionLayer;
 
-    public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager enemyAnimatorManager)
+    public override State Tick(EnemyManager enemyManager, EnemyStatsManager enemyStats, EnemyAnimatorManager enemyAnimatorManager)
     {
         #region Handle Target Detection
         // Look for a potential target

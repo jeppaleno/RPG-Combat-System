@@ -7,7 +7,7 @@ public class EnemyManager : CharacterManager
 {
     EnemyLocomotionManager enemyLocomotionManager;
     EnemyAnimatorManager enemyAnimationManager;
-    EnemyStats enemyStats;
+    EnemyStatsManager enemyStats;
     
     public State currentState;
     public CharacterStatsManager currentTarget;
@@ -38,7 +38,7 @@ public class EnemyManager : CharacterManager
     {
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         enemyAnimationManager = GetComponent<EnemyAnimatorManager>();
-        enemyStats = GetComponent<EnemyStats>();
+        enemyStats = GetComponent<EnemyStatsManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
         navmeshAgent.enabled = false;

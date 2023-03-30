@@ -7,7 +7,7 @@ public class EnemyBossManager : MonoBehaviour
     public string bossName;
 
     UIBossHealthBar bossHealthBar;
-    EnemyStats enemyStats;
+    EnemyStatsManager enemyStats;
     EnemyAnimatorManager enemyAnimatorManager;
     BossCombatStanceState bossCombatStanceState;
 
@@ -17,7 +17,7 @@ public class EnemyBossManager : MonoBehaviour
     private void Awake()
     {
         bossHealthBar = FindObjectOfType<UIBossHealthBar>();
-        enemyStats = GetComponent<EnemyStats>();
+        enemyStats = GetComponent<EnemyStatsManager>();
         enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
         bossCombatStanceState = GetComponentInChildren<BossCombatStanceState>();
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyStats : CharacterStatsManager
+public class EnemyStatsManager : CharacterStatsManager
 {
     EnemyManager enemyManager;
     EnemyAnimatorManager enemyAnimatorManager;

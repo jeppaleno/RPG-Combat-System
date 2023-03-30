@@ -6,20 +6,20 @@ public class EnemyAnimatorManager : PreAnimatorManager
 {
     EnemyManager enemyManager;
     EnemyBossManager enemyBossManager;
-    EnemyStats enemyStats;
+    EnemyStatsManager enemyStatsManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         enemyManager = GetComponent<EnemyManager>();
         enemyBossManager = GetComponent<EnemyBossManager>();
-        enemyStats = GetComponent<EnemyStats>();
+        enemyStatsManager = GetComponent<EnemyStatsManager>();
 
     }
 
     public override void TakeCriticalDamageAnimationEvent()
     {
-        enemyStats.TakeDamageNoAnimation(enemyManager.pendingCriticalDamage);
+        enemyStatsManager.TakeDamageNoAnimation(enemyManager.pendingCriticalDamage);
         enemyManager.pendingCriticalDamage = 0;
     }
 
@@ -70,7 +70,7 @@ public class EnemyAnimatorManager : PreAnimatorManager
 
         if (playerStats != null)
         {
-            playerStats.AddSouls(enemyStats.soulsAwardedOnDeath);
+            playerStats.AddSouls(enemyStatsManager.soulsAwardedOnDeath);
 
             if (soulCountBar != null)
             {

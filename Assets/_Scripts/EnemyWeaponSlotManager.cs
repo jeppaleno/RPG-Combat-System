@@ -13,11 +13,11 @@ public class EnemyWeaponSlotManager : MonoBehaviour
     DamageCollider leftHandDamageCollider;
     DamageCollider rightHandDamageCollider;
 
-    EnemyStats enemyStats;
+    EnemyStatsManager enemyStats;
 
     private void Awake()
     {
-        enemyStats = GetComponentInParent<EnemyStats>();
+        enemyStats = GetComponentInParent<EnemyStatsManager>();
         LoadWeaponHolderSlots();
     }
 
