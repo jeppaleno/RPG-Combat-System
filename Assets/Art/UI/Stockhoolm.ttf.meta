@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2f9fece5c993d93459e28725c5a8c3d4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Stockhoolm
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1e9a01dca4e453c45bbe85df6b6e26d5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

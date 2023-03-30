@@ -13,7 +13,20 @@ public class EnemyWeaponSlotManager : MonoBehaviour
     DamageCollider leftHandDamageCollider;
     DamageCollider rightHandDamageCollider;
 
+    EnemyStats enemyStats;
+
     private void Awake()
+    {
+        enemyStats = GetComponentInParent<EnemyStats>();
+        LoadWeaponHolderSlots();
+    }
+
+    private void Start()
+    {
+        LoadWeaponsOnBothHands();
+    }
+
+    private void LoadWeaponHolderSlots()
     {
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
@@ -27,11 +40,6 @@ public class EnemyWeaponSlotManager : MonoBehaviour
                 rightHandSlot = weaponSlot;
             }
         }
-    }
-
-    private void Start()
-    {
-        LoadWeaponsOnBothHands();
     }
 
     public void LoadWeaponOnSlot (WeaponItem weapon, bool isLeft)
@@ -106,5 +114,13 @@ public class EnemyWeaponSlotManager : MonoBehaviour
         //animator.SetBool("canDoCombo", false);
     }
 
+    public void GrantWeaponAttackingPoiseBonus()
+    {
+        enemyStats.totalPoiseDefence = enemyStats.totalPoiseDefence + enemyStats.offensivePoiseBonus;
+    }
 
+    public void ResetWeaponAttackingPoiseBonus()
+    {
+        enemyStats.totalPoiseDefence = enemyStats.armorPoiseBonus;
+    }
 }

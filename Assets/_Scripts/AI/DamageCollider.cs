@@ -66,6 +66,7 @@ public class DamageCollider : MonoBehaviour
             {
                 playerStats.poiseResetTimer = playerStats.totalPoiseResetTime;
                 playerStats.totalPoiseDefence = playerStats.totalPoiseDefence - poiseBreak;
+                Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
 
                 if (playerStats.totalPoiseDefence > poiseBreak)
                 {
@@ -110,15 +111,32 @@ public class DamageCollider : MonoBehaviour
             {
                 enemyStats.poiseResetTimer = enemyStats.totalPoiseResetTime;
                 enemyStats.totalPoiseDefence = enemyStats.totalPoiseDefence - poiseBreak;
+                Debug.Log("Enemies's Poise is currently" + enemyStats.totalPoiseDefence);
 
-                if (enemyStats.totalPoiseDefence > poiseBreak)
+                if (enemyStats.isBoss)
                 {
-                    enemyStats.TakeDamageNoAnimation(currentWeaponDamage);
-                    Debug.Log("Enemy Poise is currently" + enemyStats.totalPoiseDefence);
+                    if (enemyStats.totalPoiseDefence > poiseBreak)
+                    {
+                        enemyStats.TakeDamageNoAnimation(currentWeaponDamage);
+                        Debug.Log("Enemy Poise is currently" + enemyStats.totalPoiseDefence);
+                    }
+                    else
+                    {
+                        enemyStats.TakeDamageNoAnimation(currentWeaponDamage);
+                        enemyStats.BreakGuard();
+                    }
                 }
                 else
                 {
-                    enemyStats.TakeDamage(currentWeaponDamage);
+                    if (enemyStats.totalPoiseDefence > poiseBreak)
+                    {
+                        enemyStats.TakeDamageNoAnimation(currentWeaponDamage);
+                        Debug.Log("Enemy Poise is currently" + enemyStats.totalPoiseDefence);
+                    }
+                    else
+                    {
+                        enemyStats.TakeDamage(currentWeaponDamage);
+                    }
                 }
             }
         }

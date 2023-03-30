@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
-    
+    PlayerManager playerManager;
+
     public HealthBar healthbar;
     StaminaBar staminaBar;
     FocusPointBar focusPointsBar;
@@ -17,6 +18,7 @@ public class PlayerStats : CharacterStats
 
     private void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
         staminaBar = FindObjectOfType<StaminaBar>();
         focusPointsBar = FindObjectOfType<FocusPointBar>();
         animatorManager = GetComponentInChildren<AnimatorManager>();
@@ -35,6 +37,18 @@ public class PlayerStats : CharacterStats
         currentFocusPoints = maxFocusPoints;
         focusPointsBar.SetMaxFocusPoints(maxFocusPoints);
         focusPointsBar.SetCurrentFocusPoints(currentFocusPoints);
+    }
+
+    public override void HandlePoiseResetTimer()
+    {
+        if (poiseResetTimer > 0)
+        {
+            poiseResetTimer = poiseResetTimer - Time.deltaTime;
+        }
+        else if(poiseResetTimer <= 0 && !playerManager.isInteracting)
+        {
+            totalPoiseDefence = armorPoiseBonus;
+        }
     }
 
     private int SetMaxHealthFromHealthLevel()

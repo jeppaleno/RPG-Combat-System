@@ -29,6 +29,18 @@ public class EnemyStats : CharacterStats
         }
     }
 
+    public override void HandlePoiseResetTimer()
+    {
+        if (poiseResetTimer > 0)
+        {
+            poiseResetTimer = poiseResetTimer - Time.deltaTime;
+        }
+        else if (poiseResetTimer <= 0 && !enemyManager.isInteracting)
+        {
+            totalPoiseDefence = armorPoiseBonus;
+        }
+    }
+
     private int SetMaxHealthFromHealthLevel()
     {
         maxHealth = healthLevel * 10;
@@ -57,6 +69,11 @@ public class EnemyStats : CharacterStats
             currentHealth = 0;
             isDead = true;
         }
+    }
+
+    public void BreakGuard()
+    {
+        enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);
     }
 
     public override void TakeDamage(int damage, string damageAnimation = "Damage_01")
