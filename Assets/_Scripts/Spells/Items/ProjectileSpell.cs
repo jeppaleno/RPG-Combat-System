@@ -17,8 +17,8 @@ public class ProjectileSpell : SpellItem
 
     public override void AttemptToCastSpell(
         AnimatorManager animatorManager,
-        PlayerStats playerStats,
-        WeaponSlotManager weaponSlotManager)
+        PlayerStatsManager playerStats,
+        PlayerWeaponSlotManager weaponSlotManager)
     {
         base.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
         // Instantiate the spell in the casting hand of the player
@@ -30,9 +30,9 @@ public class ProjectileSpell : SpellItem
 
     public override void SucessfullyCastSpell(
         AnimatorManager animatorManager, 
-        PlayerStats playerStats, 
+        PlayerStatsManager playerStats, 
         CameraManager cameraManager,
-        WeaponSlotManager weaponSlotManager)
+        PlayerWeaponSlotManager weaponSlotManager)
     {
         base.SucessfullyCastSpell(animatorManager, playerStats, cameraManager, weaponSlotManager);
         GameObject instantiatedSpellFX = Instantiate(SpellCastFX, weaponSlotManager.rightHandSlot.transform.position, cameraManager.cameraPivot.rotation);

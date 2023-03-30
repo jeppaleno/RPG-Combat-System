@@ -16,12 +16,12 @@ public class WeaponPickUp : Interactable
 
     private void PickUpItem(PlayerManager playerManager)
     {
-        PlayerInventory playerInventory;
-        Character character;
+        PlayerInventoryManager playerInventory;
+        PlayerLocomotionManager character;
         AnimatorManager animatorManager;
 
-        playerInventory = playerManager.GetComponent<PlayerInventory>();
-        character = playerManager.GetComponent<Character>();
+        playerInventory = playerManager.GetComponent<PlayerInventoryManager>();
+        character = playerManager.GetComponent<PlayerLocomotionManager>();
         animatorManager = playerManager.GetComponentInChildren<AnimatorManager>();
 
         character.playerRigidbody.velocity = Vector3.zero; //Stops the player from moving whilst picking up item

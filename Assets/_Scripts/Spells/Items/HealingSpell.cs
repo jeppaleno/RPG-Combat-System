@@ -9,8 +9,8 @@ public class HealingSpell : SpellItem
 
     public override void AttemptToCastSpell(
         AnimatorManager animatorManager,
-        PlayerStats playerStats,
-        WeaponSlotManager weaponSlotManager)
+        PlayerStatsManager playerStats,
+        PlayerWeaponSlotManager weaponSlotManager)
     {
         base.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
         GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, animatorManager.transform);
@@ -20,9 +20,9 @@ public class HealingSpell : SpellItem
 
     public override void SucessfullyCastSpell(
         AnimatorManager animatorManager, 
-        PlayerStats playerStats,
+        PlayerStatsManager playerStats,
         CameraManager cameraManager,
-        WeaponSlotManager weaponSlotManager)
+        PlayerWeaponSlotManager weaponSlotManager)
     {
         base.SucessfullyCastSpell(animatorManager, playerStats, cameraManager, weaponSlotManager);
         GameObject instantiatedSpellFX = Instantiate(SpellCastFX, animatorManager.transform);

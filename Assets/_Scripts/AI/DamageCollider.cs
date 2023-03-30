@@ -37,7 +37,7 @@ public class DamageCollider : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+            PlayerStatsManager playerStats = collision.GetComponent<PlayerStatsManager>();
             CharacterManager enemyCharacterManager = collision.GetComponent<CharacterManager>();
             BlockingCollider shield = collision.transform.GetComponentInChildren<BlockingCollider>();
             

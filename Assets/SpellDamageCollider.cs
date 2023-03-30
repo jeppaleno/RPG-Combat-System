@@ -10,7 +10,7 @@ public class SpellDamageCollider : DamageCollider
 
     bool hasCollided = false;
 
-    CharacterStats spellTarget;
+    CharacterStatsManager spellTarget;
     Rigidbody rigidBody;
 
     Vector3 impactNormal; // used to rotate impact particles
@@ -36,7 +36,7 @@ public class SpellDamageCollider : DamageCollider
     {
         if (!hasCollided)
         {
-            spellTarget = collision.transform.GetComponent<CharacterStats>();
+            spellTarget = collision.transform.GetComponent<CharacterStatsManager>();
 
             if (spellTarget != null)
             {

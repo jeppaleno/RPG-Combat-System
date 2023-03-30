@@ -8,8 +8,8 @@ public class PlayerManager : CharacterManager
     CameraManager cameraManager;
     Animator animator;
     AnimatorManager animatorManager;
-    Character character;
-    PlayerStats playerStats;
+    PlayerLocomotionManager character;
+    PlayerStatsManager playerStatsManager;
 
     InteractableUI interactableUI;
     public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
@@ -29,8 +29,8 @@ public class PlayerManager : CharacterManager
         animatorManager = GetComponent<AnimatorManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
-        playerStats = GetComponent<PlayerStats>();
-        character = GetComponent<Character>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
+        character = GetComponent<PlayerLocomotionManager>();
         backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
     }
 
@@ -49,7 +49,7 @@ public class PlayerManager : CharacterManager
         isUsingLeftHand = animator.GetBool("isUsingLeftHand");
         isFiringSpell = animator.GetBool("isFiringSpell");
         animator.SetBool("isBlocking", isBlocking);
-        animator.SetBool("isDead", playerStats.isDead);
+        animator.SetBool("isDead", playerStatsManager.isDead);
 
         animatorManager.canRotate = animator.GetBool("canRotate");
 

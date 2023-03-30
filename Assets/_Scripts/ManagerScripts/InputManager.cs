@@ -6,13 +6,13 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     AnimatorManager animatorManager;
-    Character character;
-    PlayerAttacker playerAttacker;
-    PlayerInventory playerInventory;
+    PlayerLocomotionManager character;
+    PlayerCombatManager playerCombatManager;
+    PlayerInventoryManager playerInventoryManager;
     PlayerManager playerManager;
     PlayerEffectsManager playerEffectsManager;
     BlockingCollider blockingCollider;
-    WeaponSlotManager weaponSlotManager;
+    PlayerWeaponSlotManager weaponSlotManager;
     CameraManager cameraManager;
     UIManager uiManager;
     
@@ -62,12 +62,12 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
-        character = GetComponent<Character>();
-        playerAttacker = GetComponent<PlayerAttacker>();
-        playerInventory = GetComponent<PlayerInventory>();
+        character = GetComponent<PlayerLocomotionManager>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerManager = GetComponent<PlayerManager>();
-        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+        weaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
         blockingCollider = GetComponentInChildren<BlockingCollider>();
         uiManager = FindObjectOfType<UIManager>();
         cameraManager = FindObjectOfType<CameraManager>();
@@ -185,17 +185,17 @@ public class InputManager : MonoBehaviour
     {
        if(attack_Input)
         {
-            playerAttacker.HandleAttackAction();     
+            playerCombatManager.HandleAttackAction();     
         }
 
        if(Heavy_attack_Input)
         {
-            playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            playerCombatManager.HandleHeavyAttack(playerInventoryManager.rightWeapon);
         }
 
        if (lb_Input)
         {
-            playerAttacker.HandleLBAction();
+            playerCombatManager.HandleLBAction();
         }
        else
         {
@@ -216,7 +216,7 @@ public class InputManager : MonoBehaviour
             else
             {
                 // else handle light attack if melee weapon
-                playerAttacker.HandleLTAction();
+                playerCombatManager.HandleLTAction();
             }
             //handle weapon art if shield
         }
@@ -226,11 +226,11 @@ public class InputManager : MonoBehaviour
     {
         if (d_Pad_Right)
         {
-            playerInventory.changeRightWeapon();
+            playerInventoryManager.changeRightWeapon();
         }
         else if(d_Pad_Left)
         {
-            playerInventory.changeLeftWeapon();
+            playerInventoryManager.changeLeftWeapon();
         }
     }
 
@@ -319,13 +319,13 @@ public class InputManager : MonoBehaviour
             if (twohandFlag)
             {
                 //Enable two handing
-                weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
             }
             else
             {
                 //Disable two handing
-                weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
-                weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+                weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
+                weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.leftWeapon, true);
             }
         }
     }
@@ -335,7 +335,7 @@ public class InputManager : MonoBehaviour
         if (critical_Attack_Input)
         {
             critical_Attack_Input = false;
-            playerAttacker.AttemptBackStabOrRiposte();
+            playerCombatManager.AttemptBackStabOrRiposte();
         }
     }
 
@@ -355,7 +355,7 @@ public class InputManager : MonoBehaviour
         {
             x_Input = false;
             // Use Current consumable
-            playerInventory.currentConsumable.AttemptToConsumeItem(animatorManager, weaponSlotManager, playerEffectsManager);
+            playerInventoryManager.currentConsumable.AttemptToConsumeItem(animatorManager, weaponSlotManager, playerEffectsManager);
         }
     }
 

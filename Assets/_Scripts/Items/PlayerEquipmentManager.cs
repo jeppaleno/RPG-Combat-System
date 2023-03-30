@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerEquipmentManager : MonoBehaviour
 {
     InputManager inputManager;
-    PlayerInventory playerInventory;
+    PlayerInventoryManager playerInventory;
 
     [Header("Equipment Model Changers")]
     HelmetModelChanger helmetModelChanger;
@@ -16,7 +16,7 @@ public class PlayerEquipmentManager : MonoBehaviour
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
-        playerInventory = GetComponent<PlayerInventory>(); //getComponent instead?
+        playerInventory = GetComponent<PlayerInventoryManager>(); //getComponent instead?
         helmetModelChanger = GetComponentInChildren<HelmetModelChanger>();
     }
 

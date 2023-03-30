@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanCharacter : Character
+public class HumanCharacter : PlayerLocomotionManager
 {
     
 }

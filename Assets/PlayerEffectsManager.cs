@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerEffectsManager : MonoBehaviour
 {
-    PlayerStats playerStats;
-    WeaponSlotManager weaponSlotManager;
+    PlayerStatsManager playerStatsManager;
+    PlayerWeaponSlotManager playerWeaponSlotManager;
 
     public GameObject currentParticleFX; //The particles of current effects that eeffects player
     public GameObject instantiatedFXModel;
@@ -13,14 +13,14 @@ public class PlayerEffectsManager : MonoBehaviour
 
     private void Awake()
     {
-        playerStats = GetComponentInParent<PlayerStats>(); //In Parent?
-        weaponSlotManager = GetComponent<WeaponSlotManager>();
+        playerStatsManager = GetComponentInParent<PlayerStatsManager>(); //In Parent?
+        playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
     }
     public void HealPlayerFromEffect()
     {
-        playerStats.HealPlayer(amountToBeHealed);
-        GameObject healParticles = Instantiate(currentParticleFX, playerStats.transform);
+        playerStatsManager.HealPlayer(amountToBeHealed);
+        GameObject healParticles = Instantiate(currentParticleFX, playerStatsManager.transform);
         Destroy(instantiatedFXModel.gameObject);
-        weaponSlotManager.LoadBothWeaponOnSlot();
+        playerWeaponSlotManager.LoadBothWeaponOnSlot();
     }
 }

@@ -7,8 +7,8 @@ public class AnimatorManager : PreAnimatorManager
     
     PlayerManager playerManager;
     InputManager inputManager;
-    PlayerStats playerStats;
-    Character character;
+    PlayerStatsManager playerStatsManager;
+    PlayerLocomotionManager playerLocomotionManager;
     int horizontal;
     int vertical;
     //public bool canRotate;
@@ -18,8 +18,8 @@ public class AnimatorManager : PreAnimatorManager
         animator = GetComponent<Animator>();
         inputManager = GetComponent<InputManager>();
         playerManager = GetComponent<PlayerManager>();
-        playerStats = GetComponent<PlayerStats>();
-        character = GetComponent<Character>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }
@@ -103,11 +103,11 @@ public class AnimatorManager : PreAnimatorManager
         if (playerManager.isUsingRootMotion)
         {
             //Moves player gameobject in direction of players model, usefull for anims with rootmotions
-            character.playerRigidbody.drag = 0;
+            playerLocomotionManager.playerRigidbody.drag = 0;
             Vector3 deltaPosition = animator.deltaPosition;
             deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / Time.deltaTime;
-            character.playerRigidbody.velocity = velocity;
+            playerLocomotionManager.playerRigidbody.velocity = velocity;
         }
 
     }
@@ -143,20 +143,20 @@ public class AnimatorManager : PreAnimatorManager
     }
     public override void TakeCriticalDamageAnimationEvent()
     {
-        playerStats.TakeDamageNoAnimation(playerManager.pendingCriticalDamage);
+        playerStatsManager.TakeDamageNoAnimation(playerManager.pendingCriticalDamage);
         playerManager.pendingCriticalDamage = 0;
     }
 
     public void DisableCollision()
     {
-        character.characterCollider.enabled = false;
-        character.characterCollisionBlockerCollider.enabled = false;
+        playerLocomotionManager.characterCollider.enabled = false;
+        playerLocomotionManager.characterCollisionBlockerCollider.enabled = false;
     }
 
     public void EnableCollision()
     {
-        character.characterCollider.enabled = true;
-        character.characterCollisionBlockerCollider.enabled = true;
+        playerLocomotionManager.characterCollider.enabled = true;
+        playerLocomotionManager.characterCollisionBlockerCollider.enabled = true;
     }
 
 }
