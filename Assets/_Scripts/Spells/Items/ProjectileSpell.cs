@@ -16,7 +16,7 @@ public class ProjectileSpell : SpellItem
     Rigidbody rigidBody;
 
     public override void AttemptToCastSpell(
-        AnimatorManager animatorManager,
+        PlayerAnimatorManager animatorManager,
         PlayerStatsManager playerStats,
         PlayerWeaponSlotManager weaponSlotManager)
     {
@@ -29,7 +29,7 @@ public class ProjectileSpell : SpellItem
     }
 
     public override void SucessfullyCastSpell(
-        AnimatorManager animatorManager, 
+        PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats, 
         CameraManager cameraManager,
         PlayerWeaponSlotManager weaponSlotManager)

@@ -38,7 +38,18 @@ public class CharacterStatsManager : MonoBehaviour
 
     public virtual void TakeDamage(int damage, string damageAnimation = "Damage_01")
     {
+        
+    }
 
+    public virtual void TakeDamageNoAnimation(int damage)
+    {
+        currentHealth = currentHealth - damage;
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            isDead = true;
+        }
     }
 
     public virtual void HandlePoiseResetTimer()

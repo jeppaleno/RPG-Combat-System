@@ -14,14 +14,17 @@ public class CharacterManager : MonoBehaviour
     [Header("Combat Flags")]
     public bool canBeRiposted;
     public bool canBeParried;
+    public bool canDoCombo;
     public bool isParrying;
     public bool isBlocking;
     public bool isInvulnerable;
+    public bool isUsingRightHand;
+    public bool isUsingLeftHand;
 
     [Header("Movement Flags")]
     public bool isRotatingWithRootMotion;
     public bool canRotate;
-
+   
     [Header("Spells")]
     public bool isFiringSpell;
 

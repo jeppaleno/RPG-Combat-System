@@ -11,7 +11,7 @@ public class PlayerStatsManager : CharacterStatsManager
     FocusPointBar focusPointsBar;
 
 
-    AnimatorManager animatorManager;
+    PlayerAnimatorManager playerAnimatorManager;
 
     private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     private Coroutine regen;
@@ -21,7 +21,7 @@ public class PlayerStatsManager : CharacterStatsManager
         playerManager = GetComponent<PlayerManager>();
         staminaBar = FindObjectOfType<StaminaBar>();
         focusPointsBar = FindObjectOfType<FocusPointBar>();
-        animatorManager = GetComponent<AnimatorManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
     }
 
     void Start()
@@ -74,32 +74,23 @@ public class PlayerStatsManager : CharacterStatsManager
         if (isDead)
             return;
 
-        currentHealth = currentHealth - damage;
-
+        currentHealth = currentHealth - damage; //REFACTOR AND CALL BASE INSTEAD
         healthbar.SetCurrentHealth(currentHealth);
-
-        animatorManager.PlayTargetAnimation(damageAnimation, true);
+        playerAnimatorManager.PlayTargetAnimation(damageAnimation, true);
 
         if(currentHealth <= 0)
         {
             currentHealth = 0;
-            animatorManager.PlayTargetAnimation("Dead_01", true);
+            playerAnimatorManager.PlayTargetAnimation("Dead_01", true);
             isDead = true;
             //HANDLE PLAYER DEATH
-
         }
-
     }
 
-    public void TakeDamageNoAnimation(int damage)
+    public override void TakeDamageNoAnimation(int damage)
     {
-        currentHealth = currentHealth - damage;
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            isDead = true;
-        }
+        base.TakeDamageNoAnimation(damage);
+        healthbar.SetCurrentHealth(currentHealth);
     }
 
     public void TakeStaminaDamage(int damage)

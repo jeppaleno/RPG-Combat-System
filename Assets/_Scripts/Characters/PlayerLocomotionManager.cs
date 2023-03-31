@@ -8,7 +8,7 @@ public class PlayerLocomotionManager : MonoBehaviour
     CameraManager cameraManager;
     PlayerManager playerManager;
     PlayerStatsManager playerStatsManager;
-    AnimatorManager animatorManager;
+    PlayerAnimatorManager playerAnimatorManager;
     InputManager inputManager;
     
     Vector3 moveDirection;
@@ -51,7 +51,7 @@ public class PlayerLocomotionManager : MonoBehaviour
     {
         playerManager = GetComponent<PlayerManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
-        animatorManager = GetComponent<AnimatorManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         inputManager = GetComponent<InputManager>();
         playerRigidbody = GetComponent<Rigidbody>();
         cameraObject = Camera.main.transform;
@@ -111,7 +111,7 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     public void HandleRotation()
     {
-        if (animatorManager.canRotate)
+        if (playerAnimatorManager.canRotate)
         {
             if (inputManager.lockOnFlag)
             {
@@ -181,7 +181,7 @@ public class PlayerLocomotionManager : MonoBehaviour
         {
             if (!playerManager.isInteracting)
             {
-                animatorManager.PlayTargetAnimation("Falling", true);
+                playerAnimatorManager.PlayTargetAnimation("Falling", true);
             }
 
             inAirTimer = inAirTimer + Time.deltaTime;
@@ -193,7 +193,7 @@ public class PlayerLocomotionManager : MonoBehaviour
         {
             if (!isGrounded && !playerManager.isInteracting)
             {
-                animatorManager.PlayTargetAnimation("Land", true);
+                playerAnimatorManager.PlayTargetAnimation("Land", true);
             }
 
             Vector3 rayCastHitPoint = hit.point;
@@ -227,8 +227,8 @@ public class PlayerLocomotionManager : MonoBehaviour
         if (isGrounded)
         {
             
-            animatorManager.animator.SetBool("isJumping", true);
-            animatorManager.PlayTargetAnimation("Jump", false);
+            playerAnimatorManager.animator.SetBool("isJumping", true);
+            playerAnimatorManager.PlayTargetAnimation("Jump", false);
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
@@ -248,7 +248,7 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     public void HandleRolling()
     {
-        if (animatorManager.animator.GetBool("isInteracting"))
+        if (playerAnimatorManager.animator.GetBool("isInteracting"))
             return;
 
         if (inputManager.rollFlag)
@@ -258,14 +258,14 @@ public class PlayerLocomotionManager : MonoBehaviour
 
             if (inputManager.moveAmount > 0)
             {
-                animatorManager.PlayTargetAnimation("Rolling", true, true);
+                playerAnimatorManager.PlayTargetAnimation("Rolling", true, true);
                 moveDirection.y = 0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 transform.rotation = rollRotation;
             }
             else
             {
-                animatorManager.PlayTargetAnimation("Dodge", true, true);
+                playerAnimatorManager.PlayTargetAnimation("Dodge", true, true);
             }
         }
     }

@@ -47,9 +47,9 @@ public class EnemyStatsManager : CharacterStatsManager
         return maxHealth;
     }
 
-    public void TakeDamageNoAnimation(int damage)
+    public override void TakeDamageNoAnimation(int damage)
     {
-        currentHealth = currentHealth - damage;
+        base.TakeDamageNoAnimation(damage);
 
         if (!isBoss)
         {
@@ -63,12 +63,6 @@ public class EnemyStatsManager : CharacterStatsManager
         }
 
         //enemyHealthBar.SetHealth(currentHealth);
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            isDead = true;
-        }
     }
 
     public void BreakGuard()

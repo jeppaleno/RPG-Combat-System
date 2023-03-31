@@ -13,11 +13,11 @@ public class EnemyWeaponSlotManager : MonoBehaviour
     DamageCollider leftHandDamageCollider;
     DamageCollider rightHandDamageCollider;
 
-    EnemyStatsManager enemyStats;
+    EnemyStatsManager enemyStatsManager;
 
     private void Awake()
     {
-        enemyStats = GetComponentInParent<EnemyStatsManager>();
+        enemyStatsManager = GetComponent<EnemyStatsManager>();
         LoadWeaponHolderSlots();
     }
 
@@ -116,11 +116,11 @@ public class EnemyWeaponSlotManager : MonoBehaviour
 
     public void GrantWeaponAttackingPoiseBonus()
     {
-        enemyStats.totalPoiseDefence = enemyStats.totalPoiseDefence + enemyStats.offensivePoiseBonus;
+        enemyStatsManager.totalPoiseDefence = enemyStatsManager.totalPoiseDefence + enemyStatsManager.offensivePoiseBonus;
     }
 
     public void ResetWeaponAttackingPoiseBonus()
     {
-        enemyStats.totalPoiseDefence = enemyStats.armorPoiseBonus;
+        enemyStatsManager.totalPoiseDefence = enemyStatsManager.armorPoiseBonus;
     }
 }

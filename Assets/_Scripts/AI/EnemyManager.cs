@@ -7,7 +7,7 @@ public class EnemyManager : CharacterManager
 {
     EnemyLocomotionManager enemyLocomotionManager;
     EnemyAnimatorManager enemyAnimationManager;
-    EnemyStatsManager enemyStats;
+    EnemyStatsManager enemyStatsManager;
     
     public State currentState;
     public CharacterStatsManager currentTarget;
@@ -19,9 +19,7 @@ public class EnemyManager : CharacterManager
     public float rotationSpeed = 15;
     public float maximumAggroRadius = 1.5f;
 
-    [Header("Combat Flags")]
-    public bool canDoCombo;
-
+    
     [Header("A.I Settings")]
     public float detectionRadius = 20;
     //The higher, and lower, respectively these angles are, the greater detection field of view (like eye sight)
@@ -38,7 +36,7 @@ public class EnemyManager : CharacterManager
     {
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         enemyAnimationManager = GetComponent<EnemyAnimatorManager>();
-        enemyStats = GetComponent<EnemyStatsManager>();
+        enemyStatsManager = GetComponent<EnemyStatsManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
         navmeshAgent.enabled = false;
@@ -60,7 +58,7 @@ public class EnemyManager : CharacterManager
         //isInvulnerable = enemyAnimationManager.animator.GetBool("isInvulnerable");
         canDoCombo = enemyAnimationManager.animator.GetBool("canDoCombo");
         canRotate = enemyAnimationManager.animator.GetBool("canRotate");
-        enemyAnimationManager.animator.SetBool("isDead", enemyStats.isDead);
+        enemyAnimationManager.animator.SetBool("isDead", enemyStatsManager.isDead);
     }
 
     private void LateUpdate()
@@ -73,7 +71,7 @@ public class EnemyManager : CharacterManager
     {
        if (currentState != null)
         {
-            State nextState = currentState.Tick(this, enemyStats, enemyAnimationManager);
+            State nextState = currentState.Tick(this, enemyStatsManager, enemyAnimationManager);
 
             if (nextState != null)
             {

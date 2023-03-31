@@ -8,7 +8,7 @@ public class HealingSpell : SpellItem
     public int healAmount;
 
     public override void AttemptToCastSpell(
-        AnimatorManager animatorManager,
+        PlayerAnimatorManager animatorManager,
         PlayerStatsManager playerStats,
         PlayerWeaponSlotManager weaponSlotManager)
     {
@@ -19,7 +19,7 @@ public class HealingSpell : SpellItem
     }
 
     public override void SucessfullyCastSpell(
-        AnimatorManager animatorManager, 
+        PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats,
         CameraManager cameraManager,
         PlayerWeaponSlotManager weaponSlotManager)

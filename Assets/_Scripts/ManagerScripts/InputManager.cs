@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
-    AnimatorManager animatorManager;
+    PlayerAnimatorManager playerAnimatorManager;
     PlayerLocomotionManager character;
     PlayerCombatManager playerCombatManager;
     PlayerInventoryManager playerInventoryManager;
@@ -61,7 +61,7 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        animatorManager = GetComponent<AnimatorManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         character = GetComponent<PlayerLocomotionManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
@@ -150,11 +150,11 @@ public class InputManager : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         if (lockOnFlag && sprint_Input == false)
         {
-            animatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, character.isSprinting);
+            playerAnimatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, character.isSprinting);
         }
         else
         {
-            animatorManager.UpdateAnimatorValues(0, moveAmount, character.isSprinting);
+            playerAnimatorManager.UpdateAnimatorValues(0, moveAmount, character.isSprinting);
         }
         
     }
@@ -355,7 +355,7 @@ public class InputManager : MonoBehaviour
         {
             x_Input = false;
             // Use Current consumable
-            playerInventoryManager.currentConsumable.AttemptToConsumeItem(animatorManager, weaponSlotManager, playerEffectsManager);
+            playerInventoryManager.currentConsumable.AttemptToConsumeItem(playerAnimatorManager, weaponSlotManager, playerEffectsManager);
         }
     }
 

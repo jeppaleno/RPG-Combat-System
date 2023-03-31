@@ -20,7 +20,7 @@ public class SpellItem : Item
     [TextArea]
     public string spellDescription;
 
-    public virtual void AttemptToCastSpell(AnimatorManager animatorManager, 
+    public virtual void AttemptToCastSpell(PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats, 
         PlayerWeaponSlotManager weaponSlotManager)
     {
@@ -28,7 +28,7 @@ public class SpellItem : Item
     }
 
     public virtual void SucessfullyCastSpell(
-        AnimatorManager animatorManager, 
+        PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats,
         CameraManager cameraManager,
         PlayerWeaponSlotManager weaponSlotManager)
