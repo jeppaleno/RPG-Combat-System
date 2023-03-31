@@ -13,6 +13,7 @@ public class CharacterStatsManager : MonoBehaviour
     public int currentStamina;
 
     public int soulCount = 0;
+    public int soulsAwardedOnDeath = 50;
 
     public int focusLevel = 10;
     public int maxFocusPoints;

@@ -9,9 +9,9 @@ public class EnemyStatsManager : CharacterStatsManager
     EnemyAnimatorManager enemyAnimatorManager;
     EnemyBossManager enemyBossManager;
     public UIEnemyHealthBar enemyHealthBar;
-    public int soulsAwardedOnDeath = 50;
 
     public bool isBoss;
+
     private void Awake()
     {
         enemyManager = GetComponent<EnemyManager>();

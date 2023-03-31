@@ -11,6 +11,10 @@ public class CharacterManager : MonoBehaviour
     public CriticalDamageCollider backStabCollider;
     public CriticalDamageCollider riposteCollider;
 
+    [Header("Interaction")]
+    public bool isInteracting;
+    public bool isUsingRootMotion;
+
     [Header("Combat Flags")]
     public bool canBeRiposted;
     public bool canBeParried;

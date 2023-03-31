@@ -2,29 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimatorManager : PreAnimatorManager
+public class PlayerAnimatorManager : AnimatorManager
 {
-    
-    PlayerManager playerManager;
     InputManager inputManager;
-    PlayerStatsManager playerStatsManager;
     PlayerLocomotionManager playerLocomotionManager;
+
     int horizontal;
     int vertical;
-    //public bool canRotate;
-
-    private void Awake()
+    
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
         inputManager = GetComponent<InputManager>();
-        playerManager = GetComponent<PlayerManager>();
-        playerStatsManager = GetComponent<PlayerStatsManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }
-
-   
 
     public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
@@ -88,65 +82,6 @@ public class PlayerAnimatorManager : PreAnimatorManager
         animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
     }
 
-    public void CanRotate()
-    {
-        animator.SetBool("canRotate", true);
-    }
-
-    public void stopRotation()
-    {
-        animator.SetBool("canRotate", false);
-    }
-
-    private void OnAnimatorMove()
-    {
-        if (playerManager.isUsingRootMotion)
-        {
-            //Moves player gameobject in direction of players model, usefull for anims with rootmotions
-            playerLocomotionManager.playerRigidbody.drag = 0;
-            Vector3 deltaPosition = animator.deltaPosition;
-            deltaPosition.y = 0;
-            Vector3 velocity = deltaPosition / Time.deltaTime;
-            playerLocomotionManager.playerRigidbody.velocity = velocity;
-        }
-
-    }
-
-    public void EnableCombo()
-    {
-        animator.SetBool("canDoCombo", true);
-    }
-
-    public void DisableCombo()
-    {
-        animator.SetBool("canDoCombo", false);
-    }
-
-    public void EnableIsParrying()
-    {
-        playerManager.isParrying = true;
-    }
-
-    public void DisableIsParrying()
-    {
-        playerManager.isParrying = false;
-    }
-
-    public void EnableCanBeRiposted()
-    {
-        playerManager.canBeRiposted = true;
-    }
-
-    public void DisableCanBeRiposted()
-    {
-        playerManager.canBeRiposted = false;
-    }
-    public override void TakeCriticalDamageAnimationEvent()
-    {
-        playerStatsManager.TakeDamageNoAnimation(playerManager.pendingCriticalDamage);
-        playerManager.pendingCriticalDamage = 0;
-    }
-
     public void DisableCollision()
     {
         playerLocomotionManager.characterCollider.enabled = false;
@@ -157,6 +92,19 @@ public class PlayerAnimatorManager : PreAnimatorManager
     {
         playerLocomotionManager.characterCollider.enabled = true;
         playerLocomotionManager.characterCollisionBlockerCollider.enabled = true;
+    }
+
+    private void OnAnimatorMove()
+    {
+        if (characterManager.isUsingRootMotion)
+        {
+            //Moves player gameobject in direction of players model, usefull for anims with rootmotions
+            playerLocomotionManager.playerRigidbody.drag = 0;
+            Vector3 deltaPosition = animator.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / Time.deltaTime;
+            playerLocomotionManager.playerRigidbody.velocity = velocity;
+        }
     }
 
 }

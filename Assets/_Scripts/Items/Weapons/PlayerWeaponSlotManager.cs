@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeaponSlotManager : MonoBehaviour
+public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
 {
     PlayerManager playerManager;
     PlayerInventoryManager playerInventoryManager;
@@ -13,20 +13,6 @@ public class PlayerWeaponSlotManager : MonoBehaviour
 
     [Header("Attacking Weapon")]
     public WeaponItem attackingWeapon;
-
-    [Header("Unarmed Weapon")]
-    public WeaponItem unarmedWeapon;
-
-    [Header("Weapon Slots")]
-    public WeaponHolderSlot leftHandSlot;
-    public WeaponHolderSlot rightHandSlot;
-    WeaponHolderSlot backSlot;
-
-    [Header("Damage Colliders")]
-    public DamageCollider leftHandDamageCollider;
-    public DamageCollider rightHandDamageCollider;
-
-    
 
     private void Awake()
     {
@@ -64,6 +50,7 @@ public class PlayerWeaponSlotManager : MonoBehaviour
         LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
         LoadWeaponOnSlot(playerInventoryManager.leftWeapon, true);
     }
+
     public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft)
     {
         if (weaponItem != null)

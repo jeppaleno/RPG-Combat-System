@@ -2,65 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimatorManager : PreAnimatorManager
+public class EnemyAnimatorManager : AnimatorManager
 {
     EnemyManager enemyManager;
     EnemyBossManager enemyBossManager;
-    EnemyStatsManager enemyStatsManager;
-
-    private void Awake()
+    
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
         enemyManager = GetComponent<EnemyManager>();
         enemyBossManager = GetComponent<EnemyBossManager>();
-        enemyStatsManager = GetComponent<EnemyStatsManager>();
-
-    }
-
-    public override void TakeCriticalDamageAnimationEvent()
-    {
-        enemyStatsManager.TakeDamageNoAnimation(enemyManager.pendingCriticalDamage);
-        enemyManager.pendingCriticalDamage = 0;
-    }
-
-    public void CanRotate()
-    {
-        animator.SetBool("canRotate", true);
-    }
-
-    public void stopRotation()
-    {
-        animator.SetBool("canRotate", false);
-    }
-
-    public void EnableCombo()
-    {
-        animator.SetBool("canDoCombo", true);
-    }
-
-    public void DisableCombo()
-    {
-        animator.SetBool("canDoCombo", false);
-    }
-
-    public void EnableIsParrying()
-    {
-        enemyManager.isParrying = true;
-    }
-
-    public void DisableIsParrying()
-    {
-        enemyManager.isParrying = false;
-    }
-
-    public void EnableCanBeRiposted()
-    {
-        enemyManager.canBeRiposted = true;
-    }
-
-    public void DisableCanBeRiposted()
-    {
-        enemyManager.canBeRiposted = false;
     }
 
     public void AwardSoulsOnDeath()
@@ -70,7 +22,7 @@ public class EnemyAnimatorManager : PreAnimatorManager
 
         if (playerStats != null)
         {
-            playerStats.AddSouls(enemyStatsManager.soulsAwardedOnDeath);
+            playerStats.AddSouls(characterStatsManager.soulsAwardedOnDeath);
 
             if (soulCountBar != null)
             {

@@ -15,11 +15,6 @@ public class PlayerManager : CharacterManager
     public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
     public GameObject itemInteractableGameObject; // Shows what item that was picked up
 
-    public bool isInteracting;
-    public bool isUsingRootMotion;
-
-    
-
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
