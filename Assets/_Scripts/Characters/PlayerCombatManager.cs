@@ -12,6 +12,7 @@ public class PlayerCombatManager : MonoBehaviour
     PlayerInventoryManager playerInventoryManager;
     InputManager inputManager;
     PlayerWeaponSlotManager playerWeaponSlotManager;
+    PlayerEffectsManager playerEffectsManager;
 
     public string lastAttack;
 
@@ -27,6 +28,7 @@ public class PlayerCombatManager : MonoBehaviour
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
         inputManager = GetComponent<InputManager>();
     }
 
@@ -139,6 +141,8 @@ public class PlayerCombatManager : MonoBehaviour
             playerAnimatorManager.animator.SetBool("isUsingRightHand", true);
             HandleLightAttack(playerInventoryManager.rightWeapon);
         }
+
+        playerEffectsManager.PlayWeaponFX(false);
     }
 
     private void PerformAttackMagicAction(WeaponItem weapon)

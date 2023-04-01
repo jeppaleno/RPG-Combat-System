@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAnimatorManager : AnimatorManager
 {
     EnemyManager enemyManager;
+    EnemyEffectsManager enemyEffectsManager;
     EnemyBossManager enemyBossManager;
     
     protected override void Awake()
@@ -12,6 +13,7 @@ public class EnemyAnimatorManager : AnimatorManager
         base.Awake();
         animator = GetComponent<Animator>();
         enemyManager = GetComponent<EnemyManager>();
+        enemyEffectsManager = GetComponent<EnemyEffectsManager>();
         enemyBossManager = GetComponent<EnemyBossManager>();
     }
 
@@ -36,6 +38,11 @@ public class EnemyAnimatorManager : AnimatorManager
         BossFXTransform bossFXTransform = GetComponentInChildren<BossFXTransform>();
 
         GameObject phaseFX = Instantiate(enemyBossManager.particleFX, bossFXTransform.transform);
+    }
+
+    public void PlayWeaponTrailFX()
+    {
+        enemyEffectsManager.PlayWeaponFX(false);
     }
 
     private void OnAnimatorMove()
