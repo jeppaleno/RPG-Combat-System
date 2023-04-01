@@ -38,18 +38,19 @@ public class DamageCollider : MonoBehaviour
         if (collision.tag == "Player")
         {
             PlayerStatsManager playerStats = collision.GetComponent<PlayerStatsManager>();
-            CharacterManager enemyCharacterManager = collision.GetComponent<CharacterManager>();
+            CharacterManager playerCharacterManager = collision.GetComponent<CharacterManager>();
+            CharacterEffectsManager playerEffectsManager = collision.GetComponent<CharacterEffectsManager>();
             BlockingCollider shield = collision.transform.GetComponentInChildren<BlockingCollider>();
             
-            if (enemyCharacterManager != null)
+            if (playerCharacterManager != null)
             {
-                if (enemyCharacterManager.isParrying)
+                if (playerCharacterManager.isParrying)
                 {
                     //Check here if you are parryable
                     characterManager.GetComponentInChildren<PlayerAnimatorManager>().PlayTargetAnimation("Parried", true); //change to getcomponent later
                     return;
                 }
-                else if (shield != null && enemyCharacterManager.isBlocking)
+                else if (shield != null && playerCharacterManager.isBlocking)
                 {
                     float physicalDamageAfterBlock = 
                         currentWeaponDamage - (currentWeaponDamage * shield.blockingPhysicalDamageAbsorption) / 100;
@@ -66,12 +67,16 @@ public class DamageCollider : MonoBehaviour
             {
                 playerStats.poiseResetTimer = playerStats.totalPoiseResetTime;
                 playerStats.totalPoiseDefence = playerStats.totalPoiseDefence - poiseBreak;
-                Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
+                //Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
+
+                //Detects where on the collider the weapon first makes contact
+                Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                playerEffectsManager.PlayBloodSplatterFX(contactPoint);
 
                 if (playerStats.totalPoiseDefence > poiseBreak)
                 {
                     playerStats.TakeDamageNoAnimation(currentWeaponDamage);
-                    Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
+                    //Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
                 }
                 else
                 {
@@ -84,6 +89,7 @@ public class DamageCollider : MonoBehaviour
         {
             EnemyStatsManager enemyStats = collision.GetComponent<EnemyStatsManager>();
             CharacterManager enemyCharacterManager = collision.GetComponent<CharacterManager>();
+            CharacterEffectsManager enemyEffectsManager = collision.GetComponent<CharacterEffectsManager>();
             BlockingCollider shield = collision.transform.GetComponentInChildren<BlockingCollider>();
 
             if (enemyCharacterManager != null)
@@ -111,14 +117,18 @@ public class DamageCollider : MonoBehaviour
             {
                 enemyStats.poiseResetTimer = enemyStats.totalPoiseResetTime;
                 enemyStats.totalPoiseDefence = enemyStats.totalPoiseDefence - poiseBreak;
-                Debug.Log("Enemies's Poise is currently" + enemyStats.totalPoiseDefence);
+                //Debug.Log("Enemies's Poise is currently" + enemyStats.totalPoiseDefence);
+
+                //Detects where on the collider the weapon first makes contact
+                Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                enemyEffectsManager.PlayBloodSplatterFX(contactPoint);
 
                 if (enemyStats.isBoss)
                 {
                     if (enemyStats.totalPoiseDefence > poiseBreak)
                     {
                         enemyStats.TakeDamageNoAnimation(currentWeaponDamage);
-                        Debug.Log("Enemy Poise is currently" + enemyStats.totalPoiseDefence);
+                        //Debug.Log("Enemy Poise is currently" + enemyStats.totalPoiseDefence);
                     }
                     else
                     {
