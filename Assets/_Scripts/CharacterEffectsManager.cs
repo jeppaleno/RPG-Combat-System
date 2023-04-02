@@ -15,13 +15,13 @@ public class CharacterEffectsManager : MonoBehaviour
 
     [Header("Poison")]
     public GameObject defaultPoisonParticleFX; //Instantiate this
-    private GameObject currentPoisonParticleFX; //Destroy this
+    public GameObject currentPoisonParticleFX; //Destroy this
     public Transform buildUpTransform; // The location build up particle FX will spawn
 
     public bool isPoisoned;
     public float poisonBuildup = 0; //The build up over time that poisons the player after reaching 100
     public float poisonAmount = 100; //The amount of poison the player has to process before becoming unpoisoned
-    public float defaultPoisonAmount; //The default amount of poison a player has to process once they become poisoned
+    public float defaultPoisonAmount = 100; //The default amount of poison a player has to process once they become poisoned
     public float poisonTimer = 2; //The amount of time between each poison damage Tick
     public int poisonDamage = 1; //Choose number that fits later
     float timer;
