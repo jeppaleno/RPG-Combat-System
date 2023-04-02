@@ -65,6 +65,34 @@ public class EnemyStatsManager : CharacterStatsManager
         //enemyHealthBar.SetHealth(currentHealth);
     }
 
+    public override void TakePoisonDamage(int damage)
+    {
+        if (isDead)
+            return;
+
+        base.TakePoisonDamage(damage);
+
+        if (!isBoss)
+        {
+            //currentHealth = currentHealth - damage;
+            enemyHealthBar.SetHealth(currentHealth);
+        }
+        else if (isBoss && enemyBossManager != null)
+        {
+            //currentHealth = currentHealth - damage;
+            enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+        }
+
+        //enemyHealthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            enemyAnimatorManager.PlayTargetAnimation("Dead_01", true);
+            isDead = true;
+        }
+    }
+
     public void BreakGuard()
     {
         enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);

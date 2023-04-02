@@ -690,7 +690,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Turn Left
-  m_Speed: 1.4
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2841185743696396217}
@@ -1204,7 +1204,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Turn Right
-  m_Speed: 1.4
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7198343086059033977}

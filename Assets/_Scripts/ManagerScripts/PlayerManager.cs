@@ -8,8 +8,9 @@ public class PlayerManager : CharacterManager
     CameraManager cameraManager;
     Animator animator;
     PlayerAnimatorManager playerAnimatorManager;
-    PlayerLocomotionManager character;
+    PlayerLocomotionManager playerLocomotionManager;
     PlayerStatsManager playerStatsManager;
+    PlayerEffectsManager playerEffectsManager;
 
     InteractableUI interactableUI;
     public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
@@ -22,7 +23,8 @@ public class PlayerManager : CharacterManager
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
-        character = GetComponent<PlayerLocomotionManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
+        playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
     }
 
@@ -51,8 +53,10 @@ public class PlayerManager : CharacterManager
 
     private void FixedUpdate()
     {
-        character.HandleAllMovement();
-        character.HandleRotation();
+        playerLocomotionManager.HandleAllMovement();
+        playerLocomotionManager.HandleRotation();
+        playerEffectsManager.HandleAllBuildEffects();
+
     }
 
     private void LateUpdate()
@@ -61,8 +65,8 @@ public class PlayerManager : CharacterManager
 
         isInteracting = animator.GetBool("isInteracting");
         isUsingRootMotion = animator.GetBool("isUsingRootMotion");
-        character.isJumping = animator.GetBool("isJumping");
-        animator.SetBool("isGrounded", character.isGrounded);
+        playerLocomotionManager.isJumping = animator.GetBool("isJumping");
+        animator.SetBool("isGrounded", playerLocomotionManager.isGrounded);
 
         inputManager.attack_Input = false;
         inputManager.Heavy_attack_Input = false;
@@ -113,7 +117,7 @@ public class PlayerManager : CharacterManager
 
     public void OpenChestInteraction(Transform playerStandsHereWhenOpeningChest)
     {
-        character.playerRigidbody.velocity = Vector3.zero; // Stops the player from skating
+        playerLocomotionManager.playerRigidbody.velocity = Vector3.zero; // Stops the player from skating
         transform.position = playerStandsHereWhenOpeningChest.transform.position;
         playerAnimatorManager.PlayTargetAnimation("Open Chest", true, true);
     }
@@ -121,7 +125,7 @@ public class PlayerManager : CharacterManager
     public void PassThroughFogWallInteraction(Transform fogWallEntrance)
     {
         //Make sure we facing the wall first
-        character.playerRigidbody.velocity = Vector3.zero;
+        playerLocomotionManager.playerRigidbody.velocity = Vector3.zero;
 
         Vector3 rotationDirection = fogWallEntrance.transform.forward;
         Quaternion turnRotation = Quaternion.LookRotation(rotationDirection);

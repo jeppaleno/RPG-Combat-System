@@ -87,6 +87,21 @@ public class PlayerStatsManager : CharacterStatsManager
         }
     }
 
+    public override void TakePoisonDamage(int damage)
+    {
+        if (isDead)
+            return;
+
+        base.TakePoisonDamage(damage);
+        healthbar.SetCurrentHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            playerAnimatorManager.PlayTargetAnimation("Dead_01", true);
+            isDead = true;
+        }
+    }
     public override void TakeDamageNoAnimation(int damage)
     {
         base.TakeDamageNoAnimation(damage);
