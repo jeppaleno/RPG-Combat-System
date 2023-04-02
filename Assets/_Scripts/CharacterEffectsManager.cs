@@ -14,6 +14,10 @@ public class CharacterEffectsManager : MonoBehaviour
     public WeaponFX leftWeaponFX;
 
     [Header("Poison")]
+    public GameObject defaultPoisonParticleFX; //Instantiate this
+    private GameObject currentPoisonParticleFX; //Destroy this
+    public Transform buildUpTransform; // The location build up particle FX will spawn
+
     public bool isPoisoned;
     public float poisonBuildup = 0; //The build up over time that poisons the player after reaching 100
     public float poisonAmount = 100; //The amount of poison the player has to process before becoming unpoisoned
@@ -71,6 +75,15 @@ public class CharacterEffectsManager : MonoBehaviour
         {
             isPoisoned = true;
             poisonBuildup = 0;
+
+            if (buildUpTransform != null)
+            {
+                currentPoisonParticleFX = Instantiate(defaultPoisonParticleFX, buildUpTransform.transform);
+            }
+            else
+            {
+                currentPoisonParticleFX = Instantiate(defaultPoisonParticleFX, characterStatsManager.transform);
+            }
         }
     }
 
@@ -94,6 +107,7 @@ public class CharacterEffectsManager : MonoBehaviour
             {
                 isPoisoned = false;
                 poisonAmount = defaultPoisonAmount;
+                Destroy(currentPoisonParticleFX);
             }
         }
     }
