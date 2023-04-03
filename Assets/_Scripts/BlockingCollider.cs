@@ -7,6 +7,7 @@ public class BlockingCollider : MonoBehaviour
     public BoxCollider blockingCollider;
 
     public float blockingPhysicalDamageAbsorption;
+    public float blockingFireDamageAbsorption;
 
     private void Awake()
     {

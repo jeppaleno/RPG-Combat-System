@@ -69,7 +69,7 @@ public class PlayerStatsManager : CharacterStatsManager
         return maxFocusPoints;
     }
 
-    public override void TakeDamage(int damage, string damageAnimation = "Damage_01")
+    public override void TakeDamage(int damage, int fireDamage, string damageAnimation = "Damage_01")
     {
         if (isDead)
             return;
@@ -102,9 +102,9 @@ public class PlayerStatsManager : CharacterStatsManager
             isDead = true;
         }
     }
-    public override void TakeDamageNoAnimation(int damage)
+    public override void TakeDamageNoAnimation(int damage, int fireDamage)
     {
-        base.TakeDamageNoAnimation(damage);
+        base.TakeDamageNoAnimation(damage, fireDamage);
         healthbar.SetCurrentHealth(currentHealth);
     }
 

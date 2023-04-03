@@ -123,8 +123,12 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
         GameObject activeModelBomb = Instantiate(fireBombItem.liveBombModel, rightHandSlot.transform.position, cameraManager.cameraPivot.rotation);
         activeModelBomb.transform.rotation = Quaternion.Euler(cameraManager.cameraPivot.eulerAngles.x, playerManager.lockOnTransform.eulerAngles.y, 0);
         BombDamageCollider damageCollider = activeModelBomb.GetComponentInChildren<BombDamageCollider>();
+
+        damageCollider.explosionDamage = fireBombItem.baseDamage;
+        damageCollider.explosionSplashDamage = fireBombItem.explosiveDamage;
         damageCollider.bombRigidBody.AddForce(activeModelBomb.transform.forward * fireBombItem.forwardVelocity);
         damageCollider.bombRigidBody.AddForce(activeModelBomb.transform.up * fireBombItem.upwardVelocity);
+        LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false); //Reload RH sword after throw
         //Check for friendly fire
     }
 
@@ -133,7 +137,10 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
     private void LoadLeftWeaponDamageCollider()
     {
         leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        leftHandDamageCollider.currentWeaponDamage = playerInventoryManager.leftWeapon.baseDamage;
+
+        leftHandDamageCollider.physicalDamage = playerInventoryManager.leftWeapon.physicalDamage;
+        leftHandDamageCollider.fireDamage = playerInventoryManager.leftWeapon.fireDamage;
+
         leftHandDamageCollider.poiseBreak = playerInventoryManager.leftWeapon.poiseBreak;
         playerEffectsManager.leftWeaponFX = leftHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
     }
@@ -141,7 +148,10 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
     private void LoadRightWeaponDamageCollider()
     {
         rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        rightHandDamageCollider.currentWeaponDamage = playerInventoryManager.rightWeapon.baseDamage;
+
+        rightHandDamageCollider.physicalDamage = playerInventoryManager.rightWeapon.physicalDamage;
+        rightHandDamageCollider.fireDamage = playerInventoryManager.rightWeapon.fireDamage;
+
         rightHandDamageCollider.poiseBreak = playerInventoryManager.rightWeapon.poiseBreak;
         playerEffectsManager.rightWeaponFX = rightHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
     }

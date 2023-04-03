@@ -26,6 +26,11 @@ public class CharacterStatsManager : MonoBehaviour
     public float totalPoiseResetTime = 15;
     public float poiseResetTimer = 0;
 
+    public float fireDamageAbsorptionHead;
+    public float fireDamageAbsorptionBody;
+    public float fireDamageAbsorptionLegs;
+    public float fireDamageAbsorptionHands;
+
     public bool isDead;
 
     private void Start()
@@ -37,13 +42,47 @@ public class CharacterStatsManager : MonoBehaviour
         HandlePoiseResetTimer();
     }
 
-    public virtual void TakeDamage(int damage, string damageAnimation = "Damage_01")
+    public virtual void TakeDamage(int damage, int fireDamage, string damageAnimation = "Damage_01")
     {
-        
+        if (isDead)
+            return;
+
+        float totalFireDamageAbsorption = 1 -
+            (1 - fireDamageAbsorptionHead / 100) *
+            (1 - fireDamageAbsorptionBody / 100) *
+            (1 - fireDamageAbsorptionLegs / 100) *
+            (1 - fireDamageAbsorptionHands / 100);
+
+        fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
+
+        float finalDamage = damage + fireDamage; //add physical damage later
+
+        currentHealth = Mathf.RoundToInt(currentHealth - finalDamage);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            isDead = true;
+        }
     }
 
-    public virtual void TakeDamageNoAnimation(int damage)
+    public virtual void TakeDamageNoAnimation(int damage, int fireDamage)
     {
+        if (isDead)
+            return;
+
+        float totalFireDamageAbsorption = 1 -
+            (1 - fireDamageAbsorptionHead / 100) *
+            (1 - fireDamageAbsorptionBody / 100) *
+            (1 - fireDamageAbsorptionLegs / 100) *
+            (1 - fireDamageAbsorptionHands / 100);
+
+        fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
+
+        float finalDamage = damage + fireDamage; //add physical damage later
+
+        currentHealth = Mathf.RoundToInt(currentHealth - finalDamage);
+
         currentHealth = currentHealth - damage;
 
         if (currentHealth <= 0)

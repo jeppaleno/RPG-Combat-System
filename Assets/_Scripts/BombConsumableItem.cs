@@ -15,11 +15,13 @@ public class BombConsumableItem : ConsumableItem
 
     [Header("Base Damage")]
     public int baseDamage = 200;
+    public int explosiveDamage = 75;
 
     public override void AttemptToConsumeItem(PlayerAnimatorManager animatorManager, PlayerWeaponSlotManager weaponSlotManager, PlayerEffectsManager playerEffectsManager)
     {
         if (currentItemAmount > 0)
         {
+            weaponSlotManager.rightHandSlot.UnloadWeapon(); //Hide sword
             animatorManager.PlayTargetAnimation(consumeAnimation, true, true);
             GameObject bombModel = Instantiate(itemModel, weaponSlotManager.rightHandSlot.transform.position, Quaternion.identity, weaponSlotManager.rightHandSlot.transform);
             playerEffectsManager.instantiatedFXModel = bombModel;

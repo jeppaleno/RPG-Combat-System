@@ -6,7 +6,8 @@ public class BombDamageCollider : DamageCollider
 {
     [Header("Explosive Damage & Radius")]
     public int explosiveRadius = 1;
-    public int fireExplosionDamage;
+    public int explosionDamage;
+    public int explosionSplashDamage;
     //magicExplosionDamage
     //lightiningExplosionDamage
 
@@ -33,7 +34,7 @@ public class BombDamageCollider : DamageCollider
             if(character != null)
             {
                 //Check for friendly fire
-                //character.TakeDamage();
+                character.TakeDamage(0, explosionDamage);
             }
 
             Destroy(impactParticles, 5f);
@@ -51,7 +52,7 @@ public class BombDamageCollider : DamageCollider
 
             if (character != null)
             {
-                //Deal fire damage
+                character.TakeDamage(0, explosionSplashDamage);
             }
         }
     }
