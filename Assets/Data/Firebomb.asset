@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c9d006d1ea8ba4cb45789cb074c488, type: 3}
   m_Name: Firebomb
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
-  itemName: 
+  itemIcon: {fileID: 21300000, guid: 9d6f02363bab23a439a20c03f5cbb323, type: 3}
+  itemName: Firebomb
   maxItemAmount: 20
   currentItemAmount: 20
   itemModel: {fileID: 1955710750369813290, guid: b73f72e0501adf94d80a83d5a264054f, type: 3}
