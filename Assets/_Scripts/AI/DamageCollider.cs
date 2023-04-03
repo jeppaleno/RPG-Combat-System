@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageCollider : MonoBehaviour
 {
     public CharacterManager characterManager;
-    Collider damageCollider;
+    protected Collider damageCollider;
     public bool enabledDamageColliderOnStartUp = false;
 
     [Header("Poise")]
@@ -15,7 +15,7 @@ public class DamageCollider : MonoBehaviour
     [Header("Damage")]
     public int currentWeaponDamage = 25;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         damageCollider = GetComponent<Collider>();
         damageCollider.gameObject.SetActive(true);

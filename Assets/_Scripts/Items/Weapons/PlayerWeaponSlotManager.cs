@@ -122,10 +122,10 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
 
         GameObject activeModelBomb = Instantiate(fireBombItem.liveBombModel, rightHandSlot.transform.position, cameraManager.cameraPivot.rotation);
         activeModelBomb.transform.rotation = Quaternion.Euler(cameraManager.cameraPivot.eulerAngles.x, playerManager.lockOnTransform.eulerAngles.y, 0);
-        //Detect bomb damage collider
-        //Add force to rigidbody to move it through the air
+        BombDamageCollider damageCollider = activeModelBomb.GetComponentInChildren<BombDamageCollider>();
+        damageCollider.bombRigidBody.AddForce(activeModelBomb.transform.forward * fireBombItem.forwardVelocity);
+        damageCollider.bombRigidBody.AddForce(activeModelBomb.transform.up * fireBombItem.upwardVelocity);
         //Check for friendly fire
-        //Creata explosion and after splash damage effects
     }
 
     #region Handle Weapon's Damage Colliders
