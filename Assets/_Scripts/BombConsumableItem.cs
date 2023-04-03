@@ -20,7 +20,7 @@ public class BombConsumableItem : ConsumableItem
     {
         if (currentItemAmount > 0)
         {
-            animatorManager.PlayTargetAnimation(consumeAnimation, true);
+            animatorManager.PlayTargetAnimation(consumeAnimation, true, true);
             GameObject bombModel = Instantiate(itemModel, weaponSlotManager.rightHandSlot.transform.position, Quaternion.identity, weaponSlotManager.rightHandSlot.transform);
             playerEffectsManager.instantiatedFXModel = bombModel;
         }
