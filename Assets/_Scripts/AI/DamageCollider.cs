@@ -8,6 +8,9 @@ public class DamageCollider : MonoBehaviour
     protected Collider damageCollider;
     public bool enabledDamageColliderOnStartUp = false;
 
+    [Header("Team I.D")]
+    public int teamIDNumber = 0;
+
     [Header("Poise")]
     public float poiseBreak;
     public float offensivePoiseBonus;
@@ -48,6 +51,9 @@ public class DamageCollider : MonoBehaviour
             
             if (enemyManager != null)
             {
+                if (enemyStats.teamIDNumber == teamIDNumber)
+                    return;
+
                 if (enemyManager.isParrying)
                 {
                     //Check here if you are parryable
@@ -69,6 +75,9 @@ public class DamageCollider : MonoBehaviour
 
             if (enemyStats != null)
             {
+                if (enemyStats.teamIDNumber == teamIDNumber)
+                    return;
+
                 enemyStats.poiseResetTimer = enemyStats.totalPoiseResetTime;
                 enemyStats.totalPoiseDefence = enemyStats.totalPoiseDefence - poiseBreak;
                 //Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);

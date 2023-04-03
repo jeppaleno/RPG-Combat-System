@@ -22,5 +22,6 @@ MonoBehaviour:
   upwardVelocity: 50
   forwardVelocity: 50
   bombMass: 1
-  liveBombModel: {fileID: 0}
+  liveBombModel: {fileID: 1955710750369813290, guid: 77189cb2219630043a8529d2b03705e8, type: 3}
   baseDamage: 200
+  explosiveDamage: 75

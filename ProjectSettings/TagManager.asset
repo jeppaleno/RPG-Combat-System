@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Interactable
   - Illusionary Wall
+  - Character
   layers:
   - Default
   - TransparentFX

@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 2370028, guid: aa64b9ae639024c5097e12b27ac1d84c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d380761792fb2da49a42e8165994bfce, type: 2}
+      objectReference: {fileID: 2100000, guid: 88e1968b13b697848990c0d8364dea6a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa64b9ae639024c5097e12b27ac1d84c, type: 3}
 --- !u!1 &3521426867969233998 stripped
@@ -196,7 +196,7 @@ MonoBehaviour:
   explosionDamage: 0
   explosionSplashDamage: 0
   bombRigidBody: {fileID: 0}
-  impactParticles: {fileID: 1428540705898108, guid: e7a0b5c486a4ee94e918f40ca1ca196e, type: 3}
+  impactParticles: {fileID: 1428540705898108, guid: 7b9ab18f2be783944be3eda8e83c58a1, type: 3}
 --- !u!4 &3521426867969482278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448554, guid: aa64b9ae639024c5097e12b27ac1d84c, type: 3}

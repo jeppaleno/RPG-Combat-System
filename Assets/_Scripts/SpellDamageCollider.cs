@@ -38,7 +38,7 @@ public class SpellDamageCollider : DamageCollider
         {
             spellTarget = collision.transform.GetComponent<CharacterStatsManager>();
 
-            if (spellTarget != null)
+            if (spellTarget != null && spellTarget.teamIDNumber != teamIDNumber)
             {
                 spellTarget.TakeDamage(0, fireDamage);
             }

@@ -16,7 +16,8 @@ MonoBehaviour:
   itemName: Greatsword
   modelPrefab: {fileID: 7187455618724288987, guid: 097ade1f5e1bb8044be393f4876f6837, type: 3}
   isUnarmed: 0
-  baseDamage: 105
+  physicalDamage: 25
+  fireDamage: 0
   criticalDamageMultiplier: 4
   poiseBreak: 110
   offensivePoiseBonus: 57

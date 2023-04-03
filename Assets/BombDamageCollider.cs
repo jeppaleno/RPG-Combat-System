@@ -33,8 +33,10 @@ public class BombDamageCollider : DamageCollider
 
             if(character != null)
             {
-                //Check for friendly fire
-                character.TakeDamage(0, explosionDamage);
+                if (character.teamIDNumber != teamIDNumber)
+                {
+                    character.TakeDamage(0, explosionDamage);
+                }
             }
 
             Destroy(impactParticles, 5f);
@@ -52,7 +54,10 @@ public class BombDamageCollider : DamageCollider
 
             if (character != null)
             {
-                character.TakeDamage(0, explosionSplashDamage);
+                if (character.teamIDNumber != teamIDNumber)
+                {
+                    character.TakeDamage(0, explosionSplashDamage);
+                }
             }
         }
     }
