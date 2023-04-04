@@ -16,7 +16,6 @@ public class InputManager : MonoBehaviour
     CameraManager cameraManager;
     UIManager uiManager;
     
-    #region Variables
     public Vector2 movementInput;
     public Vector2 cameraInput;
 
@@ -57,7 +56,6 @@ public class InputManager : MonoBehaviour
     public bool inventoryFlag;
 
     public Transform criticalRayCastStartPoint;
-    #endregion
 
     private void Awake()
     {
@@ -181,7 +179,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleCombatInput() // (float delta)?
+    private void HandleCombatInput() 
     {
        if(attack_Input)
         {
@@ -320,12 +318,14 @@ public class InputManager : MonoBehaviour
             {
                 //Enable two handing
                 weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
+                playerManager.isTwoHandingWeapon = true;
             }
             else
             {
                 //Disable two handing
                 weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
                 weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.leftWeapon, true);
+                playerManager.isTwoHandingWeapon = false;
             }
         }
     }

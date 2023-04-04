@@ -16,8 +16,15 @@ MonoBehaviour:
   itemName: 
   modelPrefab: {fileID: 4138220775235156968, guid: 2c903efc5fae3374cbeeb6c8c93220d3, type: 3}
   isUnarmed: 1
-  right_hand_Idle: Right Arm Empty
-  left_hand_Idle: Left Arm Empty
-  OH_Light_Attack_1: 
-  OH_Light_Attack_2: 
-  OH_Heavy_Attack_1: 
+  weaponController: {fileID: 22100000, guid: 2248b4e1bc7d417418e132e33e476e8e, type: 2}
+  offHandIdleAnimation: Left_Arm_Idle_01
+  weaponType: 3
+  physicalDamage: 0
+  fireDamage: 0
+  criticalDamageMultiplier: 4
+  poiseBreak: 0
+  offensivePoiseBonus: 0
+  physicalDamageAbsorption: 0
+  baseStamina: 0
+  lightAttackMultiplier: 0
+  heavyAttackMultiplier: 0

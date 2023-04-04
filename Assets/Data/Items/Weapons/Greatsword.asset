@@ -16,26 +16,15 @@ MonoBehaviour:
   itemName: Greatsword
   modelPrefab: {fileID: 7187455618724288987, guid: 097ade1f5e1bb8044be393f4876f6837, type: 3}
   isUnarmed: 0
+  weaponController: {fileID: 0}
+  offHandIdleAnimation: Left_Arm_Idle_01
+  weaponType: 4
   physicalDamage: 25
   fireDamage: 0
   criticalDamageMultiplier: 4
   poiseBreak: 110
   offensivePoiseBonus: 57
   physicalDamageAbsorption: 0
-  right_hand_Idle: Right_Arm_Idle_01
-  left_hand_Idle: Left_Arm_Idle_01
-  th_idle: TH_Idle_01
-  OH_Light_Attack_1: OH_Light_Attack_01
-  OH_Light_Attack_2: OH_Light_Attack_2
-  OH_Heavy_Attack_1: OH_Heavy_Attack_01
-  th_light_attack_01: TH_Sword_Attack_01
-  th_light_attack_02: TH_Sword_Attack_02
-  weapon_art: Guard Break
   baseStamina: 55
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
-  isSpellCaster: 0
-  isFaithCaster: 0
-  isPyroCaster: 0
-  isMeleeWeapon: 1
-  isShieldWeapon: 0
