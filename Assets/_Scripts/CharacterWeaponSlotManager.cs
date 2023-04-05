@@ -25,6 +25,10 @@ public class CharacterWeaponSlotManager : MonoBehaviour
     [Header("Attacking Weapon")]
     public WeaponItem attackingWeapon;
 
+    [Header("Hand IK Targets")]
+    RightHandIKTarget rightHandIKTarget;
+    LeftHandIKTarget leftHandIKTarget;
+
     protected virtual void Awake()
     {
         characterManager = GetComponent<CharacterManager>();
@@ -88,6 +92,7 @@ public class CharacterWeaponSlotManager : MonoBehaviour
                 rightHandSlot.currentWeapon = weaponItem;
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
+                LoadTwoHandIKTargets(characterManager.isTwoHandingWeapon);
                 characterAnimatorManager.animator.runtimeAnimatorController = weaponItem.weaponController;
             }
         }
@@ -140,6 +145,14 @@ public class CharacterWeaponSlotManager : MonoBehaviour
         characterEffectsManager.rightWeaponFX = rightHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
     }
 
+    public virtual void LoadTwoHandIKTargets(bool isTwoHandingWeapon)
+    {
+        leftHandIKTarget = rightHandSlot.currentWeaponModel.GetComponentInChildren<LeftHandIKTarget>();
+        rightHandIKTarget = rightHandSlot.currentWeaponModel.GetComponentInChildren<RightHandIKTarget>();
+
+        characterAnimatorManager.SetHandIKForWeapon(rightHandIKTarget, leftHandIKTarget, isTwoHandingWeapon);
+    }
+
 
     public virtual void OpenDamageCollider()
     {
@@ -152,7 +165,6 @@ public class CharacterWeaponSlotManager : MonoBehaviour
             leftHandDamageCollider.EnableDamageCollider();
         }
     }
-
 
     public virtual void CloseDamageCollider()
     {

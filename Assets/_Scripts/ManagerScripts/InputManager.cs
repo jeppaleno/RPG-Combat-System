@@ -316,16 +316,16 @@ public class InputManager : MonoBehaviour
 
             if (twohandFlag)
             {
-                //Enable two handing
-                weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
                 playerManager.isTwoHandingWeapon = true;
+                weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
+                weaponSlotManager.LoadTwoHandIKTargets(true); //CALLED FROM CHARACTER WEAPON SLOT MANAGER INSTEAD
             }
             else
             {
-                //Disable two handing
+                playerManager.isTwoHandingWeapon = false;
                 weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false);
                 weaponSlotManager.LoadWeaponOnSlot(playerInventoryManager.leftWeapon, true);
-                playerManager.isTwoHandingWeapon = false;
+                weaponSlotManager.LoadTwoHandIKTargets(false);
             }
         }
     }
