@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterStatsManager : MonoBehaviour
 {
+    CharacterAnimatorManager characterAnimatorManager;
+
     [Header("Team I.D")]
     public int teamIDNumber = 0;
 
@@ -36,10 +38,16 @@ public class CharacterStatsManager : MonoBehaviour
 
     public bool isDead;
 
+    protected virtual void Awake()
+    {
+        characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+    }
+
     private void Start()
     {
         totalPoiseDefence = armorPoiseBonus;
     }
+
     protected virtual void Update()
     {
         HandlePoiseResetTimer();
@@ -49,6 +57,8 @@ public class CharacterStatsManager : MonoBehaviour
     {
         if (isDead)
             return;
+
+        characterAnimatorManager.EraseHandIKWeapon();
 
         float totalFireDamageAbsorption = 1 -
             (1 - fireDamageAbsorptionHead / 100) *

@@ -32,8 +32,9 @@ public class EnemyManager : CharacterManager
     public bool isPhaseShifting;
     public float comboLikelyHood;
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         enemyAnimationManager = GetComponent<EnemyAnimatorManager>();
         enemyStatsManager = GetComponent<EnemyStatsManager>();
@@ -64,8 +65,9 @@ public class EnemyManager : CharacterManager
         enemyAnimationManager.animator.SetBool("isDead", enemyStatsManager.isDead);
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         enemyEffectsManager.HandleAllBuildEffects();
     }
 

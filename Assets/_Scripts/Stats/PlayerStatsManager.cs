@@ -16,8 +16,9 @@ public class PlayerStatsManager : CharacterStatsManager
     private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     private Coroutine regen;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         playerManager = GetComponent<PlayerManager>();
         staminaBar = FindObjectOfType<StaminaBar>();
         focusPointsBar = FindObjectOfType<FocusPointBar>();

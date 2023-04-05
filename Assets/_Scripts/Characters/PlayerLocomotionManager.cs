@@ -229,6 +229,7 @@ public class PlayerLocomotionManager : MonoBehaviour
             
             playerAnimatorManager.animator.SetBool("isJumping", true);
             playerAnimatorManager.PlayTargetAnimation("Jump", false);
+            playerAnimatorManager.EraseHandIKWeapon();
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
@@ -259,6 +260,7 @@ public class PlayerLocomotionManager : MonoBehaviour
             if (inputManager.moveAmount > 0)
             {
                 playerAnimatorManager.PlayTargetAnimation("Rolling", true, true);
+                playerAnimatorManager.EraseHandIKWeapon();
                 moveDirection.y = 0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 transform.rotation = rollRotation;
@@ -266,6 +268,7 @@ public class PlayerLocomotionManager : MonoBehaviour
             else
             {
                 playerAnimatorManager.PlayTargetAnimation("Dodge", true, true);
+                playerAnimatorManager.EraseHandIKWeapon();
             }
         }
     }

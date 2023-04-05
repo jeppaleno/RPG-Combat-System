@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    CharacterAnimatorManager characterAnimatorManager;
+    CharacterWeaponSlotManager characterWeaponSlotManager;
+
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
 
@@ -36,4 +39,15 @@ public class CharacterManager : MonoBehaviour
     //Damage will be inflicted during an animation event
     // Used in backstab or riposte animations
     public int pendingCriticalDamage;
+
+    protected virtual void Awake()
+    {
+        characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+        characterWeaponSlotManager = GetComponent<CharacterWeaponSlotManager>();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        characterAnimatorManager.CheckHandIKWeight(characterWeaponSlotManager.rightHandIKTarget, characterWeaponSlotManager.leftHandIKTarget, isTwoHandingWeapon);
+    }
 }

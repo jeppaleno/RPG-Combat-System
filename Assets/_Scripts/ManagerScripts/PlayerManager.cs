@@ -16,8 +16,9 @@ public class PlayerManager : CharacterManager
     public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
     public GameObject itemInteractableGameObject; // Shows what item that was picked up
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputManager = GetComponent<InputManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         cameraManager = FindObjectOfType<CameraManager>();
@@ -52,8 +53,9 @@ public class PlayerManager : CharacterManager
     }
 
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         playerLocomotionManager.HandleAllMovement();
         playerLocomotionManager.HandleRotation();
         playerEffectsManager.HandleAllBuildEffects();
