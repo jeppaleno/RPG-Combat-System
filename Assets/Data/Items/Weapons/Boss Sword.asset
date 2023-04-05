@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Sword
   modelPrefab: {fileID: 7187455618724288987, guid: 6cf2186189a3f1e499e359c693fee69f, type: 3}
   isUnarmed: 0
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 22100000, guid: df0ee38feb42ee249bbada03f70f4928, type: 2}
   offHandIdleAnimation: Left_Arm_Idle_01
   weaponType: 4
   physicalDamage: 25
