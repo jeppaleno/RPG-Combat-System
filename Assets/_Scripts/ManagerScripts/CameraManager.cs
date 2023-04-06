@@ -66,8 +66,8 @@ public class CameraManager : MonoBehaviour
         {
             Vector3 rotation;
 
-            lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed);
-            pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed);
+            lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed) * Time.deltaTime;
+            pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed) * Time.deltaTime;
             pivotAngle = Mathf.Clamp(pivotAngle, minimumPivotAngle, maximumPivotAngle);
 
             rotation = Vector3.zero;
