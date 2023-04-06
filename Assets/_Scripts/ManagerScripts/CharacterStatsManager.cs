@@ -53,7 +53,7 @@ public class CharacterStatsManager : MonoBehaviour
         HandlePoiseResetTimer();
     }
 
-    public virtual void TakeDamage(int damage, int fireDamage, string damageAnimation = "Damage_01")
+    public virtual void TakeDamage(int damage, int fireDamage, string damageAnimation)
     {
         if (isDead)
             return;

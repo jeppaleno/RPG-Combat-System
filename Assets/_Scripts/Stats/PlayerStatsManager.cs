@@ -70,7 +70,7 @@ public class PlayerStatsManager : CharacterStatsManager
         return maxFocusPoints;
     }
 
-    public override void TakeDamage(int damage, int fireDamage, string damageAnimation = "Damage_01")
+    public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
     {
         if (isDead)
             return;

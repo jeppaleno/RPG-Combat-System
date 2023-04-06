@@ -40,7 +40,7 @@ public class SpellDamageCollider : DamageCollider
 
             if (spellTarget != null && spellTarget.teamIDNumber != teamIDNumber)
             {
-                spellTarget.TakeDamage(0, fireDamage);
+                spellTarget.TakeDamage(0, fireDamage, currentDamageAnimation);
             }
 
             hasCollided = true;

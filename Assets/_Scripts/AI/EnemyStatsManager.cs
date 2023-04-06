@@ -89,7 +89,7 @@ public class EnemyStatsManager : CharacterStatsManager
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            enemyAnimatorManager.PlayTargetAnimation("Dead_01", true);
+            enemyAnimatorManager.PlayTargetAnimation("Dead_01", true, true);
             isDead = true;
         }
     }
@@ -99,12 +99,12 @@ public class EnemyStatsManager : CharacterStatsManager
         enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);
     }
 
-    public override void TakeDamage(int damage, int fireDamage, string damageAnimation = "Damage_01")
+    public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
     {
         /*if (isDead)
             return;*/
 
-        base.TakeDamage(damage, fireDamage, damageAnimation = "Damage_01");
+        base.TakeDamage(damage, fireDamage, damageAnimation);
         
         if (!isBoss)
         {

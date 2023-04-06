@@ -126,6 +126,7 @@ public class CharacterWeaponSlotManager : MonoBehaviour
         leftHandDamageCollider.physicalDamage = characterInventoryManager.leftWeapon.physicalDamage;
         leftHandDamageCollider.fireDamage = characterInventoryManager.leftWeapon.fireDamage;
 
+        leftHandDamageCollider.characterManager = characterManager;
         leftHandDamageCollider.teamIDNumber = characterStatsManager.teamIDNumber;
 
         leftHandDamageCollider.poiseBreak = characterInventoryManager.leftWeapon.poiseBreak;
@@ -139,6 +140,7 @@ public class CharacterWeaponSlotManager : MonoBehaviour
         rightHandDamageCollider.physicalDamage = characterInventoryManager.rightWeapon.physicalDamage;
         rightHandDamageCollider.fireDamage = characterInventoryManager.rightWeapon.fireDamage;
 
+        rightHandDamageCollider.characterManager = characterManager;
         rightHandDamageCollider.teamIDNumber = characterStatsManager.teamIDNumber;
 
         rightHandDamageCollider.poiseBreak = characterInventoryManager.rightWeapon.poiseBreak;

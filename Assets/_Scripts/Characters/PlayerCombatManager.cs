@@ -262,8 +262,8 @@ public class PlayerCombatManager : MonoBehaviour
                 int criticalDamage = playerInventoryManager.rightWeapon.criticalDamageMultiplier * rightWeapon.physicalDamage;
                 enemyCharacterManager.pendingCriticalDamage = criticalDamage;
                 // play animation
-                playerAnimatorManager.PlayTargetAnimation("Back Stab", true);
-                enemyCharacterManager.GetComponentInChildren<CharacterAnimatorManager>().PlayTargetAnimation("Back Stabbed", true);
+                playerAnimatorManager.PlayTargetAnimation("Back Stab", true, true);
+                enemyCharacterManager.GetComponentInChildren<CharacterAnimatorManager>().PlayTargetAnimation("Back Stabbed", true, true);
                 
                 // make enemy play animation
                 // do damage
@@ -291,8 +291,8 @@ public class PlayerCombatManager : MonoBehaviour
                 int criticalDamage = playerInventoryManager.rightWeapon.criticalDamageMultiplier * rightWeapon.physicalDamage;
                 enemyCharacterManager.pendingCriticalDamage = criticalDamage;
 
-                playerAnimatorManager.PlayTargetAnimation("Riposte", true);
-                enemyCharacterManager.GetComponentInChildren<CharacterAnimatorManager>().PlayTargetAnimation("Riposted", true);
+                playerAnimatorManager.PlayTargetAnimation("Riposte", true, true);
+                enemyCharacterManager.GetComponentInChildren<CharacterAnimatorManager>().PlayTargetAnimation("Riposted", true, true);
             }
         }
     }
