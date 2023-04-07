@@ -23,11 +23,12 @@ public class CharacterAnimatorManager : MonoBehaviour
         rigBuilder = GetComponent<RigBuilder>();
     }
 
-    public void PlayTargetAnimation(string targetAnimation, bool isInteracting, bool useRootMotion = false, bool canRotate = false)
+    public void PlayTargetAnimation(string targetAnimation, bool isInteracting, bool useRootMotion = false, bool canRotate = false, bool mirrorAnim = false)
     {
         animator.SetBool("isInteracting", isInteracting);
         animator.SetBool("canRotate", canRotate);
         animator.SetBool("isUsingRootMotion", useRootMotion);
+        animator.SetBool("isMirrored", mirrorAnim);
         animator.CrossFade(targetAnimation, 0.2f);
     }
 

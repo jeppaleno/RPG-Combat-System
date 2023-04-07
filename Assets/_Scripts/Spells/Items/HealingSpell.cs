@@ -10,11 +10,12 @@ public class HealingSpell : SpellItem
     public override void AttemptToCastSpell(
         PlayerAnimatorManager animatorManager,
         PlayerStatsManager playerStats,
-        PlayerWeaponSlotManager weaponSlotManager)
+        PlayerWeaponSlotManager weaponSlotManager,
+        bool isLeftHanded)
     {
-        base.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager);
+        base.AttemptToCastSpell(animatorManager, playerStats, weaponSlotManager, isLeftHanded);
         GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, animatorManager.transform);
-        animatorManager.PlayTargetAnimation(spellAnimation, true);
+        animatorManager.PlayTargetAnimation(spellAnimation, true, true, false, isLeftHanded);
         Debug.Log("Attempting to cast spell...");
     }
 
@@ -22,9 +23,10 @@ public class HealingSpell : SpellItem
         PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats,
         CameraManager cameraManager,
-        PlayerWeaponSlotManager weaponSlotManager)
+        PlayerWeaponSlotManager weaponSlotManager,
+        bool isLeftHanded)
     {
-        base.SucessfullyCastSpell(animatorManager, playerStats, cameraManager, weaponSlotManager);
+        base.SucessfullyCastSpell(animatorManager, playerStats, cameraManager, weaponSlotManager, isLeftHanded);
         GameObject instantiatedSpellFX = Instantiate(SpellCastFX, animatorManager.transform);
         playerStats.HealPlayer(healAmount);
         Debug.Log("successfully cast spell...");

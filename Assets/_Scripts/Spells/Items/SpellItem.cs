@@ -22,7 +22,8 @@ public class SpellItem : Item
 
     public virtual void AttemptToCastSpell(PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats, 
-        PlayerWeaponSlotManager weaponSlotManager)
+        PlayerWeaponSlotManager weaponSlotManager, 
+        bool isLeftHanded)
     {
         Debug.Log("You attempt to cast a spell!");
     }
@@ -31,7 +32,8 @@ public class SpellItem : Item
         PlayerAnimatorManager animatorManager, 
         PlayerStatsManager playerStats,
         CameraManager cameraManager,
-        PlayerWeaponSlotManager weaponSlotManager)
+        PlayerWeaponSlotManager weaponSlotManager,
+        bool isLeftHanded)
     {
         Debug.Log("You sucessfully cast a spell!");
         playerStats.DeductFocusPoints(focusPointCost);
