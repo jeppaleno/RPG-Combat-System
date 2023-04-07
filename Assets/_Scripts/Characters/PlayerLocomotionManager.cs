@@ -94,7 +94,7 @@ public class PlayerLocomotionManager : MonoBehaviour
         }
         else
         {
-            if (inputManager.moveAmount >= 0.5f)
+            if (inputManager.moveAmount >= 0.5f && !playerManager.isAiming)
             {
                 moveDirection = moveDirection * runningSpeed;
             }

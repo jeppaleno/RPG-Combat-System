@@ -68,8 +68,7 @@ public class PlayerCombatManager : MonoBehaviour
         {
             if (playerInventoryManager.rightWeapon.weaponType == WeaponType.Bow)
             {
-                //AIM THE BOW
-
+                PerformLBAimingAction();
             }
         }
         else
@@ -196,6 +195,10 @@ public class PlayerCombatManager : MonoBehaviour
         playerManager.isBlocking = true;
     }
 
+    private void PerformLBAimingAction()
+    {
+        playerAnimatorManager.animator.SetBool("isAiming", true);
+    }
 
     private void PerformMagicAction(WeaponItem weapon, bool isLeftHanded)
     {

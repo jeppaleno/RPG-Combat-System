@@ -123,6 +123,7 @@ public class InputManager : MonoBehaviour
     {
         HandleMovementInput();
         HandleJumpingInput();
+        HandleLBInput();
         HandleSprintingInput();
         HandleCombatInput();
         HandleQuickSlotsInput();
@@ -137,15 +138,14 @@ public class InputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        
+      
         verticalInput = movementInput.y; //Vertical value of joystick
         horizontalInput = movementInput.x; //Horizontal value of joystick
+        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
 
         cameraInputY = cameraInput.y;
         cameraInputX = cameraInput.x;
 
-        // combines value of horizontal and vertical inputs from the joystick
-        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         if (lockOnFlag && sprint_Input == false)
         {
             playerAnimatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, character.isSprinting);
@@ -159,6 +159,9 @@ public class InputManager : MonoBehaviour
 
     private void HandleSprintingInput() 
     {
+        if (playerManager.isAiming)
+            return;
+
         // Sprints when input is being pressed and aleady is running. 
         if (sprint_Input && moveAmount > 0.5f)
         {
@@ -191,20 +194,6 @@ public class InputManager : MonoBehaviour
             playerCombatManager.HandleHeavyAttack(playerInventoryManager.rightWeapon);
         }
 
-       if (lb_Input)
-        {
-            playerCombatManager.HandleLBAction();
-        }
-       else
-        {
-            playerManager.isBlocking = false;
-
-            if (blockingCollider.blockingCollider.enabled)
-            {
-                blockingCollider.DisableBlockingCollider();
-            }
-        }
-
        if (lt_Input)
         {
             if (twohandFlag)
@@ -217,6 +206,34 @@ public class InputManager : MonoBehaviour
                 playerCombatManager.HandleLTAction();
             }
             //handle weapon art if shield
+        }
+    }
+
+    private void HandleLBInput()
+    {
+        if (playerManager.isFiringSpell) //ADD IN AIR AND SPRINTING BOOLS TOO 
+        {
+            lb_Input = false;
+            return;
+        }
+
+        if (lb_Input)
+        {
+            playerCombatManager.HandleLBAction();
+        }
+        else if (lb_Input == false)
+        {
+            playerManager.isBlocking = false;
+
+            if (blockingCollider.blockingCollider.enabled)
+            {
+                blockingCollider.DisableBlockingCollider();
+            }
+
+            if (playerManager.isAiming)
+            {
+                playerAnimatorManager.animator.SetBool("isAiming", false);
+            }
         }
     }
 
