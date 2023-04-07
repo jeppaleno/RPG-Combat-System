@@ -90,14 +90,20 @@ public class CharacterAnimatorManager : MonoBehaviour
         //Check if we are two handing our weapon
         if (isTwoHandingWeapon)
         {
-            //If we are, apply hand IK if needed
-            rightHandConstraint.data.target = rightHandTarget.transform;
-            rightHandConstraint.data.targetPositionWeight = 1; //Assign this from a weapon variable as it fits
-            rightHandConstraint.data.targetRotationWeight = 1;
-
-            leftHandConstraint.data.target = leftHandTarget.transform;
-            leftHandConstraint.data.targetPositionWeight = 1;
-            leftHandConstraint.data.targetRotationWeight = 1;
+            if (rightHandTarget != null)
+            {
+                //If we are, apply hand IK if needed
+                rightHandConstraint.data.target = rightHandTarget.transform;
+                rightHandConstraint.data.targetPositionWeight = 1; //Assign this from a weapon variable as it fits
+                rightHandConstraint.data.targetRotationWeight = 1;
+            }
+            if (leftHandTarget != null)
+            {
+                leftHandConstraint.data.target = leftHandTarget.transform;
+                leftHandConstraint.data.targetPositionWeight = 1;
+                leftHandConstraint.data.targetRotationWeight = 1;
+            }
+            
         }
         else
         {

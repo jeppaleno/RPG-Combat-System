@@ -9,7 +9,8 @@ public enum WeaponType
     SpellCaster,
     Unarmed,
     StraightSword,
-    shield
+    shield,
+    Bow
 }
 public class Enums : MonoBehaviour
 {
