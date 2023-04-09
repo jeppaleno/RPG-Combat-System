@@ -178,6 +178,9 @@ public class PlayerCombatManager : MonoBehaviour
         playerAnimatorManager.PlayTargetAnimation("Bow_TH_Draw_01", true, true);
         GameObject loadedArrow = Instantiate(playerInventoryManager.currentAmmo.loadedItemModel, playerWeaponSlotManager.leftHandSlot.transform);
         //ANIMATE THE BOW
+        Animator bowAnimator = playerWeaponSlotManager.rightHandSlot.GetComponentInChildren<Animator>();
+        bowAnimator.SetBool("isDrawn", true);
+        bowAnimator.Play("Bow_ONLY_Draw_01");
         playerEffectsManager.currentRangeFX = loadedArrow;
     }
 
