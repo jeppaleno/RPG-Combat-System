@@ -45,6 +45,18 @@ public class PlayerCombatManager : MonoBehaviour
         inputManager = GetComponent<InputManager>();
     }
 
+    public void HandleHoldRBAction()
+    {
+        if (playerManager.isTwoHandingWeapon)
+        {
+            PerformRBRangedAction();
+        }
+        else
+        {
+            //Do a melee attack (Bow Bash...)
+        }
+    }
+
     public void HandleAttackAction()
     {
         playerAnimatorManager.EraseHandIKWeapon();
@@ -160,6 +172,15 @@ public class PlayerCombatManager : MonoBehaviour
         
     }
 
+    private void DrawArrowAction()
+    {
+        playerAnimatorManager.animator.SetBool("isHoldingArrow", true);
+        playerAnimatorManager.PlayTargetAnimation("Bow_TH_Draw_01", true, true);
+        GameObject loadedArrow = Instantiate(playerInventoryManager.currentAmmo.loadedItemModel, playerWeaponSlotManager.leftHandSlot.transform);
+        //ANIMATE THE BOW
+        playerEffectsManager.currentRangeFX = loadedArrow;
+    }
+
 
     private void PerformAttackMeleeAction()
     {
@@ -180,6 +201,35 @@ public class PlayerCombatManager : MonoBehaviour
         }
 
         playerEffectsManager.PlayWeaponFX(false);
+    }
+
+    private void PerformRBRangedAction()
+    {
+        if (playerStatsManager.currentStamina <= 0) 
+            return;
+
+        playerAnimatorManager.EraseHandIKWeapon();
+        playerAnimatorManager.animator.SetBool("isUsingRightHand", true);
+
+        if (!playerManager.isHoldingArrow)
+        {
+            // If we have ammo
+            if (!playerManager.isHoldingArrow)
+            {
+                if (playerInventoryManager.currentAmmo != null)
+                {
+                    DrawArrowAction();
+                }
+                else
+                {
+                    //Otherwise play an animation to indicate we are out of ammo
+                    playerAnimatorManager.PlayTargetAnimation("shrug", true, true);
+                }
+            }
+            
+            //fire the arrow when we realease RB
+            
+        }
     }
 
     private void performLBBlockingAction()

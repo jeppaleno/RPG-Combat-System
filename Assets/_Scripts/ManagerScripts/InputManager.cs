@@ -136,6 +136,7 @@ public class InputManager : MonoBehaviour
         HandleTwoHandInput();
         HandleRollInput();
         HandleUseConsumableInput();
+        HandleHoldRBInput();
     }
 
     private void HandleMovementInput()
@@ -161,7 +162,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleSprintingInput() 
     {
-        if (playerManager.isAiming)
+        if (playerManager.isHoldingArrow)
             return;
 
         // Sprints when input is being pressed and aleady is running. 
@@ -232,9 +233,9 @@ public class InputManager : MonoBehaviour
                 blockingCollider.DisableBlockingCollider();
             }
 
-            if (playerManager.isAiming)
+            if (playerManager.isHoldingArrow)
             {
-                playerAnimatorManager.animator.SetBool("isAiming", false);
+                //playerAnimatorManager.animator.SetBool("isAiming", false);
             }
         }
     }
@@ -360,13 +361,13 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleHoldInput()
+    private void HandleHoldRBInput()
     {
         if (hold_rb_Input)
         {
             if (playerInventoryManager.rightWeapon.weaponType == WeaponType.Bow)
             {
-                //decide action
+                playerCombatManager.HandleHoldRBAction();
             }
             else
             {

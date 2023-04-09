@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea03ae3f8df7c994f9dae62fa1fe5f36, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: f049b8f6e6c70664abce7e9de8fc5a5c, type: 3}
+  itemIcon: {fileID: 21300000, guid: 30a3cedbeec18d848bfbc42fb7e7d1f9, type: 3}
   itemName: Bow
   modelPrefab: {fileID: 7187455618724288987, guid: 3f858a5f172167e45a3420aa8f5ccf3f, type: 3}
   isUnarmed: 0

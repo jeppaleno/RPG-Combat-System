@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefd276e6272e884aaf9e1033ecdfc32, type: 3}
+  m_Name: Arrow
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
+  itemName: Arrow
+  ammoType: 0
+  forwardVelocity: 550
+  upwardVelocity: 0
+  ammoMass: 0
+  useGravity: 0
+  carryLimit: 99
+  currentAmount: 99
+  physicalDamage: 50
+  loadedItemModel: {fileID: 4323725398543255942, guid: 16c283436bc574241b031eba9338b21a, type: 3}
+  liveAmmoModel: {fileID: 4323725398543255942, guid: 3f87fa9c17b6ec74d9394b4106cfa070, type: 3}
+  penetradedModel: {fileID: 4323725398543255942, guid: ab2dbb5349a41944db5c92a38939f099, type: 3}

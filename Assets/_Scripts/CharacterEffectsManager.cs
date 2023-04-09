@@ -6,6 +6,9 @@ public class CharacterEffectsManager : MonoBehaviour
 {
     CharacterStatsManager characterStatsManager;
 
+    [Header("Current Range FX")]
+    public GameObject currentRangeFX;
+
     [Header("Damage FX")]
     public GameObject bloodSplatterFX;
 
