@@ -197,7 +197,7 @@ public class PlayerCombatManager : MonoBehaviour
 
     private void PerformLBAimingAction()
     {
-        playerAnimatorManager.animator.SetBool("isAiming", true);
+        //playerAnimatorManager.animator.SetBool("isAiming", true);
     }
 
     private void PerformMagicAction(WeaponItem weapon, bool isLeftHanded)

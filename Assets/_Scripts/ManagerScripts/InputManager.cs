@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     public float horizontalInput;
 
     public bool a_Input;
+    public bool hold_rb_Input;
     public bool b_input;
     public bool x_Input;
     public bool y_Input;
@@ -40,12 +41,11 @@ public class InputManager : MonoBehaviour
     public bool lockOnInput;
     public bool right_Stick_Right_Input;
     public bool right_Stick_Left_Input;
-    public bool critical_Attack_Input;
     public bool jump_Input;
     public bool sprint_Input;
     public bool attack_Input;
-    public bool lb_Input; // Left shoulder/Q
-    public bool lt_Input; //Left trigger
+    public bool lb_Input; 
+    public bool lt_Input; 
     public bool Heavy_attack_Input;
 
     public bool rollFlag;
@@ -53,6 +53,7 @@ public class InputManager : MonoBehaviour
     public bool comboFlag;
     public bool twohandFlag;
     public bool lockOnFlag;
+    public bool fireFlag;
     public bool inventoryFlag;
 
     public Transform criticalRayCastStartPoint;
@@ -86,10 +87,14 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Y.performed += i => y_Input = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
-            playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; //cancels when released
+            playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; 
 
             playerControls.PlayerActions.Attack.performed += i => attack_Input = true;
             playerControls.PlayerActions.HeavyAttack.performed += i => Heavy_attack_Input = true;
+
+            playerControls.PlayerActions.HoldRB.performed += i => hold_rb_Input = true;
+            playerControls.PlayerActions.HoldRB.canceled += i => hold_rb_Input = false;
+            playerControls.PlayerActions.HoldRB.canceled += i => fireFlag = true;
 
             playerControls.PlayerActions.LB.performed += i => lb_Input = true;
             playerControls.PlayerActions.LB.canceled += i => lb_Input = false;
@@ -105,8 +110,6 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
             playerControls.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
-
-            playerControls.PlayerActions.CriticalAttack.performed += i => critical_Attack_Input = true;
 
             playerControls.PlayerActions.Roll.performed += i => b_input = true;
         }
@@ -131,7 +134,6 @@ public class InputManager : MonoBehaviour
         HandleLockOnInput();
         //HandleDodgeInput();
         HandleTwoHandInput();
-        HandleCriticalAttackInput();
         HandleRollInput();
         HandleUseConsumableInput();
     }
@@ -347,14 +349,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleCriticalAttackInput()
-    {
-        if (critical_Attack_Input)
-        {
-            critical_Attack_Input = false;
-            playerCombatManager.AttemptBackStabOrRiposte();
-        }
-    }
 
     private void HandleRollInput()
     {
@@ -363,6 +357,22 @@ public class InputManager : MonoBehaviour
             rollFlag = true;
             b_input = false;
             character.HandleRolling();
+        }
+    }
+
+    private void HandleHoldInput()
+    {
+        if (hold_rb_Input)
+        {
+            if (playerInventoryManager.rightWeapon.weaponType == WeaponType.Bow)
+            {
+                //decide action
+            }
+            else
+            {
+                hold_rb_Input = false;
+                playerCombatManager.AttemptBackStabOrRiposte();
+            }
         }
     }
 
