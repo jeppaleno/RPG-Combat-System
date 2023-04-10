@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     PlayerAnimatorManager playerAnimatorManager;
-    PlayerLocomotionManager character;
+    PlayerLocomotionManager playerLocomotionManager;
     PlayerCombatManager playerCombatManager;
     PlayerInventoryManager playerInventoryManager;
     PlayerManager playerManager;
@@ -61,7 +61,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-        character = GetComponent<PlayerLocomotionManager>();
+        playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
@@ -152,11 +152,11 @@ public class InputManager : MonoBehaviour
 
         if (lockOnFlag && sprint_Input == false)
         {
-            playerAnimatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, character.isSprinting);
+            playerAnimatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, playerLocomotionManager.isSprinting);
         }
         else
         {
-            playerAnimatorManager.UpdateAnimatorValues(0, moveAmount, character.isSprinting);
+            playerAnimatorManager.UpdateAnimatorValues(0, moveAmount, playerLocomotionManager.isSprinting);
         }
         
     }
@@ -169,11 +169,13 @@ public class InputManager : MonoBehaviour
         // Sprints when input is being pressed and aleady is running. 
         if (sprint_Input && moveAmount > 0.5f)
         {
-            character.isSprinting = true;
+            playerLocomotionManager.isSprinting = true;
+            playerManager.isSprinting = true;
         }
         else
         {
-            character.isSprinting = false;
+            playerLocomotionManager.isSprinting = false;
+            playerManager.isSprinting = false;
         }
     }
 
@@ -182,7 +184,7 @@ public class InputManager : MonoBehaviour
         if (jump_Input)
         {
             jump_Input = false;
-            character.HandleJumping();
+            playerLocomotionManager.HandleJumping();
         }
     }
 
@@ -358,7 +360,7 @@ public class InputManager : MonoBehaviour
         {
             rollFlag = true;
             b_input = false;
-            character.HandleRolling();
+            playerLocomotionManager.HandleRolling();
         }
     }
 

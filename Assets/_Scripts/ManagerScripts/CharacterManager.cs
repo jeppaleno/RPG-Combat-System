@@ -33,6 +33,7 @@ public class CharacterManager : MonoBehaviour
     [Header("Movement Flags")]
     public bool isRotatingWithRootMotion;
     public bool canRotate;
+    public bool isSprinting;
    
     [Header("Spells")]
     public bool isFiringSpell;

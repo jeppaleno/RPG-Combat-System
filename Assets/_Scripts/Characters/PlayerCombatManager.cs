@@ -18,12 +18,16 @@ public class PlayerCombatManager : MonoBehaviour
     string oh_light_attack_01 = "OH_Light_Attack_01";
     string oh_light_attack_02 = "OH_Light_Attack_02";
     string oh_heavy_attack_01 = "OH_Heavy_Attack_01";
-    //string oh_heavy_attack_02 = "OH_Heavy_Attack_02"; //ADD LATER
+    string oh_heavy_attack_02 = "OH_Heavy_Attack_02"; //ADD LATER
+    string oh_running_attack_01 = "OH_Running_Attack_01";
+    string oh_jumping_attack_01 = "OH_Jumping_Attack_01";
 
     string th_light_attack_01 = "TH_Light_Attack_01";
     string th_light_attack_02 = "TH_Light_Attack_02";
-    //string th_heavy_attack_01 = "TH_Heavy_Attack_01"; //ADD LATER
-    //string oh_heavy_attack_02 = "OH_Heavy_Attack_02"; //ADD LATER
+    string th_heavy_attack_01 = "TH_Heavy_Attack_01"; //ADD LATER
+    string th_heavy_attack_02 = "TH_Heavy_Attack_02"; //ADD LATER
+    string th_running_attack_01 = "TH_Running_Attack_01";
+    string th_jumping_attack_01 = "TH_Jumping_Attack_01";
 
     string weapon_art = "Weapon_Art";
 
@@ -172,6 +176,25 @@ public class PlayerCombatManager : MonoBehaviour
         
     }
 
+    public void HandleRunningAttack(WeaponItem weapon)
+    {
+        if (playerStatsManager.currentStamina <= 0)
+            return;
+
+        playerWeaponSlotManager.attackingWeapon = weapon;
+
+        if (inputManager.twohandFlag)
+        {
+            playerAnimatorManager.PlayTargetAnimation(th_running_attack_01, true, true);
+            lastAttack = th_running_attack_01;
+        }
+        else
+        {
+            playerAnimatorManager.PlayTargetAnimation(oh_running_attack_01, true, true); // attack with root motion
+            lastAttack = oh_running_attack_01;
+        }
+    }
+
     private void DrawArrowAction()
     {
         playerAnimatorManager.animator.SetBool("isHoldingArrow", true);
@@ -232,6 +255,14 @@ public class PlayerCombatManager : MonoBehaviour
 
     private void PerformAttackMeleeAction()
     {
+        playerAnimatorManager.animator.SetBool("isUsingRightHand", true);
+
+        //If we can perform a running attack, we do that if not, continue
+        if (playerManager.isSprinting)
+        {
+            HandleRunningAttack(playerInventoryManager.rightWeapon);
+            return;
+        }
         if (playerManager.canDoCombo)
         {
             inputManager.comboFlag = true;
@@ -244,10 +275,9 @@ public class PlayerCombatManager : MonoBehaviour
                 return;
             if (playerManager.canDoCombo)
                 return;
-            playerAnimatorManager.animator.SetBool("isUsingRightHand", true);
+            
             HandleLightAttack(playerInventoryManager.rightWeapon);
         }
-
         playerEffectsManager.PlayWeaponFX(false);
     }
 
