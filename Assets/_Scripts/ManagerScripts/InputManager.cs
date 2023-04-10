@@ -43,10 +43,10 @@ public class InputManager : MonoBehaviour
     public bool right_Stick_Left_Input;
     public bool jump_Input;
     public bool sprint_Input;
-    public bool attack_Input;
+    public bool rb_Input;
     public bool lb_Input; 
     public bool lt_Input; 
-    public bool Heavy_attack_Input;
+    public bool rt_input;
 
     public bool rollFlag;
     public bool isInteracting;
@@ -89,8 +89,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; 
 
-            playerControls.PlayerActions.Attack.performed += i => attack_Input = true;
-            playerControls.PlayerActions.HeavyAttack.performed += i => Heavy_attack_Input = true;
+            playerControls.PlayerActions.Attack.performed += i => rb_Input = true;
+            playerControls.PlayerActions.HeavyAttack.performed += i => rt_input = true;
 
             playerControls.PlayerActions.HoldRB.performed += i => hold_rb_Input = true;
             playerControls.PlayerActions.HoldRB.canceled += i => hold_rb_Input = false;
@@ -190,14 +190,14 @@ public class InputManager : MonoBehaviour
 
     private void HandleCombatInput() 
     {
-       if(attack_Input)
+       if(rb_Input)
         {
-            playerCombatManager.HandleAttackAction();     
+            playerCombatManager.HandleRBAction();     
         }
 
-       if(Heavy_attack_Input)
+       if(rt_input)
         {
-            playerCombatManager.HandleHeavyAttack(playerInventoryManager.rightWeapon);
+            playerCombatManager.HandleRTAction();
         }
 
        if (lt_Input)

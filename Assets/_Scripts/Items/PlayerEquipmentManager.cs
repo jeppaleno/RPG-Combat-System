@@ -22,8 +22,8 @@ public class PlayerEquipmentManager : MonoBehaviour
 
     private void Start()
     {
-        helmetModelChanger.UnEquipAllHelmetModels();
-        helmetModelChanger.EquipHelmetModelByName(playerInventory.currentHelmetEquipment.helmetModelName);
+        //helmetModelChanger.UnEquipAllHelmetModels();
+        //helmetModelChanger.EquipHelmetModelByName(playerInventory.currentHelmetEquipment.helmetModelName);
     }
 
     public void OpenBlockingCollider()

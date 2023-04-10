@@ -15,8 +15,9 @@ public class SpellDamageCollider : DamageCollider
 
     Vector3 impactNormal; // used to rotate impact particles
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rigidBody = GetComponent<Rigidbody>();
     }
 
