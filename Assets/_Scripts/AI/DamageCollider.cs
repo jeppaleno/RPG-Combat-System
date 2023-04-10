@@ -22,8 +22,8 @@ public class DamageCollider : MonoBehaviour
     public int lightningDamage;
     public int darkDamage;
 
-    bool shieldHasBeenHit;
-    bool hasBeenParried;
+    protected bool shieldHasBeenHit;
+    protected bool hasBeenParried;
     protected string currentDamageAnimation;
 
     protected virtual void Awake()
@@ -44,7 +44,7 @@ public class DamageCollider : MonoBehaviour
         damageCollider.enabled = false;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    protected virtual void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Character")
         {

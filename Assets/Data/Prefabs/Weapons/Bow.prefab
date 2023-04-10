@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8815098109308637603}
+  - component: {fileID: 5174196548050330690}
   m_Layer: 0
   m_Name: Prop_Bow_Rigged_01
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   m_Father: {fileID: 1948168635877868093}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5174196548050330690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121273341008000698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cf9faa0436a9241ae49044d982a28a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1171667773776894087
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +56,7 @@ GameObject:
   - component: {fileID: 1948168635877868093}
   - component: {fileID: 556351869422551264}
   m_Layer: 0
-  m_Name: Bow_Object_Anim_1.0
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +273,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2931318771628819365}
-  m_LocalRotation: {x: 0.28104708, y: -0.50464684, z: 0.6452015, w: -0.5000592}
+  m_LocalRotation: {x: 0.30942872, y: -0.47281775, z: 0.68286943, w: -0.463019}
   m_LocalPosition: {x: 0.132, y: 0.032, z: -0.001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -269,7 +282,7 @@ Transform:
   - {fileID: 1948168635877868093}
   m_Father: {fileID: 7562995548098265953}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 21.723, y: 69.015, z: 270.583}
+  m_LocalEulerAnglesHint: {x: 21.051, y: 67.217, z: 262.358}
 --- !u!1 &3502816519440278235
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +589,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7187455618724288987}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.57385474, z: -0, w: 0.81895715}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -584,7 +597,7 @@ Transform:
   - {fileID: 1768693038053346225}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -70.039, z: 0}
 --- !u!1 &7205704458969748750
 GameObject:
   m_ObjectHideFlags: 0

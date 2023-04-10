@@ -184,6 +184,51 @@ public class PlayerCombatManager : MonoBehaviour
         playerEffectsManager.currentRangeFX = loadedArrow;
     }
 
+    public void FireArrowAction()
+    {
+        //Create the Live arrow instantiation location
+        ArrowInstantiationLocation arrowInstantiationLocation;
+        arrowInstantiationLocation = playerWeaponSlotManager.rightHandSlot.GetComponentInChildren<ArrowInstantiationLocation>();
+
+        //animate the bow firing the arrow
+        Animator bowAnimator = playerWeaponSlotManager.rightHandSlot.GetComponentInChildren<Animator>();
+        bowAnimator.SetBool("isDrawn", false);
+        bowAnimator.Play("Bow_ONLY_Fire_01");
+        Destroy(playerEffectsManager.currentRangeFX); //Destroys loaded arrow model
+
+        //Reset the players holding arrow flag
+        playerAnimatorManager.PlayTargetAnimation("Bow_TH_Fire_01", true, true);
+        playerAnimatorManager.animator.SetBool("isHoldingArrow", false);
+
+        //Create and fire the live arrow
+        GameObject liveArrow = Instantiate(playerInventoryManager.currentAmmo.liveAmmoModel, arrowInstantiationLocation.transform.position, cameraManager.cameraPivot.rotation);
+        Rigidbody rigidbody = liveArrow.GetComponentInChildren<Rigidbody>();
+        RangedProjectileDamageCollider damageCollider = liveArrow.GetComponentInChildren<RangedProjectileDamageCollider>();
+
+        //give ammo velocity
+        if (cameraManager.currentLockOnTarget != null)
+        {
+            //SInce while locked we are always facing our target we can copy our facing direction to our arrows facing direction when fired
+            Quaternion arrowRotation = Quaternion.LookRotation(transform.forward);
+            liveArrow.transform.rotation = arrowRotation;
+        }
+        else
+        {
+            liveArrow.transform.rotation = Quaternion.Euler(cameraManager.cameraPivot.eulerAngles.x, playerManager.lockOnTransform.eulerAngles.y, 0); //face the camera direction
+        }
+        
+        rigidbody.AddForce(liveArrow.transform.forward * playerInventoryManager.currentAmmo.forwardVelocity); //Adding forward force to the arrow itself
+        rigidbody.AddForce(liveArrow.transform.up * playerInventoryManager.currentAmmo.upwardVelocity); //Some rise
+        rigidbody.useGravity = playerInventoryManager.currentAmmo.useGravity; //Incase we don't want it to fall over time
+        rigidbody.mass = playerInventoryManager.currentAmmo.ammoMass; //Something to tweak
+        liveArrow.transform.parent = null;
+        //destroy previous loaded arrow fx
+        // set live arrow damage
+        damageCollider.characterManager = playerManager;
+        damageCollider.ammoItem = playerInventoryManager.currentAmmo;
+        damageCollider.physicalDamage = playerInventoryManager.currentAmmo.physicalDamage;
+    }
+
 
     private void PerformAttackMeleeAction()
     {
