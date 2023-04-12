@@ -233,6 +233,7 @@ public class InputManager : MonoBehaviour
             {
                 playerManager.isAiming = false;
                 uiManager.crossHair.SetActive(false);
+                cameraManager.ResetAimCameraRotations();
             }
             
             if (blockingCollider.blockingCollider.enabled)

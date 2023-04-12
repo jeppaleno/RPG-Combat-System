@@ -62,13 +62,25 @@ public class RangedProjectileDamageCollider : DamageCollider
             }
         }
 
-
-
         if (collision.tag == "Illusionary Wall")
         {
             IllusionaryWall illusionaryWall = collision.GetComponent<IllusionaryWall>();
 
             illusionaryWall.wallHasBeenHit = true;
         }
+
+        if (!hasAlreadyPenetratedASurface && penetratedProjectile == null)
+        {
+            hasAlreadyPenetratedASurface = true;
+
+            Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            GameObject penetratedArrow = Instantiate(ammoItem.penetradedModel, contactPoint, Quaternion.Euler(0, 0, 0));
+
+            penetratedProjectile = penetratedArrow;
+            penetratedArrow.transform.parent = collision.transform;
+            penetratedArrow.transform.rotation = Quaternion.LookRotation(gameObject.transform.forward);
+        }
+
+        Destroy(transform.root.gameObject);
     }
 }
