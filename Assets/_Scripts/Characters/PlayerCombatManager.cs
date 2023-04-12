@@ -315,8 +315,8 @@ public class PlayerCombatManager : MonoBehaviour
             }
         }
 
-        rigidbody.AddForce(liveArrow.transform.forward * playerInventoryManager.currentAmmo.forwardVelocity); //Adding forward force to the arrow itself
-        rigidbody.AddForce(liveArrow.transform.up * playerInventoryManager.currentAmmo.upwardVelocity); //Some rise
+        rigidbody.AddForce(liveArrow.transform.forward * playerInventoryManager.currentAmmo.forwardVelocity * 3); //Adding forward force to the arrow itself
+        rigidbody.AddForce(liveArrow.transform.up * playerInventoryManager.currentAmmo.upwardVelocity * 3); //Some rise
         rigidbody.useGravity = playerInventoryManager.currentAmmo.useGravity; //Incase we don't want it to fall over time
         rigidbody.mass = playerInventoryManager.currentAmmo.ammoMass; //Something to tweak
         liveArrow.transform.parent = null;

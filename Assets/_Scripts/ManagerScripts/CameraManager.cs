@@ -16,6 +16,12 @@ public class CameraManager : MonoBehaviour
     public LayerMask environmentLayer;
     private Vector3 cameraFollowVelocity = Vector3.zero;
 
+    [Header("Eriks values")]
+    public AnimationCurve LerpCurve;
+    public float MinDistance = 2f;
+    public float MaxDistance = 10f;
+    public float FollowSpeedMultiplier = 10f;
+
     public float cameraFollowSpeed = 1f;
     public float leftAndRightLookSpeed = 250f;
     public float leftAndRightAimingLookSpeed = 25f;
@@ -62,13 +68,26 @@ public class CameraManager : MonoBehaviour
     {
         if (playerManager.isAiming)
         {
-            Vector3 targetPosition = Vector3.SmoothDamp(transform.position, targetTransformWhileAiming.position, ref cameraFollowVelocity, Time.deltaTime * cameraFollowSpeed);
+            Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransformWhileAiming.position, Time.deltaTime * cameraFollowSpeed);
             transform.position = targetPosition;
         }
         else
         {
-            Vector3 targetPosition = Vector3.SmoothDamp(transform.position, targetTransform.position, ref cameraFollowVelocity, Time.deltaTime * cameraFollowSpeed);
-            transform.position = targetPosition;
+            /*Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * cameraFollowSpeed);
+            transform.position = targetPosition;*/
+            Vector3 cameraPos = transform.position;
+            Vector3 delta = (targetTransform.position - cameraPos);
+            float deltaMagnitude = delta.magnitude;
+
+            if (deltaMagnitude > MaxDistance)
+            {
+                cameraPos = targetTransform.position + delta.normalized * MaxDistance;
+                deltaMagnitude = MaxDistance;
+            }
+
+            float lerpPercent = LerpCurve.Evaluate((delta.magnitude - MinDistance) / (MaxDistance - MinDistance));
+            cameraPos = Vector3.MoveTowards(cameraPos, targetTransform.position, FollowSpeedMultiplier * lerpPercent * Time.deltaTime);
+            transform.position = cameraPos;
         }
     }
 

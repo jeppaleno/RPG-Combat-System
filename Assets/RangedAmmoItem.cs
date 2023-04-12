@@ -12,7 +12,7 @@ public class RangedAmmoItem : Item
     public float forwardVelocity = 550;
     public float upwardVelocity = 0;
     public float ammoMass = 0;
-    public bool useGravity = false;
+    public bool useGravity;
 
     [Header("Ammo Capacity")]
     public int carryLimit = 99;
