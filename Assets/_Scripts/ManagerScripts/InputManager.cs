@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     BlockingCollider blockingCollider;
     PlayerWeaponSlotManager weaponSlotManager;
     CameraManager cameraManager;
-    UIManager uiManager;
+    public UIManager uiManager;
     
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -229,16 +229,16 @@ public class InputManager : MonoBehaviour
         }
         else if (lb_Input == false)
         {
-            playerManager.isBlocking = false;
-
+            if (playerManager.isAiming)
+            {
+                playerManager.isAiming = false;
+                uiManager.crossHair.SetActive(false);
+            }
+            
             if (blockingCollider.blockingCollider.enabled)
             {
+                playerManager.isBlocking = false;
                 blockingCollider.DisableBlockingCollider();
-            }
-
-            if (playerManager.isHoldingArrow)
-            {
-                //playerAnimatorManager.animator.SetBool("isAiming", false);
             }
         }
     }

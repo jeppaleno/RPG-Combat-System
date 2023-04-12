@@ -285,18 +285,36 @@ public class PlayerCombatManager : MonoBehaviour
         Rigidbody rigidbody = liveArrow.GetComponentInChildren<Rigidbody>();
         RangedProjectileDamageCollider damageCollider = liveArrow.GetComponentInChildren<RangedProjectileDamageCollider>();
 
-        //give ammo velocity
-        if (cameraManager.currentLockOnTarget != null)
+        if (playerManager.isAiming)
         {
-            //SInce while locked we are always facing our target we can copy our facing direction to our arrows facing direction when fired
-            Quaternion arrowRotation = Quaternion.LookRotation(transform.forward);
-            liveArrow.transform.rotation = arrowRotation;
+            Ray ray = cameraManager.cameraObject.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hitPoint;
+
+            if (Physics.Raycast(ray, out hitPoint, 100.0f))
+            {
+                liveArrow.transform.LookAt(hitPoint.point);
+                Debug.Log(hitPoint.transform.name);
+            }
+            else
+            {
+                liveArrow.transform.rotation = Quaternion.Euler(cameraManager.cameraTransform.localEulerAngles.x, playerManager.lockOnTransform.eulerAngles.y, 0); //Just faces the camera direction if raycast has no hit point, sky etc...
+            }
         }
         else
         {
-            liveArrow.transform.rotation = Quaternion.Euler(cameraManager.cameraPivot.eulerAngles.x, playerManager.lockOnTransform.eulerAngles.y, 0); //face the camera direction
+            //give ammo velocity
+            if (cameraManager.currentLockOnTarget != null)
+            {
+                //SInce while locked we are always facing our target we can copy our facing direction to our arrows facing direction when fired
+                Quaternion arrowRotation = Quaternion.LookRotation(cameraManager.currentLockOnTarget.lockOnTransform.position - liveArrow.gameObject.transform.position);
+                liveArrow.transform.rotation = arrowRotation;
+            }
+            else
+            {
+                liveArrow.transform.rotation = Quaternion.Euler(cameraManager.cameraPivot.eulerAngles.x, playerManager.lockOnTransform.eulerAngles.y, 0); //face the camera direction
+            }
         }
-        
+
         rigidbody.AddForce(liveArrow.transform.forward * playerInventoryManager.currentAmmo.forwardVelocity); //Adding forward force to the arrow itself
         rigidbody.AddForce(liveArrow.transform.up * playerInventoryManager.currentAmmo.upwardVelocity); //Some rise
         rigidbody.useGravity = playerInventoryManager.currentAmmo.useGravity; //Incase we don't want it to fall over time
@@ -409,7 +427,11 @@ public class PlayerCombatManager : MonoBehaviour
 
     private void PerformLBAimingAction()
     {
-        //playerAnimatorManager.animator.SetBool("isAiming", true);
+        if (playerManager.isAiming)
+            return;
+
+        inputManager.uiManager.crossHair.SetActive(true);
+        playerManager.isAiming = true;
     }
 
     private void PerformMagicAction(WeaponItem weapon, bool isLeftHanded)

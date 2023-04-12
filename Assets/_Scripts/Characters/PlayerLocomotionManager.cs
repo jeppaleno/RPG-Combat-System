@@ -113,57 +113,66 @@ public class PlayerLocomotionManager : MonoBehaviour
     {
         if (playerAnimatorManager.canRotate)
         {
-            if (inputManager.lockOnFlag)
+            if (playerManager.isAiming)
             {
-                if (inputManager.sprint_Input)
-                {
-                    Vector3 targetDirection = Vector3.zero;
-                    targetDirection = cameraManager.cameraTransform.forward * inputManager.verticalInput;
-                    targetDirection += cameraManager.cameraTransform.right * inputManager.horizontalInput;
-                    targetDirection.Normalize();
-                    targetDirection.y = 0;
-
-                    if (targetDirection == Vector3.zero)
-                    {
-                        targetDirection = transform.forward;
-                    }
-
-                    Quaternion tr = Quaternion.LookRotation(targetDirection);
-                    Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
-
-                    transform.rotation = targetRotation;
-                }
-                else
-                {
-                    Vector3 rotationDirection = moveDirection;
-                    rotationDirection = cameraManager.currentLockOnTarget.transform.position - transform.position;
-                    rotationDirection.y = 0;
-                    rotationDirection.Normalize();
-                    Quaternion tr = Quaternion.LookRotation(rotationDirection);
-                    Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
-                    transform.rotation = targetRotation;
-                }
-
+                Quaternion targetRotation = Quaternion.Euler(0, cameraManager.cameraTransform.eulerAngles.y, 0);
+                Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = playerRotation;
             }
             else
             {
-                Vector3 targetDirection = Vector3.zero;
+                if (inputManager.lockOnFlag)
+                {
+                    if (inputManager.sprint_Input)
+                    {
+                        Vector3 targetDirection = Vector3.zero;
+                        targetDirection = cameraManager.cameraTransform.forward * inputManager.verticalInput;
+                        targetDirection += cameraManager.cameraTransform.right * inputManager.horizontalInput;
+                        targetDirection.Normalize();
+                        targetDirection.y = 0;
 
-                targetDirection = cameraObject.forward * inputManager.verticalInput;
-                targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInput;
-                targetDirection.Normalize();
-                targetDirection.y = 0;
+                        if (targetDirection == Vector3.zero)
+                        {
+                            targetDirection = transform.forward;
+                        }
+
+                        Quaternion tr = Quaternion.LookRotation(targetDirection);
+                        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+
+                        transform.rotation = targetRotation;
+                    }
+                    else
+                    {
+                        Vector3 rotationDirection = moveDirection;
+                        rotationDirection = cameraManager.currentLockOnTarget.transform.position - transform.position;
+                        rotationDirection.y = 0;
+                        rotationDirection.Normalize();
+                        Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                        transform.rotation = targetRotation;
+                    }
+
+                }
+                else
+                {
+                    Vector3 targetDirection = Vector3.zero;
+
+                    targetDirection = cameraObject.forward * inputManager.verticalInput;
+                    targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInput;
+                    targetDirection.Normalize();
+                    targetDirection.y = 0;
 
 
-                // Keeps the looking rotation after the player has stopped
-                if (targetDirection == Vector3.zero)
-                    targetDirection = transform.forward;
+                    // Keeps the looking rotation after the player has stopped
+                    if (targetDirection == Vector3.zero)
+                        targetDirection = transform.forward;
 
-                // Rotates towards where the player is looking
-                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    // Rotates towards where the player is looking
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-                transform.rotation = playerRotation;
+                    transform.rotation = playerRotation;
+                }
             }
         }
        

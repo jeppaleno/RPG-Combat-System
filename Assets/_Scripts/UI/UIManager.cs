@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
     public EquipmentWindowUI equipmentWindowUI;
     private QuickSlotsUI quickSlotsUI;
 
+    [Header("HUD")]
+    public GameObject crossHair;
+
     [Header("UI Windows")]
     public GameObject hudWindow;
     public GameObject selectWindow;
