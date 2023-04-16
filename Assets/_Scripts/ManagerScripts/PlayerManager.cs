@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    InputManager inputManager;
     CameraManager cameraManager;
     Animator animator;
-    PlayerAnimatorManager playerAnimatorManager;
-    PlayerLocomotionManager playerLocomotionManager;
-    PlayerStatsManager playerStatsManager;
-    PlayerEffectsManager playerEffectsManager;
+    public InputManager inputManager;
+    public PlayerStatsManager playerStatsManager;
+    public PlayerWeaponSlotManager playerWeaponSlotManager;
+    public PlayerCombatManager playerCombatManager;
+    public PlayerInventoryManager playerInventoryManager;
+    public PlayerAnimatorManager playerAnimatorManager;
+    public PlayerLocomotionManager playerLocomotionManager;
+    public PlayerEffectsManager playerEffectsManager;
 
     InteractableUI interactableUI;
     public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
@@ -23,6 +26,9 @@ public class PlayerManager : CharacterManager
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();
+        playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
