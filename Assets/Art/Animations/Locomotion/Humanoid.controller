@@ -2824,7 +2824,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Back Stabbed
-  m_Speed: 1.1
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8931275462769275537}
@@ -3002,7 +3002,7 @@ AnimatorStateMachine:
     m_Position: {x: 780, y: -400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8328338189008508667}
-    m_Position: {x: 780, y: -450, z: 0}
+    m_Position: {x: 790, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4096436944988650271}
     m_Position: {x: 670, y: -500, z: 0}
@@ -3927,7 +3927,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Back Stab
-  m_Speed: 1.1
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1422078586469079385}
