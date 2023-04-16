@@ -32,14 +32,17 @@ public class ResetAnimatorBool : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        CharacterManager character = animator.GetComponent<CharacterManager>();
+
+        character.isUsingLeftHand = false;
+        character.isUsingRightHand = false;
+
         animator.SetBool(isInteractingBool, isInteractingStatus);
         animator.SetBool(isFiringSpellBool, isFiringSpellStatus);
         animator.SetBool(isRotatingWithRootMotion, isRotatingWithRootMotionStatus);
         animator.SetBool(canRotateBool, canRotateStatus);
         //animator.SetBool(isInvulnerable, isInvulnerableStatus); 
         //animator.SetBool(isUsingRootMotionBool, isUsingRootMotionStatus);
-        animator.SetBool(isUsingRightHand, isUsingRightHandStatus);
-        animator.SetBool(isUsingLeftHand, isUsingLeftHandStatus);
         animator.SetBool(isMirroredBool, isMirroredStatus);
     }
 }

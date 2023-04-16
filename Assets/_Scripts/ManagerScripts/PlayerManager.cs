@@ -46,8 +46,6 @@ public class PlayerManager : CharacterManager
 
         inputManager.isInteracting = animator.GetBool("isInteracting");
         canDoCombo = animator.GetBool("canDoCombo");
-        isUsingRightHand = animator.GetBool("isUsingRightHand");
-        isUsingLeftHand = animator.GetBool("isUsingLeftHand");
         isFiringSpell = animator.GetBool("isFiringSpell");
         isHoldingArrow = animator.GetBool("isHoldingArrow");
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);

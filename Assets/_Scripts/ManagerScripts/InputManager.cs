@@ -126,18 +126,23 @@ public class InputManager : MonoBehaviour
     {
         HandleMovementInput();
         HandleJumpingInput();
-        HandleLBInput();
         HandleSprintingInput();
-        HandleCombatInput();
+        HandleRollInput();
+
+        HandleLBInput();        
+        HandleTapRBInput();
+        HandleTapRTInput();
+        HandleTapLTInput();
+
+        HandleFireBowInput();
+        HandleHoldRBInput();
+
         HandleQuickSlotsInput();
         HandleInventoryInput();
         HandleLockOnInput();
         //HandleDodgeInput();
         HandleTwoHandInput();
-        HandleRollInput();
         HandleUseConsumableInput();
-        HandleHoldRBInput();
-        HandleFireBowInput();
     }
 
     private void HandleMovementInput()
@@ -188,30 +193,39 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleCombatInput() 
+    private void HandleTapRBInput() 
     {
        if(rb_Input)
-        {
+       {
+            playerManager.UpdateWhichHandCharacterIsUsing(true);
             playerInventoryManager.rightWeapon.tap_RB_Action.PerformAction(playerManager); 
-        }
+       }
+    }
 
-       if(rt_input)
+    private void HandleTapRTInput()
+    {
+        if (rt_input)
         {
-            playerCombatManager.HandleRTAction();
+            playerManager.UpdateWhichHandCharacterIsUsing(true);
+            playerInventoryManager.rightWeapon.tap_RT_Action.PerformAction(playerManager);
         }
+    }
 
-       if (lt_Input)
+    private void HandleTapLTInput()
+    {
+        if (lt_Input)
         {
-            if (twohandFlag)
+            if (playerManager.isTwoHandingWeapon)
             {
-                // if two handing handle weapon art
+                //It will be the right handed weapon
+                playerManager.UpdateWhichHandCharacterIsUsing(true);
+                playerInventoryManager.rightWeapon.tap_LT_Action.PerformAction(playerManager);
             }
             else
             {
-                // else handle light attack if melee weapon
-                playerCombatManager.HandleLTAction();
+                playerManager.UpdateWhichHandCharacterIsUsing(false);
+                playerInventoryManager.leftWeapon.tap_LT_Action.PerformAction(playerManager);
             }
-            //handle weapon art if shield
         }
     }
 
@@ -357,6 +371,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleRollInput()
     {
+        //rollInputTimer += Time.deltaTime;
         if (b_input)
         {
             rollFlag = true;
