@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    CameraManager cameraManager;
     Animator animator;
+
+    public CameraManager cameraManager;
     public InputManager inputManager;
     public PlayerStatsManager playerStatsManager;
     public PlayerWeaponSlotManager playerWeaponSlotManager;
