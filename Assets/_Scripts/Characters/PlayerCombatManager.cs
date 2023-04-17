@@ -68,27 +68,15 @@ public class PlayerCombatManager : MonoBehaviour
 
     public void HandleLBAction()
     {
-        if (playerManager.isTwoHandingWeapon)
-        {
-            if (playerInventoryManager.rightWeapon.weaponType == WeaponType.Bow)
-            {
-                PerformLBAimingAction();
-            }
-        }
-        else
-        {
-            if (playerInventoryManager.leftWeapon.weaponType == WeaponType.shield ||
-                playerInventoryManager.leftWeapon.weaponType == WeaponType.StraightSword)
-            {
-                
-            }
-            else if (playerInventoryManager.leftWeapon.weaponType == WeaponType.FaithCaster ||
+      
+        
+            /*else if (playerInventoryManager.leftWeapon.weaponType == WeaponType.FaithCaster ||
                 playerInventoryManager.leftWeapon.weaponType == WeaponType.PyromancyCaster)
             {
                 PerformMagicAction(playerInventoryManager.leftWeapon, true);
                 playerAnimatorManager.animator.SetBool("isUsingLeftHand", true);
-            }
-        }
+            }*/
+        
     }
 
     public void HandleLTAction()
@@ -206,15 +194,6 @@ public class PlayerCombatManager : MonoBehaviour
             //fire the arrow when we realease RB
             
         }
-    }
-
-    private void PerformLBAimingAction()
-    {
-        if (playerManager.isAiming)
-            return;
-
-        inputManager.uiManager.crossHair.SetActive(true);
-        playerManager.isAiming = true;
     }
 
     private void PerformMagicAction(WeaponItem weapon, bool isLeftHanded)
