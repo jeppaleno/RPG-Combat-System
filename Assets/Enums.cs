@@ -9,6 +9,7 @@ public enum WeaponType
     SpellCaster,
     Unarmed,
     StraightSword,
+    SmallShield,
     shield,
     Bow
 }
