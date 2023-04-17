@@ -79,9 +79,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager.isJumping = animator.GetBool("isJumping");
         animator.SetBool("isGrounded", playerLocomotionManager.isGrounded);
 
-        inputManager.rb_Input = false;
-        inputManager.rt_input = false;
-        inputManager.lt_Input = false;
+       
         inputManager.d_Pad_Up = false;
         inputManager.d_Pad_Down = false;
         inputManager.d_Pad_Left = false;

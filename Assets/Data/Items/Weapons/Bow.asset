@@ -18,7 +18,7 @@ MonoBehaviour:
   isUnarmed: 0
   weaponController: {fileID: 22100000, guid: a4fbda808d500954bb3502495013df9b, type: 2}
   offHandIdleAnimation: Left_Arm_Idle_01
-  weaponType: 6
+  weaponType: 7
   physicalDamage: 25
   fireDamage: 0
   criticalDamageMultiplier: 4
@@ -28,3 +28,11 @@ MonoBehaviour:
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
+  hold_RB_Action: {fileID: 11400000, guid: 6d91f1109d4818c4788c1d9fa4d1c24d, type: 2}
+  tap_RB_Action: {fileID: 11400000, guid: 4e957fee076d20a41b408e02d23c28c5, type: 2}
+  tap_LB_Action: {fileID: 0}
+  hold_LB_Action: {fileID: 11400000, guid: 04d1f490d0aa7cc4d9ab63f0d2b05400, type: 2}
+  tap_RT_Action: {fileID: 0}
+  hold_RT_Action: {fileID: 0}
+  tap_LT_Action: {fileID: 0}
+  hold_LT_Action: {fileID: 0}

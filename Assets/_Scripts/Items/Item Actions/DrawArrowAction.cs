@@ -7,6 +7,12 @@ public class DrawArrowAction : ItemAction
 {
     public override void PerformAction(PlayerManager player)
     {
+        if (player.isInteracting)
+            return;
+
+        if (player.isHoldingArrow)
+            return;
+
         // Animate player
         player.playerAnimatorManager.animator.SetBool("isHoldingArrow", true);
         player.playerAnimatorManager.PlayTargetAnimation("Bow_TH_Draw_01", true, true);
