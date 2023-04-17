@@ -94,7 +94,7 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.HoldRB.performed += i => hold_rb_Input = true;
             playerControls.PlayerActions.HoldRB.canceled += i => hold_rb_Input = false;
-            playerControls.PlayerActions.HoldRB.canceled += i => fireFlag = true;
+            
 
             playerControls.PlayerActions.LB.performed += i => lb_Input = true;
             playerControls.PlayerActions.LB.canceled += i => lb_Input = false;
@@ -134,7 +134,6 @@ public class InputManager : MonoBehaviour
         HandleTapRTInput();
         HandleTapLTInput();
 
-        HandleFireBowInput();
         HandleHoldRBInput();
 
         HandleQuickSlotsInput();
@@ -201,6 +200,16 @@ public class InputManager : MonoBehaviour
             playerInventoryManager.currentItemBeingUsed = playerInventoryManager.rightWeapon;
             playerInventoryManager.rightWeapon.tap_RB_Action.PerformAction(playerManager); 
        }
+    }
+
+    private void HandleHoldRBInput()
+    {
+        if (hold_rb_Input)
+        {
+            playerManager.UpdateWhichHandCharacterIsUsing(true);
+            playerInventoryManager.currentItemBeingUsed = playerInventoryManager.rightWeapon;
+            playerInventoryManager.rightWeapon.hold_RB_Action.PerformAction(playerManager);
+        }
     }
 
     private void HandleTapRTInput()
@@ -392,34 +401,6 @@ public class InputManager : MonoBehaviour
             rollFlag = true;
             b_input = false;
             playerLocomotionManager.HandleRolling();
-        }
-    }
-
-    private void HandleHoldRBInput()
-    {
-        if (hold_rb_Input)
-        {
-            if (playerInventoryManager.rightWeapon.weaponType == WeaponType.Bow)
-            {
-                playerCombatManager.HandleHoldRBAction();
-            }
-            else
-            {
-                hold_rb_Input = false;
-                playerCombatManager.AttemptBackStabOrRiposte();
-            }
-        }
-    }
-
-    private void HandleFireBowInput()
-    {
-        if (fireFlag)
-        {
-            if (playerManager.isHoldingArrow)
-            {
-                fireFlag = false;
-                playerCombatManager.FireArrowAction();
-            }
         }
     }
 
