@@ -80,7 +80,7 @@ public class PlayerCombatManager : MonoBehaviour
             if (playerInventoryManager.leftWeapon.weaponType == WeaponType.shield ||
                 playerInventoryManager.leftWeapon.weaponType == WeaponType.StraightSword)
             {
-                performLBBlockingAction();
+                
             }
             else if (playerInventoryManager.leftWeapon.weaponType == WeaponType.FaithCaster ||
                 playerInventoryManager.leftWeapon.weaponType == WeaponType.PyromancyCaster)
@@ -206,19 +206,6 @@ public class PlayerCombatManager : MonoBehaviour
             //fire the arrow when we realease RB
             
         }
-    }
-
-    private void performLBBlockingAction()
-    {
-        if (playerManager.isInteracting)
-            return;
-
-        if (playerManager.isBlocking)
-            return;
-
-        playerAnimatorManager.PlayTargetAnimation("Block_Start", false, true, true);
-        playerEquipmentManager.OpenBlockingCollider();
-        playerManager.isBlocking = true;
     }
 
     private void PerformLBAimingAction()

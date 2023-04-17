@@ -29070,7 +29070,7 @@ PrefabInstance:
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: leftWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
+      objectReference: {fileID: 11400000, guid: 6868f32421b4096489f24e137bc03b33, type: 2}
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: currentAmmo
       value: 
@@ -29078,7 +29078,7 @@ PrefabInstance:
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: rightWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 3ee4a9a78bd86804b84e17bc7ff30e2f, type: 2}
+      objectReference: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: currentSpell
       value: 
@@ -29106,7 +29106,7 @@ PrefabInstance:
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
+      objectReference: {fileID: 11400000, guid: 6868f32421b4096489f24e137bc03b33, type: 2}
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.data[1]
       value: 

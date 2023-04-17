@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     public InputManager inputManager;
     public PlayerStatsManager playerStatsManager;
     public PlayerWeaponSlotManager playerWeaponSlotManager;
+    public PlayerEquipmentManager playerEquipmentManager;
     public PlayerCombatManager playerCombatManager;
     public PlayerInventoryManager playerInventoryManager;
     public PlayerAnimatorManager playerAnimatorManager;
@@ -28,6 +29,7 @@ public class PlayerManager : CharacterManager
         animator = GetComponent<Animator>();
         playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();

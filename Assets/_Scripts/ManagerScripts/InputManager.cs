@@ -243,7 +243,18 @@ public class InputManager : MonoBehaviour
 
         if (lb_Input)
         {
-            playerCombatManager.HandleLBAction();
+            if (playerManager.isTwoHandingWeapon)
+            {
+                playerManager.UpdateWhichHandCharacterIsUsing(true);
+                playerInventoryManager.currentItemBeingUsed = playerInventoryManager.rightWeapon;
+                playerInventoryManager.rightWeapon.hold_LB_Action.PerformAction(playerManager);
+            }
+            else
+            {
+                playerManager.UpdateWhichHandCharacterIsUsing(false);
+                playerInventoryManager.currentItemBeingUsed = playerInventoryManager.leftWeapon;
+                playerInventoryManager.leftWeapon.hold_LB_Action.PerformAction(playerManager);
+            }
         }
         else if (lb_Input == false)
         {
