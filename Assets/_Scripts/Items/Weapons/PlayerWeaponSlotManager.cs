@@ -101,14 +101,4 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
         LoadWeaponOnSlot(playerInventoryManager.rightWeapon, false); //Reload RH sword after throw
         //Check for friendly fire
     }
-
-    public void DrainStaminaLightAttack()
-    {
-        playerStatsManager.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
-    }
-
-    public void DrainStaminaHeavyAttack()
-    {
-        playerStatsManager.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
-    }
 }

@@ -3916,6 +3916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5fae778652b2c488ee9fdc53bce3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentItemBeingUsed: {fileID: 0}
   currentSpell: {fileID: 0}
   rightWeapon: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
   leftWeapon: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
@@ -8644,7 +8645,6 @@ MonoBehaviour:
   backSlot: {fileID: 0}
   leftHandDamageCollider: {fileID: 0}
   rightHandDamageCollider: {fileID: 0}
-  attackingWeapon: {fileID: 0}
   rightHandIKTarget: {fileID: 0}
   leftHandIKTarget: {fileID: 0}
 --- !u!114 &795201540
@@ -8725,6 +8725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5fae778652b2c488ee9fdc53bce3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentItemBeingUsed: {fileID: 0}
   currentSpell: {fileID: 0}
   rightWeapon: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
   leftWeapon: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
@@ -10410,6 +10411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5fae778652b2c488ee9fdc53bce3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentItemBeingUsed: {fileID: 0}
   currentSpell: {fileID: 0}
   rightWeapon: {fileID: 11400000, guid: 7c65ee42e57a17343a71099a295a0088, type: 2}
   leftWeapon: {fileID: 0}
@@ -29068,7 +29070,7 @@ PrefabInstance:
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: leftWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
+      objectReference: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: currentAmmo
       value: 
@@ -29076,7 +29078,7 @@ PrefabInstance:
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: rightWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
+      objectReference: {fileID: 11400000, guid: 3ee4a9a78bd86804b84e17bc7ff30e2f, type: 2}
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: currentSpell
       value: 

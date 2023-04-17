@@ -129,7 +129,7 @@ public class InputManager : MonoBehaviour
         HandleSprintingInput();
         HandleRollInput();
 
-        HandleLBInput();        
+        HandleHoldLBInput();        
         HandleTapRBInput();
         HandleTapRTInput();
         HandleTapLTInput();
@@ -198,6 +198,7 @@ public class InputManager : MonoBehaviour
        if(rb_Input)
        {
             playerManager.UpdateWhichHandCharacterIsUsing(true);
+            playerInventoryManager.currentItemBeingUsed = playerInventoryManager.rightWeapon;
             playerInventoryManager.rightWeapon.tap_RB_Action.PerformAction(playerManager); 
        }
     }
@@ -207,6 +208,7 @@ public class InputManager : MonoBehaviour
         if (rt_input)
         {
             playerManager.UpdateWhichHandCharacterIsUsing(true);
+            playerInventoryManager.currentItemBeingUsed = playerInventoryManager.rightWeapon;
             playerInventoryManager.rightWeapon.tap_RT_Action.PerformAction(playerManager);
         }
     }
@@ -219,17 +221,19 @@ public class InputManager : MonoBehaviour
             {
                 //It will be the right handed weapon
                 playerManager.UpdateWhichHandCharacterIsUsing(true);
+                playerInventoryManager.currentItemBeingUsed = playerInventoryManager.rightWeapon;
                 playerInventoryManager.rightWeapon.tap_LT_Action.PerformAction(playerManager);
             }
             else
             {
                 playerManager.UpdateWhichHandCharacterIsUsing(false);
+                playerInventoryManager.currentItemBeingUsed = playerInventoryManager.leftWeapon;
                 playerInventoryManager.leftWeapon.tap_LT_Action.PerformAction(playerManager);
             }
         }
     }
 
-    private void HandleLBInput()
+    private void HandleHoldLBInput()
     {
         if (playerManager.isFiringSpell) //ADD IN AIR AND SPRINTING BOOLS TOO 
         {

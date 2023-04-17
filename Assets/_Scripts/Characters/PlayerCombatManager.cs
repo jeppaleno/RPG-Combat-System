@@ -66,23 +66,6 @@ public class PlayerCombatManager : MonoBehaviour
         PerformMagicAction(playerInventoryManager.rightWeapon, true); //HUHUHHHHHHHHHHHHHHHH false instead?
     }
 
-    public void HandleRTAction()
-    {
-        playerAnimatorManager.EraseHandIKWeapon();
-
-        if (playerInventoryManager.rightWeapon.weaponType == WeaponType.StraightSword
-            || playerInventoryManager.rightWeapon.weaponType == WeaponType.Unarmed)
-        {
-            PerformRTMeleeAction();
-        }
-        else if (playerInventoryManager.rightWeapon.weaponType == WeaponType.SpellCaster
-            || playerInventoryManager.rightWeapon.weaponType == WeaponType.FaithCaster
-            || playerInventoryManager.rightWeapon.weaponType == WeaponType.PyromancyCaster)
-        {
-            PerformMagicAction(playerInventoryManager.rightWeapon, false); //HUHUHHHHHHHHHHHHHHHH
-        }
-    }
-
     public void HandleLBAction()
     {
         if (playerManager.isTwoHandingWeapon)
@@ -118,86 +101,6 @@ public class PlayerCombatManager : MonoBehaviour
         else if (playerInventoryManager.leftWeapon.weaponType == WeaponType.StraightSword)
         {
             //do a light attack
-        }
-    }
-
-   
-    private void HandleHeavyWeaponCombo(WeaponItem weapon)
-    {
-        if (playerStatsManager.currentStamina <= 0)
-            return;
-
-        if (inputManager.comboFlag)
-        {
-            playerAnimatorManager.animator.SetBool("canDoCombo", false);
-
-            if (lastAttack == oh_heavy_attack_01)
-            {
-                playerAnimatorManager.PlayTargetAnimation(oh_heavy_attack_02, true, true); // Attack with root motion
-            }
-            else if (lastAttack == th_light_attack_01)
-            {
-                playerAnimatorManager.PlayTargetAnimation(th_heavy_attack_02, true, true);
-            }
-        }
-    }
-
-
-    private void HandleJumpingAttack(WeaponItem weapon)
-    {
-        if (playerStatsManager.currentStamina <= 0)
-            return;
-
-        playerWeaponSlotManager.attackingWeapon = weapon;
-
-        if (inputManager.twohandFlag)
-        {
-            playerAnimatorManager.PlayTargetAnimation(th_jumping_attack_01, true, true);
-            lastAttack = th_jumping_attack_01;
-        }
-        else
-        {
-            playerAnimatorManager.PlayTargetAnimation(oh_jumping_attack_01, true, true); 
-            lastAttack = oh_jumping_attack_01;
-        }
-    }
-
-    private void HandleHeavyAttack(WeaponItem weapon)
-    {
-        if (playerStatsManager.currentStamina <= 0)
-            return;
-
-        playerWeaponSlotManager.attackingWeapon = weapon;
-
-        if (inputManager.twohandFlag)
-        {
-            playerAnimatorManager.PlayTargetAnimation(th_heavy_attack_01, true, true);
-            lastAttack = th_heavy_attack_01;
-        }
-        else
-        {
-            playerAnimatorManager.PlayTargetAnimation(oh_heavy_attack_01, true, true); 
-            lastAttack = oh_heavy_attack_01;
-        }
-        
-    }
-
-    private void HandleRunningAttack(WeaponItem weapon)
-    {
-        if (playerStatsManager.currentStamina <= 0)
-            return;
-
-        playerWeaponSlotManager.attackingWeapon = weapon;
-
-        if (inputManager.twohandFlag)
-        {
-            playerAnimatorManager.PlayTargetAnimation(th_running_attack_01, true, true);
-            lastAttack = th_running_attack_01;
-        }
-        else
-        {
-            playerAnimatorManager.PlayTargetAnimation(oh_running_attack_01, true, true); // attack with root motion
-            lastAttack = oh_running_attack_01;
         }
     }
 
@@ -274,34 +177,6 @@ public class PlayerCombatManager : MonoBehaviour
         damageCollider.characterManager = playerManager;
         damageCollider.ammoItem = playerInventoryManager.currentAmmo;
         damageCollider.physicalDamage = playerInventoryManager.currentAmmo.physicalDamage;
-    }
-
-
-    private void PerformRTMeleeAction()
-    {
-        playerAnimatorManager.animator.SetBool("isUsingRightHand", true);
-
-        if (playerManager.isSprinting)
-        {
-            HandleJumpingAttack(playerInventoryManager.rightWeapon);
-            return;
-        }
-        if (playerManager.canDoCombo)
-        {
-            inputManager.comboFlag = true;
-            HandleHeavyWeaponCombo(playerInventoryManager.rightWeapon);
-            inputManager.comboFlag = false;
-        }
-        else
-        {
-            if (playerManager.isInteracting)
-                return;
-            if (playerManager.canDoCombo)
-                return;
-
-            HandleHeavyAttack(playerInventoryManager.rightWeapon);
-        }
-        playerEffectsManager.PlayWeaponFX(false);
     }
 
     private void PerformRBRangedAction()
