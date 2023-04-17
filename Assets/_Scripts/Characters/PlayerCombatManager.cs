@@ -70,12 +70,12 @@ public class PlayerCombatManager : MonoBehaviour
     {
       
         
-            /*else if (playerInventoryManager.leftWeapon.weaponType == WeaponType.FaithCaster ||
+            else if (playerInventoryManager.leftWeapon.weaponType == WeaponType.FaithCaster ||
                 playerInventoryManager.leftWeapon.weaponType == WeaponType.PyromancyCaster)
             {
                 PerformMagicAction(playerInventoryManager.leftWeapon, true);
                 playerAnimatorManager.animator.SetBool("isUsingLeftHand", true);
-            }*/
+            }
         
     }
 
@@ -106,7 +106,7 @@ public class PlayerCombatManager : MonoBehaviour
             {
                 if (playerInventoryManager.currentAmmo != null)
                 {
-                    DrawArrowAction();
+                    //DrawArrowAction();
                 }
                 else
                 {
@@ -120,40 +120,6 @@ public class PlayerCombatManager : MonoBehaviour
         }
     }
 
-    private void PerformMagicAction(WeaponItem weapon, bool isLeftHanded)
-    {
-        if (playerManager.isInteracting)
-            return;
-
-        if (weapon.weaponType == WeaponType.FaithCaster)
-        {
-            if (playerInventoryManager.currentSpell != null && playerInventoryManager.currentSpell.isFaithSpell)
-            {
-                if (playerStatsManager.currentFocusPoints >= playerInventoryManager.currentSpell.focusPointCost)
-                {
-                    playerInventoryManager.currentSpell.AttemptToCastSpell(playerAnimatorManager, playerStatsManager, playerWeaponSlotManager, isLeftHanded);
-                }
-                else
-                {
-                    playerAnimatorManager.PlayTargetAnimation("shrug", true, true);
-                }
-            }
-        }
-        else if (weapon.weaponType == WeaponType.PyromancyCaster)
-        {
-            if (playerInventoryManager.currentSpell != null && playerInventoryManager.currentSpell.isPyroSpell)
-            {
-                if (playerStatsManager.currentFocusPoints >= playerInventoryManager.currentSpell.focusPointCost)
-                {
-                    playerInventoryManager.currentSpell.AttemptToCastSpell(playerAnimatorManager, playerStatsManager, playerWeaponSlotManager, isLeftHanded);
-                }
-                else
-                {
-                    playerAnimatorManager.PlayTargetAnimation("shrug", true, true);
-                }
-            }
-        }
-    }
 
     private void PerformLTWeaponArt(bool isTwoHanding)
     {
