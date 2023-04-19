@@ -22,12 +22,20 @@ public class CameraManager : MonoBehaviour
     public float MaxDistance = 10f;
     public float FollowSpeedMultiplier = 10f;
 
+    [Space]
+    public AnimationCurve rotationLerpCurve;
+    public float MinAngle = 2f;
+    public float MaxAngle = 10f;
+    public float cameraRotationSpeed = 100;
+
+    [Space]
     public float cameraFollowSpeed = 1f;
     public float leftAndRightLookSpeed = 250f;
     public float leftAndRightAimingLookSpeed = 25f;
     public float upAndDownLookSpeed = 250f;
     public float upAndDownAimingLookSpeed = 25f;
 
+    [Space]
     public float leftAndRightAngle; 
     public float upAndDownAngle; 
     public float minimumLookUpAngle = -35;
@@ -110,16 +118,18 @@ public class CameraManager : MonoBehaviour
     }
     public void HandleStandardCameraRotation()
     {
-        Vector3 rotation;
+        Vector3 rotation = Vector3.zero; 
 
         leftAndRightAngle = leftAndRightAngle + (inputManager.cameraInputX * leftAndRightLookSpeed) * Time.deltaTime;
         upAndDownAngle = upAndDownAngle - (inputManager.cameraInputY * upAndDownLookSpeed) * Time.deltaTime;
         upAndDownAngle = Mathf.Clamp(upAndDownAngle, minimumLookUpAngle, maximumLookUpAngle);
 
-        rotation = Vector3.zero;
+       
         rotation.y = leftAndRightAngle;
         Quaternion targetRotation = Quaternion.Euler(rotation);
-        transform.rotation = targetRotation;
+        float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
+        float lerp = LerpCurve.Evaluate((angleDifference - MinAngle) / (MaxAngle - MinAngle));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * lerp * cameraRotationSpeed);
 
         rotation = Vector3.zero;
         rotation.x = upAndDownAngle;

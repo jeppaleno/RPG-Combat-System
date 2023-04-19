@@ -79,8 +79,10 @@ public class PlayerLocomotionManager : MonoBehaviour
         if (isJumping)
             return;
 
-        moveDirection = cameraObject.forward * inputManager.verticalInput;  //Forward Movement
-        moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput; //Left/Right Movement
+        Vector3 cameraForward = Vector3.ProjectOnPlane(cameraObject.forward, Vector3.up).normalized;
+        Vector3 cameraRight = Vector3.ProjectOnPlane(cameraObject.right, Vector3.up).normalized;
+        moveDirection = cameraForward * inputManager.verticalInput;  //Forward Movement
+        moveDirection = moveDirection + cameraRight * inputManager.horizontalInput; //Left/Right Movement
         moveDirection.Normalize();
         moveDirection.y = 0;
 

@@ -9,20 +9,30 @@ public class CharacterStatsManager : MonoBehaviour
     [Header("Team I.D")]
     public int teamIDNumber = 0;
 
-    public int healthLevel = 10;
+   
     public int maxHealth;
     public int currentHealth;
 
-    public int staminaLevel = 10;
     public int maxStamina;
     public int currentStamina;
 
     public int soulCount = 0;
     public int soulsAwardedOnDeath = 50;
 
-    public int focusLevel = 10;
+    
     public int maxFocusPoints;
     public int currentFocusPoints;
+
+    [Header("LEVELS")]
+    public int healthLevel = 10;
+    public int staminaLevel = 10;
+    public int focusLevel = 10;
+    public int poiseLevel = 10;
+    public int strengthLevel = 10;
+    public int dexterityLevel = 10;
+    public int intelligenceLevel = 10;
+    public int faithLevel = 10;
+
 
     [Header("Poise")]
     public float totalPoiseDefence; //The TOTAL poise during damage calculation
