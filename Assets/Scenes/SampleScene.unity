@@ -6935,34 +6935,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba349b0ba890af41b2af477cee22d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatsManager: {fileID: 95248005471984743}
   currentPlayerLevel: 0
   projectedPlayerLevel: 0
   currentPlayerLevelText: {fileID: 427571842}
   projectedPlayerLevelText: {fileID: 1696920729}
   currentSouls: {fileID: 888301410}
   soulsRequiredToLevelUp: {fileID: 1252124445}
-  healthSlider: {fileID: 0}
+  healthSlider: {fileID: 531414248}
   currentHealthLevelText: {fileID: 1989716342}
   projectedHealthLevelText: {fileID: 760951623}
-  staminaSlider: {fileID: 0}
+  staminaSlider: {fileID: 97601796}
   currentStaminaLevelText: {fileID: 1093289439}
   projectedStaminaLevelText: {fileID: 2061149260}
-  focusSlider: {fileID: 0}
+  focusSlider: {fileID: 516251889}
   currentFocusLevelText: {fileID: 526608914}
   projectedFocusLevelText: {fileID: 1374219741}
-  PoiseSlider: {fileID: 0}
+  poiseSlider: {fileID: 1783197872}
   currentPoiseLevelText: {fileID: 1498860902}
   projectedPoiseLevelText: {fileID: 1203452915}
-  strengthSlider: {fileID: 0}
+  strengthSlider: {fileID: 2061173341}
   currentStrengthLevelText: {fileID: 1051660074}
   projectedStrengthLevelText: {fileID: 1468337543}
-  dexteritySlider: {fileID: 0}
+  dexteritySlider: {fileID: 1548937687}
   currentDexterityLevelText: {fileID: 1571059269}
   projectedDexterityLevelText: {fileID: 957860757}
-  faithSlider: {fileID: 0}
+  faithSlider: {fileID: 1243514861}
   currentFaithLevelText: {fileID: 814168286}
   projectedFaithLevelText: {fileID: 956160983}
-  intelligenceSlider: {fileID: 0}
+  intelligenceSlider: {fileID: 1560578143}
   currentIntelligenceLevelText: {fileID: 275581013}
   projectedIntelligenceLevelText: {fileID: 1770895107}
 --- !u!1 &491584081
@@ -8177,7 +8178,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 489800847}
+        m_TargetAssemblyTypeName: LevelUpUI, Assembly-CSharp
+        m_MethodName: UpdateHealthLevelSlider
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &540995320
 GameObject:
   m_ObjectHideFlags: 0
@@ -11967,6 +11980,7 @@ MonoBehaviour:
   soulsAwardedOnDeath: 50
   maxFocusPoints: 0
   currentFocusPoints: 0
+  playerLevel: 1
   healthLevel: 10
   staminaLevel: 10
   focusLevel: 10
@@ -32924,6 +32938,7 @@ GameObject:
   - component: {fileID: 2133382497}
   - component: {fileID: 2133382499}
   - component: {fileID: 2133382498}
+  - component: {fileID: 2133382500}
   m_Layer: 5
   m_Name: Health Level
   m_TagString: Untagged
@@ -33053,6 +33068,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133382496}
   m_CullTransparentMesh: 1
+--- !u!114 &2133382500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133382496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b122d4706c8433740abedb1bab18bbaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statSlider: {fileID: 531414248}
 --- !u!1 &2133595421
 GameObject:
   m_ObjectHideFlags: 0
@@ -33299,6 +33327,17 @@ MonoBehaviour:
   - m_Rig: {fileID: 637798768}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &95248005471984743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 405815894026158860, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+  m_PrefabInstance: {fileID: 405815894642829358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586533476682606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f366dfceb22615241a3f92fc7f3bab9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198825400992927486
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -38697,7 +38736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 410204553461020870, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.57
+      value: -27.9
       objectReference: {fileID: 0}
     - target: {fileID: 410204553461020870, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38705,7 +38744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 410204553461020870, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 18.25
       objectReference: {fileID: 0}
     - target: {fileID: 410204553461020870, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_LocalRotation.w

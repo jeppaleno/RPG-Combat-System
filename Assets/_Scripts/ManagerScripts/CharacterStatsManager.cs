@@ -23,7 +23,10 @@ public class CharacterStatsManager : MonoBehaviour
     public int maxFocusPoints;
     public int currentFocusPoints;
 
-    [Header("LEVELS")]
+    [Header("CHARACTER LEVEL")]
+    public int playerLevel = 1;
+
+    [Header("STAT LEVELS")]
     public int healthLevel = 10;
     public int staminaLevel = 10;
     public int focusLevel = 10;
