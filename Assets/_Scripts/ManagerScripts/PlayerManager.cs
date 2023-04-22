@@ -8,6 +8,7 @@ public class PlayerManager : CharacterManager
 
     public CameraManager cameraManager;
     public InputManager inputManager;
+    public UIManager uiManager;
     public PlayerStatsManager playerStatsManager;
     public PlayerWeaponSlotManager playerWeaponSlotManager;
     public PlayerEquipmentManager playerEquipmentManager;
@@ -25,6 +26,7 @@ public class PlayerManager : CharacterManager
     {
         base.Awake();
         inputManager = GetComponent<InputManager>();
+        uiManager = FindObjectOfType<UIManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         animator = GetComponent<Animator>();

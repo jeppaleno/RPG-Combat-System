@@ -52,23 +52,7 @@ public class PlayerStatsManager : CharacterStatsManager
         }
     }
 
-    private int SetMaxHealthFromHealthLevel()
-    {
-        maxHealth = healthLevel * 10;
-        return maxHealth;
-    }
 
-    private int SetMaxStaminaFromStaminaLevel()
-    {
-        maxStamina = staminaLevel * 10;
-        return maxStamina;
-    }
-
-    private int SetMaxFocusPointsFromFocusLevel()
-    {
-        maxFocusPoints = focusLevel * 10;
-        return maxFocusPoints;
-    }
 
     public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
     {
@@ -162,6 +146,6 @@ public class PlayerStatsManager : CharacterStatsManager
 
     public void AddSouls(int souls)
     {
-        soulCount = soulCount + souls;
+        currentSoulCount = currentSoulCount + souls;
     }
 }

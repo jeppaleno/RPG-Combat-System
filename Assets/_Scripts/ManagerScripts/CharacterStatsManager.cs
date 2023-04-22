@@ -16,7 +16,7 @@ public class CharacterStatsManager : MonoBehaviour
     public int maxStamina;
     public int currentStamina;
 
-    public int soulCount = 0;
+    public int currentSoulCount = 0;
     public int soulsAwardedOnDeath = 50;
 
     
@@ -144,5 +144,23 @@ public class CharacterStatsManager : MonoBehaviour
     public void DrainStaminaBasedOnAttackType()
     {
 
+    }
+
+    public int SetMaxHealthFromHealthLevel()
+    {
+        maxHealth = healthLevel * 10;
+        return maxHealth;
+    }
+
+    public int SetMaxStaminaFromStaminaLevel()
+    {
+        maxStamina = staminaLevel * 10;
+        return maxStamina;
+    }
+
+    public int SetMaxFocusPointsFromFocusLevel()
+    {
+        maxFocusPoints = focusLevel * 10;
+        return maxFocusPoints;
     }
 }
