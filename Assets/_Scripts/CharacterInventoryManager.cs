@@ -19,6 +19,7 @@ public class CharacterInventoryManager : MonoBehaviour
     [Header("Current Equipment")]
     public HelmetEquipment currentHelmetEquipment;
     public TorsoEquipment currentTorsoEquipment;
+    public LegEquipment currentLegEquipment;
 
 
     public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
