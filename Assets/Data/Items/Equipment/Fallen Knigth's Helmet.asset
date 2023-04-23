@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Fallen Knitgth's Helmet
-  physicalDefense: 0
+  physicalDefense: 10
   helmetModelName: Chr_Head_No_Elements_Male_06

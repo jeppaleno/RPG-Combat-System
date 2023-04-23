@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Fallen Knigth's Chestplate
-  physicalDefense: 0
+  physicalDefense: 10
   torsoModelName: Chr_Torso_Male_26
+  upperLeftArmModelName: 
+  upperRightArmModelName: 

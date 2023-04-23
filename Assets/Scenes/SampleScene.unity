@@ -12055,6 +12055,10 @@ MonoBehaviour:
   dexterityLevel: 10
   intelligenceLevel: 10
   faithLevel: 10
+  physicalDamageAbsoptionHead: 0
+  physicalDamageAbsoptionBody: 0
+  physicalDamageAbsoptionLegs: 0
+  physicalDamageAbsoptionHands: 0
   totalPoiseDefence: 0
   offensivePoiseBonus: 0
   armorPoiseBonus: 0
@@ -39136,7 +39140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406457131841989732, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 406460584418301910, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive

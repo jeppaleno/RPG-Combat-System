@@ -36,6 +36,11 @@ public class CharacterStatsManager : MonoBehaviour
     public int intelligenceLevel = 10;
     public int faithLevel = 10;
 
+    [Header("Arnmor Absorptions")]
+    public float physicalDamageAbsoptionHead;
+    public float physicalDamageAbsoptionBody;
+    public float physicalDamageAbsoptionLegs;
+    public float physicalDamageAbsoptionHands;
 
     [Header("Poise")]
     public float totalPoiseDefence; //The TOTAL poise during damage calculation
@@ -66,12 +71,22 @@ public class CharacterStatsManager : MonoBehaviour
         HandlePoiseResetTimer();
     }
 
-    public virtual void TakeDamage(int damage, int fireDamage, string damageAnimation)
+    public virtual void TakeDamage(int physicalDamage, int fireDamage, string damageAnimation)
     {
         if (isDead)
             return;
 
         characterAnimatorManager.EraseHandIKWeapon();
+
+        float totalPhysicalDamageAbsorptions = 1 -
+            (1 - physicalDamageAbsoptionHead / 100) *
+            (1 - physicalDamageAbsoptionBody / 100) *
+            (1 - physicalDamageAbsoptionLegs / 100) *
+            (1 - physicalDamageAbsoptionHands / 100);
+
+        physicalDamage = Mathf.RoundToInt(physicalDamage - (physicalDamage * totalPhysicalDamageAbsorptions));
+
+        Debug.Log("Total Damage Absoption is" + totalPhysicalDamageAbsorptions + "%");
 
         float totalFireDamageAbsorption = 1 -
             (1 - fireDamageAbsorptionHead / 100) *
@@ -81,7 +96,9 @@ public class CharacterStatsManager : MonoBehaviour
 
         fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
 
-        float finalDamage = damage + fireDamage; //add physical damage later
+        float finalDamage = physicalDamage + fireDamage;
+
+        Debug.Log("Total Damage Dealt is" + finalDamage);
 
         currentHealth = Mathf.RoundToInt(currentHealth - finalDamage);
 

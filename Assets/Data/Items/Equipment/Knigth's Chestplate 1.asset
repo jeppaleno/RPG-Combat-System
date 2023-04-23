@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Knigth's Chestplate
-  physicalDefense: 0
+  physicalDefense: 12.5
   torsoModelName: Chr_Torso_Male_21
   upperLeftArmModelName: Chr_ArmUpperLeft_Male_19
   upperRightArmModelName: Chr_ArmUpperRight_Male_19

@@ -101,19 +101,14 @@ public class EnemyStatsManager : CharacterStatsManager
 
     public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
     {
-        /*if (isDead)
-            return;*/
-
         base.TakeDamage(damage, fireDamage, damageAnimation);
         
         if (!isBoss)
         {
-            //currentHealth = currentHealth - damage;
             enemyHealthBar.SetHealth(currentHealth);
         }
         else if (isBoss && enemyBossManager != null)
         {
-            //currentHealth = currentHealth - damage;
             enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 

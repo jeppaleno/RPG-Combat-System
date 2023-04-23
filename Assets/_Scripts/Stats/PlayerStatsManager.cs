@@ -59,7 +59,8 @@ public class PlayerStatsManager : CharacterStatsManager
         if (isDead)
             return;
 
-        currentHealth = currentHealth - damage; //REFACTOR AND CALL BASE INSTEAD
+        base.TakeDamage(damage, fireDamage, damageAnimation);
+
         healthbar.SetCurrentHealth(currentHealth);
         playerAnimatorManager.PlayTargetAnimation(damageAnimation, true);
 

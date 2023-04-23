@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemName: Knight's Gauntless
-  physicalDefense: 0
+  physicalDefense: 6.5
   leftHandModelName: Chr_HandLeft_Male_14
   rightHandModelName: Chr_HandRight_Male_14
   lowerLeftArmModelName: Chr_ArmLowerLeft_Male_11
