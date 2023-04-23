@@ -8,15 +8,32 @@ public class PlayerEquipmentManager : MonoBehaviour
     PlayerInventoryManager playerInventory;
 
     [Header("Equipment Model Changers")]
+    //Head Equipment 
     HelmetModelChanger helmetModelChanger;
+    [Space]//Torso Equipment
     TorsoModelChanger torsoModelChanger;
+    UpperLeftArmModelChanger upperLeftArmModelChanger;
+    UpperRightArmModelChanger upperRightArmModelChanger;
+    [Space]//Leg Equipment
     HipModelChanger hipModelChanger;
     LeftLegModelChanger leftLegModelChanger;
     RightLegModelChanger rightLegModelChanger;
+    [Space] //Hand Equipment
+    LowerLeftArmModelChanger lowerLeftArmModelChanger;
+    LowerRightArmModelChanger lowerRightArmModelChanger;
+    RightHandModelChanger rightHandModelChanger;
+    LeftHandModelChanger leftHandModelChanger;
+
 
     [Header("Default Naked Models")]
     public GameObject nakedHeadModel;
     public string nakedTorsoModel;
+    public string nakedUpperLeftArm;
+    public string nakedUpperRightArm;
+    public string nakedLowerLeftArm;
+    public string nakedLowerRightArm;
+    public string nakedLeftHand;
+    public string nakedRightHand;
     public string nakedHipModel;
     public string nakedLeftLeg;
     public string nakedRightLeg;
@@ -32,6 +49,12 @@ public class PlayerEquipmentManager : MonoBehaviour
         hipModelChanger = GetComponentInChildren<HipModelChanger>();
         leftLegModelChanger = GetComponentInChildren<LeftLegModelChanger>();
         rightLegModelChanger = GetComponentInChildren<RightLegModelChanger>();
+        upperLeftArmModelChanger = GetComponentInChildren<UpperLeftArmModelChanger>();
+        upperRightArmModelChanger = GetComponentInChildren<UpperRightArmModelChanger>();
+        lowerLeftArmModelChanger = GetComponentInChildren<LowerLeftArmModelChanger>();
+        lowerRightArmModelChanger = GetComponentInChildren<LowerRightArmModelChanger>();
+        leftHandModelChanger = GetComponentInChildren<LeftHandModelChanger>();
+        rightHandModelChanger = GetComponentInChildren<RightHandModelChanger>();
     }
 
     private void Start()
@@ -57,14 +80,20 @@ public class PlayerEquipmentManager : MonoBehaviour
         
         //TORSO EQUIPMENT
         torsoModelChanger.UnEquipAllTorsoModels();
+        upperLeftArmModelChanger.UnEquipAllModels();
+        upperRightArmModelChanger.UnEquipAllModels();
 
         if (playerInventory.currentTorsoEquipment != null)
         {
             torsoModelChanger.EquipTorsoModelByName(playerInventory.currentTorsoEquipment.torsoModelName);
+            upperLeftArmModelChanger.EquipModelByName(playerInventory.currentTorsoEquipment.upperLeftArmModelName);
+            upperRightArmModelChanger.EquipModelByName(playerInventory.currentTorsoEquipment.upperRightArmModelName);
         }
         else
         {
             torsoModelChanger.EquipTorsoModelByName(nakedTorsoModel);
+            upperLeftArmModelChanger.EquipModelByName(nakedUpperLeftArm);
+            upperRightArmModelChanger.EquipModelByName(nakedUpperRightArm);
         }
 
         //LEG EQUIPMENT
@@ -83,6 +112,27 @@ public class PlayerEquipmentManager : MonoBehaviour
             hipModelChanger.EquipHipModelByName(nakedHipModel);
             leftLegModelChanger.EquipLegModelByName(nakedLeftLeg);
             rightLegModelChanger.EquipLegModelByName(nakedRightLeg);
+        }
+
+        //HAND EQUIPMENT
+        lowerLeftArmModelChanger.UnEquipAllModels();
+        lowerRightArmModelChanger.UnEquipAllModels();
+        leftHandModelChanger.UnEquipAllModels();
+        rightHandModelChanger.UnEquipAllModels();
+
+        if (playerInventory.currentHandEquipment != null)
+        {
+            lowerLeftArmModelChanger.EquipModelByName(playerInventory.currentHandEquipment.lowerLeftArmModelName);
+            lowerRightArmModelChanger.EquipModelByName(playerInventory.currentHandEquipment.lowerRightArmModelName);
+            leftHandModelChanger.EquipModelByName(playerInventory.currentHandEquipment.leftHandModelName);
+            rightHandModelChanger.EquipModelByName(playerInventory.currentHandEquipment.rightHandModelName);
+        }
+        else
+        {
+            lowerLeftArmModelChanger.EquipModelByName(nakedLowerLeftArm);
+            lowerRightArmModelChanger.EquipModelByName(nakedLowerRightArm);
+            leftHandModelChanger.EquipModelByName(nakedLeftHand);
+            rightHandModelChanger.EquipModelByName(nakedRightHand);
         }
     }
 
