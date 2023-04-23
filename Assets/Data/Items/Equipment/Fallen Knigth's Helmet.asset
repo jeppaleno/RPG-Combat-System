@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fallen Knigth's Helmet
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: 
+  itemName: Fallen Knitgth's Helmet
   physicalDefense: 0
-  helmetModelName: 
+  helmetModelName: Chr_Head_No_Elements_Male_06

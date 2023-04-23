@@ -4926,6 +4926,7 @@ MonoBehaviour:
   currentConsumable: {fileID: 0}
   currentAmmo: {fileID: 0}
   currentHelmetEquipment: {fileID: 0}
+  currentTorsoEquipment: {fileID: 0}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
   weaponsInLeftHandSlots:
@@ -9853,6 +9854,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652839231}
   m_CullTransparentMesh: 1
+--- !u!1 &653046831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 407507237210348286, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+  m_PrefabInstance: {fileID: 405815894642829358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &670601363
 GameObject:
   m_ObjectHideFlags: 0
@@ -12346,6 +12352,7 @@ MonoBehaviour:
   currentConsumable: {fileID: 0}
   currentAmmo: {fileID: 0}
   currentHelmetEquipment: {fileID: 0}
+  currentTorsoEquipment: {fileID: 0}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
   weaponsInLeftHandSlots:
@@ -14948,6 +14955,7 @@ MonoBehaviour:
   currentConsumable: {fileID: 0}
   currentAmmo: {fileID: 0}
   currentHelmetEquipment: {fileID: 0}
+  currentTorsoEquipment: {fileID: 0}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 7c65ee42e57a17343a71099a295a0088, type: 2}
   weaponsInLeftHandSlots:
@@ -23562,6 +23570,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1555379098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 407482102839305412, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+  m_PrefabInstance: {fileID: 405815894642829358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555379100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555379098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ba6f7525ed8714898df4da3f3510b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helmetModels: []
 --- !u!1 &1560578141
 GameObject:
   m_ObjectHideFlags: 0
@@ -33359,6 +33385,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111912510}
   m_CullTransparentMesh: 1
+--- !u!1 &2119291408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 406664663789359956, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+  m_PrefabInstance: {fileID: 405815894642829358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2119291410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119291408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c648940f60ac87c48b59522b9afef1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torsoModels: []
 --- !u!1 &2123948476
 GameObject:
   m_ObjectHideFlags: 0
@@ -38674,6 +38718,14 @@ PrefabInstance:
       propertyPath: itemInteractableGameObject
       value: 
       objectReference: {fileID: 1784269819}
+    - target: {fileID: 405815894026158858, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: nakedHeadModel
+      value: 
+      objectReference: {fileID: 653046831}
+    - target: {fileID: 405815894026158858, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: nakedTorsoModel
+      value: Chr_Torso_Male_01
+      objectReference: {fileID: 0}
     - target: {fileID: 405815894026158860, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: healthbar
       value: 
@@ -38751,6 +38803,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b8a6f67a72416d8409703e5e563e6087, type: 2}
     - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: currentTorsoEquipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d50c2f4a47d47043aa6c9d2006e9fb4, type: 2}
+    - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: currentHelmetEquipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 405815894026158897, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: weaponInventory.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -38798,6 +38858,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 405916385412440602, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 405919451839249280, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -38818,7 +38882,19 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 405970186976292108, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405990631522816026, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 406004934129119938, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406016469103741602, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -38833,6 +38909,10 @@ PrefabInstance:
     - target: {fileID: 406457131841989732, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 406460584418301910, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406461041764520546, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
@@ -38894,6 +38974,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 406558658010131140, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406563144757484090, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 406582370782159466, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -38933,6 +39021,14 @@ PrefabInstance:
     - target: {fileID: 406663089266822822, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406664466531727620, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406664663789359956, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_Name
+      value: Male_Torsos
       objectReference: {fileID: 0}
     - target: {fileID: 406669149669169788, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
@@ -39003,6 +39099,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406791380503072542, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406828045255618664, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -39082,6 +39182,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 406985823134380524, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 407002733949690548, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -39122,6 +39226,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 407372237328795016, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 407379021981876034, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -39144,7 +39252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407417745042253674, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 407434661737257744, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
@@ -39186,13 +39294,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 407478832440222842, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407482102839305412, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_Name
+      value: Male_Helmets
+      objectReference: {fileID: 0}
+    - target: {fileID: 407482705480795536, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_Name
+      value: Male_Heads
+      objectReference: {fileID: 0}
     - target: {fileID: 407482877263570744, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407483143247785646, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 407494626475561348, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407507237210348286, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 407509630677986510, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
@@ -39214,6 +39342,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 407537491641603234, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 407542963349166490, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -39228,7 +39360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407558438190312862, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 407563579111992266, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: m_IsActive

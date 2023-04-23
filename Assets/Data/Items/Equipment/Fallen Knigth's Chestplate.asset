@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491a69d2287490d4ba79d1a7c5071373, type: 3}
-  m_Name: Knight's Helmet
+  m_Script: {fileID: 11500000, guid: b69a24f9a5d10344d889503ad6710a73, type: 3}
+  m_Name: Fallen Knigth's Chestplate
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: Knight's Helmet
+  itemName: Fallen Knigth's Chestplate
   physicalDefense: 0
-  helmetModelName: Chr_Head_No_Elements_Male_05
+  torsoModelName: Chr_Torso_Male_26

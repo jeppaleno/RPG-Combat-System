@@ -9,21 +9,54 @@ public class PlayerEquipmentManager : MonoBehaviour
 
     [Header("Equipment Model Changers")]
     HelmetModelChanger helmetModelChanger;
+    TorsoModelChanger torsoModelChanger;
     //Chest and body armour etc
+
+    [Header("Default Naked Models")]
+    public GameObject nakedHeadModel;
+    public string nakedTorsoModel;
+    //NakedLegModelETC
 
     public BlockingCollider blockingCollider;
 
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
-        playerInventory = GetComponent<PlayerInventoryManager>(); //getComponent instead?
+        playerInventory = GetComponent<PlayerInventoryManager>();
         helmetModelChanger = GetComponentInChildren<HelmetModelChanger>();
+        torsoModelChanger = GetComponentInChildren<TorsoModelChanger>();
     }
 
     private void Start()
     {
+        EquipAllEquipmentModelsOnStart();
+
+    }
+
+    private void EquipAllEquipmentModelsOnStart()
+    {
         helmetModelChanger.UnEquipAllHelmetModels();
-        helmetModelChanger.EquipHelmetModelByName(playerInventory.currentHelmetEquipment.helmetModelName);
+
+        if (playerInventory.currentHelmetEquipment != null)
+        {
+            nakedHeadModel.SetActive(false);
+            helmetModelChanger.EquipHelmetModelByName(playerInventory.currentHelmetEquipment.helmetModelName);
+        }
+        else
+        {
+            nakedHeadModel.SetActive(true);
+        }
+        
+        torsoModelChanger.UnEquipAllTorsoModels();
+
+        if (playerInventory.currentTorsoEquipment != null)
+        {
+            torsoModelChanger.EquipTorsoModelByName(playerInventory.currentTorsoEquipment.torsoModelName);
+        }
+        else
+        {
+            torsoModelChanger.EquipTorsoModelByName(nakedTorsoModel);
+        }
     }
 
     public void OpenBlockingCollider()
