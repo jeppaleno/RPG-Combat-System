@@ -38684,7 +38684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405815894026158860, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: currentSoulCount
-      value: 8500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405815894026158863, guid: 3bf3f21350e812b4292a6ddadb2e6077, type: 3}
       propertyPath: inAirTimer
