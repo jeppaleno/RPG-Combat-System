@@ -51,13 +51,12 @@ public class PlayerManager : CharacterManager
 
         inputManager.isInteracting = animator.GetBool("isInteracting");
         canDoCombo = animator.GetBool("canDoCombo");
+        canRotate = animator.GetBool("canRotate");
         isFiringSpell = animator.GetBool("isFiringSpell");
         isHoldingArrow = animator.GetBool("isHoldingArrow");
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
         animator.SetBool("isDead", playerStatsManager.isDead);
-
-        playerAnimatorManager.canRotate = animator.GetBool("canRotate");
 
         CheckForInteractableObject();
     }

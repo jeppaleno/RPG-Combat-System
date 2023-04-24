@@ -8,7 +8,6 @@ public class CharacterAnimatorManager : MonoBehaviour
     public Animator animator;
     protected CharacterManager characterManager;
     protected CharacterStatsManager characterStatsManager;
-    public bool canRotate;
 
     protected RigBuilder rigBuilder;
     public TwoBoneIKConstraint leftHandConstraint;

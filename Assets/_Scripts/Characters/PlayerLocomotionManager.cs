@@ -113,7 +113,7 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     public void HandleRotation()
     {
-        if (playerAnimatorManager.canRotate)
+        if (playerManager.canRotate)
         {
             if (playerManager.isAiming)
             {
