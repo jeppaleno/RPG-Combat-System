@@ -56,13 +56,13 @@ public class EnemyManager : CharacterManager
         HandleRecoveryTimer();
         HandleStateMachine();
 
-        isRotatingWithRootMotion = enemyAnimatorManager.animator.GetBool("isRotatingWithRootMotion");
-        isInteracting = enemyAnimatorManager.animator.GetBool("isInteracting");
-        isPhaseShifting = enemyAnimatorManager.animator.GetBool("isPhaseShifting");
+        isRotatingWithRootMotion = animator.GetBool("isRotatingWithRootMotion");
+        isInteracting = animator.GetBool("isInteracting");
+        isPhaseShifting = animator.GetBool("isPhaseShifting");
         //isInvulnerable = enemyAnimationManager.animator.GetBool("isInvulnerable");
-        canDoCombo = enemyAnimatorManager.animator.GetBool("canDoCombo");
-        canRotate = enemyAnimatorManager.animator.GetBool("canRotate");
-        enemyAnimatorManager.animator.SetBool("isDead", isDead);
+        canDoCombo = animator.GetBool("canDoCombo");
+        canRotate = animator.GetBool("canRotate");
+        animator.SetBool("isDead", isDead);
     }
 
     protected override void FixedUpdate()
@@ -81,7 +81,7 @@ public class EnemyManager : CharacterManager
     {
        if (currentState != null)
         {
-            State nextState = currentState.Tick(this, enemyStatsManager, enemyAnimatorManager);
+            State nextState = currentState.Tick(this);
 
             if (nextState != null)
             {

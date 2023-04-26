@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyBossManager : MonoBehaviour
 {
+    EnemyManager enemy;
     public string bossName;
 
     UIBossHealthBar bossHealthBar;
-    EnemyStatsManager enemyStats;
-    EnemyAnimatorManager enemyAnimatorManager;
+    
     BossCombatStanceState bossCombatStanceState;
 
     [Header("Second Phase FX")]
@@ -16,16 +16,15 @@ public class EnemyBossManager : MonoBehaviour
 
     private void Awake()
     {
+        enemy = GetComponent<EnemyManager>();
         bossHealthBar = FindObjectOfType<UIBossHealthBar>();
-        enemyStats = GetComponent<EnemyStatsManager>();
-        enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
         bossCombatStanceState = GetComponentInChildren<BossCombatStanceState>();
     }
 
     private void Start()
     {
         bossHealthBar.SetBossName(bossName);
-        bossHealthBar.SetBossMaxHealth(enemyStats.maxHealth);
+        bossHealthBar.SetBossMaxHealth(enemy.enemyStatsManager.maxHealth);
     }
 
     public void UpdateBossHealthBar(int currentHealth, int maxHealth)
@@ -42,9 +41,9 @@ public class EnemyBossManager : MonoBehaviour
     public void ShiftToSecondPhase()
     {
         //PLAY AN ANIMATION W AN EVENT THAT TRIGGES PARTICLE FX/WEAPON FX
-        //enemyAnimatorManager.animator.SetBool("isInvulnerable", true);
-        enemyAnimatorManager.animator.SetBool("isPhaseShifting", true);
-        enemyAnimatorManager.PlayTargetAnimation("Phase Shift", true);
+        enemy.animator.SetBool("isInvulnerable", true);
+        enemy.animator.SetBool("isPhaseShifting", true);
+        enemy.enemyAnimatorManager.PlayTargetAnimation("Phase Shift", true);
         //SWITCH ATTACK ACTIONS TO NEW PHASE PATTERNS
         bossCombatStanceState.hasPhaseShifted = true;
     }

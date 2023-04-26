@@ -7,11 +7,11 @@ public class EnemyWeaponSlotManager : CharacterWeaponSlotManager
    
     public override void GrantWeaponAttackingPoiseBonus()
     {
-        characterStatsManager.totalPoiseDefence = characterStatsManager.totalPoiseDefence + characterStatsManager.offensivePoiseBonus;
+        character.characterStatsManager.totalPoiseDefence = character.characterStatsManager.totalPoiseDefence + character.characterStatsManager.offensivePoiseBonus;
     }
 
     public override void ResetWeaponAttackingPoiseBonus()
     {
-        characterStatsManager.totalPoiseDefence = characterStatsManager.armorPoiseBonus;
+        character.characterStatsManager.totalPoiseDefence = character.characterStatsManager.armorPoiseBonus;
     }
 }

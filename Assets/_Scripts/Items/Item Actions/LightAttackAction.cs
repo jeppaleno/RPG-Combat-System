@@ -85,7 +85,7 @@ public class LightAttackAction : ItemAction
     {
         if (player.inputManager.comboFlag)
         {
-            player.playerAnimatorManager.animator.SetBool("canDoCombo", false);
+            player.animator.SetBool("canDoCombo", false);
 
             if (player.isUsingLeftHand)
             {

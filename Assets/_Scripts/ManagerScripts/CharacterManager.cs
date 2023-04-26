@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    public Animator animator;
     public CharacterAnimatorManager characterAnimatorManager;
     public CharacterWeaponSlotManager characterWeaponSlotManager;
     public CharacterStatsManager characterStatsManager;
+    public CharacterInventoryManager characterInventoryManager;
+    public CharacterEffectsManager characterEffectsManager;
 
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
@@ -49,9 +52,12 @@ public class CharacterManager : MonoBehaviour
 
     protected virtual void Awake()
     {
+        animator = GetComponent<Animator>();
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterWeaponSlotManager = GetComponent<CharacterWeaponSlotManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
+        characterInventoryManager = GetComponent<CharacterInventoryManager>();
+        characterEffectsManager = GetComponent<CharacterEffectsManager>();
     }
 
     protected virtual void FixedUpdate()

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-
-    public Animator animator;
-
     [Header("Camera")]
     public CameraManager cameraManager;
 

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimatorManager : CharacterAnimatorManager
 {
-    InputManager inputManager;
-    PlayerLocomotionManager playerLocomotionManager;
+    PlayerManager player;
 
     int horizontal;
     int vertical;
@@ -13,9 +12,7 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
     protected override void Awake()
     {
         base.Awake();
-        animator = GetComponent<Animator>();
-        inputManager = GetComponent<InputManager>();
-        playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        player = GetComponent<PlayerManager>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }
@@ -78,32 +75,32 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
             snappedVertical = 2;
         }
 
-        animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
-        animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
+        player.animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
+        player.animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
     }
 
     public void DisableCollision()
     {
-        playerLocomotionManager.characterCollider.enabled = false;
-        playerLocomotionManager.characterCollisionBlockerCollider.enabled = false;
+        player.playerLocomotionManager.characterCollider.enabled = false;
+        player.playerLocomotionManager.characterCollisionBlockerCollider.enabled = false;
     }
 
     public void EnableCollision()
     {
-        playerLocomotionManager.characterCollider.enabled = true;
-        playerLocomotionManager.characterCollisionBlockerCollider.enabled = true;
+        player.playerLocomotionManager.characterCollider.enabled = true;
+        player.playerLocomotionManager.characterCollisionBlockerCollider.enabled = true;
     }
 
     private void OnAnimatorMove()
     {
-        if (characterManager.isUsingRootMotion)
+        if (character.isUsingRootMotion)
         {
             //Moves player gameobject in direction of players model, usefull for anims with rootmotions
-            playerLocomotionManager.playerRigidbody.drag = 0;
-            Vector3 deltaPosition = animator.deltaPosition;
+            player.playerLocomotionManager.playerRigidbody.drag = 0;
+            Vector3 deltaPosition = player.animator.deltaPosition;
             deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / Time.deltaTime;
-            playerLocomotionManager.playerRigidbody.velocity = velocity;
+            player.playerLocomotionManager.playerRigidbody.velocity = velocity;
         }
     }
 

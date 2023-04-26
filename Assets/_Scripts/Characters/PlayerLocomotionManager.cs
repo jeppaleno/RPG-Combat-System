@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class PlayerLocomotionManager : MonoBehaviour
 {
-    
-    CameraManager cameraManager;
-    PlayerManager playerManager;
-    PlayerStatsManager playerStatsManager;
-    PlayerAnimatorManager playerAnimatorManager;
-    InputManager inputManager;
-    
+    PlayerManager player;
+
     Vector3 moveDirection;
-    Transform cameraObject;
     public Rigidbody playerRigidbody;
 
     [Header("Falling")]
@@ -49,16 +43,11 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     private void Awake()
     {
-        playerManager = GetComponent<PlayerManager>();
-        playerStatsManager = GetComponent<PlayerStatsManager>();
-        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-        inputManager = GetComponent<InputManager>();
+        player = GetComponent<PlayerManager>();
         playerRigidbody = GetComponent<Rigidbody>();
-        cameraObject = Camera.main.transform;
-        cameraManager = FindObjectOfType<CameraManager>();
     }
 
-    void Start()
+    private void Start()
     {
         Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
     }
@@ -67,7 +56,7 @@ public class PlayerLocomotionManager : MonoBehaviour
     {
         HandleFallingAndLanding();
 
-        if (playerManager.isInteracting)
+        if (player.isInteracting)
             return;
 
         HandleMovement();
@@ -79,24 +68,24 @@ public class PlayerLocomotionManager : MonoBehaviour
         if (isJumping)
             return;
 
-        Vector3 cameraForward = Vector3.ProjectOnPlane(cameraObject.forward, Vector3.up).normalized;
-        Vector3 cameraRight = Vector3.ProjectOnPlane(cameraObject.right, Vector3.up).normalized;
-        moveDirection = cameraForward * inputManager.verticalInput;  //Forward Movement
-        moveDirection = moveDirection + cameraRight * inputManager.horizontalInput; //Left/Right Movement
+        Vector3 cameraForward = Vector3.ProjectOnPlane(player.cameraManager.cameraObject.transform.forward, Vector3.up).normalized;
+        Vector3 cameraRight = Vector3.ProjectOnPlane(player.cameraManager.cameraObject.transform.right, Vector3.up).normalized;
+        moveDirection = cameraForward * player.inputManager.verticalInput;  //Forward Movement
+        moveDirection = moveDirection + cameraRight * player.inputManager.horizontalInput; //Left/Right Movement
         moveDirection.Normalize();
         moveDirection.y = 0;
 
         if (isSprinting)
         {
-            if (playerStatsManager.currentStamina <= 0)
+            if (player.playerStatsManager.currentStamina <= 0)
                 return;
 
             moveDirection = moveDirection * sprintingSpeed;
-            playerStatsManager.TakeStaminaDamage(sprintStaminaCost);
+            player.playerStatsManager.TakeStaminaDamage(sprintStaminaCost);
         }
         else
         {
-            if (inputManager.moveAmount >= 0.5f && !playerManager.isHoldingArrow)
+            if (player.inputManager.moveAmount >= 0.5f && !player.isHoldingArrow)
             {
                 moveDirection = moveDirection * runningSpeed;
             }
@@ -113,45 +102,45 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     public void HandleRotation()
     {
-        if (playerManager.canRotate)
+        if (player.canRotate)
         {
-            if (playerManager.isAiming)
+            if (player.isAiming)
             {
-                Quaternion targetRotation = Quaternion.Euler(0, cameraManager.cameraTransform.eulerAngles.y, 0);
-                Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                transform.rotation = playerRotation;
+                Quaternion targetRotation = Quaternion.Euler(0, player.cameraManager.cameraTransform.eulerAngles.y, 0);
+                Quaternion playerRotation = Quaternion.Slerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                player.transform.rotation = playerRotation;
             }
             else
             {
-                if (inputManager.lockOnFlag)
+                if (player.inputManager.lockOnFlag)
                 {
-                    if (inputManager.sprint_Input)
+                    if (player.inputManager.sprint_Input)
                     {
                         Vector3 targetDirection = Vector3.zero;
-                        targetDirection = cameraManager.cameraTransform.forward * inputManager.verticalInput;
-                        targetDirection += cameraManager.cameraTransform.right * inputManager.horizontalInput;
+                        targetDirection = player.cameraManager.cameraTransform.forward * player.inputManager.verticalInput;
+                        targetDirection += player.cameraManager.cameraTransform.right * player.inputManager.horizontalInput;
                         targetDirection.Normalize();
                         targetDirection.y = 0;
 
                         if (targetDirection == Vector3.zero)
                         {
-                            targetDirection = transform.forward;
+                            targetDirection = player.transform.forward;
                         }
 
                         Quaternion tr = Quaternion.LookRotation(targetDirection);
-                        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                        Quaternion targetRotation = Quaternion.Slerp(player.transform.rotation, tr, rotationSpeed * Time.deltaTime);
 
-                        transform.rotation = targetRotation;
+                        player.transform.rotation = targetRotation;
                     }
                     else
                     {
                         Vector3 rotationDirection = moveDirection;
-                        rotationDirection = cameraManager.currentLockOnTarget.transform.position - transform.position;
+                        rotationDirection = player.cameraManager.currentLockOnTarget.transform.position - player.transform.position;
                         rotationDirection.y = 0;
                         rotationDirection.Normalize();
                         Quaternion tr = Quaternion.LookRotation(rotationDirection);
-                        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rotationSpeed * Time.deltaTime);
-                        transform.rotation = targetRotation;
+                        Quaternion targetRotation = Quaternion.Slerp(player.transform.rotation, tr, rotationSpeed * Time.deltaTime);
+                        player.transform.rotation = targetRotation;
                     }
 
                 }
@@ -159,21 +148,21 @@ public class PlayerLocomotionManager : MonoBehaviour
                 {
                     Vector3 targetDirection = Vector3.zero;
 
-                    targetDirection = cameraObject.forward * inputManager.verticalInput;
-                    targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInput;
+                    targetDirection = player.cameraManager.cameraObject.transform.forward * player.inputManager.verticalInput;
+                    targetDirection = targetDirection + player.cameraManager.cameraObject.transform.right * player.inputManager.horizontalInput;
                     targetDirection.Normalize();
                     targetDirection.y = 0;
 
 
                     // Keeps the looking rotation after the player has stopped
                     if (targetDirection == Vector3.zero)
-                        targetDirection = transform.forward;
+                        targetDirection = player.transform.forward;
 
                     // Rotates towards where the player is looking
                     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                    Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    Quaternion playerRotation = Quaternion.Slerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-                    transform.rotation = playerRotation;
+                    player.transform.rotation = playerRotation;
                 }
             }
         }
@@ -183,28 +172,28 @@ public class PlayerLocomotionManager : MonoBehaviour
     private void HandleFallingAndLanding()
     {
         RaycastHit hit;
-        Vector3 rayCastOrigin = transform.position;
+        Vector3 rayCastOrigin = player.transform.position;
         Vector3 targetPosition;
         rayCastOrigin.y = rayCastOrigin.y + rayCastHeightOffset;
-        targetPosition = transform.position;
+        targetPosition = player.transform.position;
 
         if (!isGrounded && !isJumping)
         {
-            if (!playerManager.isInteracting)
+            if (!player.isInteracting)
             {
-                playerAnimatorManager.PlayTargetAnimation("Falling", true);
+                player.playerAnimatorManager.PlayTargetAnimation("Falling", true);
             }
 
             inAirTimer = inAirTimer + Time.deltaTime;
-            playerRigidbody.AddForce(transform.forward * leapingVelocity);
+            playerRigidbody.AddForce(player.transform.forward * leapingVelocity);
             playerRigidbody.AddForce(-Vector3.up * fallingVelocity * inAirTimer);
         }
 
         if (Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, groundLayer)) 
         {
-            if (!isGrounded && !playerManager.isInteracting)
+            if (!isGrounded && !player.isInteracting)
             {
-                playerAnimatorManager.PlayTargetAnimation("Land", true);
+                player.playerAnimatorManager.PlayTargetAnimation("Land", true);
             }
 
             Vector3 rayCastHitPoint = hit.point;
@@ -219,28 +208,28 @@ public class PlayerLocomotionManager : MonoBehaviour
 
         if (isGrounded && !isJumping)
         {
-            if (playerManager.isInteracting || inputManager.moveAmount > 0)
+            if (player.isInteracting || player.inputManager.moveAmount > 0)
             {
-                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
+                player.transform.position = Vector3.Lerp(player.transform.position, targetPosition, Time.deltaTime / 0.1f);
             }
             else
             {
-                transform.position = targetPosition;
+                player.transform.position = targetPosition;
             }
         }
     }
 
     public void HandleJumping()
     {
-        if (playerStatsManager.currentStamina <= 0)
+        if (player.playerStatsManager.currentStamina <= 0)
             return;
 
         if (isGrounded)
         {
             
-            playerAnimatorManager.animator.SetBool("isJumping", true);
-            playerAnimatorManager.PlayTargetAnimation("Jump", false);
-            playerAnimatorManager.EraseHandIKWeapon();
+            player.animator.SetBool("isJumping", true);
+            player.playerAnimatorManager.PlayTargetAnimation("Jump", false);
+            player.playerAnimatorManager.EraseHandIKWeapon();
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
@@ -260,26 +249,26 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     public void HandleRolling()
     {
-        if (playerAnimatorManager.animator.GetBool("isInteracting"))
+        if (player.animator.GetBool("isInteracting"))
             return;
 
-        if (inputManager.rollFlag)
+        if (player.inputManager.rollFlag)
         {
-            moveDirection = cameraObject.forward * inputManager.verticalInput;
-            moveDirection += cameraObject.right * inputManager.horizontalInput;
+            moveDirection = player.cameraManager.cameraObject.transform.forward * player.inputManager.verticalInput;
+            moveDirection += player.cameraManager.cameraObject.transform.right * player.inputManager.horizontalInput;
 
-            if (inputManager.moveAmount > 0)
+            if (player.inputManager.moveAmount > 0)
             {
-                playerAnimatorManager.PlayTargetAnimation("Rolling", true, true);
-                playerAnimatorManager.EraseHandIKWeapon();
+                player.playerAnimatorManager.PlayTargetAnimation("Rolling", true, true);
+                player.playerAnimatorManager.EraseHandIKWeapon();
                 moveDirection.y = 0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-                transform.rotation = rollRotation;
+                player.transform.rotation = rollRotation;
             }
             else
             {
-                playerAnimatorManager.PlayTargetAnimation("Dodge", true, true);
-                playerAnimatorManager.EraseHandIKWeapon();
+                player.playerAnimatorManager.PlayTargetAnimation("Dodge", true, true);
+                player.playerAnimatorManager.EraseHandIKWeapon();
             }
         }
     }
