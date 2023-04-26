@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    CharacterAnimatorManager characterAnimatorManager;
-    CharacterWeaponSlotManager characterWeaponSlotManager;
+    public CharacterAnimatorManager characterAnimatorManager;
+    public CharacterWeaponSlotManager characterWeaponSlotManager;
+    public CharacterStatsManager characterStatsManager;
 
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
@@ -17,6 +18,9 @@ public class CharacterManager : MonoBehaviour
     [Header("Interaction")]
     public bool isInteracting;
     public bool isUsingRootMotion;
+
+    [Header("Status")]
+    public bool isDead;
 
     [Header("Combat Flags")]
     public bool canBeRiposted;
@@ -47,6 +51,7 @@ public class CharacterManager : MonoBehaviour
     {
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterWeaponSlotManager = GetComponent<CharacterWeaponSlotManager>();
+        characterStatsManager = GetComponent<CharacterStatsManager>();
     }
 
     protected virtual void FixedUpdate()

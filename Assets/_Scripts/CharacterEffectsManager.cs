@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterEffectsManager : MonoBehaviour
 {
-    CharacterStatsManager characterStatsManager;
+    CharacterManager character;
 
     [Header("Current Range FX")]
     public GameObject currentRangeFX;
@@ -31,7 +31,7 @@ public class CharacterEffectsManager : MonoBehaviour
 
     protected virtual void Awake()
     {
-        characterStatsManager = GetComponent<CharacterStatsManager>();
+        character = GetComponent<CharacterManager>();
     }
     public virtual void PlayWeaponFX(bool isLeft)
     {
@@ -58,7 +58,7 @@ public class CharacterEffectsManager : MonoBehaviour
 
     public virtual void HandleAllBuildEffects()
     {
-        if (characterStatsManager.isDead)
+        if (character.isDead)
             return;
 
         HandlePoisonBuildUp();
@@ -85,7 +85,7 @@ public class CharacterEffectsManager : MonoBehaviour
             }
             else
             {
-                currentPoisonParticleFX = Instantiate(defaultPoisonParticleFX, characterStatsManager.transform);
+                currentPoisonParticleFX = Instantiate(defaultPoisonParticleFX, character.transform);
             }
         }
     }
@@ -100,7 +100,7 @@ public class CharacterEffectsManager : MonoBehaviour
 
                 if (timer >= poisonTimer)
                 {
-                    characterStatsManager.TakePoisonDamage(poisonDamage);
+                    character.characterStatsManager.TakePoisonDamage(poisonDamage);
                     timer = 0;
                 }
                 

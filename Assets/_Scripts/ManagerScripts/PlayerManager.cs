@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    Animator animator;
 
+    public Animator animator;
+
+    [Header("Camera")]
     public CameraManager cameraManager;
+
+    [Header("Input")]
     public InputManager inputManager;
+
+    [Header("UI")]
     public UIManager uiManager;
+
+    [Header("Player")]
     public PlayerStatsManager playerStatsManager;
     public PlayerWeaponSlotManager playerWeaponSlotManager;
     public PlayerEquipmentManager playerEquipmentManager;
@@ -18,9 +26,13 @@ public class PlayerManager : CharacterManager
     public PlayerLocomotionManager playerLocomotionManager;
     public PlayerEffectsManager playerEffectsManager;
 
+    [Header("Colliders")]
+    public BlockingCollider blockingCollider;
+
+    [Header("Interactables")]
     InteractableUI interactableUI;
-    public GameObject interactbleUIGameObject; // Shows the player there is a pick up 
-    public GameObject itemInteractableGameObject; // Shows what item that was picked up
+    public GameObject interactbleUIGameObject; 
+    public GameObject itemInteractableGameObject; 
 
     protected override void Awake()
     {
@@ -38,6 +50,7 @@ public class PlayerManager : CharacterManager
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
+        blockingCollider = GetComponentInChildren<BlockingCollider>();
     }
 
     void Start()
@@ -56,7 +69,7 @@ public class PlayerManager : CharacterManager
         isHoldingArrow = animator.GetBool("isHoldingArrow");
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
-        animator.SetBool("isDead", playerStatsManager.isDead);
+        animator.SetBool("isDead", isDead);
 
         CheckForInteractableObject();
     }

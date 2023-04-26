@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
-    PlayerManager playerManager;
+    PlayerManager player;
 
     public HealthBar healthbar;
     StaminaBar staminaBar;
@@ -19,7 +19,7 @@ public class PlayerStatsManager : CharacterStatsManager
     protected override void Awake()
     {
         base.Awake();
-        playerManager = GetComponent<PlayerManager>();
+        player = GetComponent<PlayerManager>();
         staminaBar = FindObjectOfType<StaminaBar>();
         focusPointsBar = FindObjectOfType<FocusPointBar>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
@@ -46,7 +46,7 @@ public class PlayerStatsManager : CharacterStatsManager
         {
             poiseResetTimer = poiseResetTimer - Time.deltaTime;
         }
-        else if(poiseResetTimer <= 0 && !playerManager.isInteracting)
+        else if(poiseResetTimer <= 0 && !player.isInteracting)
         {
             totalPoiseDefence = armorPoiseBonus;
         }
@@ -56,7 +56,7 @@ public class PlayerStatsManager : CharacterStatsManager
 
     public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
     {
-        if (isDead)
+        if (player.isDead)
             return;
 
         base.TakeDamage(damage, fireDamage, damageAnimation);
@@ -68,14 +68,14 @@ public class PlayerStatsManager : CharacterStatsManager
         {
             currentHealth = 0;
             playerAnimatorManager.PlayTargetAnimation("Dead_01", true);
-            isDead = true;
+            player.isDead = true;
             //HANDLE PLAYER DEATH
         }
     }
 
     public override void TakePoisonDamage(int damage)
     {
-        if (isDead)
+        if (player.isDead)
             return;
 
         base.TakePoisonDamage(damage);
@@ -85,7 +85,7 @@ public class PlayerStatsManager : CharacterStatsManager
         {
             currentHealth = 0;
             playerAnimatorManager.PlayTargetAnimation("Dead_01", true);
-            isDead = true;
+            player.isDead = true;
         }
     }
     public override void TakeDamageNoAnimation(int damage, int fireDamage)

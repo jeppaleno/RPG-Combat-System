@@ -23515,6 +23515,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
     - target: {fileID: 3428380030494890771, guid: f23d281fa59c5f14390ddd34945ae397, type: 3}
+      propertyPath: currentHelmetEquipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428380030494890771, guid: f23d281fa59c5f14390ddd34945ae397, type: 3}
       propertyPath: currentLeftWeaponIndex
       value: 0
       objectReference: {fileID: 0}

@@ -10,7 +10,7 @@ public class AimAction : ItemAction
         if (player.isAiming)
             return;
 
-        player.inputManager.uiManager.crossHair.SetActive(true);
+        player.uiManager.crossHair.SetActive(true);
         player.isAiming = true;
     }
 }

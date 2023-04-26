@@ -5,10 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyManager : CharacterManager
 {
-    EnemyLocomotionManager enemyLocomotionManager;
-    EnemyAnimatorManager enemyAnimationManager;
-    EnemyStatsManager enemyStatsManager;
-    EnemyEffectsManager enemyEffectsManager;
+    public EnemyBossManager enemyBossManager;
+    public EnemyLocomotionManager enemyLocomotionManager;
+    public EnemyAnimatorManager enemyAnimatorManager;
+    public EnemyStatsManager enemyStatsManager;
+    public EnemyEffectsManager enemyEffectsManager;
     
     public State currentState;
     public CharacterStatsManager currentTarget;
@@ -36,7 +37,8 @@ public class EnemyManager : CharacterManager
     {
         base.Awake();
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
-        enemyAnimationManager = GetComponent<EnemyAnimatorManager>();
+        enemyBossManager = GetComponent<EnemyBossManager>();
+        enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
         enemyStatsManager = GetComponent<EnemyStatsManager>();
         enemyEffectsManager = GetComponent<EnemyEffectsManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
@@ -54,13 +56,13 @@ public class EnemyManager : CharacterManager
         HandleRecoveryTimer();
         HandleStateMachine();
 
-        isRotatingWithRootMotion = enemyAnimationManager.animator.GetBool("isRotatingWithRootMotion");
-        isInteracting = enemyAnimationManager.animator.GetBool("isInteracting");
-        isPhaseShifting = enemyAnimationManager.animator.GetBool("isPhaseShifting");
+        isRotatingWithRootMotion = enemyAnimatorManager.animator.GetBool("isRotatingWithRootMotion");
+        isInteracting = enemyAnimatorManager.animator.GetBool("isInteracting");
+        isPhaseShifting = enemyAnimatorManager.animator.GetBool("isPhaseShifting");
         //isInvulnerable = enemyAnimationManager.animator.GetBool("isInvulnerable");
-        canDoCombo = enemyAnimationManager.animator.GetBool("canDoCombo");
-        canRotate = enemyAnimationManager.animator.GetBool("canRotate");
-        enemyAnimationManager.animator.SetBool("isDead", enemyStatsManager.isDead);
+        canDoCombo = enemyAnimatorManager.animator.GetBool("canDoCombo");
+        canRotate = enemyAnimatorManager.animator.GetBool("canRotate");
+        enemyAnimatorManager.animator.SetBool("isDead", isDead);
     }
 
     protected override void FixedUpdate()
@@ -79,7 +81,7 @@ public class EnemyManager : CharacterManager
     {
        if (currentState != null)
         {
-            State nextState = currentState.Tick(this, enemyStatsManager, enemyAnimationManager);
+            State nextState = currentState.Tick(this, enemyStatsManager, enemyAnimatorManager);
 
             if (nextState != null)
             {

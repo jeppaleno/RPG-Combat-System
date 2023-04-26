@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyStatsManager : CharacterStatsManager
 {
-    EnemyManager enemyManager;
-    EnemyAnimatorManager enemyAnimatorManager;
-    EnemyBossManager enemyBossManager;
+    EnemyManager enemy;
     public UIEnemyHealthBar enemyHealthBar;
 
     public bool isBoss;
@@ -15,9 +13,7 @@ public class EnemyStatsManager : CharacterStatsManager
     protected override void Awake()
     {
         base.Awake();
-        enemyManager = GetComponent<EnemyManager>();
-        enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
-        enemyBossManager = GetComponent<EnemyBossManager>();
+        enemy = GetComponent<EnemyManager>();
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
     }
@@ -36,7 +32,7 @@ public class EnemyStatsManager : CharacterStatsManager
         {
             poiseResetTimer = poiseResetTimer - Time.deltaTime;
         }
-        else if (poiseResetTimer <= 0 && !enemyManager.isInteracting)
+        else if (poiseResetTimer <= 0 && !enemy.isInteracting)
         {
             totalPoiseDefence = armorPoiseBonus;
         }
@@ -54,21 +50,17 @@ public class EnemyStatsManager : CharacterStatsManager
 
         if (!isBoss)
         {
-            //currentHealth = currentHealth - damage;
             enemyHealthBar.SetHealth(currentHealth);
         }
-        else if (isBoss && enemyBossManager != null)
+        else if (isBoss && enemy.enemyBossManager != null)
         {
-            //currentHealth = currentHealth - damage;
-            enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+            enemy.enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
-
-        //enemyHealthBar.SetHealth(currentHealth);
     }
 
     public override void TakePoisonDamage(int damage)
     {
-        if (isDead)
+        if (enemy.isDead)
             return;
 
         base.TakePoisonDamage(damage);
@@ -78,10 +70,10 @@ public class EnemyStatsManager : CharacterStatsManager
             //currentHealth = currentHealth - damage;
             enemyHealthBar.SetHealth(currentHealth);
         }
-        else if (isBoss && enemyBossManager != null)
+        else if (isBoss && enemy.enemyBossManager != null)
         {
             //currentHealth = currentHealth - damage;
-            enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+            enemy.enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 
         //enemyHealthBar.SetHealth(currentHealth);
@@ -89,14 +81,14 @@ public class EnemyStatsManager : CharacterStatsManager
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            enemyAnimatorManager.PlayTargetAnimation("Dead_01", true, true);
-            isDead = true;
+            enemy.enemyAnimatorManager.PlayTargetAnimation("Dead_01", true, true);
+            enemy.isDead = true;
         }
     }
 
     public void BreakGuard()
     {
-        enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);
+        enemy.enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);
     }
 
     public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
@@ -107,12 +99,12 @@ public class EnemyStatsManager : CharacterStatsManager
         {
             enemyHealthBar.SetHealth(currentHealth);
         }
-        else if (isBoss && enemyBossManager != null)
+        else if (isBoss && enemy.enemyBossManager != null)
         {
-            enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+            enemy.enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 
-        enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
+        enemy.enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
 
         if (currentHealth <= 0)
         {
@@ -124,7 +116,7 @@ public class EnemyStatsManager : CharacterStatsManager
     private void HandleDeath()
     {
         currentHealth = 0;
-        enemyAnimatorManager.PlayTargetAnimation("Dead_01", true);
-        isDead = true;
+        enemy.enemyAnimatorManager.PlayTargetAnimation("Dead_01", true);
+        enemy.isDead = true;
     }
 }

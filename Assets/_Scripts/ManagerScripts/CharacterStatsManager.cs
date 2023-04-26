@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterStatsManager : MonoBehaviour
 {
-    CharacterAnimatorManager characterAnimatorManager;
+    CharacterManager character;
 
     [Header("Team I.D")]
     public int teamIDNumber = 0;
@@ -54,11 +54,10 @@ public class CharacterStatsManager : MonoBehaviour
     public float fireDamageAbsorptionLegs;
     public float fireDamageAbsorptionHands;
 
-    public bool isDead;
 
     protected virtual void Awake()
     {
-        characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+        character = GetComponent<CharacterManager>();
     }
 
     private void Start()
@@ -73,10 +72,10 @@ public class CharacterStatsManager : MonoBehaviour
 
     public virtual void TakeDamage(int physicalDamage, int fireDamage, string damageAnimation)
     {
-        if (isDead)
+        if (character.isDead)
             return;
 
-        characterAnimatorManager.EraseHandIKWeapon();
+        character.characterAnimatorManager.EraseHandIKWeapon();
 
         float totalPhysicalDamageAbsorptions = 1 -
             (1 - physicalDamageAbsoptionHead / 100) *
@@ -105,13 +104,13 @@ public class CharacterStatsManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            isDead = true;
+            character.isDead = true;
         }
     }
 
     public virtual void TakeDamageNoAnimation(int damage, int fireDamage)
     {
-        if (isDead)
+        if (character.isDead)
             return;
 
         float totalFireDamageAbsorption = 1 -
@@ -131,7 +130,7 @@ public class CharacterStatsManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            isDead = true;
+            character.isDead = true;
         }
     }
 
@@ -142,7 +141,7 @@ public class CharacterStatsManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            isDead = true;
+            character.isDead = true;
         }
     }
 
