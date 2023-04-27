@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeadEquipmentSlotUI : MonoBehaviour
+public class LegEquipmentSlotUI : MonoBehaviour
 {
     UIManager uiManager;
     public Image icon;
-    HelmetEquipment item;
+    LegEquipment item;
 
     private void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
     }
 
-    public void AddItem(HelmetEquipment helmetEquipment)
+    public void AddItem(LegEquipment legEquipment)
     {
-        if (helmetEquipment != null)
+        if (legEquipment != null)
         {
-            item = helmetEquipment;
+            item = legEquipment;
             icon.sprite = item.itemIcon;
             icon.enabled = true;
             gameObject.SetActive(true);
@@ -39,6 +39,6 @@ public class HeadEquipmentSlotUI : MonoBehaviour
 
     public void SelectThisSlot()
     {
-        uiManager.headEquipmentSlotSelected = true;
+        uiManager.legEquipmentSlotSelected = true;
     }
 }

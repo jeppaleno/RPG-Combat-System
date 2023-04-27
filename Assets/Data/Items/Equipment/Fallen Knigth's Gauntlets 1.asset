@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e8c4becc6369b449b394831eac29ba4, type: 3}
-  m_Name: Knigth's Gauntlets
+  m_Name: Fallen Knigth's Gauntlets 1
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 6a9a23b4229388a4a9f993902f6b97a2, type: 3}
-  itemName: Knight's Gauntless
+  itemName: Fallen Knight's Gauntless
   physicalDefense: 6.5
-  leftHandModelName: Chr_HandLeft_Male_14
-  rightHandModelName: Chr_HandRight_Male_14
-  lowerLeftArmModelName: Chr_ArmLowerLeft_Male_11
-  lowerRightArmModelName: Chr_ArmLowerRight_Male_11
+  leftHandModelName: Chr_HandLeft_Male_12
+  rightHandModelName: Chr_HandRight_Male_12
+  lowerLeftArmModelName: Chr_ArmLowerLeft_Male_12
+  lowerRightArmModelName: Chr_ArmLowerRight_Male_12

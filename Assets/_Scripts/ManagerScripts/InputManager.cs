@@ -334,7 +334,8 @@ public class InputManager : MonoBehaviour
                     player.UpdateWhichHandCharacterIsUsing(false);
                     player.playerInventoryManager.currentItemBeingUsed = player.playerInventoryManager.leftWeapon;
                     player.playerInventoryManager.leftWeapon.tap_LB_Action.PerformAction(player);
-                }            }
+                }
+            }
         }
     }
 

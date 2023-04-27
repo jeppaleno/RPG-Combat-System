@@ -87,12 +87,12 @@ public class PlayerEquipmentManager : MonoBehaviour
         upperLeftArmModelChanger.UnEquipAllModels();
         upperRightArmModelChanger.UnEquipAllModels();
 
-        if (player.playerInventoryManager.currentTorsoEquipment != null)
+        if (player.playerInventoryManager.currentBodyEquipment != null)
         {
-            torsoModelChanger.EquipTorsoModelByName(player.playerInventoryManager.currentTorsoEquipment.torsoModelName);
-            upperLeftArmModelChanger.EquipModelByName(player.playerInventoryManager.currentTorsoEquipment.upperLeftArmModelName);
-            upperRightArmModelChanger.EquipModelByName(player.playerInventoryManager.currentTorsoEquipment.upperRightArmModelName);
-            player.playerStatsManager.physicalDamageAbsoptionBody = player.playerInventoryManager.currentTorsoEquipment.physicalDefense;
+            torsoModelChanger.EquipTorsoModelByName(player.playerInventoryManager.currentBodyEquipment.torsoModelName);
+            upperLeftArmModelChanger.EquipModelByName(player.playerInventoryManager.currentBodyEquipment.upperLeftArmModelName);
+            upperRightArmModelChanger.EquipModelByName(player.playerInventoryManager.currentBodyEquipment.upperRightArmModelName);
+            player.playerStatsManager.physicalDamageAbsoptionBody = player.playerInventoryManager.currentBodyEquipment.physicalDefense;
             //Debug.Log("Body Absorption is " + player.playerStatsManager.physicalDamageAbsoptionBody + "%");
         }
         else

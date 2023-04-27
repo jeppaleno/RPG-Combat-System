@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a57d11abcc41914aa46159b86f0632e, type: 3}
   m_Name: Knigth's Platelegs 1
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 600efcd1e359c604b823dcc06b09c4fc, type: 3}
   itemName: Knigth's Platelegs
   physicalDefense: 10
   hipModelName: Chr_Hips_Male_02

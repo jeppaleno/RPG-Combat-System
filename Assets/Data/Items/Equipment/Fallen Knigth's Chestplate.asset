@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69a24f9a5d10344d889503ad6710a73, type: 3}
+  m_Script: {fileID: 11500000, guid: d175fa41e167cf244bda24a76a45594c, type: 3}
   m_Name: Fallen Knigth's Chestplate
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
-  itemName: Fallen Knigth's Chestplate
-  physicalDefense: 10
-  torsoModelName: Chr_Torso_Male_26
-  upperLeftArmModelName: 
-  upperRightArmModelName: 
+  itemIcon: {fileID: 21300000, guid: 1e65596f00ccf9f49a572073168dd6cf, type: 3}
+  itemName: Fallen knigth's Chestplate
+  physicalDefense: 0
+  torsoModelName: Chr_Torso_Male_20
+  upperLeftArmModelName: Chr_ArmUpperLeft_Male_07
+  upperRightArmModelName: Chr_ArmUpperRight_Male_07
