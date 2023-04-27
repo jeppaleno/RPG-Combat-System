@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public PlayerManager player;
+    public ItemStatsWindowUI itemStatsWindowUI;
     public EquipmentWindowUI equipmentWindowUI;
     public QuickSlotsUI quickSlotsUI;
 
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
     public GameObject selectWindow;
     public GameObject equipmentScreenWindow;
     public GameObject weaponInventoryWindow;
+    public GameObject itemStatsWindow;
     public GameObject levelUpWindow;
 
     [Header("Equipment Window Slot Selected")]
@@ -58,9 +60,10 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        quickSlotsUI = GetComponentInChildren<QuickSlotsUI>();
         player = FindObjectOfType<PlayerManager>();
+        quickSlotsUI = GetComponentInChildren<QuickSlotsUI>();
 
+        
         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
         headEquipmentInventorySlots = headEquipmentInventorySlotParent.GetComponentsInChildren<HeadEquipmentInventorySlot>();
         bodyEquipmentInventorySlots = bodyEquipmentInventorySlotParent.GetComponentsInChildren<BodyEquipmentInventorySlot>();
@@ -198,6 +201,7 @@ public class UIManager : MonoBehaviour
         ResetAllSelectedSlots();
         weaponInventoryWindow.SetActive(false);
         equipmentScreenWindow.SetActive(false);
+        itemStatsWindow.SetActive(false);
     }
 
     public void ResetAllSelectedSlots()

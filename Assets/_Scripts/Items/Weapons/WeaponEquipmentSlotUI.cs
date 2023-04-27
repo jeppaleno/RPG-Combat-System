@@ -44,6 +44,8 @@ public class WeaponEquipmentSlotUI : MonoBehaviour
 
     public void SelectThisSlot()
     {
+        uiManager.ResetAllSelectedSlots();
+
         if (rightHandSlot01)
         {
             uiManager.rightHandSlot01Selected = true;
@@ -60,5 +62,7 @@ public class WeaponEquipmentSlotUI : MonoBehaviour
         {
             uiManager.leftHandSlot02Selected = true;
         }
+
+        uiManager.itemStatsWindowUI.UpdateWeaponItemStats(weapon);
     }
 }
