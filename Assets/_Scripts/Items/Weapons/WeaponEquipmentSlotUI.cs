@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HandEquipmentSlotUI : MonoBehaviour
+public class WeaponEquipmentSlotUI : MonoBehaviour
 {
     UIManager uiManager;
     public Image icon;

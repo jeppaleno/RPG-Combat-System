@@ -7,7 +7,7 @@ public class BombConsumableItem : ConsumableItem
 {
     [Header("Velocity")]
     public int upwardVelocity = 50;
-    public int forwardVelocity = 50;
+    public int forwardVelocity = 500;
     public int bombMass = 1;
 
     [Header("Live Bomb Model")]

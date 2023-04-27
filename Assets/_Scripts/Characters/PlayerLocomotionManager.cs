@@ -70,8 +70,8 @@ public class PlayerLocomotionManager : MonoBehaviour
 
         Vector3 cameraForward = Vector3.ProjectOnPlane(player.cameraManager.cameraObject.transform.forward, Vector3.up).normalized;
         Vector3 cameraRight = Vector3.ProjectOnPlane(player.cameraManager.cameraObject.transform.right, Vector3.up).normalized;
-        moveDirection = cameraForward * player.inputManager.verticalInput;  //Forward Movement
-        moveDirection = moveDirection + cameraRight * player.inputManager.horizontalInput; //Left/Right Movement
+        moveDirection = cameraForward * player.inputManager.verticalInput;  
+        moveDirection = moveDirection + cameraRight * player.inputManager.horizontalInput; 
         moveDirection.Normalize();
         moveDirection.y = 0;
 

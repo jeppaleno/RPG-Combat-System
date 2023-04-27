@@ -64,6 +64,8 @@ public class InputManager : MonoBehaviour
         {
             playerControls = new PlayerControls();
 
+            playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
@@ -350,7 +352,10 @@ public class InputManager : MonoBehaviour
 
     private void HandleInventoryInput()
     {
-        playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
+        if (inventoryFlag)
+        {
+            player.uiManager.UpdateUI();
+        }
 
         if (inventory_Input)
         {
@@ -359,7 +364,6 @@ public class InputManager : MonoBehaviour
             if (inventoryFlag)
             {
                 player.uiManager.OpenSelectWindow();
-                player.uiManager.UpdateUI();
                 player.uiManager.hudWindow.SetActive(false);
             }
             else

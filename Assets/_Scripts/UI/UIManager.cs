@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    PlayerManager playerManager;
+    public PlayerManager player;
     public EquipmentWindowUI equipmentWindowUI;
     public QuickSlotsUI quickSlotsUI;
 
@@ -26,44 +26,81 @@ public class UIManager : MonoBehaviour
     public bool rightHandSlot02Selected;
     public bool leftHandSlot01Selected;
     public bool leftHandSlot02Selected;
+    public bool headEquipmentSlotSelected;
 
     [Header("Weapon Inventory")]
     public GameObject weaponInventorySlotPrefab;
     public Transform weaponInventorySlotsParent; // Where slots instantiates on
     WeaponInventorySlot[] weaponInventorySlots;
 
+    [Header("Head Equipment Inventory")]
+    public GameObject headEquipmentInventorySlotPrefab;
+    public Transform headEquipmentInventorySlotParent;
+    HeadEquipmentInventorySlot[] headEquipmentInventorySlots;
+
     private void Awake()
     {
         quickSlotsUI = GetComponentInChildren<QuickSlotsUI>();
-        playerManager = FindObjectOfType<PlayerManager>();
+        player = FindObjectOfType<PlayerManager>();
+
+        weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+        headEquipmentInventorySlots = headEquipmentInventorySlotParent.GetComponentsInChildren<HeadEquipmentInventorySlot>();
     }
 
 
     private void Start()
     {
-        weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-        equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerManager.playerInventoryManager);
-        quickSlotsUI.UpdateCurrentSpellIcon(playerManager.playerInventoryManager.currentSpell);
-        quickSlotsUI.UpdateCurrentConsumableIcon(playerManager.playerInventoryManager.currentConsumable);
-        soulCount.text = playerManager.playerStatsManager.currentSoulCount.ToString();
+        equipmentWindowUI.LoadWeaponsOnEquipmentScreen(player.playerInventoryManager);
+
+        if (player.playerInventoryManager.currentSpell != null)
+        {
+            quickSlotsUI.UpdateCurrentSpellIcon(player.playerInventoryManager.currentSpell);
+        }
+      
+        if (player.playerInventoryManager.currentConsumable != null)
+        {
+            quickSlotsUI.UpdateCurrentConsumableIcon(player.playerInventoryManager.currentConsumable);
+        }
+        
+        soulCount.text = player.playerStatsManager.currentSoulCount.ToString();
     }
 
     public void UpdateUI()
     {
+        //Weapen Inventory slots
         for (int i = 0; i < weaponInventorySlots.Length; i++)
         {
-            if (i < playerManager.playerInventoryManager.weaponInventory.Count)
+            if (i < player.playerInventoryManager.weaponInventory.Count)
             {
-                if (weaponInventorySlots.Length < playerManager.playerInventoryManager.weaponInventory.Count)
+                if (weaponInventorySlots.Length < player.playerInventoryManager.weaponInventory.Count)
                 {
                     Instantiate(weaponInventorySlotPrefab, weaponInventorySlotsParent);
                     weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
                 }
-                weaponInventorySlots[i].AddItem(playerManager.playerInventoryManager.weaponInventory[i]);
+                weaponInventorySlots[i].AddItem(player.playerInventoryManager.weaponInventory[i]);
             }
             else
             {
                 weaponInventorySlots[i].ClearInventorySlot();
+            }
+        }
+
+        // Head Equipment inventory slots
+
+        for (int i = 0; i < headEquipmentInventorySlots.Length; i++)
+        {
+            if (i < player.playerInventoryManager.headEquipmentInventory.Count)
+            {
+                if (headEquipmentInventorySlots.Length < player.playerInventoryManager.headEquipmentInventory.Count)
+                {
+                    Instantiate(headEquipmentInventorySlotParent, headEquipmentInventorySlotParent);
+                    headEquipmentInventorySlots = headEquipmentInventorySlotParent.GetComponentsInChildren<HeadEquipmentInventorySlot>();
+                }
+                headEquipmentInventorySlots[i].AddItem(player.playerInventoryManager.headEquipmentInventory[i]);
+            }
+            else
+            {
+                headEquipmentInventorySlots[i].ClearInventorySlot();
             }
         }
     }
@@ -91,5 +128,7 @@ public class UIManager : MonoBehaviour
         rightHandSlot02Selected = false;
         leftHandSlot01Selected = false;
         leftHandSlot02Selected = false;
+
+        headEquipmentSlotSelected = false;
     }
 }

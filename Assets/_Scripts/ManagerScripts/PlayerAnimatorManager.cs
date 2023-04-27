@@ -24,7 +24,7 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
         float snappedVertical;
 
         #region Snapped Horizontal
-        if (horizontalMovement > 0 && horizontalMovement < 0.55f)
+        if (horizontalMovement > 0 && horizontalMovement < 0.55)
         {
             snappedHorizontal = 0.5f;
         }

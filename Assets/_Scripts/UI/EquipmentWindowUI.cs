@@ -4,58 +4,42 @@ using UnityEngine;
 
 public class EquipmentWindowUI : MonoBehaviour
 {
-    public bool rightHandSlot01Selected;
-    public bool rightHandSlot02Selected;
-    public bool leftHandSlot01Selected;
-    public bool leftHandSlot02Selected;
-
-    public HandEquipmentSlotUI[] handEquipmentSlotUI;
-
-  
+    public WeaponEquipmentSlotUI[] weaponEquipmentSlotsUI;
+    public HeadEquipmentSlotUI headEquipmentSlotUI;
 
     public void LoadWeaponsOnEquipmentScreen(PlayerInventoryManager playerInventory)
     {
-        for (int i = 0; i < handEquipmentSlotUI.Length; i++)
+        for (int i = 0; i < weaponEquipmentSlotsUI.Length; i++)
         {
-            if (handEquipmentSlotUI[i].rightHandSlot01)
+            if (weaponEquipmentSlotsUI[i].rightHandSlot01)
             {
-                handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInRightHandSlots[0]);
+                weaponEquipmentSlotsUI[i].AddItem(playerInventory.weaponsInRightHandSlots[0]);
             }
-            else if (handEquipmentSlotUI[i].rightHandSlot02)
+            else if (weaponEquipmentSlotsUI[i].rightHandSlot02)
             {
-                handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInRightHandSlots[1]);
+                weaponEquipmentSlotsUI[i].AddItem(playerInventory.weaponsInRightHandSlots[1]);
             }
-            else if (handEquipmentSlotUI[i].leftHandSlot01)
+            else if (weaponEquipmentSlotsUI[i].leftHandSlot01)
             {
-                handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[0]);
+                weaponEquipmentSlotsUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[0]);
             }
             else
             {
-                handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[1]);
+                weaponEquipmentSlotsUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[1]);
             }
         }
         
     }
 
-    public void SelectRightHandSlot01()
+    public void LoadArmorOnEquipmentScreen(PlayerInventoryManager playerInventory)
     {
-        rightHandSlot01Selected = true;
+        if (playerInventory.currentHelmetEquipment != null)
+        {
+            headEquipmentSlotUI.AddItem(playerInventory.currentHelmetEquipment);
+        }
+        else
+        {
+            headEquipmentSlotUI.ClearItem();
+        }
     }
-
-    public void SelectRightHandSlot02()
-    {
-        rightHandSlot02Selected = true;
-    }
-
-    public void SelectLeftHandSlot01()
-    {
-        leftHandSlot01Selected = true;
-    }
-
-    public void SelectLeftHandSlot02()
-    {
-        leftHandSlot02Selected = true;
-    }
-
-
 }

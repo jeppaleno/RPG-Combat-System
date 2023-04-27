@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInventoryManager : CharacterInventoryManager
 {
     public List<WeaponItem> weaponInventory;
+    public List<HelmetEquipment> headEquipmentInventory;
 
     public void changeRightWeapon()
     {

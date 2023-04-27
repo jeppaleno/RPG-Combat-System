@@ -513,7 +513,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""161c3ddc-458f-4832-aa1f-353f039cb256"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
