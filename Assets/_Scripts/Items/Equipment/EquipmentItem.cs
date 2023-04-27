@@ -6,8 +6,13 @@ public class EquipmentItem : Item
 {
     [Header("Defense Bonus")]
     public float physicalDefense;
-    //Magic def
-    //Fire def
-    //Lightning Def
-    //Darkness Def
+    public float magicDefense;
+    [Space]
+    public float fireDefense;
+    public float lightningDefense;
+    public float darknessDefense;
+
+    [Header("Resistances")]
+    public float poisonResistance;
+
 }
