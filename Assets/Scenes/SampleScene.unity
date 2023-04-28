@@ -8877,9 +8877,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takingDamageSounds:
-  - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
-  - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
-  - {fileID: 8300000, guid: ef18a5a7071e4a54ba749b93057e0864, type: 3}
+  - {fileID: 8300000, guid: d836e67f771d4ef42901f49b8976ab07, type: 3}
+  - {fileID: 8300000, guid: 3b4fdec1b0c0f7d4382986bd8ebca9e8, type: 3}
+  - {fileID: 8300000, guid: 934483a83b8f69848a5be1936ddf9403, type: 3}
 --- !u!82 &795201551
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19674,9 +19674,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takingDamageSounds:
-  - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
-  - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
-  - {fileID: 8300000, guid: ef18a5a7071e4a54ba749b93057e0864, type: 3}
+  - {fileID: 8300000, guid: d836e67f771d4ef42901f49b8976ab07, type: 3}
+  - {fileID: 8300000, guid: 3b4fdec1b0c0f7d4382986bd8ebca9e8, type: 3}
+  - {fileID: 8300000, guid: 934483a83b8f69848a5be1936ddf9403, type: 3}
 --- !u!82 &1711895240
 AudioSource:
   m_ObjectHideFlags: 0
