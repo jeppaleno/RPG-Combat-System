@@ -64,6 +64,7 @@ public class PlayerManager : CharacterManager
         canRotate = animator.GetBool("canRotate");
         isFiringSpell = animator.GetBool("isFiringSpell");
         isHoldingArrow = animator.GetBool("isHoldingArrow");
+        isPerformingFullyChargedAttack = animator.GetBool("isPerformingFullyChargedAttack");
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
         animator.SetBool("isDead", isDead);

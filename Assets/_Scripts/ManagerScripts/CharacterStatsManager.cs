@@ -70,7 +70,7 @@ public class CharacterStatsManager : MonoBehaviour
         HandlePoiseResetTimer();
     }
 
-    public virtual void TakeDamage(int physicalDamage, int fireDamage, string damageAnimation)
+    public virtual void TakeDamage(int physicalDamage, int fireDamage, string damageAnimation, CharacterManager enemyCharacterDamagingMe)
     {
         if (character.isDead)
             return;
@@ -98,6 +98,11 @@ public class CharacterStatsManager : MonoBehaviour
         float finalDamage = physicalDamage + fireDamage;
 
         Debug.Log("Total Damage Dealt is" + finalDamage);
+
+        if (enemyCharacterDamagingMe.isPerformingFullyChargedAttack)
+        {
+            finalDamage = finalDamage * 2;
+        }
 
         currentHealth = Mathf.RoundToInt(currentHealth - finalDamage);
 

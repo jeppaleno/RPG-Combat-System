@@ -349,7 +349,16 @@
                     "id": "a47b046c-47db-4e69-9085-39751b66a68c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hold RT",
+                    "type": "PassThrough",
+                    "id": "7c69bed7-6bea-4887-9c9a-0e12d54536c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
@@ -837,6 +846,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "TapLB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5fb5215-4859-4588-a79e-0ae16e226bff",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8627e68e-7193-4b89-9c89-abdeb86328c6",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold RT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -50,12 +50,12 @@ public class PlayerStatsManager : CharacterStatsManager
 
 
 
-    public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
+    public override void TakeDamage(int damage, int fireDamage, string damageAnimation, CharacterManager enemyCharacterDamagingMe)
     {
         if (player.isDead)
             return;
 
-        base.TakeDamage(damage, fireDamage, damageAnimation);
+        base.TakeDamage(damage, fireDamage, damageAnimation, enemyCharacterDamagingMe);
 
         healthbar.SetCurrentHealth(currentHealth);
         player.playerAnimatorManager.PlayTargetAnimation(damageAnimation, true);

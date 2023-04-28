@@ -93,7 +93,7 @@ public class DamageCollider : MonoBehaviour
                 }
                 else
                 {
-                    enemyStats.TakeDamage(physicalDamage, 0, currentDamageAnimation);
+                    enemyStats.TakeDamage(physicalDamage, 0, currentDamageAnimation, characterManager);
                 }
             }
         }
@@ -127,7 +127,7 @@ public class DamageCollider : MonoBehaviour
 
             if (enemyStats != null)
             {
-                enemyStats.TakeDamage(Mathf.RoundToInt(physicalDamageAfterBlock), 0, "Block Guard");
+                enemyStats.TakeDamage(Mathf.RoundToInt(physicalDamageAfterBlock), 0, "Block Guard", characterManager);
                 shieldHasBeenHit = true;
             }
         }

@@ -91,9 +91,9 @@ public class EnemyStatsManager : CharacterStatsManager
         enemy.enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);
     }
 
-    public override void TakeDamage(int damage, int fireDamage, string damageAnimation)
+    public override void TakeDamage(int damage, int fireDamage, string damageAnimation, CharacterManager enemyCharacterDamagingMe)
     {
-        base.TakeDamage(damage, fireDamage, damageAnimation);
+        base.TakeDamage(damage, fireDamage, damageAnimation, enemyCharacterDamagingMe);
         
         if (!isBoss)
         {

@@ -33,12 +33,22 @@ public class WeaponItem : Item
     public float heavyAttackMultiplier;
 
     [Header("Item Actions")]
-    public ItemAction hold_RB_Action;
-    public ItemAction tap_RB_Action;
-    public ItemAction tap_LB_Action;
-    public ItemAction hold_LB_Action;
-    public ItemAction tap_RT_Action;
-    public ItemAction hold_RT_Action;
-    public ItemAction tap_LT_Action;
-    public ItemAction hold_LT_Action;
+    public ItemAction oh_hold_RB_Action;
+    public ItemAction oh_tap_RB_Action;
+    public ItemAction oh_tap_LB_Action;
+    public ItemAction oh_hold_LB_Action;
+    public ItemAction oh_tap_RT_Action;
+    public ItemAction oh_hold_RT_Action;
+    public ItemAction oh_tap_LT_Action;
+    public ItemAction oh_hold_LT_Action;
+
+    [Header("TWO Handed Item Actions")]
+    public ItemAction th_hold_RB_Action;
+    public ItemAction th_tap_RB_Action;
+    public ItemAction th_tap_LB_Action;
+    public ItemAction th_hold_LB_Action;
+    public ItemAction th_tap_RT_Action;
+    public ItemAction th_hold_RT_Action;
+    public ItemAction th_tap_LT_Action;
+    public ItemAction th_hold_LT_Action;
 }
