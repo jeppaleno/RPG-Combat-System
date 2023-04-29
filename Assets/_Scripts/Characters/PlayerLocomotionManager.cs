@@ -81,7 +81,7 @@ public class PlayerLocomotionManager : MonoBehaviour
                 return;
 
             moveDirection = moveDirection * sprintingSpeed;
-            player.playerStatsManager.TakeStaminaDamage(sprintStaminaCost);
+            player.playerStatsManager.DeductStamina(sprintStaminaCost);
         }
         else
         {
@@ -226,7 +226,7 @@ public class PlayerLocomotionManager : MonoBehaviour
 
         if (isGrounded)
         {
-            
+            player.inputManager.jump_Input = false;
             player.animator.SetBool("isJumping", true);
             player.playerAnimatorManager.PlayTargetAnimation("Jump", false);
             player.playerAnimatorManager.EraseHandIKWeapon();
@@ -264,11 +264,13 @@ public class PlayerLocomotionManager : MonoBehaviour
                 moveDirection.y = 0;
                 Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                 player.transform.rotation = rollRotation;
+                player.playerStatsManager.DeductStamina(2); //Make a rollstaminacost
             }
             else
             {
                 player.playerAnimatorManager.PlayTargetAnimation("Dodge", true, true);
                 player.playerAnimatorManager.EraseHandIKWeapon();
+                player.playerStatsManager.DeductStamina(2); //Make a backstepStaminaCost
             }
         }
     }

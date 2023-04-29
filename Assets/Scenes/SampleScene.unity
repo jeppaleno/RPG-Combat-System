@@ -31925,6 +31925,14 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1278080704630395909}
+    - target: {fileID: 3428380030494890798, guid: f23d281fa59c5f14390ddd34945ae397, type: 3}
+      propertyPath: staminaRegenTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428380030494890798, guid: f23d281fa59c5f14390ddd34945ae397, type: 3}
+      propertyPath: staminaRegenerationAmount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3429353915996359290, guid: f23d281fa59c5f14390ddd34945ae397, type: 3}
       propertyPath: m_IsActive
       value: 0

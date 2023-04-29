@@ -13,8 +13,8 @@ public class CharacterStatsManager : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
-    public int maxStamina;
-    public int currentStamina;
+    public float maxStamina;
+    public float currentStamina;
 
     public int currentSoulCount = 0;
     public int soulsAwardedOnDeath = 50;
@@ -164,9 +164,9 @@ public class CharacterStatsManager : MonoBehaviour
         }
     }
 
-    public void DrainStaminaBasedOnAttackType()
+    public virtual void DeductStamina(float staminaToDeduct)
     {
-
+        currentStamina = currentStamina - staminaToDeduct;
     }
 
     public int SetMaxHealthFromHealthLevel()
@@ -175,7 +175,7 @@ public class CharacterStatsManager : MonoBehaviour
         return maxHealth;
     }
 
-    public int SetMaxStaminaFromStaminaLevel()
+    public float SetMaxStaminaFromStaminaLevel()
     {
         maxStamina = staminaLevel * 10;
         return maxStamina;

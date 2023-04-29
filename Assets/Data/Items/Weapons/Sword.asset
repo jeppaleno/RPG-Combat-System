@@ -27,9 +27,9 @@ MonoBehaviour:
   poiseBreak: 25
   offensivePoiseBonus: 10
   physicalDamageAbsorption: 22
-  baseStamina: 20
-  lightAttackMultiplier: 1
-  heavyAttackMultiplier: 2
+  baseStaminaCost: 15
+  lightAttackStaminaMultiplier: 1
+  heavyAttackStaminaMultiplier: 2
   oh_hold_RB_Action: {fileID: 11400000, guid: 99d7ff5bdbc27c347acc7dcf040086f3, type: 2}
   oh_tap_RB_Action: {fileID: 11400000, guid: 04da5993bd065cd4b87232177038fbcc, type: 2}
   oh_tap_LB_Action: {fileID: 0}

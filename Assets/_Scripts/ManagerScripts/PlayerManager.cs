@@ -69,6 +69,8 @@ public class PlayerManager : CharacterManager
         animator.SetBool("isBlocking", isBlocking);
         animator.SetBool("isDead", isDead);
 
+        playerStatsManager.RegenerateStamina();
+
         CheckForInteractableObject();
     }
 

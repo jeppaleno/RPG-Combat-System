@@ -10,8 +10,11 @@ public class PlayerStatsManager : CharacterStatsManager
     public StaminaBar staminaBar;
     public FocusPointBar focusPointsBar;
 
-    private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
-    private Coroutine regen;
+    public float staminaRegenerationAmount = 30;
+    private float staminaRegenTimer = 1;
+
+    //private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
+    //private Coroutine regen;
 
     protected override void Awake()
     {
@@ -36,6 +39,7 @@ public class PlayerStatsManager : CharacterStatsManager
         focusPointsBar.SetCurrentFocusPoints(currentFocusPoints);
     }
 
+
     public override void HandlePoiseResetTimer()
     {
         if (poiseResetTimer > 0)
@@ -47,7 +51,6 @@ public class PlayerStatsManager : CharacterStatsManager
             totalPoiseDefence = armorPoiseBonus;
         }
     }
-
 
 
     public override void TakeDamage(int damage, int fireDamage, string damageAnimation, CharacterManager enemyCharacterDamagingMe)
@@ -90,31 +93,28 @@ public class PlayerStatsManager : CharacterStatsManager
         healthbar.SetCurrentHealth(currentHealth);
     }
 
-    public void TakeStaminaDamage(int damage)
+    public override void DeductStamina(float staminaToDeduct)
     {
-        currentStamina = currentStamina - damage;
-        staminaBar.SetCurrentStamina(currentStamina);
-
-        if (regen != null)
-        {
-            StopCoroutine(regen);
-        }
-        regen = StartCoroutine(StaminaRegen());
-
+        base.DeductStamina(staminaToDeduct);
+        staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
     }
 
-    private IEnumerator StaminaRegen()
+    public void RegenerateStamina()
     {
-        yield return new WaitForSeconds(0.5f);
-
-        while (currentStamina < maxStamina)
+        if (player.isInteracting)
         {
-            currentStamina += maxStamina / 40;
-            staminaBar.SetCurrentStamina(currentStamina);
-            yield return regenTicks;
+            staminaRegenTimer = 0;
         }
+        else
+        {
+            staminaRegenTimer += Time.deltaTime;
 
-        regen = null;
+            if (currentStamina < maxStamina && staminaRegenTimer > 1f)
+            {
+                currentStamina += staminaRegenerationAmount * Time.deltaTime;
+                staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+            }
+        }
     }
 
     public void HealPlayer(int healAmount)
