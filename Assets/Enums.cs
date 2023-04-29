@@ -20,6 +20,16 @@ public enum AmmoType
     Bolt
 }
 
+public enum AttackType
+{
+    light,
+    heavy
+    //lightattack01
+    //lightattack02
+    //heavyattack01
+    //heavyattack02
+}
+
 public class Enums : MonoBehaviour
 {
    

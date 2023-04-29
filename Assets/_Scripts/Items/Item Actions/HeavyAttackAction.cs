@@ -34,6 +34,8 @@ public class HeavyAttackAction : ItemAction
 
             HandleHeavyAttack(player);
         }
+
+        player.playerCombatManager.currentAttackType = AttackType.heavy;
     }
 
     private void HandleHeavyAttack(PlayerManager player)

@@ -60685,15 +60685,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.96666664
-    functionName: DrainStaminaLightAttack
+  - time: 0.93333334
+    functionName: CloseDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2666667
-    functionName: CloseDamageCollider
+  - time: 0.96666664
+    functionName: DrainStaminaLightAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

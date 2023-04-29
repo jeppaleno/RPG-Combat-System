@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     public CharacterInventoryManager characterInventoryManager;
     public CharacterEffectsManager characterEffectsManager;
     public CharacterSoundFXManager characterSoundFXManager;
+    public CharacterCombatManager characterCombatManager;
 
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
@@ -61,6 +62,7 @@ public class CharacterManager : MonoBehaviour
         characterInventoryManager = GetComponent<CharacterInventoryManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
+        characterCombatManager = GetComponent<CharacterCombatManager>();
     }
 
     protected virtual void FixedUpdate()

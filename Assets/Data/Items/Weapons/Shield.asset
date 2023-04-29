@@ -21,6 +21,8 @@ MonoBehaviour:
   weaponType: 5
   physicalDamage: 0
   fireDamage: 0
+  lightAttackDamageModifier: 0
+  heavyAttackDamageModifier: 0
   criticalDamageMultiplier: 4
   poiseBreak: 0
   offensivePoiseBonus: 0
@@ -28,11 +30,20 @@ MonoBehaviour:
   baseStamina: 0
   lightAttackMultiplier: 0
   heavyAttackMultiplier: 0
-  hold_RB_Action: {fileID: 0}
-  tap_RB_Action: {fileID: 0}
-  tap_LB_Action: {fileID: 0}
-  hold_LB_Action: {fileID: 11400000, guid: fce9fb951a4ddca40bee459713c9c4e8, type: 2}
-  tap_RT_Action: {fileID: 0}
-  hold_RT_Action: {fileID: 0}
-  tap_LT_Action: {fileID: 11400000, guid: 71ec934be8ea99b42a91e5d998cd9dd8, type: 2}
-  hold_LT_Action: {fileID: 0}
+  oh_hold_RB_Action: {fileID: 0}
+  oh_tap_RB_Action: {fileID: 0}
+  oh_tap_LB_Action: {fileID: 0}
+  oh_hold_LB_Action: {fileID: 11400000, guid: fce9fb951a4ddca40bee459713c9c4e8, type: 2}
+  oh_tap_RT_Action: {fileID: 0}
+  oh_hold_RT_Action: {fileID: 0}
+  oh_tap_LT_Action: {fileID: 0}
+  oh_hold_LT_Action: {fileID: 0}
+  th_hold_RB_Action: {fileID: 0}
+  th_tap_RB_Action: {fileID: 0}
+  th_tap_LB_Action: {fileID: 0}
+  th_hold_LB_Action: {fileID: 0}
+  th_tap_RT_Action: {fileID: 0}
+  th_hold_RT_Action: {fileID: 0}
+  th_tap_LT_Action: {fileID: 0}
+  th_hold_LT_Action: {fileID: 0}
+  weaponWhooshes: []
