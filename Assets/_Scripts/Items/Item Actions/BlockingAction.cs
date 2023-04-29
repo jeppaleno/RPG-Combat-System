@@ -14,8 +14,6 @@ public class BlockingAction : ItemAction
         if (player.isBlocking)
             return;
 
-        player.playerAnimatorManager.PlayTargetAnimation("Block_Start", false, true, true);
-        player.playerEquipmentManager.OpenBlockingCollider();
         player.isBlocking = true;
     }
 }

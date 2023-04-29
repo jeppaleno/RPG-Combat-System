@@ -54,6 +54,9 @@ public class CharacterStatsManager : MonoBehaviour
     public float fireDamageAbsorptionLegs;
     public float fireDamageAbsorptionHands;
 
+    [Header("Blocking Absorpions")]
+    public float blockingPhysicalDamageAbsorption;
+    public float blockingFireDamageAbsorption;
 
     protected virtual void Awake()
     {
@@ -95,7 +98,7 @@ public class CharacterStatsManager : MonoBehaviour
 
         fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
 
-        float finalDamage = physicalDamage + fireDamage;
+        float finalDamage = physicalDamage + fireDamage; // + magicDamage + lightingDamage + darkDamage
 
         Debug.Log("Total Damage Dealt is" + finalDamage);
 
@@ -113,6 +116,51 @@ public class CharacterStatsManager : MonoBehaviour
         }
 
         character.characterSoundFXManager.PlayRandomDamageSoundFX();
+    }
+
+    public virtual void TakeDamageAfterBlock(int physicalDamage, int fireDamage, CharacterManager enemyCharacterDamagingMe)
+    {
+        if (character.isDead)
+            return;
+
+        character.characterAnimatorManager.EraseHandIKWeapon();
+
+        float totalPhysicalDamageAbsorptions = 1 -
+            (1 - physicalDamageAbsoptionHead / 100) *
+            (1 - physicalDamageAbsoptionBody / 100) *
+            (1 - physicalDamageAbsoptionLegs / 100) *
+            (1 - physicalDamageAbsoptionHands / 100);
+
+        physicalDamage = Mathf.RoundToInt(physicalDamage - (physicalDamage * totalPhysicalDamageAbsorptions));
+
+        Debug.Log("Total Damage Absoption is" + totalPhysicalDamageAbsorptions + "%");
+
+        float totalFireDamageAbsorption = 1 -
+            (1 - fireDamageAbsorptionHead / 100) *
+            (1 - fireDamageAbsorptionBody / 100) *
+            (1 - fireDamageAbsorptionLegs / 100) *
+            (1 - fireDamageAbsorptionHands / 100);
+
+        fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
+
+        float finalDamage = physicalDamage + fireDamage; // + magicDamage + lightingDamage + darkDamage
+
+        Debug.Log("Total Damage Dealt is" + finalDamage);
+
+        if (enemyCharacterDamagingMe.isPerformingFullyChargedAttack)
+        {
+            finalDamage = finalDamage * 2;
+        }
+
+        currentHealth = Mathf.RoundToInt(currentHealth - finalDamage);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            character.isDead = true;
+        }
+
+        //character.characterSoundFXManager.PlayRandomDamageSoundFX(); play blocking noise
     }
 
     public virtual void TakeDamageNoAnimation(int damage, int fireDamage)

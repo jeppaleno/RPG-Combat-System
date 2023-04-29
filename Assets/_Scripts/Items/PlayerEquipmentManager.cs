@@ -39,8 +39,6 @@ public class PlayerEquipmentManager : MonoBehaviour
     public string nakedLeftLeg;
     public string nakedRightLeg;
 
-    public BlockingCollider blockingCollider;
-
     private void Awake()
     {
         player = GetComponent<PlayerManager>();
@@ -147,23 +145,5 @@ public class PlayerEquipmentManager : MonoBehaviour
             rightHandModelChanger.EquipModelByName(nakedRightHand);
             player.playerStatsManager.physicalDamageAbsoptionHands = 0;
         }
-    }
-
-    public void OpenBlockingCollider()
-    {
-        if (player.inputManager.twohandFlag)
-        {
-            blockingCollider.SetColliderDamageAbsorption(player.playerInventoryManager.rightWeapon);
-        }
-        else
-        {
-            blockingCollider.SetColliderDamageAbsorption(player.playerInventoryManager.leftWeapon);
-        }
-        blockingCollider.EnableBlockingCollider();
-    }
-
-    public void CloseBlockingCollider()
-    {
-        blockingCollider.DisableBlockingCollider();
     }
 }

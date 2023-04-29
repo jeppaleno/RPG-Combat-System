@@ -23,9 +23,6 @@ public class PlayerManager : CharacterManager
     public PlayerLocomotionManager playerLocomotionManager;
     public PlayerEffectsManager playerEffectsManager;
 
-    [Header("Colliders")]
-    public BlockingCollider blockingCollider;
-
     [Header("Interactables")]
     InteractableUI interactableUI;
     public GameObject interactbleUIGameObject; 
@@ -47,7 +44,6 @@ public class PlayerManager : CharacterManager
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
-        blockingCollider = GetComponentInChildren<BlockingCollider>();
     }
 
     void Start()

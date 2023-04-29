@@ -54,7 +54,6 @@ public class DamageCollider : MonoBehaviour
             CharacterStatsManager enemyStats = collision.GetComponent<CharacterStatsManager>();
             CharacterManager enemyManager = collision.GetComponent<CharacterManager>();
             CharacterEffectsManager enemyEffects = collision.GetComponent<CharacterEffectsManager>();
-            BlockingCollider shield = collision.transform.GetComponentInChildren<BlockingCollider>();
             
             if (enemyManager != null)
             {
@@ -62,7 +61,7 @@ public class DamageCollider : MonoBehaviour
                     return;
 
                 CheckForParry(enemyManager);
-                CheckForBlock(enemyManager, enemyStats, shield);
+                CheckForBlock(enemyManager);
             }
 
             if (enemyStats != null)
@@ -111,18 +110,21 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
-    protected virtual void CheckForBlock(CharacterManager enemyManager, CharacterStatsManager enemyStats, BlockingCollider shield)
+    protected virtual void CheckForBlock(CharacterManager enemyManager)
     {
-        if (shield != null && enemyManager.isBlocking)
-        {
-            float physicalDamageAfterBlock = physicalDamage - (physicalDamage * shield.blockingPhysicalDamageAbsorption) / 100;
-            float fireDamageAfterBlock = fireDamage - (fireDamage * shield.blockingFireDamageAbsorption) / 100;
+        CharacterStatsManager enemyShield = enemyManager.characterStatsManager;
+        Vector3 directionFromPlayerToEnemy = (characterManager.transform.position - enemyManager.transform.position);
+        float dotValueFromPlayerToEnemy = Vector3.Dot(directionFromPlayerToEnemy, enemyManager.transform.forward);
 
-            if (enemyStats != null)
-            {
-                enemyStats.TakeDamage(Mathf.RoundToInt(physicalDamageAfterBlock), 0, "Block Guard", characterManager);
-                shieldHasBeenHit = true;
-            }
+        if (enemyManager.isBlocking && dotValueFromPlayerToEnemy > 0.3f) //Experiment with this number til it's right
+        {
+            shieldHasBeenHit = true;
+            float physicalDamageAfterBlock = physicalDamage - (physicalDamage * enemyShield.blockingPhysicalDamageAbsorption) / 100;
+            float fireDamageAfterBlock = fireDamage - (fireDamage * enemyShield.blockingFireDamageAbsorption) / 100;
+
+            //ATTEMPT TO BLOCK THE ATTACK (cHECK FOR GUARD BREAK)
+            enemyManager.characterCombatManager.AttemptBlock(this, physicalDamageAfterBlock, fireDamageAfterBlock, "Block_01");
+            enemyShield.TakeDamageAfterBlock(Mathf.RoundToInt(physicalDamageAfterBlock), Mathf.RoundToInt(fireDamageAfterBlock), characterManager); 
         }
     }
 

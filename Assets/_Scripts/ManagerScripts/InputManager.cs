@@ -335,10 +335,9 @@ public class InputManager : MonoBehaviour
                 player.cameraManager.ResetAimCameraRotations();
             }
             
-            if (player.blockingCollider.blockingCollider.enabled)
+            if (player.isBlocking)
             {
                 player.isBlocking = false;
-                player.blockingCollider.DisableBlockingCollider();
             }
         }
     }
