@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     public bool legEquipmentSlotSelected;
     public bool handEquipmentSlotSelected;
 
+    [Header("Pop Ups")]
+    BonfireLitPopUpUI bonfireLitPopUpUI;
+
     [Header("Weapon Inventory")]
     public GameObject weaponInventorySlotPrefab;
     public Transform weaponInventorySlotsParent; // Where slots instantiates on
@@ -69,6 +72,8 @@ public class UIManager : MonoBehaviour
         bodyEquipmentInventorySlots = bodyEquipmentInventorySlotParent.GetComponentsInChildren<BodyEquipmentInventorySlot>();
         legEquipmentInventorySlots = legEquipmentInventorySlotParent.GetComponentsInChildren<LegEquipmentInventorySlot>();
         handEquipmentInventorySlots = handEquipmentInventorySlotParent.GetComponentsInChildren<HandEquipmentInventorySlot>();
+
+        bonfireLitPopUpUI = GetComponentInChildren<BonfireLitPopUpUI>();
     }
 
 
@@ -215,5 +220,10 @@ public class UIManager : MonoBehaviour
         bodyEquipmentSlotSelected = false;
         legEquipmentSlotSelected = false;
         handEquipmentSlotSelected = false;
+    }
+
+    public void ActivateBonfirePopUp()
+    {
+        bonfireLitPopUpUI.DisplayBonfireLitPopUp();
     }
 }
