@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Attack 01
   m_EditorClassIdentifier: 
   actionAnimation: OH_Light_Attack_01
+  isRightHandedAction: 1
   canCombo: 1
   comboAction: {fileID: 11400000, guid: 65817a0f07579fb4680b96abbdc38041, type: 2}
   attackScore: 3
   recoveryTime: 2
-  maximumAttackAngle: 35
-  minimumAttackAngle: -35
+  maximumAttackAngle: 50
+  minimumAttackAngle: -50
   minimumDistanceNeededToAttack: 0
-  maximumDistanceNeededToAttack: 3
+  maximumDistanceNeededToAttack: 2.5

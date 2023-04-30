@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionAnimation: OH_Light_Attack_02
   isRightHandedAction: 1
-  canCombo: 0
+  canCombo: 1
   comboAction: {fileID: 11400000, guid: 85b0b333478733246b7af9a94f9d9822, type: 2}
   attackScore: 3
   recoveryTime: 2
-  maximumAttackAngle: 35
-  minimumAttackAngle: -35
+  maximumAttackAngle: 50
+  minimumAttackAngle: -50
   minimumDistanceNeededToAttack: 0
-  maximumDistanceNeededToAttack: 3
+  maximumDistanceNeededToAttack: 2.5

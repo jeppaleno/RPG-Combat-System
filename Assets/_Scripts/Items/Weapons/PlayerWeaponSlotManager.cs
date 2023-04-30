@@ -22,7 +22,7 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
                 player.uiManager.quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
-                player.playerAnimatorManager.PlayTargetAnimation(weaponItem.offHandIdleAnimation, false, true, true);
+                //player.playerAnimatorManager.PlayTargetAnimation(weaponItem.offHandIdleAnimation, false, true, true);
             }
             else
             {
@@ -56,7 +56,7 @@ public class PlayerWeaponSlotManager : CharacterWeaponSlotManager
                 leftHandSlot.LoadWeaponModel(weaponItem); //weaponItem
                 LoadLeftWeaponDamageCollider();
                 player.uiManager.quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
-                player.playerAnimatorManager.PlayTargetAnimation(weaponItem.offHandIdleAnimation, false, true);
+                //player.playerAnimatorManager.PlayTargetAnimation(weaponItem.offHandIdleAnimation, false, true);
             }
             else
             {

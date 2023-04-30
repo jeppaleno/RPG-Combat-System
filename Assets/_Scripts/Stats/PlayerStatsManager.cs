@@ -61,7 +61,7 @@ public class PlayerStatsManager : CharacterStatsManager
         base.TakeDamage(damage, fireDamage, damageAnimation, enemyCharacterDamagingMe);
 
         healthbar.SetCurrentHealth(currentHealth);
-        player.playerAnimatorManager.PlayTargetAnimation(damageAnimation, true);
+        player.playerAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
 
         if(currentHealth <= 0)
         {

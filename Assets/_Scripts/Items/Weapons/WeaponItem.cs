@@ -10,7 +10,7 @@ public class WeaponItem : Item
 
     [Header("Animator Replacer")]
     public AnimatorOverrideController weaponController;
-    public string offHandIdleAnimation = "Left_Arm_Idle_01";
+    //public string offHandIdleAnimation = "Left_Arm_Idle_01";
 
     [Header("Weapon Type")]
     public WeaponType weaponType;
@@ -20,8 +20,8 @@ public class WeaponItem : Item
     public int fireDamage;
 
     [Header("Damage Modifiers")]
-    public float lightAttackDamageModifier;
-    public float heavyAttackDamageModifier;
+    public float lightAttackDamageModifier = 1;
+    public float heavyAttackDamageModifier = 2;
     //Running Attack Modifier
     //Jumping Attack Modifier
     public int criticalDamageMultiplier = 4;

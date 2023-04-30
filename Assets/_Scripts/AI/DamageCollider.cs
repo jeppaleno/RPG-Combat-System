@@ -126,7 +126,7 @@ public class DamageCollider : MonoBehaviour
             float fireDamageAfterBlock = fireDamage - (fireDamage * enemyShield.blockingFireDamageAbsorption) / 100;
 
             //ATTEMPT TO BLOCK THE ATTACK (cHECK FOR GUARD BREAK)
-            enemyManager.characterCombatManager.AttemptBlock(this, physicalDamageAfterBlock, fireDamageAfterBlock, "Block_01");
+            enemyManager.characterCombatManager.AttemptBlock(this, physicalDamage, fireDamage, "Block_01");
             enemyShield.TakeDamageAfterBlock(Mathf.RoundToInt(physicalDamageAfterBlock), Mathf.RoundToInt(fireDamageAfterBlock), characterManager); 
         }
     }
@@ -190,7 +190,7 @@ public class DamageCollider : MonoBehaviour
         }
         else if (direction >= -144 && direction <= -45)
         {
-            currentDamageAnimation = "Damage_Left_01";
+            currentDamageAnimation = "Damage_Left_01,";
         }
         else if (direction >= 45 && direction <= 144)
         {

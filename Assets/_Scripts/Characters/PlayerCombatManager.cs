@@ -137,4 +137,10 @@ public class PlayerCombatManager : CharacterCombatManager
             }
         }
     }
+
+    public override void AttemptBlock(DamageCollider attackingWeapon, float physicalDAmage, float fireDamage, string blockAnimation)
+    {
+        base.AttemptBlock(attackingWeapon, physicalDAmage, fireDamage, blockAnimation);
+        player.playerStatsManager.staminaBar.SetCurrentStamina(Mathf.RoundToInt(player.playerStatsManager.currentStamina));
+    }
 }

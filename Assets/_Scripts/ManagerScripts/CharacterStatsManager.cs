@@ -57,7 +57,7 @@ public class CharacterStatsManager : MonoBehaviour
     [Header("Blocking Absorpions")]
     public float blockingPhysicalDamageAbsorption;
     public float blockingFireDamageAbsorption;
-    public int blockingStabilityRating;
+    public float blockingStabilityRating;
 
     protected virtual void Awake()
     {

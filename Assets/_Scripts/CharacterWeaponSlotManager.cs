@@ -95,7 +95,7 @@ public class CharacterWeaponSlotManager : MonoBehaviour
                 leftHandSlot.currentWeapon = weaponItem;
                 leftHandSlot.LoadWeaponModel(weaponItem); //weaponItem
                 LoadLeftWeaponDamageCollider();
-                character.characterAnimatorManager.PlayTargetAnimation(weaponItem.offHandIdleAnimation, false, true);
+                //character.characterAnimatorManager.PlayTargetAnimation(weaponItem.offHandIdleAnimation, false, true);
             }
             else
             {
