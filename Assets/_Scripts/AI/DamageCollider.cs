@@ -22,6 +22,9 @@ public class DamageCollider : MonoBehaviour
     public int lightningDamage;
     public int darkDamage;
 
+    [Header("Guard Break Modifier")]
+    public float guardBreakModifier = 1;
+
     protected bool shieldHasBeenHit;
     protected bool hasBeenParried;
     protected string currentDamageAnimation;

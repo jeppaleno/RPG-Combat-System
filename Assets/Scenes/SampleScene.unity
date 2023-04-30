@@ -9501,6 +9501,7 @@ MonoBehaviour:
   fireDamageAbsorptionHands: 0
   blockingPhysicalDamageAbsorption: 0
   blockingFireDamageAbsorption: 0
+  blockingStabilityRating: 0
   enemyHealthBar: {fileID: 241843457}
   isBoss: 0
 --- !u!136 &795201541
@@ -11065,6 +11066,7 @@ MonoBehaviour:
   fireDamageAbsorptionHands: 0
   blockingPhysicalDamageAbsorption: 0
   blockingFireDamageAbsorption: 0
+  blockingStabilityRating: 0
   healthbar: {fileID: 1278080704630395909}
   staminaBar: {fileID: 0}
   focusPointsBar: {fileID: 0}
@@ -101838,7 +101840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1266064741359426278, guid: 0f69d41192102374284405c7469a4966, type: 3}
       propertyPath: field of view
-      value: 64
+      value: 59.9
       objectReference: {fileID: 0}
     - target: {fileID: 1266064742612119860, guid: 0f69d41192102374284405c7469a4966, type: 3}
       propertyPath: MaxAngle

@@ -14,6 +14,8 @@ public class BlockingAction : ItemAction
         if (player.isBlocking)
             return;
 
+        player.playerCombatManager.SetBlockingAbsorptionsFromBlockingWeapon();
+
         player.isBlocking = true;
     }
 }

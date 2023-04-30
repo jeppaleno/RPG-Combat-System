@@ -25,13 +25,18 @@ public class WeaponItem : Item
     //Running Attack Modifier
     //Jumping Attack Modifier
     public int criticalDamageMultiplier = 4;
+    public float guardBreakModifier = 1;
 
     [Header("Poise")]
     public float poiseBreak;
     public float offensivePoiseBonus;
 
     [Header("Absorption")]
-    public float physicalDamageAbsorption;
+    public float physicalBlockingDamageAbsorption;
+    public float fireBlockingDamageAbsorption;
+
+    [Header("Stability")]
+    public int stability = 67;
 
     [Header("Stamina Costs")]
     public int baseStaminaCost;

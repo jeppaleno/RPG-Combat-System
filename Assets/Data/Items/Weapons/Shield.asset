@@ -24,12 +24,15 @@ MonoBehaviour:
   lightAttackDamageModifier: 0
   heavyAttackDamageModifier: 0
   criticalDamageMultiplier: 4
+  guardBreakModifier: 1
   poiseBreak: 0
   offensivePoiseBonus: 0
-  physicalDamageAbsorption: 95
-  baseStamina: 0
-  lightAttackMultiplier: 0
-  heavyAttackMultiplier: 0
+  physicalBlockingDamageAbsorption: 99
+  fireBlockingDamageAbsorption: 50
+  stability: 67
+  baseStaminaCost: 0
+  lightAttackStaminaMultiplier: 0
+  heavyAttackStaminaMultiplier: 0
   oh_hold_RB_Action: {fileID: 0}
   oh_tap_RB_Action: {fileID: 0}
   oh_tap_LB_Action: {fileID: 0}

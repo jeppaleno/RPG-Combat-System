@@ -53,7 +53,7 @@ public class ItemStatsWindowUI : MonoBehaviour
             }
 
             physicalDamageText.text = weapon.physicalDamage.ToString();
-            physicalAbsorptionText.text = weapon.physicalDamageAbsorption.ToString();
+            physicalAbsorptionText.text = weapon.physicalBlockingDamageAbsorption.ToString();
             //Magic Damage
             //Magic Absorption
 
