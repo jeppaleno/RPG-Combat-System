@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Item Actions/Critical Attack Action")]
 public class CriticalAttackAction : ItemAction
 {
-    public override void PerformAction(PlayerManager player)
+    public override void PerformAction(CharacterManager character)
     {
-        if (player.isInteracting)
+        if (character.isInteracting)
             return;
 
-        player.playerCombatManager.AttemptBackStabOrRiposte();
+        character.characterCombatManager.AttemptBackStabOrRiposte();
     }
 }

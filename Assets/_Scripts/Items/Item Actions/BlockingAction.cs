@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class BlockingAction : ItemAction
 {
-    public override void PerformAction(PlayerManager player)
+    public override void PerformAction(CharacterManager character)
     {
-        if (player.isInteracting)
+        if (character.isInteracting)
             return;
 
-        if (player.isBlocking)
+        if (character.isBlocking)
             return;
 
-        player.playerCombatManager.SetBlockingAbsorptionsFromBlockingWeapon();
+        character.characterCombatManager.SetBlockingAbsorptionsFromBlockingWeapon();
 
-        player.isBlocking = true;
+        character.isBlocking = true;
     }
 }

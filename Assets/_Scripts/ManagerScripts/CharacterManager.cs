@@ -16,6 +16,9 @@ public class CharacterManager : MonoBehaviour
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
 
+    [Header("Ray Casts")]
+    public Transform criticalRayCastStartPoint;
+
     [Header("Combat Colliders")]
     public CriticalDamageCollider backStabCollider;
     public CriticalDamageCollider riposteCollider;

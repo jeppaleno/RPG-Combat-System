@@ -20,22 +20,19 @@ public class SpellItem : Item
     [TextArea]
     public string spellDescription;
 
-    public virtual void AttemptToCastSpell(PlayerAnimatorManager animatorManager, 
-        PlayerStatsManager playerStats, 
-        PlayerWeaponSlotManager weaponSlotManager, 
-        bool isLeftHanded)
+    public virtual void AttemptToCastSpell(CharacterManager character)
     {
         Debug.Log("You attempt to cast a spell!");
     }
 
-    public virtual void SucessfullyCastSpell(
-        PlayerAnimatorManager animatorManager, 
-        PlayerStatsManager playerStats,
-        CameraManager cameraManager,
-        PlayerWeaponSlotManager weaponSlotManager,
-        bool isLeftHanded)
+    public virtual void SucessfullyCastSpell(CharacterManager character)
     {
         Debug.Log("You sucessfully cast a spell!");
-        playerStats.DeductFocusPoints(focusPointCost);
+        PlayerManager player = character as PlayerManager;
+
+        if (player != null)
+        {
+            player.playerStatsManager.DeductFocusPoints(focusPointCost);
+        }
     }
 }

@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
     public bool fireFlag;
     public bool inventoryFlag;
 
-    public Transform criticalRayCastStartPoint;
+    
 
     private void Awake()
     {

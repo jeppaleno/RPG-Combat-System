@@ -6,7 +6,7 @@ public class CharacterStatsManager : MonoBehaviour
 {
     CharacterManager character;
 
-    [Header("Team I.D")]
+    [Header("Team I.D")] 
     public int teamIDNumber = 0;
 
    
@@ -234,5 +234,15 @@ public class CharacterStatsManager : MonoBehaviour
     {
         maxFocusPoints = focusLevel * 10;
         return maxFocusPoints;
+    }
+
+    public virtual void HealCharacter(int healAmount)
+    {
+        currentHealth = currentHealth + healAmount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 }
