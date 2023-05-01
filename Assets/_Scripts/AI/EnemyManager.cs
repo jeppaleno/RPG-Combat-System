@@ -12,7 +12,7 @@ public class EnemyManager : CharacterManager
     public EnemyEffectsManager enemyEffectsManager;
     
     public State currentState;
-    public CharacterStatsManager currentTarget;
+    public CharacterManager currentTarget;
     public NavMeshAgent navmeshAgent;
     public Rigidbody enemyRigidBody;
 
