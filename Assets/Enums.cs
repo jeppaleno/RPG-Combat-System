@@ -36,6 +36,13 @@ public enum AICombatStyle
     archer
 }
 
+public enum AIAttackActionType
+{
+    meleeAttackAction,
+    magicAttackAction,
+    rangedAttackAction
+}
+
 public class Enums : MonoBehaviour
 {
    

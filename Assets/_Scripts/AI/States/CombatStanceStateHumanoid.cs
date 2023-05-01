@@ -5,12 +5,17 @@ using UnityEngine;
 public class CombatStanceStateHumanoid : State
 {
     public AttackState attackState;
-    public EnemyAttackAction[] enemyAttacks;
+    public ItemBasedAttackAction[] enemyAttacks;
     public PursueTargetState pursueTargetState;
 
     protected bool randomDestinationSet = false;
     protected float verticalMovementValue = 0;
     protected float horizontalMovementValue = 0;
+
+    [Header("State Flags")]
+    bool willPerformBlock = false;
+    bool willPerformDodge = false;
+    bool willPerformParry = false;
 
     public override State Tick(EnemyManager enemy)
     {
@@ -32,20 +37,54 @@ public class CombatStanceStateHumanoid : State
     {
         enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
         enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime);
-        attackState.hasPerformedAttack = false;
 
-        if (enemy.isInteracting)
+        //If the AAI is falling, or is performing some sort of action STOP all movement
+        if (enemy.isInteracting) //ADD !enemy.isGrounded 
         {
             enemy.animator.SetFloat("Vertical", 0);
             enemy.animator.SetFloat("Horizontal", 0);
             return this;
         }
 
+        //If the AI has gotten too far from it's target, return the AI to it's pursue target state 
         if (enemy.distanceFromTarget > enemy.maximumAggroRadius)
         {
             return pursueTargetState;
         }
 
+        if (enemy.allowAIToPerformBlock)
+        {
+            RollForBlockChance(enemy);
+        }
+
+        if (enemy.allowAIToPerformDodge)
+        {
+            RollForDodgeChance(enemy);
+        }
+
+        if (enemy.allowAIToPeformParry)
+        {
+            RollForParryChance(enemy);
+        }
+
+        if (willPerformBlock)
+        {
+            //Block using offhand
+        }
+
+        if (willPerformDodge)
+        {
+            //IF ENEMY IS ATTACKING THIS AI
+            //PERFORM DODGE
+        }
+
+        if (willPerformParry)
+        {
+            //IF WE THINK THE ENEMY IS GOIND TO ATTACK AND THEY ARE PARRYABLE
+            //PERFORM PARRY
+        }
+
+        //Randomizes the walking pattern of our AI so they circle the player
         if (!randomDestinationSet)
         {
             randomDestinationSet = true;
@@ -168,5 +207,56 @@ public class CombatStanceStateHumanoid : State
                 }
             }
         }
+    }
+
+    //AI CHANCE ROLLS
+    private void RollForBlockChance(EnemyManager enemy)
+    {
+        int blockChance = Random.Range(0, 100);
+
+        if (blockChance <= enemy.blockLikelyHood)
+        {
+            willPerformBlock = true;
+        }
+        else
+        {
+            willPerformBlock = false;
+        }
+    }
+
+    private void RollForDodgeChance(EnemyManager enemy)
+    {
+        int dodgeChance = Random.Range(0, 100);
+
+        if (dodgeChance <= enemy.dodgeLikelyHood)
+        {
+            willPerformDodge = true;
+        }
+        else
+        {
+            willPerformDodge = false;
+        }
+    }
+
+    private void RollForParryChance(EnemyManager enemy)
+    {
+        int parryChance = Random.Range(0, 100);
+
+        if (parryChance <= enemy.parryLikelyHood)
+        {
+            willPerformParry = true;
+        }
+        else
+        {
+            willPerformParry = false;
+        }
+    }
+
+    //CALLED WHEN EVER WE EXIT THIS STATE, SO WHEN WE RETURN ALL FLAGS ARE RESET AND CAN BE RE-ROLLED
+    private void ResetStateFlags()
+    {
+        willPerformBlock = false;
+        willPerformDodge = false;
+        willPerformParry = false;
     }
 }

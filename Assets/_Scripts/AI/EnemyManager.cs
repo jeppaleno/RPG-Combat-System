@@ -28,6 +28,15 @@ public class EnemyManager : CharacterManager
     public float minimumDetectionAngle = -80;
     public float currentRecoveryTime = 0;
 
+    //These setting only effect AI with the humanoid states
+    [Header("Advanced AI Settings")]
+    public bool allowAIToPerformBlock;
+    public int blockLikelyHood = 50;    //Numer from 0-100. 100 will generate a block every time, 0 will generate a block 0% of the time.
+    public bool allowAIToPerformDodge;
+    public int dodgeLikelyHood = 50;    //Numer from 0-100. 100 will generate a dodge every time, 0 will generate a dodge 0% of the time.
+    public bool allowAIToPeformParry;
+    public int parryLikelyHood = 50;    //Numer from 0-100. 100 will generate a parry every time, 0 will generate a parry 0% of the time.
+
     [Header("A.I Combat Settings")]
     public bool allowAIToPerformCombos;
     public bool isPhaseShifting;

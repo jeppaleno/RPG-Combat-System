@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemAction : ScriptableObject
 {
-    public virtual void PerformAction(PlayerManager player)
+    public virtual void PerformAction(CharacterManager player)
     {
         
     }
