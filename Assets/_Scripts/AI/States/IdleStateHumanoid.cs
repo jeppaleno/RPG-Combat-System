@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class IdleStateHumanoid : State
 {
-    public PursueTargetState pursueTargetState;
+    public PursueTargetStateHumanoid pursueTargetState;
     public LayerMask detectionLayer;
-    public LayerMask layersToIgnoreForLineOfSight;
+    public LayerMask layersThatBlockLineOfSight;
 
     public override State Tick(EnemyManager aiCharacter)
     {
@@ -27,7 +27,7 @@ public class IdleStateHumanoid : State
                     //if a potential target is found, it has to be standing infront of the AI's field of view
                     if (viewableAngle > aiCharacter.minimumDetectionAngle && viewableAngle < aiCharacter.maximumDetectionAngle)
                     {
-                        if (Physics.Linecast(aiCharacter.lockOnTransform.position, targetCharacter.lockOnTransform.position, layersToIgnoreForLineOfSight))
+                        if (Physics.Linecast(aiCharacter.lockOnTransform.position, targetCharacter.lockOnTransform.position, layersThatBlockLineOfSight))
                         {
                             return this;
                         }

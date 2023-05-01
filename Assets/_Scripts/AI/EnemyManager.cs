@@ -32,6 +32,7 @@ public class EnemyManager : CharacterManager
     public bool allowAIToPerformCombos;
     public bool isPhaseShifting;
     public float comboLikelyHood;
+    public AICombatStyle combatStyle;
 
     [Header("A.I Target Information")]
     public float distanceFromTarget;

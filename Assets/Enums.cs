@@ -30,6 +30,12 @@ public enum AttackType
     //heavyattack02
 }
 
+public enum AICombatStyle
+{
+    swordAndShield,
+    archer
+}
+
 public class Enums : MonoBehaviour
 {
    

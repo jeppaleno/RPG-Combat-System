@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PursueTargetState : State
+public class PursueTargetStateHumanoid : State
 {
-    public CombatStanceState combatStanceState;
+    public CombatStanceStateHumanoid combatStanceState;
 
     public override State Tick(EnemyManager enemy)
     {
@@ -15,11 +15,11 @@ public class PursueTargetState : State
 
         if (enemy.isPerformingAction)
         {
-           
+
             enemy.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             return this;
         }
-            
+
         if (enemy.distanceFromTarget > enemy.maximumAggroRadius)
         {
             enemy.animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
@@ -63,5 +63,4 @@ public class PursueTargetState : State
             enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navmeshAgent.transform.rotation, enemyManager.rotationSpeed / Time.deltaTime);
         }
     }
-
 }
