@@ -9836,11 +9836,11 @@ MonoBehaviour:
   enemyRigidBody: {fileID: 0}
   isPerformingAction: 0
   rotationSpeed: 800
-  maximumAggroRadius: 5
+  maximumAggroRadius: 2.27
   detectionRadius: 60
   maximumDetectionAngle: 90
   minimumDetectionAngle: -90
-  currentRecoveryTime: 0
+  currentRecoveryTime: 1
   allowAIToPerformCombos: 1
   isPhaseShifting: 0
   comboLikelyHood: 100
@@ -11251,6 +11251,7 @@ MonoBehaviour:
   staminaBar: {fileID: 0}
   focusPointsBar: {fileID: 0}
   staminaRegenerationAmount: 30
+  staminaRegenerationAmountWhilstBlocking: 0.1
 --- !u!114 &1002941219
 MonoBehaviour:
   m_ObjectHideFlags: 0

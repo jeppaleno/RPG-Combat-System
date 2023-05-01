@@ -10,8 +10,9 @@ public class PlayerStatsManager : CharacterStatsManager
     public StaminaBar staminaBar;
     public FocusPointBar focusPointsBar;
 
-    public float staminaRegenerationAmount = 30;
-    private float staminaRegenTimer = 1;
+    public float staminaRegenerationAmount = 1;
+    public float staminaRegenerationAmountWhilstBlocking = 0.1f;
+    private float staminaRegenTimer = 0;
 
     //private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     //private Coroutine regen;
@@ -111,8 +112,17 @@ public class PlayerStatsManager : CharacterStatsManager
 
             if (currentStamina < maxStamina && staminaRegenTimer > 1f)
             {
-                currentStamina += staminaRegenerationAmount * Time.deltaTime;
-                staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+                if (player.isBlocking)
+                {
+                    currentStamina += staminaRegenerationAmountWhilstBlocking * Time.deltaTime;
+                    staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+                }
+                else
+                {
+                    currentStamina += staminaRegenerationAmount * Time.deltaTime;
+                    staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+                }
+                
             }
         }
     }
