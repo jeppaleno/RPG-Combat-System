@@ -12,6 +12,13 @@ public class AttackStateHumanoid : State
     bool willDoComboOnNextAttack = false;
     public bool hasPerformedAttack = false;
 
+    private void Awake()
+    {
+        rotateTowardsTargetState = GetComponent<RotateTowardsTargetStateHumanoid>();
+        combatStanceState = GetComponent<CombatStanceStateHumanoid>();
+        pursueTargetState = GetComponent<PursueTargetStateHumanoid>();
+    }
+
     public override State Tick(EnemyManager enemy)
     {
         if (enemy.combatStyle == AICombatStyle.swordAndShield)

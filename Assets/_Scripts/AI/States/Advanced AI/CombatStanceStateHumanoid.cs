@@ -23,6 +23,12 @@ public class CombatStanceStateHumanoid : State
 
     Quaternion targetDodgeDirection;
 
+    private void Awake()
+    {
+        attackState = GetComponent<AttackStateHumanoid>();
+        pursueTargetState = GetComponent<PursueTargetStateHumanoid>();
+    }
+
     public override State Tick(EnemyManager enemy)
     {
         if (enemy.combatStyle == AICombatStyle.swordAndShield)

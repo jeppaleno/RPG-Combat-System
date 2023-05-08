@@ -8,6 +8,11 @@ public class IdleStateHumanoid : State
     public LayerMask detectionLayer;
     public LayerMask layersThatBlockLineOfSight;
 
+    private void Awake()
+    {
+        pursueTargetState = GetComponent<PursueTargetStateHumanoid>();
+    }
+
     public override State Tick(EnemyManager aiCharacter)
     {
         // Searches for a potential target within the detection radius
