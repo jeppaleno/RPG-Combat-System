@@ -69,7 +69,7 @@ public class CombatStanceStateHumanoid : State
 
         if (willPerformBlock)
         {
-            //Block using offhand
+            BlockUsingOffHand(enemy);
         }
 
         if (willPerformDodge)
@@ -95,7 +95,7 @@ public class CombatStanceStateHumanoid : State
 
         if (enemy.currentRecoveryTime <= 0 && attackState.currentAttack != null)
         {
-            randomDestinationSet = false;
+            ResetStateFlags();
             return attackState;
         }
         else
@@ -255,8 +255,23 @@ public class CombatStanceStateHumanoid : State
     //CALLED WHEN EVER WE EXIT THIS STATE, SO WHEN WE RETURN ALL FLAGS ARE RESET AND CAN BE RE-ROLLED
     private void ResetStateFlags()
     {
+        randomDestinationSet = false;
         willPerformBlock = false;
         willPerformDodge = false;
         willPerformParry = false;
+    }
+
+    //AI ACTIONS
+    private void BlockUsingOffHand(EnemyManager enemy)
+    {
+        if (enemy.isBlocking == false)
+        {
+            if (enemy.allowAIToPerformBlock)
+            {
+                enemy.isBlocking = true;
+                enemy.characterInventoryManager.currentItemBeingUsed = enemy.characterInventoryManager.leftWeapon;
+                enemy.characterCombatManager.SetBlockingAbsorptionsFromBlockingWeapon();
+            }
+        }
     }
 }

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBasedAttackAction : MonoBehaviour
+[CreateAssetMenu(menuName = "A.I/Humanoid Actions/Item Based Attack Actions")]
+public class ItemBasedAttackAction : ScriptableObject
 {
     [Header("Attack Type")]
     public AIAttackActionType actionAttackType = AIAttackActionType.meleeAttackAction;

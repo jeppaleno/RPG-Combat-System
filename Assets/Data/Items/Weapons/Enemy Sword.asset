@@ -33,10 +33,10 @@ MonoBehaviour:
   lightAttackStaminaMultiplier: 1
   heavyAttackStaminaMultiplier: 2
   oh_hold_RB_Action: {fileID: 0}
-  oh_tap_RB_Action: {fileID: 0}
+  oh_tap_RB_Action: {fileID: 11400000, guid: 04da5993bd065cd4b87232177038fbcc, type: 2}
   oh_tap_LB_Action: {fileID: 0}
   oh_hold_LB_Action: {fileID: 0}
-  oh_tap_RT_Action: {fileID: 0}
+  oh_tap_RT_Action: {fileID: 11400000, guid: 35732f45e931a8f4089370c5503c028c, type: 2}
   oh_hold_RT_Action: {fileID: 0}
   oh_tap_LT_Action: {fileID: 0}
   oh_hold_LT_Action: {fileID: 0}

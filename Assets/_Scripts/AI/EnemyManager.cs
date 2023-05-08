@@ -78,6 +78,7 @@ public class EnemyManager : CharacterManager
         canDoCombo = animator.GetBool("canDoCombo");
         canRotate = animator.GetBool("canRotate");
         animator.SetBool("isDead", isDead);
+        animator.SetBool("isBlocking", isBlocking);
 
         if (currentTarget != null)
         {
