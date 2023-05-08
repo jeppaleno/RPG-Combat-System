@@ -6,6 +6,7 @@ public class RotateTowardsTargetState : State
 {
     public CombatStanceState combatStanceState;
 
+
     public override State Tick(EnemyManager enemy)
     {
         enemy.animator.SetFloat("Vertical", 0);

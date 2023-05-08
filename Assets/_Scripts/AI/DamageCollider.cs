@@ -190,7 +190,7 @@ public class DamageCollider : MonoBehaviour
         }
         else if (direction >= -144 && direction <= -45)
         {
-            currentDamageAnimation = "Damage_Left_01,";
+            currentDamageAnimation = "Damage_Left_01";
         }
         else if (direction >= 45 && direction <= 144)
         {
