@@ -17,6 +17,11 @@ public class CombatStanceStateHumanoid : State
     bool willPerformDodge = false;
     bool willPerformParry = false;
 
+    bool hasPerformedDodge = false;
+    bool hasRandomDodgeDirection = false;
+
+    Quaternion targetDodgeDirection;
+
     public override State Tick(EnemyManager enemy)
     {
         if (enemy.combatStyle == AICombatStyle.swordAndShield)
@@ -72,10 +77,10 @@ public class CombatStanceStateHumanoid : State
             BlockUsingOffHand(enemy);
         }
 
-        if (willPerformDodge)
+        if (willPerformDodge && enemy.currentTarget.isAttacking)
         {
             //IF ENEMY IS ATTACKING THIS AI
-            //PERFORM DODGE
+            Dodge(enemy);
         }
 
         if (willPerformParry)
@@ -255,6 +260,8 @@ public class CombatStanceStateHumanoid : State
     //CALLED WHEN EVER WE EXIT THIS STATE, SO WHEN WE RETURN ALL FLAGS ARE RESET AND CAN BE RE-ROLLED
     private void ResetStateFlags()
     {
+        hasRandomDodgeDirection = false;
+        hasPerformedDodge = false;
         randomDestinationSet = false;
         willPerformBlock = false;
         willPerformDodge = false;
@@ -271,6 +278,38 @@ public class CombatStanceStateHumanoid : State
                 enemy.isBlocking = true;
                 enemy.characterInventoryManager.currentItemBeingUsed = enemy.characterInventoryManager.leftWeapon;
                 enemy.characterCombatManager.SetBlockingAbsorptionsFromBlockingWeapon();
+            }
+        }
+    }
+
+    private void Dodge(EnemyManager enemy)
+    {
+        if (!hasPerformedDodge)
+        {
+            if (!hasRandomDodgeDirection)
+            {
+                float randomDodgeDirection;
+
+                hasRandomDodgeDirection = true;
+                randomDodgeDirection = Random.Range(0, 360);
+                targetDodgeDirection = Quaternion.Euler(enemy.transform.eulerAngles.x, randomDodgeDirection, enemy.transform.eulerAngles.z);
+            }
+
+            if (enemy.transform.rotation != targetDodgeDirection)
+            {
+                Quaternion targetRotation = Quaternion.Slerp(enemy.transform.rotation, targetDodgeDirection, 1f);
+                enemy.transform.rotation = targetRotation;
+
+                float targetYRotation = targetDodgeDirection.eulerAngles.y;
+                float currentYRotation = enemy.transform.eulerAngles.y;
+                float rotationDifference = Mathf.Abs(targetYRotation - currentYRotation);
+
+                if (rotationDifference <= 5)
+                {
+                    hasPerformedDodge = true;
+                    enemy.transform.rotation = targetDodgeDirection;
+                    enemy.enemyAnimatorManager.PlayTargetAnimation("Rolling", true, true);
+                }
             }
         }
     }

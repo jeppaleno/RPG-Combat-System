@@ -43,6 +43,7 @@ public class CharacterManager : MonoBehaviour
     public bool isAiming;
     public bool isTwoHandingWeapon;
     public bool isPerformingFullyChargedAttack;
+    public bool isAttacking;
 
     [Header("Movement Flags")]
     public bool isRotatingWithRootMotion;

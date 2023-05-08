@@ -10217,6 +10217,7 @@ MonoBehaviour:
   isAiming: 0
   isTwoHandingWeapon: 0
   isPerformingFullyChargedAttack: 0
+  isAttacking: 0
   isRotatingWithRootMotion: 0
   canRotate: 0
   isSprinting: 0
@@ -11804,6 +11805,7 @@ MonoBehaviour:
   isAiming: 0
   isTwoHandingWeapon: 0
   isPerformingFullyChargedAttack: 0
+  isAttacking: 0
   isRotatingWithRootMotion: 0
   canRotate: 1
   isSprinting: 0
@@ -21608,6 +21610,7 @@ MonoBehaviour:
   isAiming: 0
   isTwoHandingWeapon: 0
   isPerformingFullyChargedAttack: 0
+  isAttacking: 0
   isRotatingWithRootMotion: 0
   canRotate: 0
   isSprinting: 0
@@ -21631,7 +21634,7 @@ MonoBehaviour:
   currentRecoveryTime: 0
   allowAIToPerformBlock: 1
   blockLikelyHood: 100
-  allowAIToPerformDodge: 0
+  allowAIToPerformDodge: 1
   dodgeLikelyHood: 50
   allowAIToPeformParry: 0
   parryLikelyHood: 50

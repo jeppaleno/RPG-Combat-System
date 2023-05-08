@@ -10,6 +10,7 @@ public class LightAttackAction : ItemAction
         if (character.characterStatsManager.currentStamina <= 0)
             return;
 
+        character.isAttacking = true;
         character.characterAnimatorManager.EraseHandIKWeapon();
         character.characterEffectsManager.PlayWeaponFX(false);
 
