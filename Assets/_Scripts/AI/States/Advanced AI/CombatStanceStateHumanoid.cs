@@ -19,6 +19,7 @@ public class CombatStanceStateHumanoid : State
 
     bool hasPerformedDodge = false;
     bool hasRandomDodgeDirection = false;
+    bool hasAmmoLoaded = false;
 
     Quaternion targetDodgeDirection;
 
@@ -57,6 +58,13 @@ public class CombatStanceStateHumanoid : State
             return pursueTargetState;
         }
 
+        //Randomizes the walking pattern of our AI so they circle the player
+        if (!randomDestinationSet)
+        {
+            randomDestinationSet = true;
+            DecideCirclingAction(enemy.enemyAnimatorManager);
+        }
+
         if (enemy.allowAIToPerformBlock)
         {
             RollForBlockChance(enemy);
@@ -89,13 +97,6 @@ public class CombatStanceStateHumanoid : State
             //PERFORM PARRY
         }
 
-        //Randomizes the walking pattern of our AI so they circle the player
-        if (!randomDestinationSet)
-        {
-            randomDestinationSet = true;
-            DecideCirclingAction(enemy.enemyAnimatorManager);
-        }
-
         HandleRotateTowardstarget(enemy);
 
         if (enemy.currentRecoveryTime <= 0 && attackState.currentAttack != null)
@@ -112,6 +113,57 @@ public class CombatStanceStateHumanoid : State
 
     private State ProcessArcherCombatStyle(EnemyManager enemy)
     {
+        enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
+        enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime);
+
+        //If the AAI is falling, or is performing some sort of action STOP all movement
+        if (enemy.isInteracting) //ADD !enemy.isGrounded 
+        {
+            enemy.animator.SetFloat("Vertical", 0);
+            enemy.animator.SetFloat("Horizontal", 0);
+            return this;
+        }
+
+        //If the AI has gotten too far from it's target, return the AI to it's pursue target state 
+        if (enemy.distanceFromTarget > enemy.maximumAggroRadius)
+        {
+            ResetStateFlags();
+            return pursueTargetState;
+        }
+
+        //Randomizes the walking pattern of our AI so they circle the player
+        if (!randomDestinationSet)
+        {
+            randomDestinationSet = true;
+            DecideCirclingAction(enemy.enemyAnimatorManager);
+        }
+
+        if (enemy.allowAIToPerformDodge)
+        {
+            RollForDodgeChance(enemy);
+        }
+
+
+        if (willPerformDodge && enemy.currentTarget.isAttacking)
+        {
+            //IF ENEMY IS ATTACKING THIS AI
+            Dodge(enemy);
+        }
+
+        HandleRotateTowardstarget(enemy);
+
+        if (!hasAmmoLoaded)
+        {
+            DrawArrow(enemy);
+            AimAtTargetBeforeFiring(enemy);
+        }
+
+        if (enemy.currentRecoveryTime <= 0 && hasAmmoLoaded)
+        {
+            ResetStateFlags();
+            return attackState;
+        }
+     
         return this;
     }
 
@@ -262,7 +314,10 @@ public class CombatStanceStateHumanoid : State
     {
         hasRandomDodgeDirection = false;
         hasPerformedDodge = false;
+        hasAmmoLoaded = false;
+
         randomDestinationSet = false;
+
         willPerformBlock = false;
         willPerformDodge = false;
         willPerformParry = false;
@@ -312,5 +367,27 @@ public class CombatStanceStateHumanoid : State
                 }
             }
         }
+    }
+
+    private void DrawArrow(EnemyManager enemy)
+    {
+        //Must two hand the bow to fire and load it
+        if (!enemy.isTwoHandingWeapon)
+        {
+            enemy.isTwoHandingWeapon = true;
+            enemy.characterWeaponSlotManager.LoadBothWeaponOnSlot();
+        }
+        else
+        {
+            hasAmmoLoaded = true;
+            enemy.characterInventoryManager.currentItemBeingUsed = enemy.characterInventoryManager.rightWeapon;
+            enemy.characterInventoryManager.rightWeapon.th_hold_RB_Action.PerformAction(enemy);
+        }
+    }
+
+    private void AimAtTargetBeforeFiring(EnemyManager enemy)
+    {
+        float timeUntilAmmoIsShotAtTarget = Random.Range(enemy.minimumTimeToAimAtTarget, enemy.maximumTimeToAimAtTarget);
+        enemy.currentRecoveryTime = timeUntilAmmoIsShotAtTarget;
     }
 }

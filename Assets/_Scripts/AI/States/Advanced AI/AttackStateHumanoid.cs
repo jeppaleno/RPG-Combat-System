@@ -14,11 +14,25 @@ public class AttackStateHumanoid : State
 
     public override State Tick(EnemyManager enemy)
     {
-        float distanceFromTarget = Vector3.Distance(enemy.currentTarget.transform.position, enemy.transform.position);
+        if (enemy.combatStyle == AICombatStyle.swordAndShield)
+        {
+            return ProcessSwordAndShieldCombatStyle(enemy);
+        }
+        else if (enemy.combatStyle == AICombatStyle.archer)
+        {
+            return ProcessArcherCombatStyle(enemy);
+        }
+        else
+        {
+            return this;
+        }
+    }
 
+    private State ProcessSwordAndShieldCombatStyle(EnemyManager enemy)
+    {
         RotateTowardsTargetWhilstAttacking(enemy);
 
-        if (distanceFromTarget > enemy.maximumAggroRadius)
+        if (enemy.distanceFromTarget > enemy.maximumAggroRadius)
         {
             return pursueTargetState;
         }
@@ -37,6 +51,36 @@ public class AttackStateHumanoid : State
         if (willDoComboOnNextAttack && hasPerformedAttack)
         {
             return this; //Goes back up to perform the combo
+        }
+
+        ResetStateFlags();
+
+        return rotateTowardsTargetState;
+    }
+
+    private State ProcessArcherCombatStyle(EnemyManager enemy)
+    {
+        RotateTowardsTargetWhilstAttacking(enemy);
+
+        if (enemy.isInteracting)
+            return this;
+
+        if (enemy.currentTarget.isDead)
+        {
+            ResetStateFlags();
+            enemy.currentTarget = null;
+            return this;
+        }
+
+        if (enemy.distanceFromTarget > enemy.maximumAggroRadius)
+        {
+            ResetStateFlags();
+            return pursueTargetState;
+        }
+
+        if (!hasPerformedAttack)
+        {
+            FireAmmo(enemy);
         }
 
         ResetStateFlags();
@@ -99,5 +143,15 @@ public class AttackStateHumanoid : State
     {
         willDoComboOnNextAttack = false;
         hasPerformedAttack = false;
+    }
+
+    private void FireAmmo(EnemyManager enemy)
+    {
+        if (enemy.isHoldingArrow)
+        {
+            hasPerformedAttack = true;
+            enemy.characterInventoryManager.currentItemBeingUsed = enemy.characterInventoryManager.rightWeapon;
+            enemy.characterInventoryManager.rightWeapon.th_tap_RB_Action.PerformAction(enemy);
+        }
     }
 }

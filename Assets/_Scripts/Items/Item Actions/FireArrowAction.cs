@@ -71,10 +71,36 @@ public class FireArrowAction : ItemAction
             damageCollider.ammoItem = player.playerInventoryManager.currentAmmo;
             damageCollider.physicalDamage = player.playerInventoryManager.currentAmmo.physicalDamage;
         }
-        //FIRE THE ARROW AS AN A.I CHARACTER
+        //---------------------- FIRE THE ARROW AS AN A.I CHARACTER -----------------------
         else
         {
+            EnemyManager enemy = character as EnemyManager;
 
+            //Create and fire the live arrow
+            GameObject liveArrow = Instantiate(character.characterInventoryManager.currentAmmo.liveAmmoModel, arrowInstantiationLocation.transform.position, Quaternion.identity);
+            Rigidbody rigidbody = liveArrow.GetComponentInChildren<Rigidbody>();
+            RangedProjectileDamageCollider damageCollider = liveArrow.GetComponentInChildren<RangedProjectileDamageCollider>();
+
+
+            //give ammo velocity
+            if (enemy.currentTarget != null)
+            {
+                //SInce while locked we are always facing our target we can copy our facing direction to our arrows facing direction when fired
+                Quaternion arrowRotation = Quaternion.LookRotation(enemy.currentTarget.lockOnTransform.position - liveArrow.gameObject.transform.position);
+                liveArrow.transform.rotation = arrowRotation;
+            }
+
+            rigidbody.AddForce(liveArrow.transform.forward * enemy.characterInventoryManager.currentAmmo.forwardVelocity * 3); //Adding forward force to the arrow itself
+            rigidbody.AddForce(liveArrow.transform.up * enemy.characterInventoryManager.currentAmmo.upwardVelocity * 3); //Some rise
+            rigidbody.useGravity = enemy.characterInventoryManager.currentAmmo.useGravity; //Incase we don't want it to fall over time
+            rigidbody.mass = enemy.characterInventoryManager.currentAmmo.ammoMass; //Something to tweak
+            liveArrow.transform.parent = null;
+
+            // set live arrow damage
+            damageCollider.characterManager = character;
+            damageCollider.ammoItem = enemy.characterInventoryManager.currentAmmo;
+            damageCollider.physicalDamage = enemy.characterInventoryManager.currentAmmo.physicalDamage;
+            damageCollider.teamIDNumber = enemy.characterStatsManager.teamIDNumber;
         }
     }
         
