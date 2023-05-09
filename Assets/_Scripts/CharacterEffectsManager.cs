@@ -7,7 +7,7 @@ public class CharacterEffectsManager : MonoBehaviour
     CharacterManager character;
 
     [Header("Current Range FX")]
-    public GameObject currentRangeFX;
+    public GameObject instantiatedFXModel;
 
     [Header("Damage FX")]
     public GameObject bloodSplatterFX;
@@ -112,6 +112,34 @@ public class CharacterEffectsManager : MonoBehaviour
                 poisonAmount = defaultPoisonAmount;
                 Destroy(currentPoisonParticleFX);
             }
+        }
+    }
+
+    public virtual void InteruptEffect()
+    {
+        //Can be used to destory effects models (drinking Estus, having Arrow drawn etc
+        if (instantiatedFXModel != null)
+        {
+            Destroy(instantiatedFXModel);
+        }
+
+        //Fires the character bow and removes the arrow if thery are currently holding an arrow
+        if (character.isHoldingArrow)
+        {
+            character.animator.SetBool("isHoldingArrow", false);
+            Animator rangedWeaponAnimator = character.characterWeaponSlotManager.rightHandSlot.currentWeaponModel.GetComponentInChildren<Animator>();
+
+            if (rangedWeaponAnimator != null)
+            {
+                rangedWeaponAnimator.SetBool("isDrawn", false);
+                rangedWeaponAnimator.Play("Bow_TH_Fire_01");
+            }
+        }
+
+        //Removes player from aiming state if they are currently aiming
+        if (character.isAiming)
+        {
+            character.animator.SetBool("isAiming", false);
         }
     }
 }

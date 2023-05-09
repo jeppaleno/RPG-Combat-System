@@ -19,7 +19,7 @@ public class DrawArrowAction : ItemAction
         
         // Instantiate arrow
         GameObject loadedArrow = Instantiate(character.characterInventoryManager.currentAmmo.loadedItemModel, character.characterWeaponSlotManager.leftHandSlot.transform);
-        character.characterEffectsManager.currentRangeFX = loadedArrow;
+        character.characterEffectsManager.instantiatedFXModel = loadedArrow;
 
         //ANIMATE THE BOW
         Animator bowAnimator = character.characterWeaponSlotManager.rightHandSlot.GetComponentInChildren<Animator>();

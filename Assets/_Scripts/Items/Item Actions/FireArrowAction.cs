@@ -16,7 +16,7 @@ public class FireArrowAction : ItemAction
         Animator bowAnimator = character.characterWeaponSlotManager.rightHandSlot.GetComponentInChildren<Animator>();
         bowAnimator.SetBool("isDrawn", false);
         bowAnimator.Play("Bow_ONLY_Fire_01");
-        Destroy(character.characterEffectsManager.currentRangeFX); //Destroys loaded arrow model
+        Destroy(character.characterEffectsManager.instantiatedFXModel); //Destroys loaded arrow model
 
         //Reset the players holding arrow flag
         character.characterAnimatorManager.PlayTargetAnimation("Bow_TH_Fire_01", true, true);

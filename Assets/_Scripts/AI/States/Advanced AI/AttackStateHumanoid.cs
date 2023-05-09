@@ -72,6 +72,12 @@ public class AttackStateHumanoid : State
         if (enemy.isInteracting)
             return this;
 
+        if (!enemy.isHoldingArrow)
+        {
+            ResetStateFlags();
+            return combatStanceState;
+        }
+
         if (enemy.currentTarget.isDead)
         {
             ResetStateFlags();
