@@ -19,10 +19,6 @@ public class CharacterManager : MonoBehaviour
     [Header("Ray Casts")]
     public Transform criticalRayCastStartPoint;
 
-    [Header("Combat Colliders")]
-    public CriticalDamageCollider backStabCollider;
-    public CriticalDamageCollider riposteCollider;
-
     [Header("Interaction")]
     public bool isInteracting;
     public bool isUsingRootMotion;
@@ -44,6 +40,10 @@ public class CharacterManager : MonoBehaviour
     public bool isTwoHandingWeapon;
     public bool isPerformingFullyChargedAttack;
     public bool isAttacking;
+    public bool isBeingBackstabbed;
+    public bool isBeingRiposted;
+    public bool isPerformingBackstab;
+    public bool isPerformingRiposte;
 
     [Header("Movement Flags")]
     public bool isRotatingWithRootMotion;

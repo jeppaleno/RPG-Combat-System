@@ -3906,7 +3906,7 @@ AnimatorStateMachine:
     m_Position: {x: 1050, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8579946873490880545}
-    m_Position: {x: 340, y: -400, z: 0}
+    m_Position: {x: 350, y: -400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3203122376152956560}
     m_Position: {x: 340, y: -450, z: 0}
@@ -4053,7 +4053,7 @@ AnimatorStateMachine:
     m_Position: {x: -60, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8621151608162630018}
-    m_Position: {x: 300, y: 750, z: 0}
+    m_Position: {x: 350, y: 710, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -4942,12 +4942,12 @@ MonoBehaviour:
   isUsingRightHandStatus: 0
   isUsingLeftHand: isUsingLeftHand
   isUsingLeftHandStatus: 0
-  isInvulnerable: isInvulnerable
-  isInvulnerableStatus: 0
   isInteractingBool: isInteracting
   isInteractingStatus: 0
   isFiringSpellBool: isFiringSpell
   isFiringSpellStatus: 0
+  isUsingRootMotionBool: 
+  isUsingRootMotionStatus: 0
   isRotatingWithRootMotion: isRotatingWithRootMotion
   isRotatingWithRootMotionStatus: 0
   canRotateBool: canRotate
