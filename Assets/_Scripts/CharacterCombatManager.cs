@@ -102,7 +102,7 @@ public class CharacterCombatManager : MonoBehaviour
             transform.parent = characterPerformingBackStab.characterCombatManager.backStabReceiverTransform;
             transform.localPosition = characterPerformingBackStab.characterCombatManager.backStabReceiverTransform.localPosition;
             transform.parent = null;
-            Debug.Log("Running corountine");
+            //Debug.Log("Running corountine");
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -133,7 +133,7 @@ public class CharacterCombatManager : MonoBehaviour
             Vector3 directionFromCharacterToEnemy = transform.position - enemyCharacter.transform.position;
             float dotValue = Vector3.Dot(directionFromCharacterToEnemy, enemyCharacter.transform.forward);
 
-            Debug.Log("Current dot value is" + dotValue);
+            //Debug.Log("Current dot value is" + dotValue);
 
             if (enemyCharacter.canBeRiposted)
             {
