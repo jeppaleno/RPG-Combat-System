@@ -1033,7 +1033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73934732}
   m_Layer: 11
-  m_Name: Riposter Standing Point
+  m_Name: Riposte Receiver Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1047,7 +1047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73934731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4215,7 +4215,7 @@ MonoBehaviour:
   isInteracting: 0
   isUsingRootMotion: 0
   isDead: 0
-  canBeRiposted: 0
+  canBeRiposted: 1
   canBeParried: 0
   canDoCombo: 1
   isParrying: 0
@@ -4313,6 +4313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backStabReceiverTransform: {fileID: 797917000}
+  riposteReceiverTransform: {fileID: 0}
   characterLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -11527,6 +11528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backStabReceiverTransform: {fileID: 821649}
+  riposteReceiverTransform: {fileID: 73934732}
   characterLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -20698,6 +20700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backStabReceiverTransform: {fileID: 0}
+  riposteReceiverTransform: {fileID: 0}
   characterLayer:
     serializedVersion: 2
     m_Bits: 512

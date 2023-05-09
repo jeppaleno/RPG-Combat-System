@@ -9,6 +9,7 @@ public class CharacterCombatManager : MonoBehaviour
 
     [Header("Comat Transforms")]
     public Transform backStabReceiverTransform;
+    public Transform riposteReceiverTransform;
 
     public LayerMask characterLayer;
     public float criticalAttackRange = 0.7f;
@@ -107,6 +108,20 @@ public class CharacterCombatManager : MonoBehaviour
         }
     }
 
+    IEnumerator ForceMoveCharacterToEnemyRipostePosition(CharacterManager characterPerformingRiposte)
+    {
+        for (float timer = 0.05f; timer < 0.5f; timer = timer + 0.05f)
+        {
+            Quaternion backstabRotation = Quaternion.LookRotation(-characterPerformingRiposte.transform.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, backstabRotation, 1);
+            transform.parent = characterPerformingRiposte.characterCombatManager.riposteReceiverTransform;
+            transform.localPosition = characterPerformingRiposte.characterCombatManager.riposteReceiverTransform.localPosition;
+            transform.parent = null;
+            //Debug.Log("Running corountine");
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
     public void GetBackStabbed(CharacterManager characterPerformingBackStab)
     {
         //Play Sound FX
@@ -115,8 +130,20 @@ public class CharacterCombatManager : MonoBehaviour
         //FORCE LOCK POSITION
         StartCoroutine(ForceMoveCharacterToEnemyBackStabPosition(characterPerformingBackStab));
 
-        character.characterAnimatorManager.PlayTargetAnimation("Back Stabbed", true);
+        character.characterAnimatorManager.PlayTargetAnimation("Back Stabbed", true, true);
     }
+
+    public void GetRiposted(CharacterManager characterPerformingRiposte)
+    {
+        //Play Sound FX
+        character.isBeingRiposted = true;
+
+        //FORCE LOCK POSITION
+        StartCoroutine(ForceMoveCharacterToEnemyRipostePosition(characterPerformingRiposte));
+
+        character.characterAnimatorManager.PlayTargetAnimation("Riposted", true, true);
+    }
+
     public void AttemptBackStabOrRiposte()
     {
         if (character.isInteracting)
@@ -139,7 +166,8 @@ public class CharacterCombatManager : MonoBehaviour
             {
                 if (dotValue <= 1.2f && dotValue >= 0.6f)
                 {
-                    //Attempt riposte
+                    AttemptRiposte(hit);
+                    return;
                 }
             }
 
@@ -163,7 +191,7 @@ public class CharacterCombatManager : MonoBehaviour
                 character.isPerformingBackstab = true;
                 character.characterAnimatorManager.EraseHandIKWeapon();
 
-                character.characterAnimatorManager.PlayTargetAnimation("Back Stab", true);
+                character.characterAnimatorManager.PlayTargetAnimation("Back Stab", true, true);
 
                 float criticalDamage = (character.characterInventoryManager.rightWeapon.criticalDamageMultiplier * 
                     (character.characterInventoryManager.rightWeapon.physicalDamage +
@@ -172,6 +200,32 @@ public class CharacterCombatManager : MonoBehaviour
                 int roundedCriticalDamage = Mathf.RoundToInt(criticalDamage);
                 enemyCharacter.characterCombatManager.pendingCriticalDamage = roundedCriticalDamage;
                 enemyCharacter.characterCombatManager.GetBackStabbed(character);
+            }
+        }
+    }
+
+    private void AttemptRiposte(RaycastHit hit)
+    {
+        CharacterManager enemyCharacter = hit.transform.GetComponent<CharacterManager>();
+
+        if (enemyCharacter != null)
+        {
+            if (!enemyCharacter.isBeingBackstabbed || !enemyCharacter.isBeingRiposted)
+            {
+                //We make it so the enemy cannot be damaged whilst being critically damaged
+                //EnableIsInvulnerable();
+                character.isPerformingRiposte = true;
+                character.characterAnimatorManager.EraseHandIKWeapon();
+
+                character.characterAnimatorManager.PlayTargetAnimation("Riposte", true, true);
+
+                float criticalDamage = (character.characterInventoryManager.rightWeapon.criticalDamageMultiplier *
+                    (character.characterInventoryManager.rightWeapon.physicalDamage +
+                    character.characterInventoryManager.rightWeapon.fireDamage));
+
+                int roundedCriticalDamage = Mathf.RoundToInt(criticalDamage);
+                enemyCharacter.characterCombatManager.pendingCriticalDamage = roundedCriticalDamage;
+                enemyCharacter.characterCombatManager.GetRiposted(character);
             }
         }
     }
