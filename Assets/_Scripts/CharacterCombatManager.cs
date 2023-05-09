@@ -239,4 +239,14 @@ public class CharacterCombatManager : MonoBehaviour
     {
         character.characterStatsManager.TakeDamageNoAnimation(pendingCriticalDamage, 0);
     }
+
+    public void EnableCanBeParried()
+    {
+        character.canBeParried = true;
+    }
+
+    public void DisableCanBeParried()
+    {
+        character.canBeParried = false;
+    }
 }
