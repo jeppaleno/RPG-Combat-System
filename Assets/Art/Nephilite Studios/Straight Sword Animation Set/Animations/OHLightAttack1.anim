@@ -50422,15 +50422,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.36666667
+  - time: 0.43333334
+    functionName: stopRotation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
     functionName: OpenDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.43333334
-    functionName: stopRotation
+  - time: 0.56666666
+    functionName: EnableCanBeParried
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -50445,6 +50452,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.6666667
     functionName: EnableCombo
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.73333335
+    functionName: DisableCanBeParried
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

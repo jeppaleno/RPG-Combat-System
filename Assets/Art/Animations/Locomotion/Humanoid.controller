@@ -3903,7 +3903,7 @@ AnimatorStateMachine:
     m_Position: {x: -710, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 931946737618788769}
-    m_Position: {x: 1050, y: -290, z: 0}
+    m_Position: {x: 990, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8579946873490880545}
     m_Position: {x: 350, y: -400, z: 0}
@@ -3948,10 +3948,10 @@ AnimatorStateMachine:
     m_Position: {x: -60, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8858695527262586307}
-    m_Position: {x: 1050, y: -230, z: 0}
+    m_Position: {x: 990, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5563191292082935110}
-    m_Position: {x: 1050, y: -170, z: 0}
+    m_Position: {x: 990, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2272948738109887900}
     m_Position: {x: -290, y: 80, z: 0}
@@ -3984,10 +3984,10 @@ AnimatorStateMachine:
     m_Position: {x: -60, y: 780, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1219454191484183297}
-    m_Position: {x: 780, y: -290, z: 0}
+    m_Position: {x: 770, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5288019515813951432}
-    m_Position: {x: 780, y: -230, z: 0}
+    m_Position: {x: 770, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 127255715986095008}
     m_Position: {x: 780, y: 210, z: 0}
@@ -4946,8 +4946,6 @@ MonoBehaviour:
   isInteractingStatus: 0
   isFiringSpellBool: isFiringSpell
   isFiringSpellStatus: 0
-  isUsingRootMotionBool: 
-  isUsingRootMotionStatus: 0
   isRotatingWithRootMotion: isRotatingWithRootMotion
   isRotatingWithRootMotionStatus: 0
   canRotateBool: canRotate
