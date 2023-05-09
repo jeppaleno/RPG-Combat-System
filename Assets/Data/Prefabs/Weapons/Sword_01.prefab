@@ -129,8 +129,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17167386, y: 0.88298845, z: 0.07387139}
-  m_Center: {x: 0.0014639002, y: 0.6089872, z: -0.003834021}
+  m_Size: {x: 0.17167386, y: 1.0117606, z: 0.07387139}
+  m_Center: {x: 0.0014627993, y: 0.59092313, z: -0.003841116}
 --- !u!114 &5525509891192115110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,9 +145,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterManager: {fileID: 0}
   enabledDamageColliderOnStartUp: 0
+  teamIDNumber: 0
   poiseBreak: 0
   offensivePoiseBonus: 0
-  currentWeaponDamage: 25
+  physicalDamage: 0
+  fireDamage: 0
+  magicDamage: 0
+  lightningDamage: 0
+  darkDamage: 0
+  guardBreakModifier: 1
 --- !u!1 &7187455618724288987
 GameObject:
   m_ObjectHideFlags: 0

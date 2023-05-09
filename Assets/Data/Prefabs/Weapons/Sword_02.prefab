@@ -282,8 +282,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.048646737, y: 0.86697775, z: 0.08732672}
-  m_Center: {x: 0.0031755113, y: 0.60098183, z: -0.0029567124}
+  m_Size: {x: 0.09346958, y: 1.1738061, z: 0.105601534}
+  m_Center: {x: -0.0024042386, y: 0.4918753, z: -0.0018302761}
 --- !u!114 &8539337120047270605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +306,7 @@ MonoBehaviour:
   magicDamage: 0
   lightningDamage: 0
   darkDamage: 0
+  guardBreakModifier: 1
 --- !u!1001 &2797152144800892049
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,4 +20,4 @@ MonoBehaviour:
   maximumAttackAngle: 35
   minimumAttackAngle: -35
   minimumDistanceNeededToAttack: 0
-  maximumDistanceNeededToAttack: 3
+  maximumDistanceNeededToAttack: 2
