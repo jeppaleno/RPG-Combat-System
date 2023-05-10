@@ -211,6 +211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Sword_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a29e10a78af23e243949a44795e2787f, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a29e10a78af23e243949a44795e2787f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -282,8 +286,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09346958, y: 1.1738061, z: 0.105601534}
-  m_Center: {x: -0.0024042386, y: 0.4918753, z: -0.0018302761}
+  m_Size: {x: 0.06331731, y: 1.2405397, z: 0.105601534}
+  m_Center: {x: -0.0010746783, y: 0.42876458, z: -0.0018303606}
 --- !u!114 &8539337120047270605
 MonoBehaviour:
   m_ObjectHideFlags: 0
