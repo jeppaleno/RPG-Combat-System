@@ -48,9 +48,6 @@ public class CombatStanceStateHumanoid : State
 
     private State ProcessSwordAndShieldCombatStyle(EnemyManager enemy)
     {
-        enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
-        enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime);
-
         //If the AAI is falling, or is performing some sort of action STOP all movement
         if (enemy.isInteracting) //ADD !enemy.isGrounded 
         {
@@ -127,14 +124,14 @@ public class CombatStanceStateHumanoid : State
         {
             GetNewAttack(enemy);
         }
+
+        CheckIfWeAreTooClose(enemy);
+
         return this;
     }
 
     private State ProcessArcherCombatStyle(EnemyManager enemy)
     {
-        enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
-        enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime);
-
         //If the AAI is falling, or is performing some sort of action STOP all movement
         if (enemy.isInteracting) //ADD !enemy.isGrounded 
         {
@@ -182,7 +179,9 @@ public class CombatStanceStateHumanoid : State
             ResetStateFlags();
             return attackState;
         }
-     
+
+        CheckIfWeAreTooClose(enemy);
+
         return this;
     }
 
@@ -448,6 +447,20 @@ public class CombatStanceStateHumanoid : State
                 enemy.animator.SetFloat("Vertical", 0);
                 enemy.characterCombatManager.AttemptBackStabOrRiposte();
             }
+        }
+    }
+
+    private void CheckIfWeAreTooClose(EnemyManager enemy)
+    {
+        if (enemy.distanceFromTarget <= enemy.stoppingDistance)
+        {
+            enemy.animator.SetFloat("Vertical", 0, 0.2f, Time.deltaTime); //Halts forward movement
+            enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime); //Continue side strafing
+        }
+        else
+        {
+            enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
+            enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime);
         }
     }
 }

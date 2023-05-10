@@ -27,6 +27,7 @@ public class EnemyManager : CharacterManager
     public float maximumDetectionAngle = 80;
     public float minimumDetectionAngle = -80;
     public float currentRecoveryTime = 0;
+    public float stoppingDistance = 2.5f; //Halting FORWARD movement
 
     //These setting only effect AI with the humanoid states
     [Header("Advanced AI Settings")]

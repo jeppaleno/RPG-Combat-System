@@ -3806,6 +3806,7 @@ MonoBehaviour:
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
   currentRecoveryTime: 0
+  stoppingDistance: 1.82
   allowAIToPerformBlock: 0
   blockLikelyHood: 100
   allowAIToPerformDodge: 0
@@ -12757,6 +12758,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!136 &1192425340 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 9156445926524311544, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+  m_PrefabInstance: {fileID: 9156445926335347920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194823872
 GameObject:
   m_ObjectHideFlags: 0
@@ -32066,6 +32072,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9156445926524311537, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: characterCollider
+      value: 
+      objectReference: {fileID: 1192425340}
+    - target: {fileID: 9156445926524311537, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9156445926524311538, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
       propertyPath: healthbar
       value: 
@@ -32083,11 +32097,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1784269819}
     - target: {fileID: 9156445926524311544, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: m_Height
+      value: 1.4877872
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156445926524311544, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9156445926524311544, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: m_Center.y
+      value: 1.0561063
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156445926524311544, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156445926524311545, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: m_Mass
+      value: 24.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156445926524311545, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9157957687777376190, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
