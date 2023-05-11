@@ -32,10 +32,10 @@ MonoBehaviour:
   baseStaminaCost: 0
   lightAttackStaminaMultiplier: 0
   heavyAttackStaminaMultiplier: 0
-  oh_hold_RB_Action: {fileID: 0}
-  oh_tap_RB_Action: {fileID: 0}
+  oh_hold_RB_Action: {fileID: 11400000, guid: 6d91f1109d4818c4788c1d9fa4d1c24d, type: 2}
+  oh_tap_RB_Action: {fileID: 11400000, guid: 4e957fee076d20a41b408e02d23c28c5, type: 2}
   oh_tap_LB_Action: {fileID: 0}
-  oh_hold_LB_Action: {fileID: 0}
+  oh_hold_LB_Action: {fileID: 11400000, guid: 04d1f490d0aa7cc4d9ab63f0d2b05400, type: 2}
   oh_tap_RT_Action: {fileID: 0}
   oh_hold_RT_Action: {fileID: 0}
   oh_tap_LT_Action: {fileID: 0}
@@ -48,4 +48,7 @@ MonoBehaviour:
   th_hold_RT_Action: {fileID: 0}
   th_tap_LT_Action: {fileID: 0}
   th_hold_LT_Action: {fileID: 0}
-  weaponWhooshes: []
+  weaponWhooshes:
+  - {fileID: 8300000, guid: 0d152311b69273b44a8e3260401ba672, type: 3}
+  - {fileID: 8300000, guid: 0d152311b69273b44a8e3260401ba672, type: 3}
+  - {fileID: 8300000, guid: 0d152311b69273b44a8e3260401ba672, type: 3}

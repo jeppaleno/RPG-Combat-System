@@ -23,8 +23,8 @@ TagManager:
   - Player
   - Damageable Character
   - Damage Collider
-  - 
-  - 
+  - Projectile
+  - Ground
   - 
   - 
   - 

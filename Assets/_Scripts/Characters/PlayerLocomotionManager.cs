@@ -9,6 +9,8 @@ public class PlayerLocomotionManager : MonoBehaviour
     Vector3 moveDirection;
     public Rigidbody playerRigidbody;
 
+    public LayerMask layersToIgnore;
+
     [Header("Falling")]
     public float inAirTimer;
     public float leapingVelocity;
@@ -39,7 +41,7 @@ public class PlayerLocomotionManager : MonoBehaviour
     int sprintStaminaCost = 1;
 
     public CapsuleCollider characterCollider;
-    public CapsuleCollider characterCollisionBlockerCollider;
+    //public CapsuleCollider characterCollisionBlockerCollider;
 
     private void Awake()
     {
@@ -49,7 +51,7 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     private void Start()
     {
-        Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
+        //Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
     }
 
     public void HandleAllMovement()
@@ -171,6 +173,7 @@ public class PlayerLocomotionManager : MonoBehaviour
 
     private void HandleFallingAndLanding()
     {
+        
         RaycastHit hit;
         Vector3 rayCastOrigin = player.transform.position;
         Vector3 targetPosition;
@@ -189,7 +192,7 @@ public class PlayerLocomotionManager : MonoBehaviour
             playerRigidbody.AddForce(-Vector3.up * fallingVelocity * inAirTimer);
         }
 
-        if (Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, groundLayer)) 
+        if (Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, groundDistance, groundLayer)) 
         {
             if (!isGrounded && !player.isInteracting)
             {

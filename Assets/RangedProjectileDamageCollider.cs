@@ -6,80 +6,87 @@ public class RangedProjectileDamageCollider : DamageCollider
 {
     public RangedAmmoItem ammoItem;
     protected bool hasAlreadyPenetratedASurface;
-    protected GameObject penetratedProjectile;
 
-    protected override void OnTriggerEnter(Collider collision)
+    Rigidbody arrowRigidbody;
+    CapsuleCollider arrowCapsuleCollider;
+
+    protected override void Awake()
     {
-        if (collision.tag == "Character")
+        damageCollider = GetComponent<Collider>();
+        damageCollider.gameObject.SetActive(true);
+        damageCollider.enabled = true;
+        arrowCapsuleCollider = GetComponent<CapsuleCollider>();
+        arrowRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        shieldHasBeenHit = false;
+        hasBeenParried = false;
+
+        CharacterManager enemyManager = collision.gameObject.GetComponentInParent<CharacterManager>();
+
+        if (enemyManager != null)
         {
-            shieldHasBeenHit = false;
-            hasBeenParried = false;
+            if (enemyManager.characterStatsManager.teamIDNumber == teamIDNumber)
+                return;
 
-            CharacterStatsManager enemyStats = collision.GetComponent<CharacterStatsManager>();
-            CharacterManager enemyManager = collision.GetComponent<CharacterManager>();
-            CharacterEffectsManager enemyEffects = collision.GetComponent<CharacterEffectsManager>();
+            CheckForParry(enemyManager);
+            CheckForBlock(enemyManager);
 
-            if (enemyManager != null)
+            if (hasBeenParried)
+                return;
+
+            if (shieldHasBeenHit)
+                return;
+
+            enemyManager.characterStatsManager.poiseResetTimer = enemyManager.characterStatsManager.totalPoiseResetTime;
+            enemyManager.characterStatsManager.totalPoiseDefence = enemyManager.characterStatsManager.totalPoiseDefence - poiseBreak;
+            //Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
+
+            //Detects where on the collider the weapon first makes contact
+            Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            float directionHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
+            ChooseWhichDirectionDamageCameFrom(directionHitFrom);
+            enemyManager.characterEffectsManager.PlayBloodSplatterFX(contactPoint);
+
+            if (enemyManager.characterStatsManager.totalPoiseDefence > poiseBreak)
             {
-                if (enemyStats.teamIDNumber == teamIDNumber)
-                    return;
-
-                CheckForParry(enemyManager);
-                CheckForBlock(enemyManager);
+                enemyManager.characterStatsManager.TakeDamageNoAnimation(physicalDamage, 0);
+                //Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
             }
-
-            if (enemyStats != null)
+            else
             {
-                if (enemyStats.teamIDNumber == teamIDNumber)
-                    return;
-
-                if (hasBeenParried)
-                    return;
-
-                if (shieldHasBeenHit)
-                    return;
-
-                enemyStats.poiseResetTimer = enemyStats.totalPoiseResetTime;
-                enemyStats.totalPoiseDefence = enemyStats.totalPoiseDefence - poiseBreak;
-                //Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
-
-                //Detects where on the collider the weapon first makes contact
-                Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                float directionHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
-                ChooseWhichDirectionDamageCameFrom(directionHitFrom);
-                enemyEffects.PlayBloodSplatterFX(contactPoint);
-
-                if (enemyStats.totalPoiseDefence > poiseBreak)
-                {
-                    enemyStats.TakeDamageNoAnimation(physicalDamage, 0);
-                    //Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
-                }
-                else
-                {
-                    enemyStats.TakeDamage(physicalDamage, 0, currentDamageAnimation, characterManager);
-                }
+                enemyManager.characterStatsManager.TakeDamage(physicalDamage, 0, currentDamageAnimation, characterManager);
             }
         }
 
-        if (collision.tag == "Illusionary Wall")
+        
+
+        if (collision.gameObject.tag == "Illusionary Wall")
         {
-            IllusionaryWall illusionaryWall = collision.GetComponent<IllusionaryWall>();
+            IllusionaryWall illusionaryWall = collision.gameObject.GetComponent<IllusionaryWall>();
 
             illusionaryWall.wallHasBeenHit = true;
         }
 
-        if (!hasAlreadyPenetratedASurface && penetratedProjectile == null)
+        if (!hasAlreadyPenetratedASurface)
         {
             hasAlreadyPenetratedASurface = true;
+            arrowRigidbody.isKinematic = true;
+            arrowCapsuleCollider.enabled = false;
 
-            Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            GameObject penetratedArrow = Instantiate(ammoItem.penetradedModel, contactPoint, Quaternion.Euler(0, 0, 0));
-
-            penetratedProjectile = penetratedArrow;
-            penetratedArrow.transform.parent = collision.transform;
-            penetratedArrow.transform.rotation = Quaternion.LookRotation(gameObject.transform.forward);
+            gameObject.transform.position = collision.GetContact(0).point;
+            gameObject.transform.rotation = Quaternion.LookRotation(transform.forward);
+            gameObject.transform.parent = collision.collider.transform;
         }
+    }
 
-        Destroy(transform.root.gameObject);
+    private void FixedUpdate()
+    {
+        if (arrowRigidbody.velocity != Vector3.zero)
+        {
+            arrowRigidbody.rotation = Quaternion.LookRotation(arrowRigidbody.velocity);
+        }
     }
 }

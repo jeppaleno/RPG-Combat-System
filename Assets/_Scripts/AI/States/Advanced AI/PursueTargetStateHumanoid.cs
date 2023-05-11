@@ -12,6 +12,54 @@ public class PursueTargetStateHumanoid : State
     }
     public override State Tick(EnemyManager enemy)
     {
+        if (enemy.combatStyle == AICombatStyle.swordAndShield)
+        {
+            return ProcessSwordAndShieldCombatStyle(enemy);
+        }
+        else if (enemy.combatStyle == AICombatStyle.archer)
+        {
+            return ProcessArcherCombatStyle(enemy);
+        }
+        else
+        {
+            return this;
+        }
+    }
+
+    private State ProcessArcherCombatStyle(EnemyManager enemy)
+    {
+        HandleRotateTowardstarget(enemy);
+
+        if (enemy.isInteracting)
+            return this;
+
+        if (enemy.isPerformingAction)
+        {
+
+            enemy.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+            return this;
+        }
+
+        if (enemy.distanceFromTarget > enemy.maximumAggroRadius)
+        {
+            if (!enemy.isStationaryArcher)
+            {
+                enemy.animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
+            }
+        }
+
+        if (enemy.distanceFromTarget <= enemy.maximumAggroRadius)
+        {
+            return combatStanceState;
+        }
+        else
+        {
+            return this;
+        }
+    }
+
+    private State ProcessSwordAndShieldCombatStyle(EnemyManager enemy)
+    {
         HandleRotateTowardstarget(enemy);
 
         if (enemy.isInteracting)
@@ -38,6 +86,7 @@ public class PursueTargetStateHumanoid : State
             return this;
         }
     }
+
     private void HandleRotateTowardstarget(EnemyManager enemyManager)
     {
         // rotate manually

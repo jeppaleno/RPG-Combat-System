@@ -125,7 +125,7 @@ public class CombatStanceStateHumanoid : State
             GetNewAttack(enemy);
         }
 
-        CheckIfWeAreTooClose(enemy);
+        HandleMovement(enemy);
 
         return this;
     }
@@ -180,7 +180,15 @@ public class CombatStanceStateHumanoid : State
             return attackState;
         }
 
-        CheckIfWeAreTooClose(enemy);
+        if (enemy.isStationaryArcher)
+        {
+            enemy.animator.SetFloat("Vertical", 0, 0.2f, Time.deltaTime);
+            enemy.animator.SetFloat("Horizontal", 0, 0.2f, Time.deltaTime);
+        }
+        else
+        {
+            HandleMovement(enemy);
+        }
 
         return this;
     }
@@ -450,7 +458,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private void CheckIfWeAreTooClose(EnemyManager enemy)
+    private void HandleMovement(EnemyManager enemy)
     {
         if (enemy.distanceFromTarget <= enemy.stoppingDistance)
         {

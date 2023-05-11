@@ -79,7 +79,7 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
         player.animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
     }
 
-    public void DisableCollision()
+   /* public void DisableCollision()
     {
         player.playerLocomotionManager.characterCollider.enabled = false;
         player.playerLocomotionManager.characterCollisionBlockerCollider.enabled = false;
@@ -89,7 +89,7 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
     {
         player.playerLocomotionManager.characterCollider.enabled = true;
         player.playerLocomotionManager.characterCollisionBlockerCollider.enabled = true;
-    }
+    }*/
 
     private void OnAnimatorMove()
     {

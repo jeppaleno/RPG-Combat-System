@@ -45,6 +45,7 @@ public class EnemyManager : CharacterManager
     public AICombatStyle combatStyle;
 
     [Header("A.I Archer Settings")]
+    public bool isStationaryArcher;
     public float minimumTimeToAimAtTarget = 3;
     public float maximumTimeToAimAtTarget = 6;
 
