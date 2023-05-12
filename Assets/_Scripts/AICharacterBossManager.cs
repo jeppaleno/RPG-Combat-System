@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBossManager : MonoBehaviour
+public class AICharacterBossManager : MonoBehaviour
 {
-    EnemyManager enemy;
+    AICharacterManager enemy;
     public string bossName;
 
     UIBossHealthBar bossHealthBar;
@@ -16,7 +16,7 @@ public class EnemyBossManager : MonoBehaviour
 
     private void Awake()
     {
-        enemy = GetComponent<EnemyManager>();
+        enemy = GetComponent<AICharacterManager>();
         bossHealthBar = FindObjectOfType<UIBossHealthBar>();
         bossCombatStanceState = GetComponentInChildren<BossCombatStanceState>();
     }
@@ -24,7 +24,7 @@ public class EnemyBossManager : MonoBehaviour
     private void Start()
     {
         bossHealthBar.SetBossName(bossName);
-        bossHealthBar.SetBossMaxHealth(enemy.enemyStatsManager.maxHealth);
+        bossHealthBar.SetBossMaxHealth(enemy.aiCharacterStatsManager.maxHealth);
     }
 
     public void UpdateBossHealthBar(int currentHealth, int maxHealth)
@@ -43,7 +43,7 @@ public class EnemyBossManager : MonoBehaviour
         //PLAY AN ANIMATION W AN EVENT THAT TRIGGES PARTICLE FX/WEAPON FX
         enemy.animator.SetBool("isInvulnerable", true);
         enemy.animator.SetBool("isPhaseShifting", true);
-        enemy.enemyAnimatorManager.PlayTargetAnimation("Phase Shift", true);
+        enemy.aiCharacterAnimatorManager.PlayTargetAnimation("Phase Shift", true);
         //SWITCH ATTACK ACTIONS TO NEW PHASE PATTERNS
         bossCombatStanceState.hasPhaseShifted = true;
     }

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "A.I/Enemy Actions/Attack Action")]
+[CreateAssetMenu(menuName = "A.I/A.I Actions/Attack Action")]
 
-public class EnemyAttackAction : EnemyAction
+public class AICharacterAttackAction : AICharacterAction
 {
     public bool canCombo;
 
-    public EnemyAttackAction comboAction;
+    public AICharacterAttackAction comboAction;
 
     public int attackScore = 3;
     public float recoveryTime = 2;

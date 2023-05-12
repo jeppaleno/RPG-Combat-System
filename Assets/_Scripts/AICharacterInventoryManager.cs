@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInventoryManager : CharacterInventoryManager
+public class AICharacterInventoryManager : CharacterInventoryManager
 {
    
 }

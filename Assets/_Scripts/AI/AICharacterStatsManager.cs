@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyStatsManager : CharacterStatsManager
+public class AICharacterStatsManager : CharacterStatsManager
 {
-    EnemyManager enemy;
-    public UIEnemyHealthBar enemyHealthBar;
+    AICharacterManager aiCharacter;
+    public UIAICharacterHealthBar aiCharacterHealthBar;
 
     public bool isBoss;
 
     protected override void Awake()
     {
         base.Awake();
-        enemy = GetComponent<EnemyManager>();
+        aiCharacter = GetComponent<AICharacterManager>();
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
     }
@@ -22,7 +22,7 @@ public class EnemyStatsManager : CharacterStatsManager
     {
         if (!isBoss)
         {
-            enemyHealthBar.SetMaxHealth(maxHealth);
+            aiCharacterHealthBar.SetMaxHealth(maxHealth);
         }
     }
 
@@ -32,7 +32,7 @@ public class EnemyStatsManager : CharacterStatsManager
         {
             poiseResetTimer = poiseResetTimer - Time.deltaTime;
         }
-        else if (poiseResetTimer <= 0 && !enemy.isInteracting)
+        else if (poiseResetTimer <= 0 && !aiCharacter.isInteracting)
         {
             totalPoiseDefence = armorPoiseBonus;
         }
@@ -50,17 +50,17 @@ public class EnemyStatsManager : CharacterStatsManager
 
         if (!isBoss)
         {
-            enemyHealthBar.SetHealth(currentHealth);
+            aiCharacterHealthBar.SetHealth(currentHealth);
         }
-        else if (isBoss && enemy.enemyBossManager != null)
+        else if (isBoss && aiCharacter.aiCharacterBossManager != null)
         {
-            enemy.enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+            aiCharacter.aiCharacterBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
     }
 
     public override void TakePoisonDamage(int damage)
     {
-        if (enemy.isDead)
+        if (aiCharacter.isDead)
             return;
 
         base.TakePoisonDamage(damage);
@@ -68,12 +68,12 @@ public class EnemyStatsManager : CharacterStatsManager
         if (!isBoss)
         {
             //currentHealth = currentHealth - damage;
-            enemyHealthBar.SetHealth(currentHealth);
+            aiCharacterHealthBar.SetHealth(currentHealth);
         }
-        else if (isBoss && enemy.enemyBossManager != null)
+        else if (isBoss && aiCharacter.aiCharacterBossManager != null)
         {
             //currentHealth = currentHealth - damage;
-            enemy.enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+            aiCharacter.aiCharacterBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 
         //enemyHealthBar.SetHealth(currentHealth);
@@ -81,14 +81,14 @@ public class EnemyStatsManager : CharacterStatsManager
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            enemy.enemyAnimatorManager.PlayTargetAnimation("Dead_01", true, true);
-            enemy.isDead = true;
+            aiCharacter.aiCharacterAnimatorManager.PlayTargetAnimation("Dead_01", true, true);
+            aiCharacter.isDead = true;
         }
     }
 
     public void BreakGuard()
     {
-        enemy.enemyAnimatorManager.PlayTargetAnimation("Break Guard", true);
+        aiCharacter.aiCharacterAnimatorManager.PlayTargetAnimation("Break Guard", true);
     }
 
     public override void TakeDamage(int damage, int fireDamage, string damageAnimation, CharacterManager enemyCharacterDamagingMe)
@@ -97,14 +97,14 @@ public class EnemyStatsManager : CharacterStatsManager
         
         if (!isBoss)
         {
-            enemyHealthBar.SetHealth(currentHealth);
+            aiCharacterHealthBar.SetHealth(currentHealth);
         }
-        else if (isBoss && enemy.enemyBossManager != null)
+        else if (isBoss && aiCharacter.aiCharacterBossManager != null)
         {
-            enemy.enemyBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
+            aiCharacter.aiCharacterBossManager.UpdateBossHealthBar(currentHealth, maxHealth);
         }
 
-        enemy.enemyAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
+        aiCharacter.aiCharacterAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
 
         if (currentHealth <= 0)
         {
@@ -116,7 +116,7 @@ public class EnemyStatsManager : CharacterStatsManager
     private void HandleDeath()
     {
         currentHealth = 0;
-        enemy.enemyAnimatorManager.PlayTargetAnimation("Dead_01", true);
-        enemy.isDead = true;
+        aiCharacter.aiCharacterAnimatorManager.PlayTargetAnimation("Dead_01", true);
+        aiCharacter.isDead = true;
     }
 }

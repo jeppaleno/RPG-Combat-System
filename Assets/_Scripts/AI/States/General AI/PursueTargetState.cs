@@ -6,7 +6,7 @@ public class PursueTargetState : State
 {
     public CombatStanceState combatStanceState;
 
-    public override State Tick(EnemyManager enemy)
+    public override State Tick(AICharacterManager enemy)
     {
         HandleRotateTowardstarget(enemy);
 
@@ -34,7 +34,7 @@ public class PursueTargetState : State
             return this;
         }
     }
-    private void HandleRotateTowardstarget(EnemyManager enemyManager)
+    private void HandleRotateTowardstarget(AICharacterManager enemyManager)
     {
         // rotate manually
         if (enemyManager.isPerformingAction)

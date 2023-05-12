@@ -30,7 +30,7 @@ public class CombatStanceStateHumanoid : State
         pursueTargetState = GetComponent<PursueTargetStateHumanoid>();
     }
 
-    public override State Tick(EnemyManager enemy)
+    public override State Tick(AICharacterManager enemy)
     {
         if (enemy.combatStyle == AICombatStyle.swordAndShield)
         {
@@ -46,7 +46,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private State ProcessSwordAndShieldCombatStyle(EnemyManager enemy)
+    private State ProcessSwordAndShieldCombatStyle(AICharacterManager enemy)
     {
         //If the AAI is falling, or is performing some sort of action STOP all movement
         if (enemy.isInteracting) //ADD !enemy.isGrounded 
@@ -66,7 +66,7 @@ public class CombatStanceStateHumanoid : State
         if (!randomDestinationSet)
         {
             randomDestinationSet = true;
-            DecideCirclingAction(enemy.enemyAnimatorManager);
+            DecideCirclingAction(enemy.aiCharacterAnimatorManager);
         }
 
         if (enemy.allowAIToPeformParry)
@@ -130,7 +130,7 @@ public class CombatStanceStateHumanoid : State
         return this;
     }
 
-    private State ProcessArcherCombatStyle(EnemyManager enemy)
+    private State ProcessArcherCombatStyle(AICharacterManager enemy)
     {
         //If the AAI is falling, or is performing some sort of action STOP all movement
         if (enemy.isInteracting) //ADD !enemy.isGrounded 
@@ -151,7 +151,7 @@ public class CombatStanceStateHumanoid : State
         if (!randomDestinationSet)
         {
             randomDestinationSet = true;
-            DecideCirclingAction(enemy.enemyAnimatorManager);
+            DecideCirclingAction(enemy.aiCharacterAnimatorManager);
         }
 
         if (enemy.allowAIToPerformDodge)
@@ -193,7 +193,7 @@ public class CombatStanceStateHumanoid : State
         return this;
     }
 
-    protected void HandleRotateTowardstarget(EnemyManager enemy)
+    protected void HandleRotateTowardstarget(AICharacterManager enemy)
     {
         // rotate manually
         if (enemy.isPerformingAction)
@@ -223,14 +223,14 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    protected void DecideCirclingAction(EnemyAnimatorManager enemyAnimatorManager)
+    protected void DecideCirclingAction(AICharacterAnimatorManager enemyAnimatorManager)
     {
         // Circle with only forward vertical movement
         // circle with running 
         WalkAroundTarget(enemyAnimatorManager);
     }
 
-    protected void WalkAroundTarget(EnemyAnimatorManager enemyAnimatorManager)
+    protected void WalkAroundTarget(AICharacterAnimatorManager enemyAnimatorManager)
     {
         verticalMovementValue = 0.5f;
 
@@ -246,7 +246,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    protected virtual void GetNewAttack(EnemyManager enemy)
+    protected virtual void GetNewAttack(AICharacterManager enemy)
     {
         int maxScore = 0;
 
@@ -293,7 +293,7 @@ public class CombatStanceStateHumanoid : State
     }
 
     //AI CHANCE ROLLS
-    private void RollForBlockChance(EnemyManager enemy)
+    private void RollForBlockChance(AICharacterManager enemy)
     {
         int blockChance = Random.Range(0, 100);
 
@@ -307,7 +307,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private void RollForDodgeChance(EnemyManager enemy)
+    private void RollForDodgeChance(AICharacterManager enemy)
     {
         int dodgeChance = Random.Range(0, 100);
 
@@ -321,7 +321,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private void RollForParryChance(EnemyManager enemy)
+    private void RollForParryChance(AICharacterManager enemy)
     {
         int parryChance = Random.Range(0, 100);
 
@@ -351,7 +351,7 @@ public class CombatStanceStateHumanoid : State
     }
 
     //AI ACTIONS
-    private void BlockUsingOffHand(EnemyManager enemy)
+    private void BlockUsingOffHand(AICharacterManager enemy)
     {
         if (enemy.isBlocking == false)
         {
@@ -364,7 +364,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private void Dodge(EnemyManager enemy)
+    private void Dodge(AICharacterManager enemy)
     {
         if (!hasPerformedDodge)
         {
@@ -390,13 +390,13 @@ public class CombatStanceStateHumanoid : State
                 {
                     hasPerformedDodge = true;
                     enemy.transform.rotation = targetDodgeDirection;
-                    enemy.enemyAnimatorManager.PlayTargetAnimation("Rolling", true, true);
+                    enemy.aiCharacterAnimatorManager.PlayTargetAnimation("Rolling", true, true);
                 }
             }
         }
     }
 
-    private void DrawArrow(EnemyManager enemy)
+    private void DrawArrow(AICharacterManager enemy)
     {
         //Must two hand the bow to fire and load it
         if (!enemy.isTwoHandingWeapon)
@@ -412,13 +412,13 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private void AimAtTargetBeforeFiring(EnemyManager enemy)
+    private void AimAtTargetBeforeFiring(AICharacterManager enemy)
     {
         float timeUntilAmmoIsShotAtTarget = Random.Range(enemy.minimumTimeToAimAtTarget, enemy.maximumTimeToAimAtTarget);
         enemy.currentRecoveryTime = timeUntilAmmoIsShotAtTarget;
     }
 
-    private void ParryCurrentTarget(EnemyManager enemy)
+    private void ParryCurrentTarget(AICharacterManager enemy)
     {
         if (enemy.currentTarget.canBeParried)
         {
@@ -426,12 +426,12 @@ public class CombatStanceStateHumanoid : State
             {
                 hasPerformedParry = true;
                 enemy.isParrying = true;
-                enemy.enemyAnimatorManager.PlayTargetAnimation("Parry", true, true);
+                enemy.aiCharacterAnimatorManager.PlayTargetAnimation("Parry", true, true);
             }
         }
     }
 
-    private void CheckForRiposte(EnemyManager enemy)
+    private void CheckForRiposte(AICharacterManager enemy)
     {
         if (enemy.isInteracting)
         {
@@ -458,7 +458,7 @@ public class CombatStanceStateHumanoid : State
         }
     }
 
-    private void HandleMovement(EnemyManager enemy)
+    private void HandleMovement(AICharacterManager enemy)
     {
         if (enemy.distanceFromTarget <= enemy.stoppingDistance)
         {

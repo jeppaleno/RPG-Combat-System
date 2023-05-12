@@ -74,7 +74,7 @@ public class FireArrowAction : ItemAction
         //---------------------- FIRE THE ARROW AS AN A.I CHARACTER -----------------------
         else
         {
-            EnemyManager enemy = character as EnemyManager;
+            AICharacterManager enemy = character as AICharacterManager;
 
             //Create and fire the live arrow
             GameObject liveArrow = Instantiate(character.characterInventoryManager.currentAmmo.liveAmmoModel, arrowInstantiationLocation.transform.position, Quaternion.identity);

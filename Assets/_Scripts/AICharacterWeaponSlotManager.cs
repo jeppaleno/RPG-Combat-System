@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeaponSlotManager : CharacterWeaponSlotManager
+public class AICharacterWeaponSlotManager : CharacterWeaponSlotManager
 {
    
     public override void GrantWeaponAttackingPoiseBonus()

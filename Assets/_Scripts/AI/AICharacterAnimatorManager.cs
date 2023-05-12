@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimatorManager : CharacterAnimatorManager
+public class AICharacterAnimatorManager : CharacterAnimatorManager
 {
-    EnemyManager enemy;
+    AICharacterManager AICharacter;
     
     protected override void Awake()
     {
         base.Awake();
-        enemy = GetComponent<EnemyManager>();
+        AICharacter = GetComponent<AICharacterManager>();
     }
 
     public void AwardSoulsOnDeath()
@@ -19,7 +19,7 @@ public class EnemyAnimatorManager : CharacterAnimatorManager
 
         if (playerStats != null)
         {
-            playerStats.AddSouls(enemy.enemyStatsManager.soulsAwardedOnDeath);
+            playerStats.AddSouls(AICharacter.aiCharacterStatsManager.soulsAwardedOnDeath);
 
             if (soulCountBar != null)
             {
@@ -32,26 +32,26 @@ public class EnemyAnimatorManager : CharacterAnimatorManager
     {
         BossFXTransform bossFXTransform = GetComponentInChildren<BossFXTransform>();
 
-        GameObject phaseFX = Instantiate(enemy.enemyBossManager.particleFX, bossFXTransform.transform);
+        GameObject phaseFX = Instantiate(AICharacter.aiCharacterBossManager.particleFX, bossFXTransform.transform);
     }
 
     public void PlayWeaponTrailFX()
     {
-        enemy.enemyEffectsManager.PlayWeaponFX(false);
+        AICharacter.aiCharacterEffectsManager.PlayWeaponFX(false);
     }
 
     private void OnAnimatorMove()
     {
         float delta = Time.deltaTime;
-        enemy.enemyRigidBody.drag = 0;
-        Vector3 deltaPosition = enemy.animator.deltaPosition;
+        AICharacter.enemyRigidBody.drag = 0;
+        Vector3 deltaPosition = AICharacter.animator.deltaPosition;
         deltaPosition.y = 0;
         Vector3 velocity = deltaPosition / delta;
-        enemy.enemyRigidBody.velocity = velocity;
+        AICharacter.enemyRigidBody.velocity = velocity;
 
-        if (enemy.isRotatingWithRootMotion)
+        if (AICharacter.isRotatingWithRootMotion)
         {
-            enemy.transform.rotation *= enemy.animator.deltaRotation;
+            AICharacter.transform.rotation *= AICharacter.animator.deltaRotation;
         }
     }
 }

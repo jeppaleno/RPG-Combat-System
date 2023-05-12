@@ -5,14 +5,14 @@ using UnityEngine;
 public class CombatStanceState : State
 {
     public AttackState attackState;
-    public EnemyAttackAction[] enemyAttacks;
+    public AICharacterAttackAction[] enemyAttacks;
     public PursueTargetState pursueTargetState;
 
     protected bool randomDestinationSet = false;
     protected float verticalMovementValue = 0;
     protected float horizontalMovementValue = 0;
 
-    public override State Tick(EnemyManager enemy)
+    public override State Tick(AICharacterManager enemy)
     {
         
         enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
@@ -34,7 +34,7 @@ public class CombatStanceState : State
         if (!randomDestinationSet)
         {
             randomDestinationSet = true;
-            DecideCirclingAction(enemy.enemyAnimatorManager);
+            DecideCirclingAction(enemy.aiCharacterAnimatorManager);
         }
 
         HandleRotateTowardstarget(enemy);
@@ -51,7 +51,7 @@ public class CombatStanceState : State
         return this;
     }
 
-    protected void HandleRotateTowardstarget(EnemyManager enemy)
+    protected void HandleRotateTowardstarget(AICharacterManager enemy)
     {
         // rotate manually
         if (enemy.isPerformingAction)
@@ -81,14 +81,14 @@ public class CombatStanceState : State
         }
     }
 
-    protected void DecideCirclingAction(EnemyAnimatorManager enemyAnimatorManager)
+    protected void DecideCirclingAction(AICharacterAnimatorManager enemyAnimatorManager)
     {
         // Circle with only forward vertical movement
         // circle with running 
         WalkAroundTarget(enemyAnimatorManager);
     }
 
-    protected void WalkAroundTarget(EnemyAnimatorManager enemyAnimatorManager)
+    protected void WalkAroundTarget(AICharacterAnimatorManager enemyAnimatorManager)
     {
         verticalMovementValue = 0.5f;
 
@@ -104,13 +104,13 @@ public class CombatStanceState : State
         }
     }
 
-    protected virtual void GetNewAttack(EnemyManager enemy)
+    protected virtual void GetNewAttack(AICharacterManager enemy)
     {
         int maxScore = 0;
 
         for (int i = 0; i < enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+            AICharacterAttackAction enemyAttackAction = enemyAttacks[i];
 
             if (enemy.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && enemy.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
@@ -128,7 +128,7 @@ public class CombatStanceState : State
 
         for (int i = 0; i < enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+            AICharacterAttackAction enemyAttackAction = enemyAttacks[i];
 
             if (enemy.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && enemy.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)

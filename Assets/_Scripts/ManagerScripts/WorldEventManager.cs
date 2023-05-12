@@ -6,7 +6,7 @@ public class WorldEventManager : MonoBehaviour
 {
     public List<FogWall> fogWalls;
     public UIBossHealthBar bossHealthBar;
-    public EnemyBossManager boss;
+    public AICharacterBossManager boss;
 
     public bool bossFightIsActive; //Is currently fighting the boss
     public bool bossHasBeenAwakened; //Woke the boss/watched cutscene but died during fight

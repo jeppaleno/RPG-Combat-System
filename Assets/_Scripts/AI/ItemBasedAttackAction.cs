@@ -23,7 +23,7 @@ public class ItemBasedAttackAction : ScriptableObject
     public float minimumDistanceNeededToAttack = 0;
     public float maximumDistanceNeededToAttack = 3;
 
-    public void PerformAttackAction(EnemyManager enemy)
+    public void PerformAttackAction(AICharacterManager enemy)
     {
         if (isUsingRightHandedAction)
         {
@@ -38,7 +38,7 @@ public class ItemBasedAttackAction : ScriptableObject
     }
 
     //DECIDE WHICH HAND PERFORMS ACTIONS
-    private void PerformRightHandItemActionBasedOnAttackType(EnemyManager enemy)
+    private void PerformRightHandItemActionBasedOnAttackType(AICharacterManager enemy)
     {
         if (actionAttackType == AIAttackActionType.meleeAttackAction)
         {
@@ -50,7 +50,7 @@ public class ItemBasedAttackAction : ScriptableObject
         }
     }
 
-    private void PerformLeftHandItemActionBasedOnAttackType(EnemyManager enemy)
+    private void PerformLeftHandItemActionBasedOnAttackType(AICharacterManager enemy)
     {
         if (actionAttackType == AIAttackActionType.meleeAttackAction)
         {
@@ -63,7 +63,7 @@ public class ItemBasedAttackAction : ScriptableObject
     }
 
     //RIGHT HAND ACTIONS
-    private void PerformRightHandMeleeAction(EnemyManager enemy)
+    private void PerformRightHandMeleeAction(AICharacterManager enemy)
     {
         if (enemy.isTwoHandingWeapon)
         {

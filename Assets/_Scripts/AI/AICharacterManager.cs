@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyManager : CharacterManager
+public class AICharacterManager : CharacterManager
 {
-    public EnemyBossManager enemyBossManager;
-    public EnemyLocomotionManager enemyLocomotionManager;
-    public EnemyAnimatorManager enemyAnimatorManager;
-    public EnemyStatsManager enemyStatsManager;
-    public EnemyEffectsManager enemyEffectsManager;
+    public AICharacterBossManager aiCharacterBossManager;
+    public AICharacterLocomotionManager aiCharacterLocomotionManager;
+    public AICharacterAnimatorManager aiCharacterAnimatorManager;
+    public AICharacterStatsManager aiCharacterStatsManager;
+    public AICharacterEffectsManager aiCharacterEffectsManager;
     
     public State currentState;
     public CharacterManager currentTarget;
@@ -57,11 +57,11 @@ public class EnemyManager : CharacterManager
     protected override void Awake()
     {
         base.Awake();
-        enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
-        enemyBossManager = GetComponent<EnemyBossManager>();
-        enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
-        enemyStatsManager = GetComponent<EnemyStatsManager>();
-        enemyEffectsManager = GetComponent<EnemyEffectsManager>();
+        aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
+        aiCharacterBossManager = GetComponent<AICharacterBossManager>();
+        aiCharacterAnimatorManager = GetComponent<AICharacterAnimatorManager>();
+        aiCharacterStatsManager = GetComponent<AICharacterStatsManager>();
+        aiCharacterEffectsManager = GetComponent<AICharacterEffectsManager>();
         enemyRigidBody = GetComponent<Rigidbody>();
         navmeshAgent = GetComponentInChildren<NavMeshAgent>();
         navmeshAgent.enabled = false;
@@ -99,7 +99,7 @@ public class EnemyManager : CharacterManager
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        enemyEffectsManager.HandleAllBuildEffects();
+        aiCharacterEffectsManager.HandleAllBuildEffects();
     }
 
     private void LateUpdate()

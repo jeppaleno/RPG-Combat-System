@@ -7,7 +7,7 @@ public class RotateTowardsTargetState : State
     public CombatStanceState combatStanceState;
 
 
-    public override State Tick(EnemyManager enemy)
+    public override State Tick(AICharacterManager enemy)
     {
         enemy.animator.SetFloat("Vertical", 0);
         enemy.animator.SetFloat("Horizontal", 0);
@@ -19,22 +19,22 @@ public class RotateTowardsTargetState : State
 
         if (enemy.viewableAngle >= 100 && enemy.viewableAngle <= 180 && !enemy.isInteracting)
         {
-            enemy.enemyAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Behind", true);
+            enemy.aiCharacterAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Behind", true);
             return combatStanceState;
         }
         else if (enemy.viewableAngle <= -101 && enemy.viewableAngle >= -180 && !enemy.isInteracting)
         {
-            enemy.enemyAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Behind", true);
+            enemy.aiCharacterAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Behind", true);
             return combatStanceState;
         }
         else if (enemy.viewableAngle <= -45 && enemy.viewableAngle >= -100 && !enemy.isInteracting)
         {
-            enemy.enemyAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Right", true);
+            enemy.aiCharacterAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Right", true);
             return combatStanceState;
         }
         else if (enemy.viewableAngle >= 45 && enemy.viewableAngle <= 100 && !enemy.isInteracting)
         {
-            enemy.enemyAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Left", true);
+            enemy.aiCharacterAnimatorManager.PlayTargetAnimationWithRootRotation("Turn Left", true);
             return combatStanceState;
         }
 

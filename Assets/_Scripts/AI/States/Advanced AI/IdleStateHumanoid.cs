@@ -13,7 +13,7 @@ public class IdleStateHumanoid : State
         pursueTargetState = GetComponent<PursueTargetStateHumanoid>();
     }
 
-    public override State Tick(EnemyManager aiCharacter)
+    public override State Tick(AICharacterManager aiCharacter)
     {
         // Searches for a potential target within the detection radius
         Collider[] colliders = Physics.OverlapSphere(transform.position, aiCharacter.detectionRadius, detectionLayer);
@@ -24,7 +24,7 @@ public class IdleStateHumanoid : State
             //If a potentential target is found, that is not on the sam team as the A:I we proceed to the next step
             if (targetCharacter != null)
             {
-                if (targetCharacter.characterStatsManager.teamIDNumber != aiCharacter.enemyStatsManager.teamIDNumber)
+                if (targetCharacter.characterStatsManager.teamIDNumber != aiCharacter.aiCharacterStatsManager.teamIDNumber)
                 {
                     Vector3 targetDirection = targetCharacter.transform.position - transform.position;
                     float viewableAngle = Vector3.Angle(targetDirection, transform.forward);

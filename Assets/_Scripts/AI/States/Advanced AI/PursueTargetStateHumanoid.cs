@@ -10,7 +10,7 @@ public class PursueTargetStateHumanoid : State
     {
         combatStanceState = GetComponent<CombatStanceStateHumanoid>();
     }
-    public override State Tick(EnemyManager enemy)
+    public override State Tick(AICharacterManager enemy)
     {
         if (enemy.combatStyle == AICombatStyle.swordAndShield)
         {
@@ -26,7 +26,7 @@ public class PursueTargetStateHumanoid : State
         }
     }
 
-    private State ProcessArcherCombatStyle(EnemyManager enemy)
+    private State ProcessArcherCombatStyle(AICharacterManager enemy)
     {
         HandleRotateTowardstarget(enemy);
 
@@ -58,7 +58,7 @@ public class PursueTargetStateHumanoid : State
         }
     }
 
-    private State ProcessSwordAndShieldCombatStyle(EnemyManager enemy)
+    private State ProcessSwordAndShieldCombatStyle(AICharacterManager enemy)
     {
         HandleRotateTowardstarget(enemy);
 
@@ -87,7 +87,7 @@ public class PursueTargetStateHumanoid : State
         }
     }
 
-    private void HandleRotateTowardstarget(EnemyManager enemyManager)
+    private void HandleRotateTowardstarget(AICharacterManager enemyManager)
     {
         // rotate manually
         if (enemyManager.isPerformingAction)
