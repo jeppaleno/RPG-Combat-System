@@ -49,6 +49,12 @@ public class AICharacterManager : CharacterManager
     public float minimumTimeToAimAtTarget = 3;
     public float maximumTimeToAimAtTarget = 6;
 
+    [Header("A.I Companion Settings")]
+    public float maxDistanceFromCompanion;
+    public float minimumDistanceFromCompanion;
+    public float distanceFromCompanion;
+    public CharacterManager companion;
+
     [Header("A.I Target Information")]
     public float distanceFromTarget;
     public Vector3 targetDirection;
@@ -93,6 +99,11 @@ public class AICharacterManager : CharacterManager
             distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
             targetDirection = currentTarget.transform.position - transform.position;
             viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+        }
+
+        if (companion != null)
+        {
+            distanceFromCompanion = Vector3.Distance(companion.transform.position, transform.position);
         }
     }
 

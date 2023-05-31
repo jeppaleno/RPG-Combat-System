@@ -8567,6 +8567,10 @@ PrefabInstance:
       propertyPath: characterLayer.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 7231171829394456378, guid: a02955875452e414d934356fe20998a6, type: 3}
+      propertyPath: teamIDNumber
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7231171829394456383, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: blockLikelyHood
       value: 20
