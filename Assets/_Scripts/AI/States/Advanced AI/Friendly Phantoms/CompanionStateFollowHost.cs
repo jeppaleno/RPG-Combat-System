@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CompanionStateFollowHost : State
 {
-    // EP 118 12:11
+    CompanionStateIdle idleState;
+
+    private void Awake()
+    {
+        idleState = GetComponent<CompanionStateIdle>();
+    }
+
     public override State Tick(AICharacterManager aiCharacter)
     {
-        HandleRotateTowardstarget(aiCharacter);
-
-        if (aiCharacter.distanceFromCompanion > aiCharacter.maxDistanceFromCompanion)
-        {
-
-        }
 
         if (aiCharacter.isInteracting)
             return this;
@@ -24,20 +24,22 @@ public class CompanionStateFollowHost : State
             return this;
         }
 
-        if (aiCharacter.distanceFromTarget > aiCharacter.maximumAggroRadius)
+        HandleRotateTowardstarget(aiCharacter);
+
+        if (aiCharacter.distanceFromCompanion > aiCharacter.maxDistanceFromCompanion)
         {
             aiCharacter.animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
         }
 
-        if (aiCharacter.distanceFromTarget <= aiCharacter.maximumAggroRadius)
+
+        if (aiCharacter.distanceFromCompanion <= aiCharacter.returnDistanceFromCompanion)
         {
-            
+            return idleState;
         }
         else
         {
             return this;
         }
-        return this;
     }
 
     private void HandleRotateTowardstarget(AICharacterManager aiCharacter)

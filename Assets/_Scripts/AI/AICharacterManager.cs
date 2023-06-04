@@ -50,8 +50,9 @@ public class AICharacterManager : CharacterManager
     public float maximumTimeToAimAtTarget = 6;
 
     [Header("A.I Companion Settings")]
-    public float maxDistanceFromCompanion;
-    public float minimumDistanceFromCompanion;
+    public float maxDistanceFromCompanion;      // Max distance we can go from our companion
+    public float minimumDistanceFromCompanion;  // Minimum distance we have to be from our companion
+    public float returnDistanceFromCompanion = 2;   // How CLose we get to our companion when we return to them
     public float distanceFromCompanion;
     public CharacterManager companion;
 
