@@ -19,7 +19,6 @@ public class CompanionStateFollowHost : State
 
         if (aiCharacter.isPerformingAction)
         {
-
             aiCharacter.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             return this;
         }
@@ -30,7 +29,6 @@ public class CompanionStateFollowHost : State
         {
             aiCharacter.animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
         }
-
 
         if (aiCharacter.distanceFromCompanion <= aiCharacter.returnDistanceFromCompanion)
         {

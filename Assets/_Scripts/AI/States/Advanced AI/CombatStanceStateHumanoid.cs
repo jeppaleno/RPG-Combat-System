@@ -193,34 +193,19 @@ public class CombatStanceStateHumanoid : State
         return this;
     }
 
-    protected void HandleRotateTowardstarget(AICharacterManager enemy)
+    protected void HandleRotateTowardstarget(AICharacterManager aiCharacter)
     {
-        // rotate manually
-        if (enemy.isPerformingAction)
+        Vector3 direction = aiCharacter.currentTarget.transform.position - transform.position;
+        direction.y = 0;
+        direction.Normalize();
+
+        if (direction == Vector3.zero)
         {
-            Vector3 direction = enemy.currentTarget.transform.position - transform.position;
-            direction.y = 0;
-            direction.Normalize();
-
-            if (direction == Vector3.zero)
-            {
-                direction = transform.forward;
-            }
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            enemy.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, enemy.rotationSpeed / Time.deltaTime);
+            direction = transform.forward;
         }
-        //rotate with pathfinding (navmesh)
-        else
-        {
-            Vector3 relativeDirection = transform.InverseTransformDirection(enemy.navmeshAgent.desiredVelocity);
-            Vector3 targetVelocity = enemy.enemyRigidBody.velocity;
 
-            enemy.navmeshAgent.enabled = true;
-            enemy.navmeshAgent.SetDestination(enemy.currentTarget.transform.position);
-            enemy.enemyRigidBody.velocity = targetVelocity;
-            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, enemy.navmeshAgent.transform.rotation, enemy.rotationSpeed / Time.deltaTime);
-        }
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        aiCharacter.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, aiCharacter.rotationSpeed); // / Time.deltaTime?
     }
 
     protected void DecideCirclingAction(AICharacterAnimatorManager enemyAnimatorManager)

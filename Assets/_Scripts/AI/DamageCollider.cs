@@ -65,6 +65,8 @@ public class DamageCollider : MonoBehaviour
             
             if (enemyManager != null)
             {
+                AICharacterManager aiCharacter = enemyManager as AICharacterManager;
+
                 if (charactersDamagedDuringThisCalculation.Contains(enemyManager))
                     return;
 
@@ -75,10 +77,7 @@ public class DamageCollider : MonoBehaviour
 
                 CheckForParry(enemyManager);
                 CheckForBlock(enemyManager);
-            }
 
-            if (enemyManager.characterStatsManager != null)
-            {
                 if (enemyManager.characterStatsManager.teamIDNumber == teamIDNumber)
                     return;
 
@@ -100,6 +99,12 @@ public class DamageCollider : MonoBehaviour
                 enemyManager.characterEffectsManager.InteruptEffect();
                 //Deals Damage
                 DealDamage(enemyManager.characterStatsManager);
+
+                if (aiCharacter != null)
+                {
+                    // If target is AI, the AI receives a new target, the person dealing damage to it
+                    aiCharacter.currentTarget = characterManager;
+                }
             }
         }
 
