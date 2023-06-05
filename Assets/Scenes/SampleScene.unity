@@ -6740,17 +6740,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandConstraint: {fileID: 1138736825}
   rightHandConstraint: {fileID: 212044486}
---- !u!114 &640650227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7231171829394456383, guid: a02955875452e414d934356fe20998a6, type: 3}
-  m_PrefabInstance: {fileID: 7231171828931598805}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640650205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9388566de6ce21e4ead515310dd97917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &643157597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8521,7 +8510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7226717789401070723, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.653
+      value: -5.97
       objectReference: {fileID: 0}
     - target: {fileID: 7226717789401070723, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8529,7 +8518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7226717789401070723, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 7226717789401070723, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8638,7 +8627,7 @@ PrefabInstance:
     - target: {fileID: 7231171829394456383, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: currentTarget
       value: 
-      objectReference: {fileID: 640650227}
+      objectReference: {fileID: 0}
     - target: {fileID: 7231171829394456383, guid: a02955875452e414d934356fe20998a6, type: 3}
       propertyPath: rotationSpeed
       value: 15
@@ -29924,6 +29913,10 @@ PrefabInstance:
       propertyPath: itemInteractableGameObject
       value: 
       objectReference: {fileID: 1784269819}
+    - target: {fileID: 9156445926524311543, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
+      propertyPath: default_Qued_Input_Time
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9156445926524311544, guid: 3326b917baa405643af2e7f9e9c01a81, type: 3}
       propertyPath: m_Height
       value: 1.4877872

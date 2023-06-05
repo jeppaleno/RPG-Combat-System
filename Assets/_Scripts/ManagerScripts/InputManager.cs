@@ -52,7 +52,10 @@ public class InputManager : MonoBehaviour
     public bool fireFlag;
     public bool inventoryFlag;
 
-    
+    public bool input_Has_Been_Qued;
+    public float current_Qued_Input_Timer;
+    public float default_Qued_Input_Time;
+    public bool qued_RB_Input;
 
     private void Awake()
     {
@@ -64,48 +67,34 @@ public class InputManager : MonoBehaviour
         if (playerControls == null)
         {
             playerControls = new PlayerControls();
-
             playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
-
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
-
             playerControls.PlayerActions.A_Input.performed += i => a_Input = true;
             playerControls.PlayerActions.X.performed += i => x_Input = true;
             playerControls.PlayerActions.Y.performed += i => y_Input = true;
-
             playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false; 
-
             playerControls.PlayerActions.Attack.performed += i => tap_rb_Input = true;
             playerControls.PlayerActions.Attack.canceled += i => tap_rb_Input = false;
             playerControls.PlayerActions.HeavyAttack.performed += i => tap_rt_input = true;
-
             playerControls.PlayerActions.HoldRB.performed += i => hold_rb_Input = true;
             playerControls.PlayerActions.HoldRB.canceled += i => hold_rb_Input = false;
-
             playerControls.PlayerActions.HoldRT.performed += i => hold_rt_Input = true;
             playerControls.PlayerActions.HoldRT.canceled += i => hold_rt_Input = false;
-
             playerControls.PlayerActions.TapLB.performed += i => tap_lb_Input = true;
-
             playerControls.PlayerActions.LB.performed += i => lb_Input = true;
             playerControls.PlayerActions.LB.canceled += i => lb_Input = false;
-
             playerControls.PlayerActions.LT.performed += i => tap_lt_Input = true;
-
             playerControls.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
             playerControls.PlayerActions.DPadLeft.performed += i => d_Pad_Left = true;
-
             playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
-
             playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
-
             playerControls.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
             playerControls.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
-
             playerControls.PlayerActions.Roll.performed += i => b_input = true;
+            playerControls.PlayerActions.QuedRB.performed += i => QueInput(ref qued_RB_Input);
         }
 
         playerControls.Enable();
@@ -138,6 +127,7 @@ public class InputManager : MonoBehaviour
         //HandleDodgeInput();
         HandleTwoHandInput();
         HandleUseConsumableInput();
+        HandleQuedInput();
     }
 
     private void HandleMovementInput()
@@ -501,5 +491,48 @@ public class InputManager : MonoBehaviour
             // Use Current consumable
             player.playerInventoryManager.currentConsumable.AttemptToConsumeItem(player.playerAnimatorManager, player.playerWeaponSlotManager, player.playerEffectsManager);
         }
+    }
+
+    private void QueInput(ref bool quedInput)
+    {
+        // DISABLE ALL OTHER QUED INPUTS
+        //Qued_LB_Input = false;
+        //Qued_RT_Input = false;
+
+        // ENABLE THE REFERENCED INPUT BY REFERENCE
+        // If we are interacting, we can que an input, otherwise is not needed
+        if (player.isInteracting)
+        {
+            quedInput = true;
+            current_Qued_Input_Timer = default_Qued_Input_Time;
+            input_Has_Been_Qued = true;
+        }
+    }
+
+    private void HandleQuedInput()
+    {
+        if (input_Has_Been_Qued)
+        {
+            if (current_Qued_Input_Timer > 0)
+            {
+                current_Qued_Input_Timer = current_Qued_Input_Timer - Time.deltaTime;
+                ProcessQuedInput();
+            }
+            else
+            {
+                input_Has_Been_Qued = false;
+                current_Qued_Input_Timer = 0;
+            }
+        }
+    }
+
+    private void ProcessQuedInput()
+    {
+        if (qued_RB_Input)
+        {
+            tap_rb_Input = true;
+        }
+        // If Qued LB Input => Tap LB Input = true
+        // If Qued LT Input => Tap LT Input = true
     }
 }
