@@ -362,6 +362,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Qued RT",
+                    "type": "Button",
+                    "id": "0c9fdd04-2105-4deb-a8d5-fc2f6f5e2eff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Hold RT",
                     "type": "PassThrough",
                     "id": "7c69bed7-6bea-4887-9c9a-0e12d54536c8",
@@ -446,6 +455,15 @@
                     "name": "Roll",
                     "type": "Button",
                     "id": "33831118-2734-44a4-80ff-afe86a6a9238",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Qued Roll",
+                    "type": "Button",
+                    "id": "52910e17-8fb6-41fc-81de-82c68ab56aa4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -899,6 +917,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Qued RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f081d960-6c6d-4446-b990-f2c736b149b6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Qued RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6930c833-628d-467d-a9b8-b8ccef1a80b7",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Qued RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f24a486-d3c4-4842-bb13-487f7d642900",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Qued Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbd2b742-af28-47fd-810c-1290e44dd293",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Qued Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

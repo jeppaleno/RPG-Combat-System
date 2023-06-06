@@ -56,6 +56,8 @@ public class InputManager : MonoBehaviour
     public float current_Qued_Input_Timer;
     public float default_Qued_Input_Time;
     public bool qued_RB_Input;
+    public bool qued_RT_Input;
+    public bool qued_Roll_Input;
 
     private void Awake()
     {
@@ -95,6 +97,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
             playerControls.PlayerActions.Roll.performed += i => b_input = true;
             playerControls.PlayerActions.QuedRB.performed += i => QueInput(ref qued_RB_Input);
+            playerControls.PlayerActions.QuedRT.performed += i => QueInput(ref qued_RT_Input);
+            playerControls.PlayerActions.QuedRoll.performed += i => QueInput(ref qued_Roll_Input);
         }
 
         playerControls.Enable();
@@ -497,7 +501,9 @@ public class InputManager : MonoBehaviour
     {
         // DISABLE ALL OTHER QUED INPUTS
         //Qued_LB_Input = false;
-        //Qued_RT_Input = false;
+        qued_RT_Input = false;
+        qued_RB_Input = false;
+        qued_Roll_Input = false;
 
         // ENABLE THE REFERENCED INPUT BY REFERENCE
         // If we are interacting, we can que an input, otherwise is not needed
@@ -532,6 +538,15 @@ public class InputManager : MonoBehaviour
         {
             tap_rb_Input = true;
         }
+        if (qued_RT_Input)
+        {
+            tap_rt_input = true;
+        }
+        if (qued_Roll_Input)
+        {
+            b_input = true;
+        }
+
         // If Qued LB Input => Tap LB Input = true
         // If Qued LT Input => Tap LT Input = true
     }

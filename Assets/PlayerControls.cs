@@ -384,6 +384,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Qued RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c9fdd04-2105-4deb-a8d5-fc2f6f5e2eff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Hold RT"",
                     ""type"": ""PassThrough"",
                     ""id"": ""7c69bed7-6bea-4887-9c9a-0e12d54536c8"",
@@ -468,6 +477,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Roll"",
                     ""type"": ""Button"",
                     ""id"": ""33831118-2734-44a4-80ff-afe86a6a9238"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Qued Roll"",
+                    ""type"": ""Button"",
+                    ""id"": ""52910e17-8fb6-41fc-81de-82c68ab56aa4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -923,6 +941,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Qued RB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f081d960-6c6d-4446-b990-f2c736b149b6"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Qued RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6930c833-628d-467d-a9b8-b8ccef1a80b7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Qued RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f24a486-d3c4-4842-bb13-487f7d642900"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Qued Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbd2b742-af28-47fd-810c-1290e44dd293"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Qued Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -946,6 +1008,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_LB = m_PlayerActions.FindAction("LB", throwIfNotFound: true);
         m_PlayerActions_LT = m_PlayerActions.FindAction("LT", throwIfNotFound: true);
         m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_PlayerActions_QuedRT = m_PlayerActions.FindAction("Qued RT", throwIfNotFound: true);
         m_PlayerActions_HoldRT = m_PlayerActions.FindAction("Hold RT", throwIfNotFound: true);
         m_PlayerActions_DPadUp = m_PlayerActions.FindAction("D-Pad Up", throwIfNotFound: true);
         m_PlayerActions_DPadDown = m_PlayerActions.FindAction("D-Pad Down", throwIfNotFound: true);
@@ -956,6 +1019,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_X = m_PlayerActions.FindAction("X", throwIfNotFound: true);
         m_PlayerActions_Y = m_PlayerActions.FindAction("Y", throwIfNotFound: true);
         m_PlayerActions_Roll = m_PlayerActions.FindAction("Roll", throwIfNotFound: true);
+        m_PlayerActions_QuedRoll = m_PlayerActions.FindAction("Qued Roll", throwIfNotFound: true);
         m_PlayerActions_TapLB = m_PlayerActions.FindAction("TapLB", throwIfNotFound: true);
     }
 
@@ -1082,6 +1146,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LB;
     private readonly InputAction m_PlayerActions_LT;
     private readonly InputAction m_PlayerActions_HeavyAttack;
+    private readonly InputAction m_PlayerActions_QuedRT;
     private readonly InputAction m_PlayerActions_HoldRT;
     private readonly InputAction m_PlayerActions_DPadUp;
     private readonly InputAction m_PlayerActions_DPadDown;
@@ -1092,6 +1157,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_X;
     private readonly InputAction m_PlayerActions_Y;
     private readonly InputAction m_PlayerActions_Roll;
+    private readonly InputAction m_PlayerActions_QuedRoll;
     private readonly InputAction m_PlayerActions_TapLB;
     public struct PlayerActionsActions
     {
@@ -1106,6 +1172,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LB => m_Wrapper.m_PlayerActions_LB;
         public InputAction @LT => m_Wrapper.m_PlayerActions_LT;
         public InputAction @HeavyAttack => m_Wrapper.m_PlayerActions_HeavyAttack;
+        public InputAction @QuedRT => m_Wrapper.m_PlayerActions_QuedRT;
         public InputAction @HoldRT => m_Wrapper.m_PlayerActions_HoldRT;
         public InputAction @DPadUp => m_Wrapper.m_PlayerActions_DPadUp;
         public InputAction @DPadDown => m_Wrapper.m_PlayerActions_DPadDown;
@@ -1116,6 +1183,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @X => m_Wrapper.m_PlayerActions_X;
         public InputAction @Y => m_Wrapper.m_PlayerActions_Y;
         public InputAction @Roll => m_Wrapper.m_PlayerActions_Roll;
+        public InputAction @QuedRoll => m_Wrapper.m_PlayerActions_QuedRoll;
         public InputAction @TapLB => m_Wrapper.m_PlayerActions_TapLB;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
@@ -1153,6 +1221,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @HeavyAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeavyAttack;
+                @QuedRT.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuedRT;
+                @QuedRT.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuedRT;
+                @QuedRT.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuedRT;
                 @HoldRT.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHoldRT;
                 @HoldRT.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHoldRT;
                 @HoldRT.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHoldRT;
@@ -1183,6 +1254,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Roll.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRoll;
                 @Roll.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRoll;
                 @Roll.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRoll;
+                @QuedRoll.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuedRoll;
+                @QuedRoll.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuedRoll;
+                @QuedRoll.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuedRoll;
                 @TapLB.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnTapLB;
                 @TapLB.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnTapLB;
                 @TapLB.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnTapLB;
@@ -1217,6 +1291,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @HeavyAttack.started += instance.OnHeavyAttack;
                 @HeavyAttack.performed += instance.OnHeavyAttack;
                 @HeavyAttack.canceled += instance.OnHeavyAttack;
+                @QuedRT.started += instance.OnQuedRT;
+                @QuedRT.performed += instance.OnQuedRT;
+                @QuedRT.canceled += instance.OnQuedRT;
                 @HoldRT.started += instance.OnHoldRT;
                 @HoldRT.performed += instance.OnHoldRT;
                 @HoldRT.canceled += instance.OnHoldRT;
@@ -1247,6 +1324,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
+                @QuedRoll.started += instance.OnQuedRoll;
+                @QuedRoll.performed += instance.OnQuedRoll;
+                @QuedRoll.canceled += instance.OnQuedRoll;
                 @TapLB.started += instance.OnTapLB;
                 @TapLB.performed += instance.OnTapLB;
                 @TapLB.canceled += instance.OnTapLB;
@@ -1272,6 +1352,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLB(InputAction.CallbackContext context);
         void OnLT(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnQuedRT(InputAction.CallbackContext context);
         void OnHoldRT(InputAction.CallbackContext context);
         void OnDPadUp(InputAction.CallbackContext context);
         void OnDPadDown(InputAction.CallbackContext context);
@@ -1282,6 +1363,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnX(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+        void OnQuedRoll(InputAction.CallbackContext context);
         void OnTapLB(InputAction.CallbackContext context);
     }
 }
