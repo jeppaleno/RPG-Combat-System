@@ -40,18 +40,21 @@ public class AICharacterAnimatorManager : CharacterAnimatorManager
         AICharacter.aiCharacterEffectsManager.PlayWeaponFX(false);
     }
 
-    private void OnAnimatorMove()
+    public override void OnAnimatorMove()
     {
-        float delta = Time.deltaTime;
-        AICharacter.enemyRigidBody.drag = 0;
-        Vector3 deltaPosition = AICharacter.animator.deltaPosition;
-        deltaPosition.y = 0;
-        Vector3 velocity = deltaPosition / delta;
-        AICharacter.enemyRigidBody.velocity = velocity;
+        if (character.isUsingRootMotion)
+        {
+            if (character.isInteracting == false)
+                return;
 
+            Vector3 velocity = character.animator.deltaPosition;
+            character.characterController.Move(velocity);
+            
+        }
+        
         if (AICharacter.isRotatingWithRootMotion)
         {
-            AICharacter.transform.rotation *= AICharacter.animator.deltaRotation;
+            character.transform.rotation *= character.animator.deltaRotation;
         }
     }
 }

@@ -45,6 +45,8 @@ public class InputManager : MonoBehaviour
     public bool tap_rt_input;
 
     public bool rollFlag;
+    public float rollInputTimer;
+    public bool sprintFlag;
     public bool isInteracting;
     public bool comboFlag;
     public bool twohandFlag;
@@ -146,11 +148,11 @@ public class InputManager : MonoBehaviour
 
         if (lockOnFlag && sprint_Input == false)
         {
-            player.playerAnimatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, player.playerLocomotionManager.isSprinting);
+            player.playerAnimatorManager.UpdateAnimatorValues(horizontalInput, verticalInput, player.isSprinting);
         }
         else
         {
-            player.playerAnimatorManager.UpdateAnimatorValues(0, moveAmount, player.playerLocomotionManager.isSprinting);
+            player.playerAnimatorManager.UpdateAnimatorValues(0, moveAmount, player.isSprinting);
         }
         
     }
@@ -163,12 +165,12 @@ public class InputManager : MonoBehaviour
         // Sprints when input is being pressed and aleady is running. 
         if (sprint_Input && moveAmount > 0.5f)
         {
-            player.playerLocomotionManager.isSprinting = true;
+            player.isSprinting = true;
             player.isSprinting = true;
         }
         else
         {
-            player.playerLocomotionManager.isSprinting = false;
+            player.isSprinting = false;
             player.isSprinting = false;
         }
     }
@@ -478,12 +480,31 @@ public class InputManager : MonoBehaviour
 
     private void HandleRollInput()
     {
-        //rollInputTimer += Time.deltaTime;
         if (b_input)
         {
-            rollFlag = true;
-            b_input = false;
-            player.playerLocomotionManager.HandleRolling();
+            rollInputTimer += Time.deltaTime;
+
+            if (player.playerStatsManager.currentStamina <= 0)
+            {
+                b_input = false;
+                sprintFlag = false;
+            }
+
+            if (moveAmount > 0.5f && player.playerStatsManager.currentStamina > 0)
+            {
+                sprintFlag = true;
+            }
+        }
+        else
+        {
+            sprintFlag = false;
+
+            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
+            {
+                rollFlag = true;
+            }
+
+            rollInputTimer = 0;
         }
     }
 

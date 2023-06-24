@@ -24,7 +24,7 @@ public class WeaponPickUp : Interactable
         character = playerManager.GetComponent<PlayerLocomotionManager>();
         animatorManager = playerManager.GetComponentInChildren<PlayerAnimatorManager>();
 
-        character.playerRigidbody.velocity = Vector3.zero; //Stops the player from moving whilst picking up item
+        //character.playerRigidbody.velocity = Vector3.zero; //Stops the player from moving whilst picking up item
         animatorManager.PlayTargetAnimation("Pick Up Item", true); //Plays the animation of looting the item
         playerInventory.weaponInventory.Add(weapon);
         playerManager.itemInteractableGameObject.GetComponentInChildren<Text>().text = weapon.itemName;

@@ -19,89 +19,74 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
 
     public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
-        // Animation snapping
-        float snappedHorizontal;
-        float snappedVertical;
+        #region Vertical
+        float v = 0;
 
-        #region Snapped Horizontal
-        if (horizontalMovement > 0 && horizontalMovement < 0.55)
-        {
-            snappedHorizontal = 0.5f;
-        }
-        else if (horizontalMovement > 0.55f)
-        {
-            snappedHorizontal = 1;
-        }
-        else if (horizontalMovement < 0 && horizontalMovement > -0.55f)
-        {
-            snappedHorizontal = -0.5f;
-        }
-        else if (horizontalMovement < -0.55f)
-        {
-            snappedHorizontal = -1;
-        }
-        else
-        {
-            snappedHorizontal = 0;
-        }
-        #endregion
-
-        #region Snapped Vertical
         if (verticalMovement > 0 && verticalMovement < 0.55f)
         {
-            snappedVertical = 0.5f;
+            v = 0.5f;
         }
         else if (verticalMovement > 0.55f)
         {
-            snappedVertical = 1;
+            v = 1;
         }
         else if (verticalMovement < 0 && verticalMovement > -0.55f)
         {
-            snappedVertical = -0.5f;
+            v = -0.5f;
         }
         else if (verticalMovement < -0.55f)
         {
-            snappedVertical = -1;
+            v = -1;
         }
         else
         {
-            snappedVertical = 0;
+            v = 0;
         }
-        #endregion 
+        #endregion
+
+        #region Horizontal
+        float h = 0;
+
+        if (horizontalMovement > 0 && horizontalMovement < 0.55f)
+        {
+            h = 0.5f;
+        }
+        else if (horizontalMovement > 0.55f)
+        {
+            h = 1;
+        }
+        else if (horizontalMovement < 0 && horizontalMovement > -0.55f)
+        {
+            h = -0.5f;
+        }
+        else if (horizontalMovement < -0.55f)
+        {
+            h = -1;
+        }
+        else
+        {
+            h = 0;
+        }
+        #endregion
 
         if (isSprinting)
         {
-            snappedHorizontal = horizontalMovement;
-            snappedVertical = 2;
+            v = 2;
+            h = horizontalMovement;
         }
 
-        player.animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
-        player.animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
+        player.animator.SetFloat(vertical, v, 0.1f, Time.deltaTime);
+        player.animator.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
     }
 
-   /* public void DisableCollision()
+    public void DisableCollision()
     {
-        player.playerLocomotionManager.characterCollider.enabled = false;
-        player.playerLocomotionManager.characterCollisionBlockerCollider.enabled = false;
+        player.characterController.enabled = false;
     }
 
     public void EnableCollision()
     {
-        player.playerLocomotionManager.characterCollider.enabled = true;
-        player.playerLocomotionManager.characterCollisionBlockerCollider.enabled = true;
-    }*/
-
-    private void OnAnimatorMove()
-    {
-        if (character.isUsingRootMotion)
-        {
-            //Moves player gameobject in direction of players model, usefull for anims with rootmotions
-            player.playerLocomotionManager.playerRigidbody.drag = 0;
-            Vector3 deltaPosition = player.animator.deltaPosition;
-            deltaPosition.y = 0;
-            Vector3 velocity = deltaPosition / Time.deltaTime;
-            player.playerLocomotionManager.playerRigidbody.velocity = velocity;
-        }
+        player.characterController.enabled = true;
     }
 
 }

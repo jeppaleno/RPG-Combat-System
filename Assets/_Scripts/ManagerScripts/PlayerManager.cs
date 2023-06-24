@@ -53,6 +53,9 @@ public class PlayerManager : CharacterManager
     void Update()
     {
         inputManager.HandleAllInputs();
+        playerLocomotionManager.HandleGroundedMovement();
+        playerLocomotionManager.HandleRotation();
+        playerEffectsManager.HandleAllBuildEffects();
 
         inputManager.isInteracting = animator.GetBool("isInteracting");
         canDoCombo = animator.GetBool("canDoCombo");
@@ -73,9 +76,7 @@ public class PlayerManager : CharacterManager
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        playerLocomotionManager.HandleAllMovement();
-        playerLocomotionManager.HandleRotation();
-        playerEffectsManager.HandleAllBuildEffects();
+        
 
     }
 
@@ -85,8 +86,6 @@ public class PlayerManager : CharacterManager
 
         isInteracting = animator.GetBool("isInteracting");
         isUsingRootMotion = animator.GetBool("isUsingRootMotion");
-        playerLocomotionManager.isJumping = animator.GetBool("isJumping");
-        animator.SetBool("isGrounded", playerLocomotionManager.isGrounded);
 
        
         inputManager.d_Pad_Up = false;
@@ -135,7 +134,7 @@ public class PlayerManager : CharacterManager
 
     public void OpenChestInteraction(Transform playerStandsHereWhenOpeningChest)
     {
-        playerLocomotionManager.playerRigidbody.velocity = Vector3.zero; // Stops the player from skating
+        //player.characterController.velocity = Vector3.zero; // Stops the player from skating
         transform.position = playerStandsHereWhenOpeningChest.transform.position;
         playerAnimatorManager.PlayTargetAnimation("Open Chest", true, true);
     }
@@ -143,7 +142,7 @@ public class PlayerManager : CharacterManager
     public void PassThroughFogWallInteraction(Transform fogWallEntrance)
     {
         //Make sure we facing the wall first
-        playerLocomotionManager.playerRigidbody.velocity = Vector3.zero;
+        //playerLocomotionManager.playerRigidbody.velocity = Vector3.zero;
 
         Vector3 rotationDirection = fogWallEntrance.transform.forward;
         Quaternion turnRotation = Quaternion.LookRotation(rotationDirection);

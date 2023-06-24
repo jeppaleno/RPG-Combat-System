@@ -81,8 +81,8 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            /*Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * cameraFollowSpeed);
-            transform.position = targetPosition;*/
+            Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * cameraFollowSpeed);
+            transform.position = targetPosition;
             Vector3 cameraPos = transform.position;
             Vector3 delta = (targetTransform.position - cameraPos);
             float deltaMagnitude = delta.magnitude;
