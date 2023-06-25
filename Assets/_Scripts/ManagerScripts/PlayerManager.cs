@@ -56,7 +56,7 @@ public class PlayerManager : CharacterManager
         inputManager.HandleAllInputs();
         playerLocomotionManager.HandleGroundedMovement();
         playerLocomotionManager.HandleRotation();
-        playerLocomotionManager.HandleJumping();
+        //playerLocomotionManager.HandleJumping();
         playerEffectsManager.HandleAllBuildEffects();
 
         inputManager.isInteracting = animator.GetBool("isInteracting");

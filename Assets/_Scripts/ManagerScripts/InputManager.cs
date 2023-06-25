@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -61,9 +62,13 @@ public class InputManager : MonoBehaviour
     public bool qued_RT_Input;
     public bool qued_Roll_Input;
 
+    // jump
+    bool isJumpPressed = false;
+
     private void Awake()
     {
         player = GetComponent<PlayerManager>();
+        
     }
 
     private void OnEnable()
@@ -74,7 +79,11 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Inventory.performed += i => inventory_Input = true;
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
-            playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
+
+            playerControls.PlayerActions.Jump.started += onJump;
+            playerControls.PlayerActions.Jump.canceled += onJump;
+
+
             playerControls.PlayerActions.A_Input.performed += i => a_Input = true;
             playerControls.PlayerActions.X.performed += i => x_Input = true;
             playerControls.PlayerActions.Y.performed += i => y_Input = true;
@@ -109,6 +118,12 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Disable();
+    }
+
+    void onJump (InputAction.CallbackContext context)
+    {
+        isJumpPressed = context.ReadValueAsButton();
+        Debug.Log(isJumpPressed);
     }
 
     public void HandleAllInputs()

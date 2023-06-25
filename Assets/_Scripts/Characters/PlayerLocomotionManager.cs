@@ -22,6 +22,13 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     int backstepStaminaCost = 12;
     int sprintStaminaCost = 1;
 
+    // Jumping Variables
+    bool isJumpPressed = false;
+    float initialJumpVelocity;
+    float maxJumpHeight = 1.0f;
+    float maxJumpTime = 0.5f;
+    bool isJumping;
+
     protected override void Awake()
     {
         base.Awake();
@@ -174,6 +181,25 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
     }
 
+    public void SetUpJumpVariables()
+    {
+        float timeToApex = maxJumpTime / 2;
+        gravityForce = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
+        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+    }
+
+    public void handleJump()
+    {
+        if (!isJumping && player.isGrounded && isJumpPressed)
+        {
+            isJumping = true;
+           
+
+            moveDirection += player.cameraManager.cameraObject.transform.right * player.inputManager.horizontalInput;
+
+            moveDirection += player.cameraManager.cameraObject.transform.right * player.inputManager.horizontalInput;
+        }
+    }
     public void HandleJumping()
     {
         if (player.isInteracting)
@@ -184,7 +210,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         if (player.inputManager.jump_Input)
         {
-            Debug.Log("Jump");
+
+            /*Debug.Log("Jump");
             player.inputManager.jump_Input = false;
 
             moveDirection = player.cameraManager.cameraObject.transform.forward * player.inputManager.verticalInput;
@@ -193,7 +220,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.playerAnimatorManager.EraseHandIKWeapon();
             moveDirection.y = 0;
             Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
-            player.transform.rotation = jumpRotation;
+            player.transform.rotation = jumpRotation;*/
         }
     }
 }
