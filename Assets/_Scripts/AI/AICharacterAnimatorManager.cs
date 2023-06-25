@@ -42,16 +42,9 @@ public class AICharacterAnimatorManager : CharacterAnimatorManager
 
     public override void OnAnimatorMove()
     {
-        if (character.isUsingRootMotion)
-        {
-            if (character.isInteracting == false)
-                return;
+        Vector3 velocity = character.animator.deltaPosition;
+        character.characterController.Move(velocity);
 
-            Vector3 velocity = character.animator.deltaPosition;
-            character.characterController.Move(velocity);
-            
-        }
-        
         if (AICharacter.isRotatingWithRootMotion)
         {
             character.transform.rotation *= character.animator.deltaRotation;

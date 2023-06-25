@@ -52,9 +52,11 @@ public class PlayerManager : CharacterManager
 
     void Update()
     {
+        
         inputManager.HandleAllInputs();
         playerLocomotionManager.HandleGroundedMovement();
         playerLocomotionManager.HandleRotation();
+        playerLocomotionManager.HandleJumping();
         playerEffectsManager.HandleAllBuildEffects();
 
         inputManager.isInteracting = animator.GetBool("isInteracting");
@@ -82,7 +84,11 @@ public class PlayerManager : CharacterManager
 
     private void LateUpdate()
     {
-        cameraManager.HandleAllCameraMovement();
+        if (cameraManager != null)
+        {
+            cameraManager.FollowTarget();
+            cameraManager.HandleCameraRotation();
+        }
 
         isInteracting = animator.GetBool("isInteracting");
         isUsingRootMotion = animator.GetBool("isUsingRootMotion");

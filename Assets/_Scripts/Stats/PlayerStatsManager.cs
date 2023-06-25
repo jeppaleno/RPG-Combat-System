@@ -14,6 +14,8 @@ public class PlayerStatsManager : CharacterStatsManager
     public float staminaRegenerationAmountWhilstBlocking = 0.1f;
     private float staminaRegenTimer = 0;
 
+    private float sprintingTimer = 0;
+
     //private WaitForSeconds regenTicks = new WaitForSeconds(0.1f);
     //private Coroutine regen;
 
@@ -100,9 +102,29 @@ public class PlayerStatsManager : CharacterStatsManager
         staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
     }
 
+    public void DeductSprintingStamina(float staminaToDeduct)
+    {
+        if (player.isSprinting)
+        {
+            sprintingTimer = sprintingTimer + Time.deltaTime;
+
+            if (sprintingTimer > 0.1f)
+            {
+                //Reset Timer
+                sprintingTimer = 0;
+                // Deduct Stamina
+                currentStamina = currentStamina - staminaToDeduct;
+                staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+            }
+        }
+        else
+        {
+            sprintingTimer = 0;
+        }
+    }
     public void RegenerateStamina()
     {
-        if (player.isInteracting)
+        if (player.isInteracting || player.isSprinting)
         {
             staminaRegenTimer = 0;
         }

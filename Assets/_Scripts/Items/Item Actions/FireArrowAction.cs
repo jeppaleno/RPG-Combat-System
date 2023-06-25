@@ -26,7 +26,7 @@ public class FireArrowAction : ItemAction
         if (player != null)
         {
             //Create and fire the live arrow
-            GameObject liveArrow = Instantiate(character.characterInventoryManager.currentAmmo.liveAmmoModel, arrowInstantiationLocation.transform.position, player.cameraManager.cameraPivot.rotation);
+            GameObject liveArrow = Instantiate(character.characterInventoryManager.currentAmmo.liveAmmoModel, arrowInstantiationLocation.transform.position, player.cameraManager.cameraPivotTransform.rotation);
             Rigidbody rigidbody = liveArrow.GetComponent<Rigidbody>();
             RangedProjectileDamageCollider damageCollider = liveArrow.GetComponent<RangedProjectileDamageCollider>();
 
@@ -56,7 +56,7 @@ public class FireArrowAction : ItemAction
                 }
                 else
                 {
-                    liveArrow.transform.rotation = Quaternion.Euler(player.cameraManager.cameraPivot.eulerAngles.x, character.lockOnTransform.eulerAngles.y, 0); //face the camera direction
+                    liveArrow.transform.rotation = Quaternion.Euler(player.cameraManager.cameraPivotTransform.eulerAngles.x, character.lockOnTransform.eulerAngles.y, 0); //face the camera direction
                 }
             }
 

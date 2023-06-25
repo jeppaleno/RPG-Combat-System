@@ -7,97 +7,87 @@ public class CameraManager : MonoBehaviour
     InputManager inputManager;
     PlayerManager playerManager;
 
-   
-    public Transform targetTransform; // The transform the camera will follow
-    public Transform targetTransformWhileAiming;
+    public Transform targetTransform;               //The transform the camera follows (The Player)
+    public Transform targetTransformWhileAiming;    //The transform the camera follows while aiming
     public Transform cameraTransform;
     public Camera cameraObject;
-    public Transform cameraPivot;     //The transform the camera uses to pivot (Look up and down)
-    public LayerMask environmentLayer;
+    public Transform cameraPivotTransform;
+
+    private Vector3 cameraTransformPosition;
+    public LayerMask ignoreLayers;
+    public LayerMask enviromentLayer;
     private Vector3 cameraFollowVelocity = Vector3.zero;
 
-    [Header("Eriks values")]
-    public AnimationCurve LerpCurve;
-    public float MinDistance = 2f;
-    public float MaxDistance = 10f;
-    public float FollowSpeedMultiplier = 10f;
-
-    [Space]
-    public AnimationCurve rotationLerpCurve;
-    public float MinAngle = 2f;
-    public float MaxAngle = 10f;
-    public float cameraRotationSpeed = 100;
-
-    [Space]
-    public float cameraFollowSpeed = 1f;
     public float leftAndRightLookSpeed = 250f;
     public float leftAndRightAimingLookSpeed = 25f;
+    public float groundedFollowSpeed = 20f;
+    public float aerialFollowSpeed = 1f;    //  THE LOWER THIS IS, THE FASTER IT WILL FOLLOW THE PLAYER
     public float upAndDownLookSpeed = 250f;
     public float upAndDownAimingLookSpeed = 25f;
 
-    [Space]
-    public float leftAndRightAngle; 
-    public float upAndDownAngle; 
+    private float targetPosition;
+    private float defaultPosition;
+
+    private float leftAndRightAngle;
+    private float upAndDownAngle;
+
     public float minimumLookUpAngle = -35;
     public float maximumLookUpAngle = 35;
-    public float lockedPivotPosition = 2.25f; // Height on camera angle while locked on target
+
+    public float cameraSphereRadius = 0.2f;
+    public float cameraCollisionOffSet = 0.2f;
+    public float minimumCollisionOffset = 0.2f;
+    public float lockedPivotPosition = 2.25f;
     public float unlockedPivotPosition = 1.65f;
 
     public CharacterManager currentLockOnTarget;
 
     List<CharacterManager> availableTargets = new List<CharacterManager>();
     public CharacterManager nearestLockOnTarget;
-    public CharacterManager leftLockOnTarget;
-    public CharacterManager rightLockOnTarget;
+    public CharacterManager leftLockTarget;
+    public CharacterManager rightLockTarget;
     public float maximumLockOnDistance = 30;
 
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        defaultPosition = cameraTransform.localPosition.z;
         targetTransform = FindObjectOfType<PlayerManager>().transform;
+        inputManager = FindObjectOfType<InputManager>();
         playerManager = FindObjectOfType<PlayerManager>();
         cameraObject = GetComponentInChildren<Camera>();
     }
 
     private void Start()
     {
-        environmentLayer = LayerMask.NameToLayer("Environment");
-    }
-
-    public void HandleAllCameraMovement()
-    {
-        FollowTarget();
-        HandleCameraRotation();
+        enviromentLayer = LayerMask.NameToLayer("Environment");
     }
 
     //FOLLOW THE PLAYER
-    private void FollowTarget()
+    public void FollowTarget()
     {
         if (playerManager.isAiming)
         {
-            Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransformWhileAiming.position, Time.deltaTime * cameraFollowSpeed);
+            Vector3 targetPosition = Vector3.SmoothDamp(transform.position, targetTransformWhileAiming.position, ref cameraFollowVelocity, groundedFollowSpeed * Time.deltaTime);
             transform.position = targetPosition;
         }
         else
         {
-            Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * cameraFollowSpeed);
-            transform.position = targetPosition;
-            Vector3 cameraPos = transform.position;
-            Vector3 delta = (targetTransform.position - cameraPos);
-            float deltaMagnitude = delta.magnitude;
-
-            if (deltaMagnitude > MaxDistance)
+            if (playerManager.isGrounded)
             {
-                cameraPos = targetTransform.position + delta.normalized * MaxDistance;
-                deltaMagnitude = MaxDistance;
+                Vector3 targetPosition = Vector3.SmoothDamp(transform.position, targetTransform.position, ref cameraFollowVelocity, groundedFollowSpeed * Time.deltaTime);
+                transform.position = targetPosition;
             }
-
-            float lerpPercent = LerpCurve.Evaluate((delta.magnitude - MinDistance) / (MaxDistance - MinDistance));
-            cameraPos = Vector3.MoveTowards(cameraPos, targetTransform.position, FollowSpeedMultiplier * lerpPercent * Time.deltaTime);
-            transform.position = cameraPos;
+            else
+            {
+                Vector3 targetPosition = Vector3.SmoothDamp(transform.position, targetTransform.position, ref cameraFollowVelocity, aerialFollowSpeed * Time.deltaTime);
+                transform.position = targetPosition;
+            }
         }
+
+        HandleCameraCollisions();
     }
+
 
     //ROTATE THE CAMERA
     public void HandleCameraRotation()
@@ -114,28 +104,24 @@ public class CameraManager : MonoBehaviour
         {
             HandleStandardCameraRotation();
         }
-
     }
+
     public void HandleStandardCameraRotation()
     {
-        Vector3 rotation = Vector3.zero; 
-
-        leftAndRightAngle = leftAndRightAngle + (inputManager.cameraInputX * leftAndRightLookSpeed) * Time.deltaTime;
-        upAndDownAngle = upAndDownAngle - (inputManager.cameraInputY * upAndDownLookSpeed) * Time.deltaTime;
+        leftAndRightAngle += inputManager.cameraInputX * leftAndRightLookSpeed * Time.deltaTime;
+        upAndDownAngle -= inputManager.cameraInputY * upAndDownLookSpeed * Time.deltaTime;
         upAndDownAngle = Mathf.Clamp(upAndDownAngle, minimumLookUpAngle, maximumLookUpAngle);
 
-       
+        Vector3 rotation = Vector3.zero;
         rotation.y = leftAndRightAngle;
         Quaternion targetRotation = Quaternion.Euler(rotation);
-        float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
-        float lerp = LerpCurve.Evaluate((angleDifference - MinAngle) / (MaxAngle - MinAngle));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * lerp * cameraRotationSpeed);
+        transform.rotation = targetRotation;
 
         rotation = Vector3.zero;
         rotation.x = upAndDownAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        cameraPivot.localRotation = targetRotation;
 
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivotTransform.localRotation = targetRotation;
     }
 
     private void HandleLockedCameraRotation()
@@ -147,19 +133,19 @@ public class CameraManager : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(dir);
         transform.rotation = targetRotation;
 
-        dir = currentLockOnTarget.transform.position - cameraPivot.position;
+        dir = currentLockOnTarget.transform.position - cameraPivotTransform.position;
         dir.Normalize();
 
         targetRotation = Quaternion.LookRotation(dir);
         Vector3 eulerAngle = targetRotation.eulerAngles;
         eulerAngle.y = 0;
-        cameraPivot.localEulerAngles = eulerAngle;
+        cameraPivotTransform.localEulerAngles = eulerAngle;
     }
 
     private void HandleAimedCameraRotation()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        cameraPivot.rotation = Quaternion.Euler(0, 0, 0);
+        cameraPivotTransform.rotation = Quaternion.Euler(0, 0, 0);
 
         Quaternion targetRotationX;
         Quaternion targetRotationY;
@@ -186,6 +172,32 @@ public class CameraManager : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
+
+    //HANDLE COLLISIONS
+    private void HandleCameraCollisions()
+    {
+        targetPosition = defaultPosition;
+        RaycastHit hit;
+        Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
+        direction.Normalize();
+
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(targetPosition)
+            , ignoreLayers))
+        {
+            float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
+            targetPosition = -(dis - cameraCollisionOffSet);
+        }
+
+        if (Mathf.Abs(targetPosition) < minimumCollisionOffset)
+        {
+            targetPosition = -minimumCollisionOffset;
+        }
+
+        cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, Time.deltaTime / 0.2f);
+        cameraTransform.localPosition = cameraTransformPosition;
+    }
+
+
     //HANDLE LOCK ON
     public void HandleLockOn()
     {
@@ -206,23 +218,23 @@ public class CameraManager : MonoBehaviour
                 float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
                 RaycastHit hit;
 
-                if (character.transform.root != targetTransform.transform.transform.root 
-                    && viewableAngle > -50 && viewableAngle < 50 
+                if (character.transform.root != targetTransform.transform.root
+                    && viewableAngle > -50 && viewableAngle < 50
                     && distanceFromTarget <= maximumLockOnDistance)
                 {
                     if (Physics.Linecast(playerManager.lockOnTransform.position, character.lockOnTransform.position, out hit))
                     {
                         Debug.DrawLine(playerManager.lockOnTransform.position, character.lockOnTransform.position);
 
-                        if (hit.transform.gameObject.layer == environmentLayer)
+                        if (hit.transform.gameObject.layer == enviromentLayer)
                         {
-                            //Can't lock on to target when objects in the way
+                            //Cannot lock onto target, object in the way
                         }
                         else
                         {
                             availableTargets.Add(character);
                         }
-                    }   
+                    }
                 }
             }
         }
@@ -250,14 +262,14 @@ public class CameraManager : MonoBehaviour
                     && availableTargets[k] != currentLockOnTarget)
                 {
                     shortestDistanceOfLeftTarget = distanceFromLeftTarget;
-                    leftLockOnTarget = availableTargets[k];
+                    leftLockTarget = availableTargets[k];
                 }
 
                 else if (relativeEnemyPosition.x >= 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget
                     && availableTargets[k] != currentLockOnTarget)
                 {
                     shortestDistanceOfRightTarget = distanceFromRightTarget;
-                    rightLockOnTarget = availableTargets[k];
+                    rightLockTarget = availableTargets[k];
                 }
             }
         }
@@ -278,11 +290,13 @@ public class CameraManager : MonoBehaviour
 
         if (currentLockOnTarget != null)
         {
-            cameraPivot.transform.localPosition = Vector3.SmoothDamp(cameraPivot.transform.localPosition, newLockedPosition, ref velocity, Time.deltaTime);
+            cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newLockedPosition, ref velocity, Time.deltaTime);
         }
         else
         {
-            cameraPivot.transform.localPosition = Vector3.SmoothDamp(cameraPivot.transform.localPosition, newUnlockedPosition, ref velocity, Time.deltaTime);
+            cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnlockedPosition, ref velocity, Time.deltaTime);
         }
     }
+
+
 }

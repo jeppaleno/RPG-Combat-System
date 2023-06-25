@@ -47,7 +47,7 @@ public class ProjectileSpell : SpellItem
         {
             if (player.isUsingLeftHand)
             {
-                GameObject instantiatedSpellFX = Instantiate(SpellCastFX, player.playerWeaponSlotManager.leftHandSlot.transform.position, player.cameraManager.cameraPivot.rotation);
+                GameObject instantiatedSpellFX = Instantiate(SpellCastFX, player.playerWeaponSlotManager.leftHandSlot.transform.position, player.cameraManager.cameraPivotTransform.rotation);
                 SpellDamageCollider spellDamageCollider = instantiatedSpellFX.GetComponent<SpellDamageCollider>();
                 spellDamageCollider.teamIDNumber = player.playerStatsManager.teamIDNumber;
                 rigidBody = instantiatedSpellFX.GetComponent<Rigidbody>();
@@ -58,7 +58,7 @@ public class ProjectileSpell : SpellItem
                 }
                 else
                 {
-                    instantiatedSpellFX.transform.rotation = Quaternion.Euler(player.cameraManager.cameraPivot.eulerAngles.x, player.playerStatsManager.transform.eulerAngles.y, 0);
+                    instantiatedSpellFX.transform.rotation = Quaternion.Euler(player.cameraManager.cameraPivotTransform.eulerAngles.x, player.playerStatsManager.transform.eulerAngles.y, 0);
                 }
 
                 rigidBody.AddForce(instantiatedSpellFX.transform.forward * projectileForwardVelocity);
@@ -70,7 +70,7 @@ public class ProjectileSpell : SpellItem
             }
             else
             {
-                GameObject instantiatedSpellFX = Instantiate(SpellCastFX, player.playerWeaponSlotManager.rightHandSlot.transform.position, player.cameraManager.cameraPivot.rotation);
+                GameObject instantiatedSpellFX = Instantiate(SpellCastFX, player.playerWeaponSlotManager.rightHandSlot.transform.position, player.cameraManager.cameraPivotTransform.rotation);
                 SpellDamageCollider spellDamageCollider = instantiatedSpellFX.GetComponent<SpellDamageCollider>();
                 spellDamageCollider.teamIDNumber = player.playerStatsManager.teamIDNumber;
                 rigidBody = instantiatedSpellFX.GetComponent<Rigidbody>();
@@ -81,7 +81,7 @@ public class ProjectileSpell : SpellItem
                 }
                 else
                 {
-                    instantiatedSpellFX.transform.rotation = Quaternion.Euler(player.cameraManager.cameraPivot.eulerAngles.x, player.playerStatsManager.transform.eulerAngles.y, 0);
+                    instantiatedSpellFX.transform.rotation = Quaternion.Euler(player.cameraManager.cameraPivotTransform.eulerAngles.x, player.playerStatsManager.transform.eulerAngles.y, 0);
                 }
 
                 rigidBody.AddForce(instantiatedSpellFX.transform.forward * projectileForwardVelocity);

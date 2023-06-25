@@ -31,6 +31,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     protected virtual void Update()
     {
         character.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
+        character.animator.SetBool("isGrounded", character.isGrounded);
         HandleGroundCheck();
     }
 
@@ -57,6 +58,7 @@ public class CharacterLocomotionManager : MonoBehaviour
             yVelcoity.y += gravityForce * Time.deltaTime;
         }
 
+        character.animator.SetFloat("inAirTimer", inAirTimer);
         character.characterController.Move(yVelcoity * Time.deltaTime);
     }
 

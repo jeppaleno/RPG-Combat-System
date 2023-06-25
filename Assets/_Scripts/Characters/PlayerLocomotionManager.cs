@@ -120,6 +120,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.isSprinting)
         {
             player.characterController.Move(moveDirection * sprintSpeed * Time.deltaTime);
+            player.playerStatsManager.DeductSprintingStamina(sprintStaminaCost);
         }
         else
         {
@@ -183,18 +184,16 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         if (player.inputManager.jump_Input)
         {
+            Debug.Log("Jump");
             player.inputManager.jump_Input = false;
 
-            if (player.inputManager.moveAmount > 0)
-            {
-                moveDirection = player.cameraManager.cameraObject.transform.forward * player.inputManager.verticalInput;
-                moveDirection += player.cameraManager.cameraObject.transform.right * player.inputManager.horizontalInput;
-                player.playerAnimatorManager.PlayTargetAnimation("Jump", true);
-                player.playerAnimatorManager.EraseHandIKWeapon();
-                moveDirection.y = 0;
-                Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
-                player.transform.rotation = jumpRotation;
-            }
+            moveDirection = player.cameraManager.cameraObject.transform.forward * player.inputManager.verticalInput;
+            moveDirection += player.cameraManager.cameraObject.transform.right * player.inputManager.horizontalInput;
+            player.playerAnimatorManager.PlayTargetAnimation("Jump", true);
+            player.playerAnimatorManager.EraseHandIKWeapon();
+            moveDirection.y = 0;
+            Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+            player.transform.rotation = jumpRotation;
         }
     }
 }

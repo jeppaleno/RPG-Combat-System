@@ -114,7 +114,7 @@ public class InputManager : MonoBehaviour
     public void HandleAllInputs()
     {
         HandleMovementInput();
-        HandleJumpingInput();
+        //HandleJumpingInput();
         HandleSprintingInput();
         HandleRollInput();
 
@@ -175,14 +175,14 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleJumpingInput()
+    /*private void HandleJumpingInput()
     {
         if (jump_Input)
         {
             jump_Input = false;
             player.playerLocomotionManager.HandleJumping();
         }
-    }
+    }*/
 
     private void HandleTapRBInput() 
     {
@@ -425,9 +425,9 @@ public class InputManager : MonoBehaviour
         {
             right_Stick_Left_Input = false;
             player.cameraManager.HandleLockOn();
-            if (player.cameraManager.leftLockOnTarget != null)
+            if (player.cameraManager.leftLockTarget != null)
             {
-                player.cameraManager.currentLockOnTarget = player.cameraManager.leftLockOnTarget;
+                player.cameraManager.currentLockOnTarget = player.cameraManager.leftLockTarget;
             }
         }
 
@@ -435,9 +435,9 @@ public class InputManager : MonoBehaviour
         {
             right_Stick_Right_Input = false;
             player.cameraManager.HandleLockOn();
-            if(player.cameraManager.rightLockOnTarget != null)
+            if(player.cameraManager.rightLockTarget != null)
             {
-                player.cameraManager.currentLockOnTarget = player.cameraManager.rightLockOnTarget; 
+                player.cameraManager.currentLockOnTarget = player.cameraManager.rightLockTarget; 
             }
         }
 
@@ -482,29 +482,9 @@ public class InputManager : MonoBehaviour
     {
         if (b_input)
         {
-            rollInputTimer += Time.deltaTime;
-
-            if (player.playerStatsManager.currentStamina <= 0)
-            {
-                b_input = false;
-                sprintFlag = false;
-            }
-
-            if (moveAmount > 0.5f && player.playerStatsManager.currentStamina > 0)
-            {
-                sprintFlag = true;
-            }
-        }
-        else
-        {
-            sprintFlag = false;
-
-            if (rollInputTimer > 0 && rollInputTimer < 0.5f)
-            {
-                rollFlag = true;
-            }
-
-            rollInputTimer = 0;
+            rollFlag = true;
+            b_input = false;
+            player.playerLocomotionManager.HandleRollingAndSprinting();
         }
     }
 
