@@ -21,7 +21,7 @@ public class ItemBasedAttackAction : ScriptableObject
     public float maximumAttackAngle = 35;
     public float minimumAttackAngle = -35;
     public float minimumDistanceNeededToAttack = 0;
-    public float maximumDistanceNeededToAttack = 3;
+    public float maximumDistanceNeededToAttack = 1.5f;
 
     public void PerformAttackAction(AICharacterManager enemy)
     {
