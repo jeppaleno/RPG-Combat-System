@@ -26,7 +26,7 @@ public class AICharacterManager : CharacterManager
     //The higher, and lower, respectively these angles are, the greater detection field of view (like eye sight)
     public float maximumDetectionAngle = 80;
     public float minimumDetectionAngle = -80;
-    public float currentRecoveryTime = 0;
+    public float currentRecoveryTime = 1;
     public float stoppingDistance = 2.5f; //Halting FORWARD movement
 
     //These setting only effect AI with the humanoid states
@@ -81,8 +81,19 @@ public class AICharacterManager : CharacterManager
 
     private void Update()
     {
-        HandleRecoveryTimer();
-        HandleStateMachine();
+        if (currentTarget != null)
+        {
+            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+            targetDirection = currentTarget.transform.position - transform.position;
+            viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+        }
+
+        if (companion != null)
+        {
+            distanceFromCompanion = Vector3.Distance(companion.transform.position, transform.position);
+        }
+
+       
 
         isRotatingWithRootMotion = animator.GetBool("isRotatingWithRootMotion");
         isInteracting = animator.GetBool("isInteracting");
@@ -95,17 +106,8 @@ public class AICharacterManager : CharacterManager
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
 
-        if (currentTarget != null)
-        {
-            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
-            targetDirection = currentTarget.transform.position - transform.position;
-            viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-        }
-
-        if (companion != null)
-        {
-            distanceFromCompanion = Vector3.Distance(companion.transform.position, transform.position);
-        }
+        HandleRecoveryTimer();
+        HandleStateMachine();
     }
 
     protected override void FixedUpdate()
@@ -128,6 +130,11 @@ public class AICharacterManager : CharacterManager
 
             if (nextState != null)
             {
+                if (currentState != nextState)
+                {
+                    Debug.Log(nextState);
+                }
+            
                 SwitchToNextState(nextState);
             }
         }

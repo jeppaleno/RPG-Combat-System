@@ -48,6 +48,9 @@ public class CombatStanceStateHumanoid : State
 
     private State ProcessSwordAndShieldCombatStyle(AICharacterManager enemy)
     {
+        enemy.animator.SetFloat("Vertical", verticalMovementValue, 0.2f, Time.deltaTime);
+        enemy.animator.SetFloat("Horizontal", horizontalMovementValue, 0.2f, Time.deltaTime);
+
         //If the AAI is falling, or is performing some sort of action STOP all movement
         if (enemy.isInteracting) //ADD !enemy.isGrounded 
         {
@@ -193,19 +196,34 @@ public class CombatStanceStateHumanoid : State
         return this;
     }
 
-    protected void HandleRotateTowardstarget(AICharacterManager aiCharacter)
+    protected void HandleRotateTowardstarget(AICharacterManager enemy)
     {
-        Vector3 direction = aiCharacter.currentTarget.transform.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
-
-        if (direction == Vector3.zero)
+        //Rotate manually
+        if (enemy.isPerformingAction)
         {
-            direction = transform.forward;
-        }
+            Vector3 direction = enemy.currentTarget.transform.position - transform.position;
+            direction.y = 0;
+            direction.Normalize();
 
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        aiCharacter.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, aiCharacter.rotationSpeed); // / Time.deltaTime?
+            if (direction == Vector3.zero)
+            {
+                direction = transform.forward;
+            }
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            enemy.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, enemy.rotationSpeed / Time.deltaTime);
+        }
+        //Rotate with pathfinding (navmesh)
+        else
+        {
+            Vector3 relativeDirection = transform.InverseTransformDirection(enemy.navmeshAgent.desiredVelocity);
+            Vector3 targetVelocity = enemy.enemyRigidBody.velocity;
+
+            enemy.navmeshAgent.enabled = true;
+            enemy.navmeshAgent.SetDestination(enemy.currentTarget.transform.position);
+            enemy.enemyRigidBody.velocity = targetVelocity;
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, enemy.navmeshAgent.transform.rotation, enemy.rotationSpeed / Time.deltaTime);
+        }
     }
 
     protected void DecideCirclingAction(AICharacterAnimatorManager enemyAnimatorManager)

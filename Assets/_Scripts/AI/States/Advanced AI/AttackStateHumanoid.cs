@@ -9,7 +9,7 @@ public class AttackStateHumanoid : State
     public PursueTargetStateHumanoid pursueTargetState;
     public ItemBasedAttackAction currentAttack;
 
-    bool willDoComboOnNextAttack = false;
+    public bool willDoComboOnNextAttack = false;
     public bool hasPerformedAttack = false;
 
     private void Awake()
@@ -104,7 +104,9 @@ public class AttackStateHumanoid : State
     {
         currentAttack.PerformAttackAction(enemy);
         enemy.currentRecoveryTime = currentAttack.recoveryTime;
+        enemy.isPerformingAction = true;
         hasPerformedAttack = true;
+        //currentAttack = null;
     }
 
     private void AttackTargetWithCombo(AICharacterManager enemy)

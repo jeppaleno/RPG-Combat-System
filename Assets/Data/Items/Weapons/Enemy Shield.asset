@@ -48,4 +48,7 @@ MonoBehaviour:
   th_hold_RT_Action: {fileID: 0}
   th_tap_LT_Action: {fileID: 0}
   th_hold_LT_Action: {fileID: 0}
-  weaponWhooshes: []
+  weaponWhooshes:
+  - {fileID: 8300000, guid: 3b4fdec1b0c0f7d4382986bd8ebca9e8, type: 3}
+  - {fileID: 8300000, guid: d836e67f771d4ef42901f49b8976ab07, type: 3}
+  - {fileID: 8300000, guid: 934483a83b8f69848a5be1936ddf9403, type: 3}

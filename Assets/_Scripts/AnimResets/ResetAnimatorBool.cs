@@ -18,7 +18,7 @@ public class ResetAnimatorBool : StateMachineBehaviour
 
     public string isFiringSpellBool = "isFiringSpell";
     public bool isFiringSpellStatus = false;
-    //public string isUsingRootMotionBool;
+   // public string isUsingRootMotionBool;
     //public bool isUsingRootMotionStatus;
 
     public string isRotatingWithRootMotion = "isRotatingWithRootMotion";
