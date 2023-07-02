@@ -104,7 +104,6 @@ public class AttackStateHumanoid : State
     {
         currentAttack.PerformAttackAction(enemy);
         enemy.currentRecoveryTime = currentAttack.recoveryTime;
-        enemy.isPerformingAction = true;
         hasPerformedAttack = true;
         //currentAttack = null;
     }

@@ -93,7 +93,9 @@ public class AICharacterManager : CharacterManager
             distanceFromCompanion = Vector3.Distance(companion.transform.position, transform.position);
         }
 
-       
+        HandleRecoveryTimer();
+        HandleStateMachine();
+
 
         isRotatingWithRootMotion = animator.GetBool("isRotatingWithRootMotion");
         isInteracting = animator.GetBool("isInteracting");
@@ -106,8 +108,7 @@ public class AICharacterManager : CharacterManager
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
 
-        HandleRecoveryTimer();
-        HandleStateMachine();
+        
     }
 
     protected override void FixedUpdate()
