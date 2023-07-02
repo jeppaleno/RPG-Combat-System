@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OpenMap.unity
+    guid: 02abbf69785b03b429665f75e4adb2af
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4ab6eead6da8e624184b3f9305c75214, type: 2}
