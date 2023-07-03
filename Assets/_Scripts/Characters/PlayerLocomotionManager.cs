@@ -144,7 +144,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         if (player.inputManager.lockOnFlag && player.inputManager.sprintFlag == false)
         {
-            player.playerAnimatorManager.UpdateAnimatorValues(player.inputManager.verticalInput, player.inputManager.horizontalInput, player.isSprinting);
+            player.playerAnimatorManager.UpdateAnimatorValues( player.inputManager.horizontalInput, player.inputManager.verticalInput, player.isSprinting);
         }
     }
 
