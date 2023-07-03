@@ -20451,6 +20451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _ENEMY AI
       objectReference: {fileID: 0}
+    - target: {fileID: 2216941376469619517, guid: 641259a25e784e54f94aee896f49efe9, type: 3}
+      propertyPath: allowAIToPerformBlock
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2216941376609556065, guid: 641259a25e784e54f94aee896f49efe9, type: 3}
       propertyPath: listOfPatrolDestinations.Array.data[0]
       value: 
