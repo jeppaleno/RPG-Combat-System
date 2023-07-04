@@ -31,11 +31,12 @@ public class PlayerManager : CharacterManager
     protected override void Awake()
     {
         base.Awake();
+        cameraManager = FindObjectOfType<CameraManager>();
         inputManager = GetComponent<InputManager>();
         uiManager = FindObjectOfType<UIManager>();
-        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-        cameraManager = FindObjectOfType<CameraManager>();
+
         animator = GetComponent<Animator>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
@@ -43,6 +44,8 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+
+        WorldSaveGameManager.instance.player = this;
     }
 
     void Start()
@@ -168,5 +171,13 @@ public class PlayerManager : CharacterManager
         currentCharacterSaveData.xPosition = transform.position.x;
         currentCharacterSaveData.yPosition = transform.position.y;
         currentCharacterSaveData.zPosition = transform.position.z;
+    }
+
+    public void LoadCharacterDataFromCurrentCharacterSaveData(ref CharacterSaveData currentCharacterSaveData)
+    {
+        playerStatsManager.characterName = currentCharacterSaveData.characterName;
+        playerStatsManager.playerLevel = currentCharacterSaveData.characterLevel;
+
+        transform.position = new Vector3(currentCharacterSaveData.xPosition, currentCharacterSaveData.yPosition, currentCharacterSaveData.zPosition);
     }
 }

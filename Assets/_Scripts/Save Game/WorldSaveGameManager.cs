@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldSaveGameManager : MonoBehaviour
 {
     public static WorldSaveGameManager instance;
 
-    [SerializeField] PlayerManager player;
+    public PlayerManager player;
 
     [Header("Save Data Writer")]
     SaveGameDataWriter saveGameDataWriter;
@@ -48,7 +49,7 @@ public class WorldSaveGameManager : MonoBehaviour
         else if (loadGame)
         {
             loadGame = false;
-            // LOAD SAVE GAME
+            LoadGame();
         }
     }
 
@@ -72,5 +73,36 @@ public class WorldSaveGameManager : MonoBehaviour
     }
 
     // LOAD GAME
+
+    public void LoadGame()
+    {
+        // DECIDE LOAD FILED BASED ON CHARACTER SAVE SLOT
+
+        saveGameDataWriter = new SaveGameDataWriter();
+        saveGameDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+        saveGameDataWriter.dataSaveFileName = fileName;
+        currentCharacterSaveData = saveGameDataWriter.LoadCharacterDataFromJson();
+
+        StartCoroutine(LoadWorldSceneAsynchronously());
+    }
+
+    private IEnumerator LoadWorldSceneAsynchronously()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<PlayerManager>();
+        }
+
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(0);  // CHANGE SCENE HERE <--- NOTE
+
+        while (!loadOperation.isDone)
+        {
+            float loadingProgress = Mathf.Clamp01(loadOperation.progress / 0.9f);
+            //ENABLE A LOADING SCREEN AND PASS THE LOADING PROGRESS TO A SLIDER/EFFECT
+            yield return null;
+        }
+
+        player.LoadCharacterDataFromCurrentCharacterSaveData(ref currentCharacterSaveData);
+    }
 
 }
