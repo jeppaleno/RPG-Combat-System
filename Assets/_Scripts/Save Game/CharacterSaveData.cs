@@ -9,6 +9,10 @@ public class CharacterSaveData
 
     public int characterLevel;
 
+    [Header("Equipment")]
+    public int currentRightHandWeaponID;
+    public int currentLeftHandWeaponID;
+
     [Header("World Coordinates")]
     public float xPosition;
     public float yPosition;

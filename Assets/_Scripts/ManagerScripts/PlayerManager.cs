@@ -168,9 +168,14 @@ public class PlayerManager : CharacterManager
         currentCharacterSaveData.characterName = playerStatsManager.characterName;
         currentCharacterSaveData.characterLevel = playerStatsManager.playerLevel;
 
+        // POSITION
         currentCharacterSaveData.xPosition = transform.position.x;
         currentCharacterSaveData.yPosition = transform.position.y;
         currentCharacterSaveData.zPosition = transform.position.z;
+
+        // EQUIPMENT
+        currentCharacterSaveData.currentRightHandWeaponID = playerInventoryManager.rightWeapon.itemID;
+        currentCharacterSaveData.currentLeftHandWeaponID = playerInventoryManager.leftWeapon.itemID;
     }
 
     public void LoadCharacterDataFromCurrentCharacterSaveData(ref CharacterSaveData currentCharacterSaveData)
@@ -178,6 +183,12 @@ public class PlayerManager : CharacterManager
         playerStatsManager.characterName = currentCharacterSaveData.characterName;
         playerStatsManager.playerLevel = currentCharacterSaveData.characterLevel;
 
+        // POSITION
         transform.position = new Vector3(currentCharacterSaveData.xPosition, currentCharacterSaveData.yPosition, currentCharacterSaveData.zPosition);
+
+        // EQUIPMENT
+        playerInventoryManager.rightWeapon = WorldItemDataBase.Instance.GetWeaponItemByID(currentCharacterSaveData.currentRightHandWeaponID);
+        playerInventoryManager.leftWeapon = WorldItemDataBase.Instance.GetWeaponItemByID(currentCharacterSaveData.currentLeftHandWeaponID);
+        playerWeaponSlotManager.LoadBothWeaponOnSlot();
     }
 }
