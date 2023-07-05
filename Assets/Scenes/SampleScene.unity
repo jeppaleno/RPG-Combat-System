@@ -14438,7 +14438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882921279}
   m_Layer: 0
-  m_Name: World Interactables
+  m_Name: --- World Interactables ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22114,7 +22114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7746552722773489065, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.69
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: 7746552722773489065, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22122,7 +22122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7746552722773489065, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.64
+      value: 7.48
       objectReference: {fileID: 0}
     - target: {fileID: 7746552722773489065, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22151,6 +22151,10 @@ PrefabInstance:
     - target: {fileID: 7746552722773489065, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746552724497940827, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
+      propertyPath: itemPickUpID
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afbe721482819594e85b9dd5d41a565e, type: 3}

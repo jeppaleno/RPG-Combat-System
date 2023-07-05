@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class WeaponPickUp : Interactable
 {
+    // This is a unique ID for this item spawn in the game world, each item we place in your world should have it's own unique ID
+    [Header("World Item ID")]
+    [SerializeField] int itemPickUpID;
+
+    [Header("item")]
     public WeaponItem weapon;
 
     public override void Interact(PlayerManager playerManager)
