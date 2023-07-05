@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 6a9a23b4229388a4a9f993902f6b97a2, type: 3}
   itemName: Knight's Gauntless
+  itemID: 1003
   physicalDefense: 6.5
+  magicDefense: 0
+  fireDefense: 0
+  lightningDefense: 0
+  darknessDefense: 0
+  poisonResistance: 0
   leftHandModelName: Chr_HandLeft_Male_14
   rightHandModelName: Chr_HandRight_Male_14
   lowerLeftArmModelName: Chr_ArmLowerLeft_Male_11

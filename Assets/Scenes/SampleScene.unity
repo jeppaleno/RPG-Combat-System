@@ -20742,6 +20742,18 @@ PrefabInstance:
       value: Bill Withers
       objectReference: {fileID: 0}
     - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: leftWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: currentBodyEquipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: currentHelmetEquipment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 6868f32421b4096489f24e137bc03b33, type: 2}
@@ -21869,6 +21881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _WORLD SAVE MANAGER
       objectReference: {fileID: 0}
+    - target: {fileID: 8225989255558239235, guid: 44f36c06b46085c42a68327e18acf15d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f36c06b46085c42a68327e18acf15d, type: 3}
 --- !u!1001 &5290911578741600380
@@ -21880,6 +21896,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
       propertyPath: weaponItems.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
@@ -21898,6 +21918,38 @@ PrefabInstance:
       propertyPath: weaponItems.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 3ee4a9a78bd86804b84e17bc7ff30e2f, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5518134df8e8d874ebefe0c1a9ab9977, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d50c2f4a47d47043aa6c9d2006e9fb4, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 693039bfc8da6f145b122c855a0064da, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 75c3df78954dfe94bab48a0b82a38f07, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d50c2f4a47d47043aa6c9d2006e9fb4, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5518134df8e8d874ebefe0c1a9ab9977, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 75c3df78954dfe94bab48a0b82a38f07, type: 2}
+    - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: equipmentItems.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 693039bfc8da6f145b122c855a0064da, type: 2}
     - target: {fileID: 5290911578727479041, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -21945,6 +21997,10 @@ PrefabInstance:
     - target: {fileID: 5290911578727479047, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
       propertyPath: m_Name
       value: _WORLD ITEM DATABASE
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290911578727479047, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}

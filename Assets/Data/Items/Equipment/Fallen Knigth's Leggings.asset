@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 69aaf000ffeac1d428b655ee0b268225, type: 3}
   itemName: Fallen Knigth's Leggings
+  itemID: 1004
   physicalDefense: 10
+  magicDefense: 0
+  fireDefense: 0
+  lightningDefense: 0
+  darknessDefense: 0
+  poisonResistance: 0
   hipModelName: Chr_Hips_Male_14
   leftLegName: Chr_LegRight_Male_15
   rightLegName: Chr_LegLeft_Male_15

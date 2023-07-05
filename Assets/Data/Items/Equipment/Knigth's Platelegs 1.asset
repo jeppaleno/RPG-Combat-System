@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 600efcd1e359c604b823dcc06b09c4fc, type: 3}
   itemName: Knigth's Platelegs
+  itemID: 1002
   physicalDefense: 10
+  magicDefense: 0
+  fireDefense: 0
+  lightningDefense: 0
+  darknessDefense: 0
+  poisonResistance: 0
   hipModelName: Chr_Hips_Male_02
   leftLegName: Chr_LegRight_Male_14
   rightLegName: Chr_LegLeft_Male_14

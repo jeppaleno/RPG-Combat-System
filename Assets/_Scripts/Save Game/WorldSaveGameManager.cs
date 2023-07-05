@@ -3,6 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+
+[CustomEditor(typeof(WorldSaveGameManager))]
+[CanEditMultipleObjects]
+public class WorldSaveEditor : Editor
+{
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        EditorGUILayout.Separator();
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Save"))
+        {
+            ((WorldSaveGameManager)target).SaveGame();
+        }
+
+        if (GUILayout.Button("Load"))
+        {
+            ((WorldSaveGameManager)target).LoadGame();
+        }
+        EditorGUILayout.EndHorizontal();
+    }
+} 
+#endif
+
 public class WorldSaveGameManager : MonoBehaviour
 {
     public static WorldSaveGameManager instance;

@@ -9,6 +9,8 @@ public class WorldItemDataBase : MonoBehaviour
 
     public List<WeaponItem> weaponItems = new List<WeaponItem>();
 
+    public List<EquipmentItem> equipmentItems = new List<EquipmentItem>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,5 +26,10 @@ public class WorldItemDataBase : MonoBehaviour
     public WeaponItem GetWeaponItemByID(int weaponID)
     {
         return weaponItems.FirstOrDefault(weapon => weapon.itemID == weaponID);
+    }
+
+    public EquipmentItem GetEquipmentItemByID(int equipmentID)
+    {
+        return equipmentItems.FirstOrDefault(equipment => equipment.itemID == equipmentID);
     }
 }

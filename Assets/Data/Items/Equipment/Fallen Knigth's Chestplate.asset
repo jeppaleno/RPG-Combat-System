@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 1e65596f00ccf9f49a572073168dd6cf, type: 3}
   itemName: Fallen knigth's Chestplate
+  itemID: 1007
   physicalDefense: 0
+  magicDefense: 0
+  fireDefense: 0
+  lightningDefense: 0
+  darknessDefense: 0
+  poisonResistance: 0
   torsoModelName: Chr_Torso_Male_20
   upperLeftArmModelName: Chr_ArmUpperLeft_Male_07
   upperRightArmModelName: Chr_ArmUpperRight_Male_07

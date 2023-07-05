@@ -13,6 +13,11 @@ public class CharacterSaveData
     public int currentRightHandWeaponID;
     public int currentLeftHandWeaponID;
 
+    public int currentHeadGearItemID;
+    public int currentChestGearItemID;
+    public int currentLegGearItemID;
+    public int currentHandGearItemID;
+
     [Header("World Coordinates")]
     public float xPosition;
     public float yPosition;
