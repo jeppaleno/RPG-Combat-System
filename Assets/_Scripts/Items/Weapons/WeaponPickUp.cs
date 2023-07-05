@@ -6,17 +6,55 @@ using UnityEngine.UI;
 public class WeaponPickUp : Interactable
 {
     // This is a unique ID for this item spawn in the game world, each item we place in your world should have it's own unique ID
-    [Header("World Item ID")]
+    [Header("Item Information")]
     [SerializeField] int itemPickUpID;
+    [SerializeField] bool hasBeenLooted;
 
     [Header("item")]
     public WeaponItem weapon;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        // If the save data does not contain this item, we must have never looted it, so we can add it to the list and list it as not looted
+        if (!WorldSaveGameManager.instance.currentCharacterSaveData.itemsInWorld.ContainsKey(itemPickUpID))
+        {
+            WorldSaveGameManager.instance.currentCharacterSaveData.itemsInWorld.Add(itemPickUpID, false);
+        }
+
+        hasBeenLooted = WorldSaveGameManager.instance.currentCharacterSaveData.itemsInWorld[itemPickUpID];
+
+        if (hasBeenLooted)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     public override void Interact(PlayerManager playerManager)
     {
         base.Interact(playerManager);
 
-        PickUpItem(playerManager); //Pick up the item and add it to the player inventory
+        // Notify the character data this item has been looted from the world, so it does not spawn again
+        if (WorldSaveGameManager.instance.currentCharacterSaveData.itemsInWorld.ContainsKey(itemPickUpID))
+        {
+            WorldSaveGameManager.instance.currentCharacterSaveData.itemsInWorld.Remove(itemPickUpID);
+        }
+
+        // Saves the pick up to our save data so it does not spawn again when we realod the are
+        WorldSaveGameManager.instance.currentCharacterSaveData.itemsInWorld.Add(itemPickUpID, true);
+
+        hasBeenLooted = true;
+
+        //Pick up the item and add it to the player inventory
+        PickUpItem(playerManager);
     }
 
     private void PickUpItem(PlayerManager playerManager)

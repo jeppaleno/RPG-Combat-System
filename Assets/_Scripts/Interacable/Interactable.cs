@@ -7,6 +7,16 @@ public class Interactable : MonoBehaviour
     public float radius = 0.6f; 
     public string interactbleText;
     
+    protected virtual void Awake()
+    {
+
+    }
+
+    protected virtual void Start()
+    {
+
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;

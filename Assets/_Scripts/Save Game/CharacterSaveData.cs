@@ -22,4 +22,12 @@ public class CharacterSaveData
     public float xPosition;
     public float yPosition;
     public float zPosition;
+
+    [Header("Items Looted From World")]
+    public SerializbleDictionary<int, bool> itemsInWorld; // The Int is the world item ID, the bool is if the item has been looted
+
+    public CharacterSaveData()
+    {
+        itemsInWorld = new SerializbleDictionary<int, bool>();
+    }
 }
