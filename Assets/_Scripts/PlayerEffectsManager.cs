@@ -10,7 +10,6 @@ public class PlayerEffectsManager : CharacterEffectsManager
     PoisonAmountBar poisonAmountBar;
 
     public GameObject currentParticleFX; //The particles of current effects that eeffects player
-    public GameObject instantiatedFXModel;
     public int amountToBeHealed;
 
     protected override void Awake()

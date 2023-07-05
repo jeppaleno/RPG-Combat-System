@@ -112,14 +112,17 @@ public class CharacterWeaponSlotManager : MonoBehaviour
     {
         leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
 
-        leftHandDamageCollider.physicalDamage = character.characterInventoryManager.leftWeapon.physicalDamage;
-        leftHandDamageCollider.fireDamage = character.characterInventoryManager.leftWeapon.fireDamage;
+        if (leftHandDamageCollider != null)
+        {
+            leftHandDamageCollider.physicalDamage = character.characterInventoryManager.leftWeapon.physicalDamage;
+            leftHandDamageCollider.fireDamage = character.characterInventoryManager.leftWeapon.fireDamage;
 
-        leftHandDamageCollider.characterManager = character;
-        leftHandDamageCollider.teamIDNumber = character.characterStatsManager.teamIDNumber;
+            leftHandDamageCollider.characterManager = character;
+            leftHandDamageCollider.teamIDNumber = character.characterStatsManager.teamIDNumber;
 
-        leftHandDamageCollider.poiseBreak = character.characterInventoryManager.leftWeapon.poiseBreak;
-        character.characterEffectsManager.leftWeaponFX = leftHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
+            leftHandDamageCollider.poiseBreak = character.characterInventoryManager.leftWeapon.poiseBreak;
+            character.characterEffectsManager.leftWeaponFX = leftHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
+        }
     }
 
     protected virtual void LoadRightWeaponDamageCollider()

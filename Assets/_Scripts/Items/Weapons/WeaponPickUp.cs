@@ -13,12 +13,6 @@ public class WeaponPickUp : Interactable
     [Header("item")]
     public WeaponItem weapon;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        
-    }
 
     protected override void Start()
     {

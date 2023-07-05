@@ -61,6 +61,17 @@ public class CharacterStatsManager : MonoBehaviour
     public float blockingFireDamageAbsorption;
     public float blockingStabilityRating;
 
+    // Any damage dealt by this player is modified by these amounts
+    [Header("Damage Type Modifiers")]
+    public float physicalDamagePercentageModifier = 100;
+    public float fireDamagePercentageModifier = 100;
+
+    // Incoming damage after armor calculation is modified by these values
+    [Header("Damage Absorption Modifiers")]
+    public float physicalAbsorptionPercentageModifier = 0;
+    public float fireAbsorptionPercentageModifier = 0;
+
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
@@ -81,6 +92,10 @@ public class CharacterStatsManager : MonoBehaviour
         if (character.isDead)
             return;
 
+        // Before calculating damage defense, we check the attacking characters modifiers
+        physicalDamage = Mathf.RoundToInt(physicalDamage * (enemyCharacterDamagingMe.characterStatsManager.physicalDamagePercentageModifier / 100));
+        fireDamage = Mathf.RoundToInt(fireDamage * (enemyCharacterDamagingMe.characterStatsManager.fireDamagePercentageModifier / 100));
+
         character.characterAnimatorManager.EraseHandIKWeapon();
 
         float totalPhysicalDamageAbsorptions = 1 -
@@ -100,6 +115,9 @@ public class CharacterStatsManager : MonoBehaviour
             (1 - fireDamageAbsorptionHands / 100);
 
         fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
+
+        physicalDamage = Mathf.RoundToInt(physicalDamage * (enemyCharacterDamagingMe.characterStatsManager.physicalAbsorptionPercentageModifier / 100));
+        fireDamage = Mathf.RoundToInt(fireDamage * (enemyCharacterDamagingMe.characterStatsManager.fireAbsorptionPercentageModifier / 100));
 
         float finalDamage = physicalDamage + fireDamage; // + magicDamage + lightingDamage + darkDamage
 
@@ -126,6 +144,9 @@ public class CharacterStatsManager : MonoBehaviour
         if (character.isDead)
             return;
 
+        physicalDamage = Mathf.RoundToInt(physicalDamage * (enemyCharacterDamagingMe.characterStatsManager.physicalDamagePercentageModifier / 100));
+        fireDamage = Mathf.RoundToInt(fireDamage * (enemyCharacterDamagingMe.characterStatsManager.fireDamagePercentageModifier / 100));
+
         character.characterAnimatorManager.EraseHandIKWeapon();
 
         float totalPhysicalDamageAbsorptions = 1 -
@@ -145,6 +166,9 @@ public class CharacterStatsManager : MonoBehaviour
             (1 - fireDamageAbsorptionHands / 100);
 
         fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
+
+        physicalDamage = Mathf.RoundToInt(physicalDamage * (enemyCharacterDamagingMe.characterStatsManager.physicalAbsorptionPercentageModifier / 100));
+        fireDamage = Mathf.RoundToInt(fireDamage * (enemyCharacterDamagingMe.characterStatsManager.fireAbsorptionPercentageModifier / 100));
 
         float finalDamage = physicalDamage + fireDamage; // + magicDamage + lightingDamage + darkDamage
 

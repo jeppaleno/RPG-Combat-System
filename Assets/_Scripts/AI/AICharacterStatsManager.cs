@@ -38,12 +38,6 @@ public class AICharacterStatsManager : CharacterStatsManager
         }
     }
 
-    private int SetMaxHealthFromHealthLevel()
-    {
-        maxHealth = healthLevel * 10;
-        return maxHealth;
-    }
-
     public override void TakeDamageNoAnimation(int damage, int fireDamage)
     {
         base.TakeDamageNoAnimation(damage, fireDamage);

@@ -107,8 +107,6 @@ public class AICharacterManager : CharacterManager
         animator.SetBool("isDead", isDead);
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
-
-        
     }
 
     protected override void FixedUpdate()
@@ -131,10 +129,10 @@ public class AICharacterManager : CharacterManager
 
             if (nextState != null)
             {
-                if (currentState != nextState)
+                /*if (currentState != nextState)
                 {
                     Debug.Log(nextState);
-                }
+                }*/
             
                 SwitchToNextState(nextState);
             }
