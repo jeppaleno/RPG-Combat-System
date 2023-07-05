@@ -6,6 +6,9 @@ public class CharacterEffectsManager : MonoBehaviour
 {
     CharacterManager character;
 
+    [Header("Static Effects")]
+    [SerializeField] List<StaticCharacterEffect> staticCharacterEffects;
+
     [Header("Current Range FX")]
     public GameObject instantiatedFXModel;
 
@@ -33,6 +36,80 @@ public class CharacterEffectsManager : MonoBehaviour
     {
         character = GetComponent<CharacterManager>();
     }
+
+    protected virtual void Start()
+    {
+        foreach (var effect in staticCharacterEffects) // Just for demonstration 
+        {
+            effect.AddStaticEffect(character);
+        }
+    }
+
+    public void AddStaticEffect(StaticCharacterEffect effect)
+    {
+        // CHECK THE LIST TO MAKE SURE WE DONT ADD A DUPLICATE EFFECT
+
+        StaticCharacterEffect staticEffect;
+
+        for (int i = staticCharacterEffects.Count - 1; i > -1; i--)
+        {
+            if (staticCharacterEffects[i] != null)
+            {
+                if (staticCharacterEffects[i].effectID == effect.effectID)
+                {
+                    staticEffect = staticCharacterEffects[i];
+                    // WE REMOVE THE ACTUAL EFFECT FROM OUR CHARACTER
+                    staticEffect.RemoveStaticEffect(character);
+                    // WE THEN REMOVE THE EFFECT FROM THE LIST OF ACTIVE EFFECTS
+                    staticCharacterEffects.Remove(staticEffect);
+                }
+            }
+        }
+
+        // WE ADD ALL THE EFFECTS TO OUR LIST OF ACTIVE EFFECTS
+        staticCharacterEffects.Add(effect);
+        // WE ADD THE ACTUAL EFFECT TO OUR CHARACTER
+        effect.AddStaticEffect(character);
+
+        // CHECK THE LIST FOR NULL ITEMS AND REMOVE THEM
+        for (int i = staticCharacterEffects.Count - 1; i > -1; i--)
+        {
+            if (staticCharacterEffects[i] == null)
+            {
+                staticCharacterEffects.RemoveAt(i);
+            }
+        }
+    }
+
+    public void RemoveStaticEffect(int effectID)
+    {
+        StaticCharacterEffect staticEffect;
+
+        for (int i = staticCharacterEffects.Count - 1; i > -1; i--)
+        {
+            if (staticCharacterEffects[i] != null)
+            {
+                if (staticCharacterEffects[i].effectID == effectID)
+                {
+                    staticEffect = staticCharacterEffects[i];
+                    // WE REMOVE THE ACTUAL EFFECT FROM OUR CHARACTER
+                    staticEffect.RemoveStaticEffect(character);
+                    // WE THEN REMOVE THE EFFECT FROM THE LIST OF ACTIVE EFFECTS
+                    staticCharacterEffects.Remove(staticEffect);
+                }
+            }
+        }
+
+        // CHECK THE LIST FOR NULL ITEMS AND REMOVE THEM
+        for (int i = staticCharacterEffects.Count - 1; i > -1; i--)
+        {
+            if (staticCharacterEffects[i] == null)
+            {
+                staticCharacterEffects.RemoveAt(i);
+            }
+        }
+    }
+
     public virtual void PlayWeaponFX(bool isLeft)
     {
         if (isLeft == false)

@@ -20838,7 +20838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2344616193781628167, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: physicalAbsorptionPercentageModifier
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: leftWeapon

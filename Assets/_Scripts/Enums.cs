@@ -43,6 +43,12 @@ public enum AIAttackActionType
     rangedAttackAction
 }
 
+public enum DamageType
+{
+    Physical,
+    Fire
+}
+
 public class Enums : MonoBehaviour
 {
    

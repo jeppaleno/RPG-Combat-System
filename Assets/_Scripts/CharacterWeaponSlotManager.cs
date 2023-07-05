@@ -129,14 +129,18 @@ public class CharacterWeaponSlotManager : MonoBehaviour
     {
         rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
 
-        rightHandDamageCollider.physicalDamage = character.characterInventoryManager.rightWeapon.physicalDamage;
-        rightHandDamageCollider.fireDamage = character.characterInventoryManager.rightWeapon.fireDamage;
+        if (rightHandDamageCollider != null)
+        {
+            rightHandDamageCollider.physicalDamage = character.characterInventoryManager.rightWeapon.physicalDamage;
+            rightHandDamageCollider.fireDamage = character.characterInventoryManager.rightWeapon.fireDamage;
 
-        rightHandDamageCollider.characterManager = character;
-        rightHandDamageCollider.teamIDNumber = character.characterStatsManager.teamIDNumber;
+            rightHandDamageCollider.characterManager = character;
+            rightHandDamageCollider.teamIDNumber = character.characterStatsManager.teamIDNumber;
 
-        rightHandDamageCollider.poiseBreak = character.characterInventoryManager.rightWeapon.poiseBreak;
-        character.characterEffectsManager.rightWeaponFX = rightHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
+            rightHandDamageCollider.poiseBreak = character.characterInventoryManager.rightWeapon.poiseBreak;
+            character.characterEffectsManager.rightWeaponFX = rightHandSlot.currentWeaponModel.GetComponentInChildren<WeaponFX>();
+        }
+        
     }
 
     public virtual void LoadTwoHandIKTargets(bool isTwoHandingWeapon)
