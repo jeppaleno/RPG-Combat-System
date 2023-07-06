@@ -20812,6 +20812,18 @@ PrefabInstance:
       propertyPath: itemInteractableGameObject
       value: 
       objectReference: {fileID: 1784269819}
+    - target: {fileID: 2344616193781628166, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: staticCharacterEffects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344616193781628166, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: staticCharacterEffects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 65905dc8ffb5a2c4ba95d29b509a1fd5, type: 2}
+    - target: {fileID: 2344616193781628166, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: staticCharacterEffects.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b512533c6e5651b40b0a05d70dda400a, type: 2}
     - target: {fileID: 2344616193781628167, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: healthbar
       value: 
@@ -20844,6 +20856,14 @@ PrefabInstance:
       propertyPath: leftWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 6c4668f54e86614468aca45293af9cdd, type: 2}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: ringSlot01
+      value: 
+      objectReference: {fileID: 11400000, guid: 63c830331a5fa4246ac0cfb5823fb22f, type: 2}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: ringSlot02
+      value: 
+      objectReference: {fileID: 11400000, guid: d0a0186fb0cc6a94db64b513c09b4f5c, type: 2}
     - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: currentBodyEquipment
       value: 
@@ -20896,11 +20916,19 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2345407760502040123, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2345421386647456721, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2345423268225715355, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345444967613157263, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -20924,6 +20952,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2345594567657151889, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2345611637371240755, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -20933,6 +20965,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2345681167078241999, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345682691392105129, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -20953,6 +20989,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2346167336256273417, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346178630512382041, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346180159256556941, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

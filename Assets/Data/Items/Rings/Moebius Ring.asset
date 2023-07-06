@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d363e963f626e2e40856b9d652fc2d8c, type: 3}
-  m_Name: Modify Fire Damage
+  m_Script: {fileID: 11500000, guid: 485d28a4e6dff8f40932d80a17d2f69b, type: 3}
+  m_Name: Moebius Ring
   m_EditorClassIdentifier: 
-  effectID: 1
-  damageType: 1
-  modifiedValue: 33
+  itemIcon: {fileID: 0}
+  itemName: 
+  itemID: 2000
+  effect: {fileID: 11400000, guid: b512533c6e5651b40b0a05d70dda400a, type: 2}
+  itemEffectInformation: ' Increases fire damage'
