@@ -49,6 +49,12 @@ public enum DamageType
     Fire
 }
 
+public enum BuffClass
+{
+    Physical,
+    Fire
+}
+
 public class Enums : MonoBehaviour
 {
    

@@ -41,7 +41,7 @@ public class UIAICharacterHealthBar : MonoBehaviour
         damageText.text = currentDamageTaken.ToString();
 
         slider.value = health;
-        timeUntilBarIsHidden = 5; 
+        timeUntilBarIsHidden = 10; 
     }
 
     public void SetMaxHealth(int maxHealth)

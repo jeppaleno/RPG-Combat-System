@@ -17,7 +17,7 @@ public class AICharacterManager : CharacterManager
     public Rigidbody enemyRigidBody;
 
     public bool isPerformingAction;
-    public float rotationSpeed = 15;
+    public float rotationSpeed = 100; // OG is 15
     public float maximumAggroRadius = 1.5f;
 
     
@@ -97,16 +97,19 @@ public class AICharacterManager : CharacterManager
         HandleStateMachine();
 
 
+
         isRotatingWithRootMotion = animator.GetBool("isRotatingWithRootMotion");
         isInteracting = animator.GetBool("isInteracting");
         isPhaseShifting = animator.GetBool("isPhaseShifting");
-        //isInvulnerable = enemyAnimationManager.animator.GetBool("isInvulnerable");
+        //isInvulnerable = animator.GetBool("isInvulnerable");
         isHoldingArrow = animator.GetBool("isHoldingArrow");
         canDoCombo = animator.GetBool("canDoCombo");
         canRotate = animator.GetBool("canRotate");
         animator.SetBool("isDead", isDead);
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
+
+
     }
 
     protected override void FixedUpdate()
