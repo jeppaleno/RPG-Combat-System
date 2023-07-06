@@ -13,7 +13,7 @@ public class CharacterManager : MonoBehaviour
     public CharacterEffectsManager characterEffectsManager;
     public CharacterSoundFXManager characterSoundFXManager;
     public CharacterCombatManager characterCombatManager;
-
+     
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
 

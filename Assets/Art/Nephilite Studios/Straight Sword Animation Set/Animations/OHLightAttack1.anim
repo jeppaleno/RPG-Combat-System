@@ -50429,13 +50429,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: OpenDamageCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.53333336
     functionName: EnableCanBeParried
     data: 
@@ -50443,8 +50436,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.56666666
+    functionName: OpenDamageCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.6
     functionName: DrainStaminaBasedOnAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6333333
+    functionName: CloseDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -50459,13 +50466,6 @@ AnimationClip:
     messageOptions: 0
   - time: 0.6666667
     functionName: EnableCombo
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.8333333
-    functionName: CloseDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

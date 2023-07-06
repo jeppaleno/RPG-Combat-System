@@ -16,8 +16,8 @@ MonoBehaviour:
   attackType: 0
   actionCanCombo: 1
   attackScore: 3
-  recoveryTime: 2
-  maximumAttackAngle: 35
-  minimumAttackAngle: -35
+  recoveryTime: 1
+  maximumAttackAngle: 10
+  minimumAttackAngle: -10
   minimumDistanceNeededToAttack: 0
   maximumDistanceNeededToAttack: 2

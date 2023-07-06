@@ -110,6 +110,52 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &-3216664518342103207
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 10
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 30
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 1
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 1
+    m_Value: 94.04
+  aperture:
+    m_OverrideState: 1
+    m_Value: 18.3
+  focalLength:
+    m_OverrideState: 1
+    m_Value: 127
+  bladeCount:
+    m_OverrideState: 1
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 1
+    m_Value: 0.577
+  bladeRotation:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-680576790181440030
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -157,6 +203,8 @@ MonoBehaviour:
   - {fileID: -4003274199350803458}
   - {fileID: 2318810790980892630}
   - {fileID: -4762860933925362726}
+  - {fileID: 6959374174009309053}
+  - {fileID: -3216664518342103207}
 --- !u!114 &2318810790980892630
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -174,5 +222,33 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   cropToFit:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &6959374174009309053
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: -0.035
+  xMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  yMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  center:
+    m_OverrideState: 1
+    m_Value: {x: 0.5, y: 0.5}
+  scale:
     m_OverrideState: 1
     m_Value: 1
