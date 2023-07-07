@@ -19,6 +19,9 @@ public class CharacterEffectsManager : MonoBehaviour
     public WeaponFX rightWeaponFX;
     public WeaponFX leftWeaponFX;
 
+    [Header("Right Weapon Buff")]
+    public WeaponBuffEffect rightWeaponBuffEffect;
+
     [Header("Poison")]
     public GameObject defaultPoisonParticleFX; //Instantiate this
     public GameObject currentPoisonParticleFX; //Destroy this
@@ -42,6 +45,14 @@ public class CharacterEffectsManager : MonoBehaviour
         foreach (var effect in staticCharacterEffects) // Just for demonstration 
         {
             effect.AddStaticEffect(character);
+        }
+    }
+
+    public void ProcessWeaponBuffs()
+    {
+        if (rightWeaponBuffEffect != null)
+        {
+            rightWeaponBuffEffect.ProcessEffect(character);
         }
     }
 

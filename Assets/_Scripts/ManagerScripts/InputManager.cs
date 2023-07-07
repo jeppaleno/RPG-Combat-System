@@ -509,7 +509,7 @@ public class InputManager : MonoBehaviour
         {
             x_Input = false;
             // Use Current consumable
-            player.playerInventoryManager.currentConsumable.AttemptToConsumeItem(player.playerAnimatorManager, player.playerWeaponSlotManager, player.playerEffectsManager);
+            player.playerInventoryManager.currentConsumable.AttemptToConsumeItem(player);
         }
     }
 

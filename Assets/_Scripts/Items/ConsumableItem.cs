@@ -15,15 +15,25 @@ public class ConsumableItem : Item
     public string consumeAnimation;
     public bool isInteracting;
 
-    public virtual void AttemptToConsumeItem(PlayerAnimatorManager animatorManager, PlayerWeaponSlotManager weaponSlotManager, PlayerEffectsManager playerEffectsManager)
+    public virtual void AttemptToConsumeItem(PlayerManager player)
     {
         if (currentItemAmount > 0)
         {
-            animatorManager.PlayTargetAnimation(consumeAnimation, isInteracting, true, true);
+            player.playerAnimatorManager.PlayTargetAnimation(consumeAnimation, isInteracting, true, true);
         }
         else
         {
-            animatorManager.PlayTargetAnimation("shrug", true);
+            player.playerAnimatorManager.PlayTargetAnimation("shrug", true);
         }
+    }
+
+    public virtual void SucessfullyToConsumeItem(PlayerManager player)
+    {
+        currentItemAmount = currentItemAmount - 1;
+    }
+
+    public virtual bool CanIUseThisItem(PlayerManager player)
+    {
+        return true;
     }
 }

@@ -17,18 +17,18 @@ public class BombConsumableItem : ConsumableItem
     public int baseDamage = 200;
     public int explosiveDamage = 75;
 
-    public override void AttemptToConsumeItem(PlayerAnimatorManager animatorManager, PlayerWeaponSlotManager weaponSlotManager, PlayerEffectsManager playerEffectsManager)
+    public override void AttemptToConsumeItem(PlayerManager player)
     {
         if (currentItemAmount > 0)
         {
-            weaponSlotManager.rightHandSlot.UnloadWeapon(); //Hide sword
-            animatorManager.PlayTargetAnimation(consumeAnimation, true, true);
-            GameObject bombModel = Instantiate(itemModel, weaponSlotManager.rightHandSlot.transform.position, Quaternion.identity, weaponSlotManager.rightHandSlot.transform);
-            playerEffectsManager.instantiatedFXModel = bombModel;
+            player.playerWeaponSlotManager.rightHandSlot.UnloadWeapon(); //Hide sword
+            player.playerAnimatorManager.PlayTargetAnimation(consumeAnimation, true, true);
+            GameObject bombModel = Instantiate(itemModel, player.playerWeaponSlotManager.rightHandSlot.transform.position, Quaternion.identity, player.playerWeaponSlotManager.rightHandSlot.transform);
+            player.playerEffectsManager.instantiatedFXModel = bombModel;
         }
         else
         {
-            animatorManager.PlayTargetAnimation("shrug", true);
+            player.playerAnimatorManager.PlayTargetAnimation("shrug", true);
         }
     }
 }
