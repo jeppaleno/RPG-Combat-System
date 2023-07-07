@@ -30,7 +30,7 @@ MonoBehaviour:
   physicalBlockingDamageAbsorption: 0
   fireBlockingDamageAbsorption: 0
   stability: 67
-  baseStaminaCost: 5
+  baseStaminaCost: 10
   lightAttackStaminaMultiplier: 1
   heavyAttackStaminaMultiplier: 2
   oh_hold_RB_Action: {fileID: 11400000, guid: 99d7ff5bdbc27c347acc7dcf040086f3, type: 2}
