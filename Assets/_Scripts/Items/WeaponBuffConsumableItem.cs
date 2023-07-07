@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Items/Consumeables/Weapon Buff")]
 public class WeaponBuffConsumableItem : ConsumableItem
 {
     [Header("Effect")]

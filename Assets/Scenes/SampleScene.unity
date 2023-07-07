@@ -91957,6 +91957,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d0a0186fb0cc6a94db64b513c09b4f5c, type: 2}
     - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: rightWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c3f18957ab5ae42a97fd8e46f99490, type: 2}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: currentBodyEquipment
       value: 
       objectReference: {fileID: 0}
@@ -93768,7 +93772,7 @@ PrefabInstance:
     - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
       propertyPath: weaponItems.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 711d043aeb77b3943b3c55f004f1aef5, type: 2}
+      objectReference: {fileID: 11400000, guid: 67c3f18957ab5ae42a97fd8e46f99490, type: 2}
     - target: {fileID: 5290911578727479040, guid: 4980a135c2f0c0f4f90a3f39eddc7705, type: 3}
       propertyPath: weaponItems.Array.data[3]
       value: 
