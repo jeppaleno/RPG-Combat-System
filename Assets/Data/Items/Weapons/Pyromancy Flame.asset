@@ -12,30 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea03ae3f8df7c994f9dae62fa1fe5f36, type: 3}
   m_Name: Pyromancy Flame
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 9f69b220176e6964fbd87f5f158d45e3, type: 3}
+  itemIcon: {fileID: 0}
   itemName: Pyromancy Flame
+  itemID: 0
   modelPrefab: {fileID: 3389357240179857206, guid: 41bd537a5e16d8045afc7c2c0549d2e5, type: 3}
   isUnarmed: 0
+  weaponController: {fileID: 0}
+  weaponType: 0
   physicalDamage: 0
   fireDamage: 0
+  lightAttackDamageModifier: 1
+  heavyAttackDamageModifier: 2
   criticalDamageMultiplier: 4
+  guardBreakModifier: 1
   poiseBreak: 0
   offensivePoiseBonus: 0
-  physicalDamageAbsorption: 0
-  right_hand_Idle: Right_Arm_Idle_01
-  left_hand_Idle: Left_Arm_Idle_01
-  th_idle: TH_Idle_01
-  OH_Light_Attack_1: OH_Light_Attack_01
-  OH_Light_Attack_2: OH_Light_Attack_2
-  OH_Heavy_Attack_1: OH_Heavy_Attack_01
-  th_light_attack_01: TH_Sword_Attack_01
-  th_light_attack_02: TH_Sword_Attack_02
-  weapon_art: 
-  baseStamina: 0
-  lightAttackMultiplier: 0
-  heavyAttackMultiplier: 0
-  isSpellCaster: 0
-  isFaithCaster: 0
-  isPyroCaster: 1
-  isMeleeWeapon: 0
-  isShieldWeapon: 0
+  physicalBlockingDamageAbsorption: 0
+  fireBlockingDamageAbsorption: 0
+  stability: 67
+  baseStaminaCost: 0
+  lightAttackStaminaMultiplier: 0
+  heavyAttackStaminaMultiplier: 0
+  oh_hold_RB_Action: {fileID: 0}
+  oh_tap_RB_Action: {fileID: 0}
+  oh_tap_LB_Action: {fileID: 0}
+  oh_hold_LB_Action: {fileID: 0}
+  oh_tap_RT_Action: {fileID: 0}
+  oh_hold_RT_Action: {fileID: 0}
+  oh_tap_LT_Action: {fileID: 0}
+  oh_hold_LT_Action: {fileID: 0}
+  th_hold_RB_Action: {fileID: 0}
+  th_tap_RB_Action: {fileID: 0}
+  th_tap_LB_Action: {fileID: 0}
+  th_hold_LB_Action: {fileID: 0}
+  th_tap_RT_Action: {fileID: 0}
+  th_hold_RT_Action: {fileID: 0}
+  th_tap_LT_Action: {fileID: 0}
+  th_hold_LT_Action: {fileID: 0}
+  weaponWhooshes: []

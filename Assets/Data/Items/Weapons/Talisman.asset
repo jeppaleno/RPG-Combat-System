@@ -12,27 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea03ae3f8df7c994f9dae62fa1fe5f36, type: 3}
   m_Name: Talisman
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: d719a4a2491b7424088d5ca84fd30478, type: 3}
+  itemIcon: {fileID: 0}
   itemName: Talisman
+  itemID: 0
   modelPrefab: {fileID: 4935846769436927475, guid: b7655474681169d44ad01286377090fd, type: 3}
   isUnarmed: 0
   weaponController: {fileID: 0}
-  offHandIdleAnimation: Left_Arm_Idle_01
   weaponType: 1
   physicalDamage: 0
   fireDamage: 0
+  lightAttackDamageModifier: 1
+  heavyAttackDamageModifier: 2
   criticalDamageMultiplier: 4
+  guardBreakModifier: 1
   poiseBreak: 0
   offensivePoiseBonus: 0
-  physicalDamageAbsorption: 0
-  baseStamina: 0
-  lightAttackMultiplier: 0
-  heavyAttackMultiplier: 0
-  hold_RB_Action: {fileID: 0}
-  tap_RB_Action: {fileID: 11400000, guid: 8c70c8b988e69e44c80b4c74a922ab79, type: 2}
-  tap_LB_Action: {fileID: 11400000, guid: 8c70c8b988e69e44c80b4c74a922ab79, type: 2}
-  hold_LB_Action: {fileID: 0}
-  tap_RT_Action: {fileID: 0}
-  hold_RT_Action: {fileID: 0}
-  tap_LT_Action: {fileID: 0}
-  hold_LT_Action: {fileID: 0}
+  physicalBlockingDamageAbsorption: 0
+  fireBlockingDamageAbsorption: 0
+  stability: 67
+  baseStaminaCost: 0
+  lightAttackStaminaMultiplier: 0
+  heavyAttackStaminaMultiplier: 0
+  oh_hold_RB_Action: {fileID: 0}
+  oh_tap_RB_Action: {fileID: 0}
+  oh_tap_LB_Action: {fileID: 0}
+  oh_hold_LB_Action: {fileID: 0}
+  oh_tap_RT_Action: {fileID: 0}
+  oh_hold_RT_Action: {fileID: 0}
+  oh_tap_LT_Action: {fileID: 0}
+  oh_hold_LT_Action: {fileID: 0}
+  th_hold_RB_Action: {fileID: 0}
+  th_tap_RB_Action: {fileID: 0}
+  th_tap_LB_Action: {fileID: 0}
+  th_hold_LB_Action: {fileID: 0}
+  th_tap_RT_Action: {fileID: 0}
+  th_hold_RT_Action: {fileID: 0}
+  th_tap_LT_Action: {fileID: 0}
+  th_hold_LT_Action: {fileID: 0}
+  weaponWhooshes: []
