@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Character Effects/Weapon Buff Effects")]
 public class WeaponBuffEffect : CharacterEffect
 {
     [Header("Buff Info")]
@@ -65,6 +66,8 @@ public class WeaponBuffEffect : CharacterEffect
         if (buffHasStarted)
         {
             timeRemainingOnBuff = timeRemainingOnBuff - 1;
+
+            Debug.Log("Time reamaining on buff: " + timeRemainingOnBuff);
 
             if (timeRemainingOnBuff <= 0)
             {

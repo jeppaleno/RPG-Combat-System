@@ -4631,8 +4631,8 @@ MonoBehaviour:
   staticCharacterEffects: []
   instantiatedFXModel: {fileID: 0}
   bloodSplatterFX: {fileID: 166404, guid: 2285b4b7dbf40544baa6fcf08f84812c, type: 3}
-  rightWeaponFX: {fileID: 0}
-  leftWeaponFX: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
   rightWeaponBuffEffect: {fileID: 0}
   defaultPoisonParticleFX: {fileID: 0}
   currentPoisonParticleFX: {fileID: 0}
@@ -32162,8 +32162,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772163444664480}
-  m_LocalRotation: {x: 0.791664, y: 0.5883115, z: -0.0068415105, w: -0.16465424}
-  m_LocalPosition: {x: 0.37789673, y: 0.00000014931722, z: -0.00000085110815}
+  m_LocalRotation: {x: 0.7945646, y: 0.5849035, z: -0.0063323528, w: -0.16283424}
+  m_LocalPosition: {x: 0.3771233, y: 0.00000014901161, z: -0.0000008493662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33133,7 +33133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946599086049924}
   m_LocalRotation: {x: 0.44220132, y: -0.46873862, z: -0.4911928, w: 0.5860647}
-  m_LocalPosition: {x: 0.008243561, y: 0.84850466, z: 0.028010385}
+  m_LocalPosition: {x: 0.008243561, y: 0.8485048, z: 0.028010385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34437,8 +34437,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255976008999064}
-  m_LocalRotation: {x: 0.79139805, y: 0.58711636, z: -0.012183055, w: -0.1698093}
-  m_LocalPosition: {x: -0.38027942, y: 0, z: -0.0000000018782325}
+  m_LocalRotation: {x: 0.8072865, y: 0.5656138, z: -0.010348304, w: -0.16811426}
+  m_LocalPosition: {x: -0.3771235, y: 0, z: -0.0000000018626451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35778,8 +35778,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423455249600596}
-  m_LocalRotation: {x: -0.041021463, y: 0.71361905, z: -0.6976759, w: -0.04809907}
-  m_LocalPosition: {x: 0.041157685, y: -0.026920658, z: -0.09896728}
+  m_LocalRotation: {x: -0.02513751, y: 0.7124984, z: -0.6980129, w: -0.067023434}
+  m_LocalPosition: {x: 0.041157685, y: -0.026920708, z: -0.09896705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38125,8 +38125,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505434673163030}
-  m_LocalRotation: {x: -0.69355446, y: -0.12236021, z: -0.04223055, w: 0.7086796}
-  m_LocalPosition: {x: 0.04115782, y: -0.026920758, z: 0.09896702}
+  m_LocalRotation: {x: -0.69342977, y: -0.12058781, z: -0.045695722, w: 0.7088905}
+  m_LocalPosition: {x: 0.0411578, y: -0.026920758, z: 0.098967105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43361,8 +43361,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986316206862480}
-  m_LocalRotation: {x: 0.650252, y: 0.18733859, z: -0.16557315, w: 0.71739966}
-  m_LocalPosition: {x: 0.40012833, y: -0.00000020861626, z: 0}
+  m_LocalRotation: {x: 0.6528451, y: 0.18300138, z: -0.15870196, w: 0.71771693}
+  m_LocalPosition: {x: 0.39930925, y: -0.00000035762787, z: -1.2739676e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43455,8 +43455,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439642154100262}
-  m_LocalRotation: {x: 0.65234977, y: 0.14051566, z: -0.12086803, w: 0.7349055}
-  m_LocalPosition: {x: -0.40265056, y: -0.00000008940697, z: 0.000000016298145}
+  m_LocalRotation: {x: 0.66046405, y: 0.10504965, z: -0.08463441, w: 0.7386399}
+  m_LocalPosition: {x: -0.39930907, y: 0.000000059604645, z: 4.5820414e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -91961,6 +91961,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 67c3f18957ab5ae42a97fd8e46f99490, type: 2}
     - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: currentSpell
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: currentConsumable
+      value: 
+      objectReference: {fileID: 11400000, guid: 176a1d2688f2e3f4abd5ca812bbaf59a, type: 2}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: currentBodyEquipment
       value: 
       objectReference: {fileID: 0}
@@ -91972,6 +91980,10 @@ PrefabInstance:
       propertyPath: weaponsInLeftHandSlots.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 6868f32421b4096489f24e137bc03b33, type: 2}
+    - target: {fileID: 2344616193781628218, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
+      propertyPath: weaponsInRightHandSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c3f18957ab5ae42a97fd8e46f99490, type: 2}
     - target: {fileID: 2344698298610811523, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -16,9 +16,9 @@ MonoBehaviour:
   itemName: Fire Buff
   itemID: 0
   maxItemAmount: 10
-  currentItemAmount: 10
+  currentItemAmount: 6
   itemModel: {fileID: 0}
   consumeAnimation: Buff_Weapon_01
   isInteracting: 1
-  weaponBuffEffect: {fileID: 0}
-  buffTriggerSound: {fileID: 0}
+  weaponBuffEffect: {fileID: 11400000, guid: 4f602eeb3034abd49ac590c60d58cf7d, type: 2}
+  buffTriggerSound: {fileID: 8300000, guid: 0df3c3cfec4b86d479daaecb3915f649, type: 3}

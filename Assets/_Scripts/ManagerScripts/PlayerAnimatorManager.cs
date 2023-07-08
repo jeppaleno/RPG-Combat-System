@@ -89,4 +89,12 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
         player.characterController.enabled = true;
     }
 
+    public virtual void SuccesfullyUseCurrentConsumable()
+    {
+        if (character.characterInventoryManager.currentConsumable != null)
+        {
+            character.characterInventoryManager.currentConsumable.SucessfullyToConsumeItem(player);
+        }
+    }
+
 }

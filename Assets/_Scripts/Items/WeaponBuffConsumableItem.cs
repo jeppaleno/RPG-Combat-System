@@ -41,8 +41,8 @@ public class WeaponBuffConsumableItem : ConsumableItem
 
     public override bool CanIUseThisItem(PlayerManager player)
     {
-        if (player.playerInventoryManager.currentConsumable.currentItemAmount <= 0)
-            return false;
+        //if (player.playerInventoryManager.currentConsumable.currentItemAmount <= 0)
+            //return false;
 
         MeleeWeaponItem meleeWeapon = player.playerInventoryManager.rightWeapon as MeleeWeaponItem;
 
