@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Fire Buff
   itemID: 0
   maxItemAmount: 10
-  currentItemAmount: 6
+  currentItemAmount: 10
   itemModel: {fileID: 0}
   consumeAnimation: Buff_Weapon_01
   isInteracting: 1

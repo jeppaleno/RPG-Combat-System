@@ -9,6 +9,10 @@ public class CharacterEffectsManager : MonoBehaviour
     [Header("Static Effects")]
     [SerializeField] List<StaticCharacterEffect> staticCharacterEffects;
 
+    [Header("Timed Effects")]
+    [SerializeField] List<CharacterEffect> timedEffects;
+    [SerializeField] float effectTickTimer = 0;
+
     [Header("Current Range FX")]
     public GameObject instantiatedFXModel;
 
@@ -45,6 +49,22 @@ public class CharacterEffectsManager : MonoBehaviour
         foreach (var effect in staticCharacterEffects) // Just for demonstration 
         {
             effect.AddStaticEffect(character);
+        }
+    }
+
+    public virtual void ProcessAllTimedEffects()
+    {
+        effectTickTimer = effectTickTimer + Time.deltaTime;
+
+        if (effectTickTimer >= 1)
+        {
+            effectTickTimer = 0;
+            ProcessWeaponBuffs();
+
+            for (int i = timedEffects.Count - 1; i > -1; i--)
+            {
+                timedEffects[i].ProcessEffect(character);
+            }
         }
     }
 
