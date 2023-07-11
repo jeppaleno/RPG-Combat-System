@@ -72,6 +72,11 @@ public class CharacterManager : MonoBehaviour
         characterCombatManager = GetComponent<CharacterCombatManager>();
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
     protected virtual void FixedUpdate()
     {
         characterAnimatorManager.CheckHandIKWeight(characterWeaponSlotManager.rightHandIKTarget, characterWeaponSlotManager.leftHandIKTarget, isTwoHandingWeapon);

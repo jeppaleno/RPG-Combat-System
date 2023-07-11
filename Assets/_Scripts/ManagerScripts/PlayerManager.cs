@@ -48,20 +48,16 @@ public class PlayerManager : CharacterManager
         WorldSaveGameManager.instance.player = this;
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         interactableUI = FindObjectOfType<InteractableUI>();
     }
 
-    void Update()
+    protected override void Update()
     {
-        
-        inputManager.HandleAllInputs();
-        playerLocomotionManager.HandleGroundedMovement();
-        playerLocomotionManager.HandleRotation();
-        //playerLocomotionManager.HandleJumping();
-        playerEffectsManager.HandleAllBuildEffects();
-
+        base.Update();
+       
         inputManager.isInteracting = animator.GetBool("isInteracting");
         canDoCombo = animator.GetBool("canDoCombo");
         canRotate = animator.GetBool("canRotate");
@@ -72,6 +68,11 @@ public class PlayerManager : CharacterManager
         animator.SetBool("isBlocking", isBlocking);
         animator.SetBool("isDead", isDead);
 
+        inputManager.HandleAllInputs();
+        playerLocomotionManager.HandleGroundedMovement();
+        playerLocomotionManager.HandleRotation();
+        //playerLocomotionManager.HandleJumping();
+
         playerStatsManager.RegenerateStamina();
 
         CheckForInteractableObject();
@@ -81,8 +82,6 @@ public class PlayerManager : CharacterManager
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        
-
     }
 
     private void LateUpdate()

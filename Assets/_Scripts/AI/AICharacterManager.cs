@@ -74,29 +74,18 @@ public class AICharacterManager : CharacterManager
         navmeshAgent.enabled = false;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         enemyRigidBody.isKinematic = false;
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (currentTarget != null)
-        {
-            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
-            targetDirection = currentTarget.transform.position - transform.position;
-            viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-        }
-
-        if (companion != null)
-        {
-            distanceFromCompanion = Vector3.Distance(companion.transform.position, transform.position);
-        }
+        base.Update();
 
         HandleRecoveryTimer();
         HandleStateMachine();
-
-
 
         isRotatingWithRootMotion = animator.GetBool("isRotatingWithRootMotion");
         isInteracting = animator.GetBool("isInteracting");
@@ -109,13 +98,23 @@ public class AICharacterManager : CharacterManager
         animator.SetBool("isTwoHandingWeapon", isTwoHandingWeapon);
         animator.SetBool("isBlocking", isBlocking);
 
+        if (currentTarget != null)
+        {
+            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+            targetDirection = currentTarget.transform.position - transform.position;
+            viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+        }
+
+        if (companion != null)
+        {
+            distanceFromCompanion = Vector3.Distance(companion.transform.position, transform.position);
+        }
 
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        aiCharacterEffectsManager.HandleAllBuildEffects();
     }
 
     private void LateUpdate()

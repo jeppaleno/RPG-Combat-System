@@ -19,14 +19,14 @@ public class ResetAnimatorBool : StateMachineBehaviour
     public string isFiringSpellBool = "isFiringSpell";
     public bool isFiringSpellStatus = false;
 
-    //public string isUsingRootMotionBool = "isUsingRootMotionBool";
-    //public bool isUsingRootMotionStatus = false;
+    public string isUsingRootMotionBool = "isUsingRootMotion";
+    public bool isUsingRootMotionStatus = false;
 
     public string isRotatingWithRootMotion = "isRotatingWithRootMotion";
     public bool isRotatingWithRootMotionStatus = false;
 
     public string canRotateBool = "canRotate";
-    public bool canRotateStatus = true;
+    public bool canRotateStatus = false;
 
     public string isMirroredBool = "isMirrored";
     public bool isMirroredStatus = false;
@@ -50,7 +50,7 @@ public class ResetAnimatorBool : StateMachineBehaviour
         animator.SetBool(isRotatingWithRootMotion, isRotatingWithRootMotionStatus);
         animator.SetBool(canRotateBool, canRotateStatus);
         //animator.SetBool(isInvulnerable, isInvulnerableStatus); 
-        //animator.SetBool(isUsingRootMotionBool, isUsingRootMotionStatus);
+        animator.SetBool(isUsingRootMotionBool, isUsingRootMotionStatus);
         animator.SetBool(isMirroredBool, isMirroredStatus);
     }
 }

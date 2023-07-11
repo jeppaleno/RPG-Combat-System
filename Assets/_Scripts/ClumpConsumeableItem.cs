@@ -23,9 +23,8 @@ public class ClumpConsumeableItem : ConsumableItem
         player.playerEffectsManager.instantiatedFXModel = clump;
         if(curePoison)
         {
-            player.playerEffectsManager.poisonBuildup = 0;
-            player.playerEffectsManager.poisonAmount = player.playerEffectsManager.defaultPoisonAmount;
-            player.playerEffectsManager.isPoisoned = false;
+            player.playerStatsManager.poisonBuildup = 0;
+            player.playerStatsManager.isPoisoned = false;
 
             if (player.playerEffectsManager.currentPoisonParticleFX != null)
             {

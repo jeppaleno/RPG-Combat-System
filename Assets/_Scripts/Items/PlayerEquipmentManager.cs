@@ -64,6 +64,8 @@ public class PlayerEquipmentManager : MonoBehaviour
 
     public void EquipAllEquipmentModelsOnStart()
     {
+        float poisonResistance = 0;
+
         //HELMET EQUIPMENT
         helmetModelChanger.UnEquipAllHelmetModels();
 
@@ -72,7 +74,7 @@ public class PlayerEquipmentManager : MonoBehaviour
             nakedHeadModel.SetActive(false);
             helmetModelChanger.EquipHelmetModelByName(player.playerInventoryManager.currentHelmetEquipment.helmetModelName);
             player.playerStatsManager.physicalDamageAbsoptionHead = player.playerInventoryManager.currentHandEquipment.physicalDefense;
-            //Debug.Log("Head Absorption is " + player.playerStatsManager.physicalDamageAbsoptionHead + "%");
+            poisonResistance += player.playerInventoryManager.currentHelmetEquipment.poisonResistance;
         }
         else
         {
@@ -91,7 +93,7 @@ public class PlayerEquipmentManager : MonoBehaviour
             upperLeftArmModelChanger.EquipModelByName(player.playerInventoryManager.currentBodyEquipment.upperLeftArmModelName);
             upperRightArmModelChanger.EquipModelByName(player.playerInventoryManager.currentBodyEquipment.upperRightArmModelName);
             player.playerStatsManager.physicalDamageAbsoptionBody = player.playerInventoryManager.currentBodyEquipment.physicalDefense;
-            //Debug.Log("Body Absorption is " + player.playerStatsManager.physicalDamageAbsoptionBody + "%");
+            poisonResistance += player.playerInventoryManager.currentBodyEquipment.poisonResistance;
         }
         else
         {
@@ -112,7 +114,7 @@ public class PlayerEquipmentManager : MonoBehaviour
             leftLegModelChanger.EquipLegModelByName(player.playerInventoryManager.currentLegEquipment.leftLegName);
             rightLegModelChanger.EquipLegModelByName(player.playerInventoryManager.currentLegEquipment.rightLegName);
             player.playerStatsManager.physicalDamageAbsoptionLegs = player.playerInventoryManager.currentLegEquipment.physicalDefense;
-            //Debug.Log("Leg Absorption is " + player.playerStatsManager.physicalDamageAbsoptionLegs + "%");
+            poisonResistance += player.playerInventoryManager.currentLegEquipment.poisonResistance;
         }
         else
         {
@@ -135,7 +137,7 @@ public class PlayerEquipmentManager : MonoBehaviour
             leftHandModelChanger.EquipModelByName(player.playerInventoryManager.currentHandEquipment.leftHandModelName);
             rightHandModelChanger.EquipModelByName(player.playerInventoryManager.currentHandEquipment.rightHandModelName);
             player.playerStatsManager.physicalDamageAbsoptionHands = player.playerInventoryManager.currentHandEquipment.physicalDefense;
-            //Debug.Log("Hand Absorption is " + player.playerStatsManager.physicalDamageAbsoptionHands + "%");
+            poisonResistance += player.playerInventoryManager.currentHandEquipment.poisonResistance;
         }
         else
         {
@@ -145,5 +147,7 @@ public class PlayerEquipmentManager : MonoBehaviour
             rightHandModelChanger.EquipModelByName(nakedRightHand);
             player.playerStatsManager.physicalDamageAbsoptionHands = 0;
         }
+
+        player.playerStatsManager.poisonResistance = poisonResistance;
     }
 }

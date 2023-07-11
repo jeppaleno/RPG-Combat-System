@@ -44,6 +44,9 @@ public class CharacterStatsManager : MonoBehaviour
     public float physicalDamageAbsoptionLegs;
     public float physicalDamageAbsoptionHands;
 
+    [Header("Resistances")]
+    public float poisonResistance;
+
     [Header("Poise")]
     public float totalPoiseDefence; //The TOTAL poise during damage calculation
     public float offensivePoiseBonus; //The poise you gain during an attack with a weapon
@@ -70,6 +73,11 @@ public class CharacterStatsManager : MonoBehaviour
     [Header("Damage Absorption Modifiers")]
     public float physicalAbsorptionPercentageModifier = 0;
     public float fireAbsorptionPercentageModifier = 0;
+
+    [Header("Poison")]
+    public bool isPoisoned;
+    public float poisonBuildup = 0; //The build up over time that poisons the player after reaching 100
+    public float poisonAmount = 100; //The amount of poison the player has to process before becoming unpoisoned
 
 
     protected virtual void Awake()
