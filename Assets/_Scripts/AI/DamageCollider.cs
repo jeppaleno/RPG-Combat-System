@@ -94,7 +94,7 @@ public class DamageCollider : MonoBehaviour
                 //Detects where on the collider the weapon first makes contact
                 Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
                 float directionHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
-                ChooseWhichDirectionDamageCameFrom(directionHitFrom);
+                //ChooseWhichDirectionDamageCameFrom(directionHitFrom);
                 enemyManager.characterEffectsManager.PlayBloodSplatterFX(contactPoint);
                 enemyManager.characterEffectsManager.InteruptEffect();
                 //Deals Damage
@@ -183,33 +183,7 @@ public class DamageCollider : MonoBehaviour
         }
         else
         {
-            enemyStats.TakeDamage(Mathf.RoundToInt(finalPhysicalDamage), 0, currentDamageAnimation, characterManager);
-        }
-    }
-
-    protected virtual void ChooseWhichDirectionDamageCameFrom(float direction)
-    {
-        //Debug.Log(direction);
-
-        if (direction >= 145 && direction <= 180)
-        {
-            currentDamageAnimation = "Damage_Forward_01";
-        }
-        else if (direction <= -145 && direction >= -180)
-        {
-            currentDamageAnimation = "Damage_Forward_01";
-        }
-        else if (direction >= -45 && direction <= 45)
-        {
-            currentDamageAnimation = "Damage_Back_01";
-        }
-        else if (direction >= -144 && direction <= -45)
-        {
-            currentDamageAnimation = "Damage_Left_01";
-        }
-        else if (direction >= 45 && direction <= 144)
-        {
-            currentDamageAnimation = "Damage_Right_01";
+            //enemyStats.TakeDamage(Mathf.RoundToInt(finalPhysicalDamage), 0, currentDamageAnimation, characterManager);
         }
     }
 }

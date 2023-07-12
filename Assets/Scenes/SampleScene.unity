@@ -408,7 +408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 481812, guid: c3160889564a0d74d98f510aa33dc187, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 481812, guid: c3160889564a0d74d98f510aa33dc187, type: 3}
       propertyPath: m_LocalScale.x
@@ -1935,7 +1935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449332, guid: 99cdb7462838a6342bd2288456e75888, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 449332, guid: 99cdb7462838a6342bd2288456e75888, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2423,7 +2423,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh638990
+  m_Name: pb_Mesh48612
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2678,7 +2678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693c4c759c5f8804cba15e1735520bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonBuilUpAmount: 7
   charactersInsidePoisonSurface: []
 --- !u!135 &325223771
 SphereCollider:
@@ -3595,7 +3594,6 @@ Transform:
   - {fileID: 1483931273}
   - {fileID: 1526464869}
   - {fileID: 705507995}
-  - {fileID: 1869945156}
   - {fileID: 1759914687}
   - {fileID: 1806240812}
   - {fileID: 670601364}
@@ -4455,6 +4453,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   criticalAttackRange: 1
+  previousPoiseDamageTaken: 0
   currentAttackType: 0
   oh_light_attack_01: OH_Light_Attack_01
   oh_light_attack_02: OH_Light_Attack_02
@@ -4631,13 +4630,12 @@ MonoBehaviour:
   staticCharacterEffects: []
   timedEffects: []
   effectTickTimer: 0
+  timedEffectParticles: []
   instantiatedFXModel: {fileID: 0}
   bloodSplatterFX: {fileID: 166404, guid: 2285b4b7dbf40544baa6fcf08f84812c, type: 3}
   rightWeaponManager: {fileID: 0}
   leftWeaponManager: {fileID: 0}
   rightWeaponBuffEffect: {fileID: 0}
-  defaultPoisonParticleFX: {fileID: 0}
-  currentPoisonParticleFX: {fileID: 0}
   buildUpTransform: {fileID: 0}
 --- !u!114 &630826734
 MonoBehaviour:
@@ -4874,6 +4872,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandConstraint: {fileID: 911750055}
   rightHandConstraint: {fileID: 31638353}
+  Damage_Forward_Light_01: Damage_Forward_Light_01
+  Damage_Forward_Light_02: Damage_Forward_Light_02
+  Damage_Back_Light_01: Damage_Back_Light_01
+  Damage_Back_Light_02: Damage_Back_Light_02
+  Damage_Left_Light_01: Damage_Left_Light_01
+  Damage_Left_Light_02: Damage_Left_Light_02
+  Damage_Right_Light_01: Damage_Right_Light_01
+  Damage_Right_Light_02: Damage_Right_Light_02
+  Damage_Forward_Medium_01: Damage_Forward_Medium_01
+  Damage_Forward_Medium_02: Damage_Forward_Medium_02
+  Damage_Back_Medium_01: Damage_Back_Medium_01
+  Damage_Back_Medium_02: Damage_Back_Medium_02
+  Damage_Left_Medium_01: Damage_Left_Medium_01
+  Damage_Left_Medium_02: Damage_Left_Medium_02
+  Damage_Right_Medium_01: Damage_Right_Medium_01
+  Damage_Right_Medium_02: Damage_Right_Medium_02
+  Damage_Forward_Heavy_01: Damage_Forward_Heavy_01
+  Damage_Forward_Heavy_02: Damage_Forward_Heavy_02
+  Damage_Back_Heavy_01: Damage_Back_Heavy_01
+  Damage_Back_Heavy_02: Damage_Back_Heavy_02
+  Damage_Left_Heavy_01: Damage_Left_Heavy_01
+  Damage_Left_Heavy_02: Damage_Left_Heavy_02
+  Damage_Right_Heavy_01: Damage_Right_Heavy_01
+  Damage_Right_Heavy_02: Damage_Right_Heavy_02
+  Damage_Forward_Colossal_01: Damage_Forward_Colossal_01
+  Damage_Forward_Colossal_02: Damage_Forward_Colossal_02
+  Damage_Back_Colossal_01: Damage_Back_Colossal_01
+  Damage_Back_Colossal_02: Damage_Back_Colossal_02
+  Damage_Left_Colossal_01: Damage_Left_Colossal_01
+  Damage_Left_Colossal_02: Damage_Left_Colossal_02
+  Damage_Right_Colossal_01: Damage_Right_Colossal_01
+  Damage_Right_Colossal_02: Damage_Right_Colossal_02
+  Damage_Animations_Light_Forward: []
+  Damage_Animations_Light_Backward: []
+  Damage_Animations_Light_Right: []
+  Damage_Animations_Light_Left: []
+  Damage_Animations_Medium_Forward: []
+  Damage_Animations_Medium_Backward: []
+  Damage_Animations_Medium_Right: []
+  Damage_Animations_Medium_Left: []
+  Damage_Animations_Heavy_Forward: []
+  Damage_Animations_Heavy_Backward: []
+  Damage_Animations_Heavy_Right: []
+  Damage_Animations_Heavy_Left: []
+  Damage_Animations_Colossal_Forward: []
+  Damage_Animations_Colossal_Backward: []
+  Damage_Animations_Colossal_Right: []
+  Damage_Animations_Colossal_Left: []
 --- !u!1001 &643157597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4969,7 +5015,7 @@ Transform:
   - {fileID: 1686848316}
   - {fileID: 350193928}
   m_Father: {fileID: 506206621}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &693566621 stripped
 Transform:
@@ -6481,6 +6527,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandConstraint: {fileID: 850772605}
   rightHandConstraint: {fileID: 850772604}
+  Damage_Forward_Light_01: Damage_Forward_Light_01
+  Damage_Forward_Light_02: Damage_Forward_Light_02
+  Damage_Back_Light_01: Damage_Back_Light_01
+  Damage_Back_Light_02: Damage_Back_Light_02
+  Damage_Left_Light_01: Damage_Left_Light_01
+  Damage_Left_Light_02: Damage_Left_Light_02
+  Damage_Right_Light_01: Damage_Right_Light_01
+  Damage_Right_Light_02: Damage_Right_Light_02
+  Damage_Forward_Medium_01: Damage_Forward_Medium_01
+  Damage_Forward_Medium_02: Damage_Forward_Medium_02
+  Damage_Back_Medium_01: Damage_Back_Medium_01
+  Damage_Back_Medium_02: Damage_Back_Medium_02
+  Damage_Left_Medium_01: Damage_Left_Medium_01
+  Damage_Left_Medium_02: Damage_Left_Medium_02
+  Damage_Right_Medium_01: Damage_Right_Medium_01
+  Damage_Right_Medium_02: Damage_Right_Medium_02
+  Damage_Forward_Heavy_01: Damage_Forward_Heavy_01
+  Damage_Forward_Heavy_02: Damage_Forward_Heavy_02
+  Damage_Back_Heavy_01: Damage_Back_Heavy_01
+  Damage_Back_Heavy_02: Damage_Back_Heavy_02
+  Damage_Left_Heavy_01: Damage_Left_Heavy_01
+  Damage_Left_Heavy_02: Damage_Left_Heavy_02
+  Damage_Right_Heavy_01: Damage_Right_Heavy_01
+  Damage_Right_Heavy_02: Damage_Right_Heavy_02
+  Damage_Forward_Colossal_01: Damage_Forward_Colossal_01
+  Damage_Forward_Colossal_02: Damage_Forward_Colossal_02
+  Damage_Back_Colossal_01: Damage_Back_Colossal_01
+  Damage_Back_Colossal_02: Damage_Back_Colossal_02
+  Damage_Left_Colossal_01: Damage_Left_Colossal_01
+  Damage_Left_Colossal_02: Damage_Left_Colossal_02
+  Damage_Right_Colossal_01: Damage_Right_Colossal_01
+  Damage_Right_Colossal_02: Damage_Right_Colossal_02
+  Damage_Animations_Light_Forward: []
+  Damage_Animations_Light_Backward: []
+  Damage_Animations_Light_Right: []
+  Damage_Animations_Light_Left: []
+  Damage_Animations_Medium_Forward: []
+  Damage_Animations_Medium_Backward: []
+  Damage_Animations_Medium_Right: []
+  Damage_Animations_Medium_Left: []
+  Damage_Animations_Heavy_Forward: []
+  Damage_Animations_Heavy_Backward: []
+  Damage_Animations_Heavy_Right: []
+  Damage_Animations_Heavy_Left: []
+  Damage_Animations_Colossal_Forward: []
+  Damage_Animations_Colossal_Backward: []
+  Damage_Animations_Colossal_Right: []
+  Damage_Animations_Colossal_Left: []
 --- !u!114 &850772608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7962,7 +8056,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 506206621}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1317892464
 MeshCollider:
@@ -11728,7 +11822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4130899424680096, guid: 713a9b5e8f4abff4d9a7ae02af02367b, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4130899424680096, guid: 713a9b5e8f4abff4d9a7ae02af02367b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11806,7 +11900,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 506206621}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1584638484
 MeshCollider:
@@ -12490,7 +12584,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh638976
+  m_Name: pb_Mesh48598
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13038,7 +13132,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh639152
+  m_Name: pb_Mesh48774
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14841,7 +14935,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 506206621}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1784269819 stripped
 GameObject:
@@ -15270,7 +15364,7 @@ Transform:
   - {fileID: 1739002214}
   - {fileID: 1203714268}
   m_Father: {fileID: 506206621}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1843816276
 Mesh:
@@ -15513,11 +15607,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858858358}
   m_CullTransparentMesh: 1
---- !u!4 &1869945156 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-  m_PrefabInstance: {fileID: 1944615862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1882148152
 GameObject:
   m_ObjectHideFlags: 0
@@ -15793,67 +15882,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
---- !u!1001 &1944615862
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 506206621}
-    m_Modifications:
-    - target: {fileID: 100000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_Name
-      value: Flowers
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1033.6564
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -162.20016
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 27.310547
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7426875
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.6696381
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dcadbc0f2d7e2964e91f8be5365ff0e3, type: 3}
 --- !u!4 &1948884396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7746552722773489065, guid: afbe721482819594e85b9dd5d41a565e, type: 3}
@@ -15896,7 +15924,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh639174
+  m_Name: pb_Mesh48796
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16373,8 +16401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e258ccbb8f2cfe94eb95d76a3197ae81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonBuildUpEffect: {fileID: 0}
-  poisonedEffect: {fileID: 0}
+  poisonBuildUpEffect: {fileID: 11400000, guid: 4e5731b34e2188b4f9249e3ae3679a1b, type: 2}
+  poisonedEffect: {fileID: 11400000, guid: 5b08cb4f0995f0749a1572513eac7213, type: 2}
+  poisonFX: {fileID: 2317197533209357631, guid: d656d0d2276c3494cb8323a8471125e8, type: 3}
+  poisonSFX: {fileID: 0}
 --- !u!4 &2026740596
 Transform:
   m_ObjectHideFlags: 0
@@ -16439,7 +16469,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh639006
+  m_Name: pb_Mesh48628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -91159,7 +91189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2322834567055976025, guid: d656d0d2276c3494cb8323a8471125e8, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2322834567055976025, guid: d656d0d2276c3494cb8323a8471125e8, type: 3}
       propertyPath: m_LocalPosition.x

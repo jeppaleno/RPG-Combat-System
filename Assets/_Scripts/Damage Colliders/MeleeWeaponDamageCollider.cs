@@ -52,7 +52,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
         }
         else
         {
-            enemyStats.TakeDamage(Mathf.RoundToInt(finalPhysicalDamage), Mathf.RoundToInt(finalFireDamage), currentDamageAnimation, characterManager);
+            //enemyStats.TakeDamage(Mathf.RoundToInt(finalPhysicalDamage), Mathf.RoundToInt(finalFireDamage), currentDamageAnimation, characterManager);
         }
     }
 }

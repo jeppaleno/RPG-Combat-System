@@ -45,6 +45,9 @@ public class ResetAnimatorBool : StateMachineBehaviour
         character.canBeParried = false;
         character.canBeRiposted = false; 
 
+        // AFTER THE DAMAGE ANIMATION ENDS, RESET OUR PREVIOUS POISE DAMAGE TO 0
+        character.characterCombatManager.previousPoiseDamageTaken = 0;
+
         animator.SetBool(isInteractingBool, isInteractingStatus);
         animator.SetBool(isFiringSpellBool, isFiringSpellStatus);
         animator.SetBool(isRotatingWithRootMotion, isRotatingWithRootMotionStatus);

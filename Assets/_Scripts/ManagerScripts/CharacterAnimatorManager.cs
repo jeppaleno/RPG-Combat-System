@@ -11,12 +11,141 @@ public class CharacterAnimatorManager : MonoBehaviour
     public TwoBoneIKConstraint leftHandConstraint;
     public TwoBoneIKConstraint rightHandConstraint;
 
+    [Header("DAMAGE ANIMATIONS")]
+    //LIGHT
+    [HideInInspector] public string Damage_Forward_Light_01 = "Damage_Forward_Light_01";
+    [HideInInspector] public string Damage_Forward_Light_02 = "Damage_Forward_Light_02";
+
+    [HideInInspector] public string Damage_Back_Light_01 = "Damage_Back_Light_01";
+    [HideInInspector] public string Damage_Back_Light_02 = "Damage_Back_Light_02";
+
+    [HideInInspector] public string Damage_Left_Light_01 = "Damage_Left_Light_01";
+    [HideInInspector] public string Damage_Left_Light_02 = "Damage_Left_Light_02";
+
+    [HideInInspector] public string Damage_Right_Light_01 = "Damage_Right_Light_01";
+    [HideInInspector] public string Damage_Right_Light_02 = "Damage_Right_Light_02";
+
+    //MEDIUM
+    [HideInInspector] public string Damage_Forward_Medium_01 = "Damage_Forward_Medium_01";
+    [HideInInspector] public string Damage_Forward_Medium_02 = "Damage_Forward_Medium_02";
+
+    [HideInInspector] public string Damage_Back_Medium_01 = "Damage_Back_Medium_01";
+    [HideInInspector] public string Damage_Back_Medium_02 = "Damage_Back_Medium_02";
+
+    [HideInInspector] public string Damage_Left_Medium_01 = "Damage_Left_Medium_01";
+    [HideInInspector] public string Damage_Left_Medium_02 = "Damage_Left_Medium_02";
+
+    [HideInInspector] public string Damage_Right_Medium_01 = "Damage_Right_Medium_01";
+    [HideInInspector] public string Damage_Right_Medium_02 = "Damage_Right_Medium_02";
+
+    //HEAVY
+    [HideInInspector] public string Damage_Forward_Heavy_01 = "Damage_Forward_Heavy_01";
+    [HideInInspector] public string Damage_Forward_Heavy_02 = "Damage_Forward_Heavy_02";
+
+    [HideInInspector] public string Damage_Back_Heavy_01 = "Damage_Back_Heavy_01";
+    [HideInInspector] public string Damage_Back_Heavy_02 = "Damage_Back_Heavy_02";
+
+    [HideInInspector] public string Damage_Left_Heavy_01 = "Damage_Left_Heavy_01";
+    [HideInInspector] public string Damage_Left_Heavy_02 = "Damage_Left_Heavy_02";
+
+    [HideInInspector] public string Damage_Right_Heavy_01 = "Damage_Right_Heavy_01";
+    [HideInInspector] public string Damage_Right_Heavy_02 = "Damage_Right_Heavy_02";
+
+    //COLOSSAL
+    [HideInInspector] public string Damage_Forward_Colossal_01 = "Damage_Forward_Colossal_01";
+    [HideInInspector] public string Damage_Forward_Colossal_02 = "Damage_Forward_Colossal_02";
+
+    [HideInInspector] public string Damage_Back_Colossal_01 = "Damage_Back_Colossal_01";
+    [HideInInspector] public string Damage_Back_Colossal_02 = "Damage_Back_Colossal_02";
+
+    [HideInInspector] public string Damage_Left_Colossal_01 = "Damage_Left_Colossal_01";
+    [HideInInspector] public string Damage_Left_Colossal_02 = "Damage_Left_Colossal_02";
+
+    [HideInInspector] public string Damage_Right_Colossal_01 = "Damage_Right_Colossal_01";
+    [HideInInspector] public string Damage_Right_Colossal_02 = "Damage_Right_Colossal_02";
+
+    [HideInInspector] public List<string> Damage_Animations_Light_Forward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Light_Backward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Light_Right = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Light_Left = new List<string>();
+
+    [HideInInspector] public List<string> Damage_Animations_Medium_Forward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Medium_Backward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Medium_Right = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Medium_Left = new List<string>();
+
+    [HideInInspector] public List<string> Damage_Animations_Heavy_Forward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Heavy_Backward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Heavy_Right = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Heavy_Left = new List<string>();
+
+    [HideInInspector] public List<string> Damage_Animations_Colossal_Forward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Colossal_Backward = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Colossal_Right = new List<string>();
+    [HideInInspector] public List<string> Damage_Animations_Colossal_Left = new List<string>();
+
+
+
     bool handIKWeightsReset = false;
 
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
         rigBuilder = GetComponent<RigBuilder>();
+    }
+
+    protected virtual void Start()
+    {
+        Damage_Animations_Light_Forward.Add(Damage_Forward_Light_01);
+        Damage_Animations_Light_Forward.Add(Damage_Forward_Light_02);
+
+        Damage_Animations_Light_Backward.Add(Damage_Back_Light_01);
+        Damage_Animations_Light_Backward.Add(Damage_Back_Light_02);
+
+        Damage_Animations_Light_Left.Add(Damage_Left_Light_01);
+        Damage_Animations_Light_Left.Add(Damage_Left_Light_02);
+
+        Damage_Animations_Light_Right.Add(Damage_Right_Light_01);
+        Damage_Animations_Light_Right.Add(Damage_Right_Light_02);
+
+
+        Damage_Animations_Medium_Forward.Add(Damage_Forward_Medium_01);
+        Damage_Animations_Medium_Forward.Add(Damage_Forward_Medium_02);
+
+        Damage_Animations_Medium_Backward.Add(Damage_Back_Medium_01);
+        Damage_Animations_Medium_Backward.Add(Damage_Back_Medium_02);
+
+        Damage_Animations_Medium_Left.Add(Damage_Left_Medium_01);
+        Damage_Animations_Medium_Left.Add(Damage_Left_Medium_02);
+
+        Damage_Animations_Medium_Right.Add(Damage_Right_Medium_01);
+        Damage_Animations_Medium_Right.Add(Damage_Right_Medium_02);
+
+
+        Damage_Animations_Heavy_Forward.Add(Damage_Forward_Heavy_01);
+        Damage_Animations_Heavy_Forward.Add(Damage_Forward_Heavy_02);
+
+        Damage_Animations_Heavy_Backward.Add(Damage_Back_Heavy_01);
+        Damage_Animations_Heavy_Backward.Add(Damage_Back_Heavy_02);
+
+        Damage_Animations_Heavy_Left.Add(Damage_Left_Heavy_01);
+        Damage_Animations_Heavy_Left.Add(Damage_Left_Heavy_02);
+
+        Damage_Animations_Heavy_Right.Add(Damage_Right_Heavy_01);
+        Damage_Animations_Heavy_Right.Add(Damage_Right_Heavy_02);
+
+
+        Damage_Animations_Colossal_Forward.Add(Damage_Forward_Colossal_01);
+        Damage_Animations_Colossal_Forward.Add(Damage_Forward_Colossal_02);
+
+        Damage_Animations_Colossal_Backward.Add(Damage_Back_Colossal_01);
+        Damage_Animations_Colossal_Backward.Add(Damage_Back_Colossal_02);
+
+        Damage_Animations_Colossal_Left.Add(Damage_Left_Colossal_01);
+        Damage_Animations_Colossal_Left.Add(Damage_Left_Colossal_02);
+
+        Damage_Animations_Colossal_Right.Add(Damage_Right_Colossal_01);
+        Damage_Animations_Colossal_Right.Add(Damage_Right_Colossal_02);
     }
 
     public virtual void OnAnimatorMove()
@@ -44,6 +173,13 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.animator.SetBool("isRotatingWithRootMotion", true);
         character.animator.SetBool("isInteracting", isInteracting);
         character.animator.CrossFade(targetAnimation, 0.2f);
+    }
+
+    public string GetRandomDamageAnimationFromList(List<string> animationList)
+    {
+        int randomValue = Random.Range(0, animationList.Count);
+
+        return animationList[randomValue];
     }
 
     public virtual void CanRotate()

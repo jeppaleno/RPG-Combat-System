@@ -47,7 +47,7 @@ public class RangedProjectileDamageCollider : DamageCollider
             //Detects where on the collider the weapon first makes contact
             Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
             float directionHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
-            ChooseWhichDirectionDamageCameFrom(directionHitFrom);
+            //ChooseWhichDirectionDamageCameFrom(directionHitFrom);
             enemyManager.characterEffectsManager.PlayBloodSplatterFX(contactPoint);
 
             if (enemyManager.characterStatsManager.totalPoiseDefence > poiseBreak)
@@ -57,7 +57,7 @@ public class RangedProjectileDamageCollider : DamageCollider
             }
             else
             {
-                enemyManager.characterStatsManager.TakeDamage(physicalDamage, 0, currentDamageAnimation, characterManager);
+                //enemyManager.characterStatsManager.TakeDamage(physicalDamage, 0, currentDamageAnimation, characterManager);
             }
         }
 

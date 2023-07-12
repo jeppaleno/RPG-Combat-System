@@ -14,6 +14,9 @@ public class CharacterCombatManager : MonoBehaviour
     public LayerMask characterLayer;
     public float criticalAttackRange = 0.7f;
 
+    [Header("Last Amount Of Poise Damage Taken")]
+    public int previousPoiseDamageTaken;
+
     [Header("Attack Type")]
     public AttackType currentAttackType;
 

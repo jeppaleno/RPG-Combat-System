@@ -55,26 +55,6 @@ public class PlayerStatsManager : CharacterStatsManager
         }
     }
 
-
-    public override void TakeDamage(int damage, int fireDamage, string damageAnimation, CharacterManager enemyCharacterDamagingMe)
-    {
-        if (player.isDead)
-            return;
-
-        base.TakeDamage(damage, fireDamage, damageAnimation, enemyCharacterDamagingMe);
-
-        healthbar.SetCurrentHealth(currentHealth);
-        player.playerAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
-
-        if(currentHealth <= 0)
-        {
-            currentHealth = 0;
-            player.playerAnimatorManager.PlayTargetAnimation("Dead_01", true);
-            player.isDead = true;
-            //HANDLE PLAYER DEATH
-        }
-    }
-
     public override void TakePoisonDamage(int damage)
     {
         if (player.isDead)
