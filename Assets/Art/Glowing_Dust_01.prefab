@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2322834567055976025}
   - component: {fileID: 2517135551119558599}
   - component: {fileID: 2515451725814160873}
+  - component: {fileID: 1475460325308946234}
   m_Layer: 0
   m_Name: Glowing_Dust_01
   m_TagString: Untagged
@@ -4788,3 +4789,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1475460325308946234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317197533209357631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b155d4afd12179444b5116d42b0a008e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectType: 0

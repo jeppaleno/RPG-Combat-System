@@ -7,7 +7,7 @@ public class PlayerEffectsManager : CharacterEffectsManager
     PlayerManager player;
 
     PoisonBuildUpBar poisonBuildUpBar;
-    PoisonAmountBar poisonAmountBar;
+    public PoisonAmountBar poisonAmountBar;
 
     public GameObject currentParticleFX; //The particles of current effects that eeffects player
     public int amountToBeHealed;
@@ -26,5 +26,16 @@ public class PlayerEffectsManager : CharacterEffectsManager
         GameObject healParticles = Instantiate(currentParticleFX, player.playerStatsManager.transform);
         Destroy(instantiatedFXModel.gameObject);
         player.playerWeaponSlotManager.LoadBothWeaponOnSlot();
+    }
+
+    protected override void ProcessBuildUpDecay()
+    {
+        if (player.characterStatsManager.poisonBuildup >= 0)
+        {
+            player.characterStatsManager.poisonBuildup -= 1;
+
+            poisonBuildUpBar.gameObject.SetActive(true);
+            poisonBuildUpBar.SetPoisonBuildUpAmount(Mathf.RoundToInt(player.characterStatsManager.poisonBuildup));
+        }
     }
 }

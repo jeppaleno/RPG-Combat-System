@@ -17,6 +17,8 @@ public class PoisonBuildUpEffect : CharacterEffect
 
     public override void ProcessEffect(CharacterManager character)
     {
+        PlayerManager player = character as PlayerManager;
+
         // THE POISON BUILD UP AFTER WE FACTOR IN OUR PLAYERS RESISTANCES
         float finalPoisonBuildUp = 0;
 
@@ -34,6 +36,10 @@ public class PoisonBuildUpEffect : CharacterEffect
                 finalPoisonBuildUp = basePoisonBuildUpAmount - (basePoisonBuildUpAmount * resistancePercenetage);
             }
         }
+        else
+        {
+            finalPoisonBuildUp = basePoisonBuildUpAmount;
+        }
 
         // EACH TICK WE ADD THE BUILD UP AMOUNT TO THE CHARACTERS OVERALL BUILD UP
         character.characterStatsManager.poisonBuildup += finalPoisonBuildUp;
@@ -44,12 +50,6 @@ public class PoisonBuildUpEffect : CharacterEffect
             character.characterEffectsManager.timedEffects.Remove(this);
         }
 
-        // EACH TICK, IF THE CHARACTER IS NOT POISONED, A BIT OF BUILD UP IS REMOVED
-        if (character.characterStatsManager.poisonBuildup > 0 && character.characterStatsManager.poisonBuildup < 100)
-        {
-            character.characterStatsManager.poisonBuildup -= 1;
-        }
-
         // IF OUR BUILD UP IS 100 OR MORE, POISON THE CHARACTER
         if (character.characterStatsManager.poisonBuildup >= 100)
         {
@@ -57,13 +57,22 @@ public class PoisonBuildUpEffect : CharacterEffect
             character.characterStatsManager.poisonAmount = poisonAmount;
             character.characterStatsManager.poisonBuildup = 0;
 
+            if (player != null)
+            {
+                player.playerEffectsManager.poisonAmountBar.SetPoisonAmount(Mathf.RoundToInt(poisonAmount));
+            }
+
             // WE ALWAYS WANT TO INSTANTIATE A COPY OF A SCRIPTABLE OBJECT, SO THE ORIGINAL IS NEVER EDITED
             // IF THE ORIGINAL IS EDITED, AND EVERY CHARARACTER USES AN ORIGINAL, THEY WILL ALL SHARE THE SAME VALUES (if one is poisoned for 5 second all poisoned scriptables will read 5 seconds)
             PoisonedEffect poisonedEffect = Instantiate(WorldCharacterEffectsManager.instance.poisonedEffect);
             poisonedEffect.poisonDamage = poisonDamagePerTick;
             character.characterEffectsManager.timedEffects.Add(poisonedEffect);
-
             character.characterEffectsManager.timedEffects.Remove(this);
+            //character.characterSoundFXManager.PlaySoundFX(WorldCharacterEffectsManager.instance.poisonSFX);
+
+            character.characterEffectsManager.AddTimedEffectParticle(Instantiate(WorldCharacterEffectsManager.instance.poisonFX));
         }
+
+        character.characterEffectsManager.timedEffects.Remove(this);
     }
 }

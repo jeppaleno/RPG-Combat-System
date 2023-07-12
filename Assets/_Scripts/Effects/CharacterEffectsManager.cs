@@ -13,6 +13,9 @@ public class CharacterEffectsManager : MonoBehaviour
     public List<CharacterEffect> timedEffects;
     [SerializeField] float effectTickTimer = 0;
 
+    [Header("Timed Effect Visual FX")]
+    public List<GameObject> timedEffectParticles;
+
     [Header("Current Range FX")]
     public GameObject instantiatedFXModel;
 
@@ -27,8 +30,6 @@ public class CharacterEffectsManager : MonoBehaviour
     public WeaponBuffEffect rightWeaponBuffEffect;
 
     [Header("Poison")]
-    public GameObject defaultPoisonParticleFX; //Instantiate this
-    public GameObject currentPoisonParticleFX; //Destroy this
     public Transform buildUpTransform; // The location build up particle FX will spawn
 
     protected virtual void Awake()
@@ -53,10 +54,14 @@ public class CharacterEffectsManager : MonoBehaviour
             effectTickTimer = 0;
             ProcessWeaponBuffs();
 
+            // PROCESSES ALL ACTIVE EFFECTS OVER GAME TIME
             for (int i = timedEffects.Count - 1; i > -1; i--)
             {
                 timedEffects[i].ProcessEffect(character);
             }
+
+            // DECAYS BUILD UP EFFECTS OVER GAME TIME
+            ProcessBuildUpDecay();
         }
     }
 
@@ -182,5 +187,32 @@ public class CharacterEffectsManager : MonoBehaviour
         {
             character.animator.SetBool("isAiming", false);
         }
+    }
+
+    protected virtual void ProcessBuildUpDecay()
+    {
+        if (character.characterStatsManager.poisonBuildup > 0)
+        {
+            character.characterStatsManager.poisonBuildup -= 1;
+        }
+    }
+
+    public virtual void AddTimedEffectParticle(GameObject effect)
+    {
+        GameObject effectGameObject = Instantiate(effect, buildUpTransform);
+        timedEffectParticles.Add(effectGameObject);
+    }
+
+    public virtual void RemoveTimedEffectParticle(EffectParticleType effectType)
+    {
+        for (int i = timedEffectParticles.Count - 1; i > -1; i--)
+        {
+            if (timedEffectParticles[i].GetComponent<EffectParticle>().effectType == effectType)
+            {
+                Destroy(timedEffectParticles[i]);
+                timedEffectParticles.RemoveAt(i);
+            }
+        }
+
     }
 }

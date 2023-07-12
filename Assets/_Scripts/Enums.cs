@@ -55,6 +55,11 @@ public enum BuffClass
     Fire
 }
 
+public enum EffectParticleType
+{
+    poison
+}
+
 public class Enums : MonoBehaviour
 {
    
