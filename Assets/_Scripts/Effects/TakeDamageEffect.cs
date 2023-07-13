@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Character Effects/Take Damage")]
 public class TakeDamageEffect : CharacterEffect
 {
     [Header("Character Causing Damage")]
@@ -55,8 +56,11 @@ public class TakeDamageEffect : CharacterEffect
     private void CalculateDamage(CharacterManager character)
     {
         // Before calculating damage defense, we check the attacking characters modifiers
-        physicalDamage = Mathf.RoundToInt(physicalDamage * (characterCausingDamage.characterStatsManager.physicalDamagePercentageModifier / 100));
-        fireDamage = Mathf.RoundToInt(fireDamage * (characterCausingDamage.characterStatsManager.fireDamagePercentageModifier / 100));
+        if (characterCausingDamage != null)
+        {
+            physicalDamage = Mathf.RoundToInt(physicalDamage * (characterCausingDamage.characterStatsManager.physicalDamagePercentageModifier / 100));
+            fireDamage = Mathf.RoundToInt(fireDamage * (characterCausingDamage.characterStatsManager.fireDamagePercentageModifier / 100));
+        }
 
         character.characterAnimatorManager.EraseHandIKWeapon();
 
@@ -76,12 +80,17 @@ public class TakeDamageEffect : CharacterEffect
 
         fireDamage = Mathf.RoundToInt(fireDamage - (fireDamage * totalFireDamageAbsorption));
 
-        physicalDamage = Mathf.RoundToInt(physicalDamage * (character.characterStatsManager.physicalAbsorptionPercentageModifier / 100));
-        fireDamage = Mathf.RoundToInt(fireDamage * (character.characterStatsManager.fireAbsorptionPercentageModifier / 100));
+        physicalDamage = physicalDamage - Mathf.RoundToInt(physicalDamage * (character.characterStatsManager.physicalAbsorptionPercentageModifier / 100));
+        fireDamage = fireDamage - Mathf.RoundToInt(fireDamage * (character.characterStatsManager.fireAbsorptionPercentageModifier / 100));
 
         float finalDamage = physicalDamage + fireDamage; // + magicDamage + lightingDamage + darkDamage
 
         character.characterStatsManager.currentHealth = Mathf.RoundToInt(character.characterStatsManager.currentHealth - finalDamage);
+
+        if (character.characterStatsManager.totalPoiseDefence < poiseDamage)
+        {
+            poiseIsBroken = true;
+        }
 
         if (character.characterStatsManager.currentHealth <= 0)
         {

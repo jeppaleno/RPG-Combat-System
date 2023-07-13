@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6906800742456089879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6906800742456089873}
+  - component: {fileID: 6906800742456089878}
+  m_Layer: 0
+  m_Name: WORLD EFFECT MANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6906800742456089873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906800742456089879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6906800742456089878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906800742456089879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e258ccbb8f2cfe94eb95d76a3197ae81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeDamageEffect: {fileID: 11400000, guid: e497d0760cca4f448912f0c602355b0f, type: 2}
+  takeBlockedDamageEffect: {fileID: 11400000, guid: 092501fcdc02eb34082a9b41ccad86a9, type: 2}
+  poisonBuildUpEffect: {fileID: 11400000, guid: 4e5731b34e2188b4f9249e3ae3679a1b, type: 2}
+  poisonedEffect: {fileID: 11400000, guid: 5b08cb4f0995f0749a1572513eac7213, type: 2}
+  poisonFX: {fileID: 2317197533209357631, guid: d656d0d2276c3494cb8323a8471125e8, type: 3}
+  poisonSFX: {fileID: 8300000, guid: ed27823a6a2e08f49bfcdfd8132e5993, type: 3}

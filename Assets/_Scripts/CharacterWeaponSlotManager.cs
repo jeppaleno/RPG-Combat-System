@@ -120,7 +120,7 @@ public class CharacterWeaponSlotManager : MonoBehaviour
             leftHandDamageCollider.characterManager = character;
             leftHandDamageCollider.teamIDNumber = character.characterStatsManager.teamIDNumber;
 
-            leftHandDamageCollider.poiseBreak = character.characterInventoryManager.leftWeapon.poiseBreak;
+            leftHandDamageCollider.poiseDamage = character.characterInventoryManager.leftWeapon.poiseBreak;
             character.characterEffectsManager.leftWeaponManager = leftHandSlot.currentWeaponModel.GetComponentInChildren<WeaponManager>();
         }
     }
@@ -137,7 +137,7 @@ public class CharacterWeaponSlotManager : MonoBehaviour
             rightHandDamageCollider.characterManager = character;
             rightHandDamageCollider.teamIDNumber = character.characterStatsManager.teamIDNumber;
 
-            rightHandDamageCollider.poiseBreak = character.characterInventoryManager.rightWeapon.poiseBreak;
+            rightHandDamageCollider.poiseDamage = character.characterInventoryManager.rightWeapon.poiseBreak;
             character.characterEffectsManager.rightWeaponManager = rightHandSlot.currentWeaponModel.GetComponentInChildren<WeaponManager>();
         }
         

@@ -9,7 +9,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
     public float fireBuffDamage;
     public float poiseBuffDamage;
 
-    protected override void DealDamage(CharacterStatsManager enemyStats)
+    protected override void DealDamage(CharacterManager enemyManager)
     {
         float finalPhysicalDamage = physicalDamage + physicalBuffDamage;
         float finalFireDamage = fireDamage + fireBuffDamage;
@@ -43,16 +43,12 @@ public class MeleeWeaponDamageCollider : DamageCollider
                 finalDamage += finalFireDamage * characterManager.characterInventoryManager.leftWeapon.heavyAttackDamageModifier;
             }
         }
-
-        //DEAL MODIFIED DAMAGE
-        if (enemyStats.totalPoiseDefence > poiseBreak)
-        {
-            enemyStats.TakeDamageNoAnimation(Mathf.RoundToInt(finalDamage), Mathf.RoundToInt(finalFireDamage));
-            //Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
-        }
-        else
-        {
-            //enemyStats.TakeDamage(Mathf.RoundToInt(finalPhysicalDamage), Mathf.RoundToInt(finalFireDamage), currentDamageAnimation, characterManager);
-        }
+        TakeDamageEffect takeDamageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+        takeDamageEffect.physicalDamage = finalPhysicalDamage;
+        takeDamageEffect.fireDamage = finalFireDamage;
+        takeDamageEffect.poiseDamage = poiseDamage;
+        takeDamageEffect.contactPoint = contactPoint;
+        takeDamageEffect.angleHitFrom = angleHitFrom;
+        enemyManager.characterEffectsManager.ProcessEffectInstantly(takeDamageEffect);
     }
 }

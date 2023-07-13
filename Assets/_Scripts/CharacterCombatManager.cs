@@ -71,27 +71,6 @@ public class CharacterCombatManager : MonoBehaviour
         //ADD FOR AI LATER
     }
 
-    public virtual void AttemptBlock(DamageCollider attackingWeapon, float physicalDAmage, float fireDamage, string blockAnimation)
-    {
-        //DEDUCT STAMINA FROM BLOCKING
-        float StaminaDamageAbsorption = ((physicalDAmage + fireDamage) * attackingWeapon.guardBreakModifier)
-            * (character.characterStatsManager.blockingStabilityRating / 100);
-
-        float staminaDamage = ((physicalDAmage + fireDamage) * attackingWeapon.guardBreakModifier) - StaminaDamageAbsorption;
-
-        character.characterStatsManager.currentStamina = character.characterStatsManager.currentStamina - staminaDamage;
-
-        if (character.characterStatsManager.currentStamina <= 0)
-        {
-            character.isBlocking = false;
-            character.characterAnimatorManager.PlayTargetAnimation("Guard_Break_01", true, true);   
-        }
-        else
-        {
-            character.characterAnimatorManager.PlayTargetAnimation(blockAnimation, true, true);
-        }
-    }
-
     private void SucessfullyCastSpell()
     {
         character.characterInventoryManager.currentSpell.SucessfullyCastSpell(character);

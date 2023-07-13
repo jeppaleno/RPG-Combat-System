@@ -14,13 +14,6 @@ public class PlayerCombatManager : CharacterCombatManager
         player = GetComponent<PlayerManager>();
     }
 
-
-    public override void AttemptBlock(DamageCollider attackingWeapon, float physicalDAmage, float fireDamage, string blockAnimation)
-    {
-        base.AttemptBlock(attackingWeapon, physicalDAmage, fireDamage, blockAnimation);
-        player.playerStatsManager.staminaBar.SetCurrentStamina(Mathf.RoundToInt(player.playerStatsManager.currentStamina));
-    }
-
     public override void DrainStaminaBasedOnAttack()
     {
         if (player.isUsingRightHand)

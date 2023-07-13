@@ -45,6 +45,11 @@ public class CharacterEffectsManager : MonoBehaviour
         }
     }
 
+    public virtual void ProcessEffectInstantly(CharacterEffect effect)
+    {
+        effect.ProcessEffect(character);
+    }
+
     public virtual void ProcessAllTimedEffects()
     {
         effectTickTimer = effectTickTimer + Time.deltaTime;

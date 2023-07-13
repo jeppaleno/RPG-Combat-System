@@ -41,24 +41,20 @@ public class RangedProjectileDamageCollider : DamageCollider
                 return;
 
             enemyManager.characterStatsManager.poiseResetTimer = enemyManager.characterStatsManager.totalPoiseResetTime;
-            enemyManager.characterStatsManager.totalPoiseDefence = enemyManager.characterStatsManager.totalPoiseDefence - poiseBreak;
+            enemyManager.characterStatsManager.totalPoiseDefence = enemyManager.characterStatsManager.totalPoiseDefence - poiseDamage;
             //Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
 
             //Detects where on the collider the weapon first makes contact
-            Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            float directionHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
-            //ChooseWhichDirectionDamageCameFrom(directionHitFrom);
-            enemyManager.characterEffectsManager.PlayBloodSplatterFX(contactPoint);
+            contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            angleHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
 
-            if (enemyManager.characterStatsManager.totalPoiseDefence > poiseBreak)
-            {
-                enemyManager.characterStatsManager.TakeDamageNoAnimation(physicalDamage, 0);
-                //Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
-            }
-            else
-            {
-                //enemyManager.characterStatsManager.TakeDamage(physicalDamage, 0, currentDamageAnimation, characterManager);
-            }
+            TakeDamageEffect takeDamageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+            takeDamageEffect.physicalDamage = physicalDamage;
+            takeDamageEffect.fireDamage = fireDamage;
+            takeDamageEffect.poiseDamage = poiseDamage;
+            takeDamageEffect.contactPoint = contactPoint;
+            takeDamageEffect.angleHitFrom = angleHitFrom;
+            enemyManager.characterEffectsManager.ProcessEffectInstantly(takeDamageEffect);
         }
 
         

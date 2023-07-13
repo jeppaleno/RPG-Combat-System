@@ -12,7 +12,7 @@ public class DamageCollider : MonoBehaviour
     public int teamIDNumber = 0;
 
     [Header("Poise")]
-    public float poiseBreak;
+    public float poiseDamage;
     public float offensivePoiseBonus;
 
     [Header("Damage")]
@@ -28,6 +28,9 @@ public class DamageCollider : MonoBehaviour
     protected bool shieldHasBeenHit;
     protected bool hasBeenParried;
     protected string currentDamageAnimation;
+
+    protected Vector3 contactPoint;
+    protected float angleHitFrom;
 
     private List<CharacterManager> charactersDamagedDuringThisCalculation = new List<CharacterManager>();
 
@@ -88,17 +91,11 @@ public class DamageCollider : MonoBehaviour
                     return;
 
                 enemyManager.characterStatsManager.poiseResetTimer = enemyManager.characterStatsManager.totalPoiseResetTime;
-                enemyManager.characterStatsManager.totalPoiseDefence = enemyManager.characterStatsManager.totalPoiseDefence - poiseBreak;
-                //Debug.Log("Player's Poise is currently" + playerStats.totalPoiseDefence);
+                enemyManager.characterStatsManager.totalPoiseDefence = enemyManager.characterStatsManager.totalPoiseDefence - poiseDamage;
 
-                //Detects where on the collider the weapon first makes contact
-                Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                float directionHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
-                //ChooseWhichDirectionDamageCameFrom(directionHitFrom);
-                enemyManager.characterEffectsManager.PlayBloodSplatterFX(contactPoint);
-                enemyManager.characterEffectsManager.InteruptEffect();
-                //Deals Damage
-                DealDamage(enemyManager.characterStatsManager);
+                contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                angleHitFrom = (Vector3.SignedAngle(characterManager.transform.forward, enemyManager.transform.forward, Vector3.up));
+                DealDamage(enemyManager);
 
                 if (aiCharacter != null)
                 {
@@ -130,25 +127,27 @@ public class DamageCollider : MonoBehaviour
 
     protected virtual void CheckForBlock(CharacterManager enemyManager)
     {
-        CharacterStatsManager enemyShield = enemyManager.characterStatsManager;
         Vector3 directionFromPlayerToEnemy = (characterManager.transform.position - enemyManager.transform.position);
         float dotValueFromPlayerToEnemy = Vector3.Dot(directionFromPlayerToEnemy, enemyManager.transform.forward);
 
         if (enemyManager.isBlocking && dotValueFromPlayerToEnemy > 0.3f) //Experiment with this number til it's right
         {
             shieldHasBeenHit = true;
-            float physicalDamageAfterBlock = physicalDamage - (physicalDamage * enemyShield.blockingPhysicalDamageAbsorption) / 100;
-            float fireDamageAfterBlock = fireDamage - (fireDamage * enemyShield.blockingFireDamageAbsorption) / 100;
 
-            //ATTEMPT TO BLOCK THE ATTACK (cHECK FOR GUARD BREAK)
-            enemyManager.characterCombatManager.AttemptBlock(this, physicalDamage, fireDamage, "Block_01");
-            enemyShield.TakeDamageAfterBlock(Mathf.RoundToInt(physicalDamageAfterBlock), Mathf.RoundToInt(fireDamageAfterBlock), characterManager); 
+            TakeBlockedDamageEffect takeBlockedDamage = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
+            takeBlockedDamage.physicalDamage = physicalDamage;
+            takeBlockedDamage.fireDamage = fireDamage;
+            takeBlockedDamage.poiseDamage = poiseDamage;
+            takeBlockedDamage.staminaDamage = poiseDamage;
+
+            enemyManager.characterEffectsManager.ProcessEffectInstantly(takeBlockedDamage);
         }
     }
 
-    protected virtual void DealDamage(CharacterStatsManager enemyStats)
+    protected virtual void DealDamage(CharacterManager enemyManager)
     {
         float finalPhysicalDamage = physicalDamage;
+        float finalFireDamage = fireDamage;
 
         //IF WE ARE USING THE RIGHT WEAPON, WE COMPARE THE RIGHT WEAPON MODIFIERS
         if (characterManager.isUsingRightHand)
@@ -156,10 +155,12 @@ public class DamageCollider : MonoBehaviour
             if (characterManager.characterCombatManager.currentAttackType == AttackType.light)
             {
                 finalPhysicalDamage = finalPhysicalDamage * characterManager.characterInventoryManager.rightWeapon.lightAttackDamageModifier;
+                finalFireDamage = finalFireDamage * characterManager.characterInventoryManager.rightWeapon.lightAttackDamageModifier;
             }
             else if (characterManager.characterCombatManager.currentAttackType == AttackType.heavy)
             {
                 finalPhysicalDamage = finalPhysicalDamage * characterManager.characterInventoryManager.rightWeapon.heavyAttackDamageModifier;
+                finalFireDamage = finalFireDamage * characterManager.characterInventoryManager.rightWeapon.heavyAttackDamageModifier;
             }
         }
         //OTHERWISE WE COMPARE THE LEFT WEAPON MODIFIERS
@@ -168,22 +169,21 @@ public class DamageCollider : MonoBehaviour
             if (characterManager.characterCombatManager.currentAttackType == AttackType.light)
             {
                 finalPhysicalDamage = finalPhysicalDamage * characterManager.characterInventoryManager.leftWeapon.lightAttackDamageModifier;
+                finalFireDamage = finalFireDamage * characterManager.characterInventoryManager.leftWeapon.lightAttackDamageModifier;
             }
             else if (characterManager.characterCombatManager.currentAttackType == AttackType.heavy)
             {
                 finalPhysicalDamage = finalPhysicalDamage * characterManager.characterInventoryManager.leftWeapon.heavyAttackDamageModifier;
+                finalFireDamage = finalFireDamage * characterManager.characterInventoryManager.leftWeapon.heavyAttackDamageModifier;
             }
         }
-        
-        //DEAL MODIFIED DAMAGE
-        if (enemyStats.totalPoiseDefence > poiseBreak)
-        {
-            enemyStats.TakeDamageNoAnimation(Mathf.RoundToInt(finalPhysicalDamage), 0);
-            //Debug.Log("Enemy Poise is currently" + playerStats.totalPoiseDefence);
-        }
-        else
-        {
-            //enemyStats.TakeDamage(Mathf.RoundToInt(finalPhysicalDamage), 0, currentDamageAnimation, characterManager);
-        }
+
+        TakeDamageEffect takeDamageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+        takeDamageEffect.physicalDamage = finalPhysicalDamage;
+        takeDamageEffect.fireDamage = finalFireDamage;
+        takeDamageEffect.poiseDamage = poiseDamage;
+        takeDamageEffect.contactPoint = contactPoint;
+        takeDamageEffect.angleHitFrom = angleHitFrom;
+        enemyManager.characterEffectsManager.ProcessEffectInstantly(takeDamageEffect);   
     }
 }
