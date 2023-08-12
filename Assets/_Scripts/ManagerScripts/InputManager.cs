@@ -62,8 +62,6 @@ public class InputManager : MonoBehaviour
     public bool qued_RT_Input;
     public bool qued_Roll_Input;
 
-    // jump
-    bool isJumpPressed = false;
 
     private void Awake()
     {

@@ -60,6 +60,14 @@ public enum EffectParticleType
     poison
 }
 
+public enum EncumbranceLevel
+{
+    Light, // Light roll
+    Medium, // Medium Roll
+    Heavy, // Heavy Roll
+    Overloaded // Walk Speed only
+}
+
 public class Enums : MonoBehaviour
 {
    

@@ -38,6 +38,10 @@ public class CharacterStatsManager : MonoBehaviour
     public int intelligenceLevel = 10;
     public int faithLevel = 10;
 
+    [Header("Equipment Load")]
+    public float currentEquipLoad = 0;
+    public float maxEquipLoad = 0;
+
     [Header("Arnmor Absorptions")]
     public float physicalDamageAbsoptionHead;
     public float physicalDamageAbsoptionBody;
@@ -88,6 +92,7 @@ public class CharacterStatsManager : MonoBehaviour
     private void Start()
     {
         totalPoiseDefence = armorPoiseBonus;
+        CalculateAndSetMaxEquipload();
     }
 
     protected virtual void Update()
@@ -165,6 +170,30 @@ public class CharacterStatsManager : MonoBehaviour
     {
         maxFocusPoints = focusLevel * 10;
         return maxFocusPoints;
+    }
+
+    public void CalculateAndSetMaxEquipload()
+    {
+        float totalEquipLoad = 40;
+
+        for (int i = 0; i < staminaLevel; i++)
+        {
+            // CHANGE RETURNS BASED ON STAMINA TYPE
+            if (i < 25)
+            {
+                totalEquipLoad = totalEquipLoad + 1.2f;
+            }
+            if (i >= 25 && i <= 50)
+            {
+                totalEquipLoad = totalEquipLoad + 1.4f;
+            }
+            if (i > 50)
+            {
+                totalEquipLoad = totalEquipLoad + 1;
+            }
+        }
+
+        maxEquipLoad = totalEquipLoad;
     }
 
     public virtual void HealCharacter(int healAmount)

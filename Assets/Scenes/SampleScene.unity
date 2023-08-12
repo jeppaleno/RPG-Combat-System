@@ -5029,6 +5029,8 @@ MonoBehaviour:
   dexterityLevel: 10
   intelligenceLevel: 10
   faithLevel: 10
+  currentEquipLoad: 0
+  maxEquipLoad: 0
   physicalDamageAbsoptionHead: 0
   physicalDamageAbsoptionBody: 0
   physicalDamageAbsoptionLegs: 0
@@ -93334,7 +93336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2942571037433423225, guid: 4832708a22ff76446b73b656f828dccd, type: 3}
       propertyPath: groundedFollowSpeed
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2942571037433423225, guid: 4832708a22ff76446b73b656f828dccd, type: 3}
       propertyPath: leftAndRightLookSpeed
@@ -93407,6 +93409,10 @@ PrefabInstance:
     - target: {fileID: 2942571038597762731, guid: 4832708a22ff76446b73b656f828dccd, type: 3}
       propertyPath: near clip plane
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942571038597762732, guid: 4832708a22ff76446b73b656f828dccd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.63
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4832708a22ff76446b73b656f828dccd, type: 3}
