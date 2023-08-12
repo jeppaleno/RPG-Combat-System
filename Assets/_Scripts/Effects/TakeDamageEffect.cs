@@ -281,7 +281,7 @@ public class TakeDamageEffect : CharacterEffect
 
             if (playDamageAnimation)
             {
-                character.characterAnimatorManager.PlayTargetAnimation(damageAnimation, true);
+                character.characterAnimatorManager.PlayTargetAnimation(damageAnimation, true, true);
             }
         }
     }

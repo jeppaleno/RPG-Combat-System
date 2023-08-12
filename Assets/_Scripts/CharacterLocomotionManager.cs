@@ -11,10 +11,11 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     [Header("Gravity Settings")]
     public float inAirTimer;
-    [SerializeField] protected Vector3 yVelcoity;
+    [SerializeField] protected Vector3 yVelocity;
     [SerializeField] protected float groundedYVelocity = -20;   // THE FORCE APPLIED TO YOU WHILST GROUNDED
     [SerializeField] protected float fallStartYVelocity = -7;   // THE FORCE APPLIED TO YOU WHEN YOU BEGIN TO FALL (INCREASES OVER TIME)
-    [SerializeField] protected float gravityForce = -25;
+    [SerializeField] protected float jumpHeight = 1.0f;
+    [SerializeField] protected float gravityForce = -9.81f;
     [SerializeField] float groundCheckSphereRadius = 1f;
     protected bool fallingVelocitySet = false;
 
@@ -39,11 +40,11 @@ public class CharacterLocomotionManager : MonoBehaviour
     {
         if (character.isGrounded)
         {
-            if (yVelcoity.y < 0)
+            if (yVelocity.y < 0)
             {
                 inAirTimer = 0;
                 fallingVelocitySet = false;
-                yVelcoity.y = groundedYVelocity;
+                yVelocity.y = groundedYVelocity;
             }
         }
         else
@@ -51,15 +52,15 @@ public class CharacterLocomotionManager : MonoBehaviour
             if (!fallingVelocitySet)
             {
                 fallingVelocitySet = true;
-                yVelcoity.y = fallStartYVelocity;
+                yVelocity.y = fallStartYVelocity;
             }
 
             inAirTimer = inAirTimer + Time.deltaTime;
-            yVelcoity.y += gravityForce * Time.deltaTime;
+            yVelocity.y += gravityForce * Time.deltaTime;
         }
 
         character.animator.SetFloat("inAirTimer", inAirTimer);
-        character.characterController.Move(yVelcoity * Time.deltaTime);
+        character.characterController.Move(yVelocity * Time.deltaTime);
     }
 
     private void OnDrawGizmosSelected()

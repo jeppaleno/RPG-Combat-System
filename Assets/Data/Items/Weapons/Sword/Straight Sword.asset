@@ -53,4 +53,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 04948e8c887ab4c4fb785a382c22e4d0, type: 3}
   - {fileID: 8300000, guid: fabc65ee65eee6e4daf7bd75dbc56d8c, type: 3}
   - {fileID: 8300000, guid: d9238cd595eb4cb4b8737418ae08bfec, type: 3}
+  blockingNoises:
+  - {fileID: 8300000, guid: e32e3bde5559afb4cad3ef963cc96446, type: 3}
+  - {fileID: 8300000, guid: 80502e18f68bb734b9dded7bb8d2e750, type: 3}
+  - {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
   canBeBuffed: 1

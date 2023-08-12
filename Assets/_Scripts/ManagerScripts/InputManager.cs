@@ -80,9 +80,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
-            playerControls.PlayerActions.Jump.started += onJump;
-            playerControls.PlayerActions.Jump.canceled += onJump;
-
+            //playerControls.PlayerActions.Jump.started += onJump;
+            //playerControls.PlayerActions.Jump.canceled += onJump;
 
             playerControls.PlayerActions.A_Input.performed += i => a_Input = true;
             playerControls.PlayerActions.X.performed += i => x_Input = true;
@@ -110,6 +109,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.QuedRB.performed += i => QueInput(ref qued_RB_Input);
             playerControls.PlayerActions.QuedRT.performed += i => QueInput(ref qued_RT_Input);
             playerControls.PlayerActions.QuedRoll.performed += i => QueInput(ref qued_Roll_Input);
+            playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
+            playerControls.PlayerActions.Jump.canceled += i => jump_Input = false;
         }
 
         playerControls.Enable();
@@ -120,16 +121,16 @@ public class InputManager : MonoBehaviour
         playerControls.Disable();
     }
 
-    void onJump (InputAction.CallbackContext context)
+    /*void onJump (InputAction.CallbackContext context)
     {
         isJumpPressed = context.ReadValueAsButton();
         Debug.Log(isJumpPressed);
-    }
+    }*/
 
     public void HandleAllInputs()
     {
         HandleMovementInput();
-        //HandleJumpingInput();
+        HandleJumpingInput();
         HandleSprintingInput();
         HandleRollInput();
 
@@ -190,14 +191,14 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    /*private void HandleJumpingInput()
+    private void HandleJumpingInput()
     {
         if (jump_Input)
         {
             jump_Input = false;
             player.playerLocomotionManager.HandleJumping();
         }
-    }*/
+    }
 
     private void HandleTapRBInput() 
     {

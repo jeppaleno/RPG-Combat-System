@@ -205,6 +205,23 @@ MonoBehaviour:
   - {fileID: -4762860933925362726}
   - {fileID: 6959374174009309053}
   - {fileID: -3216664518342103207}
+  - {fileID: 328901225838021167}
+--- !u!114 &328901225838021167
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
+  m_Name: Tonemapping
+  m_EditorClassIdentifier: 
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &2318810790980892630
 MonoBehaviour:
   m_ObjectHideFlags: 3

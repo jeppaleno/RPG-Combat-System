@@ -71,7 +71,7 @@ public class PlayerManager : CharacterManager
         inputManager.HandleAllInputs();
         playerLocomotionManager.HandleGroundedMovement();
         playerLocomotionManager.HandleRotation();
-        //playerLocomotionManager.HandleJumping();
+
 
         playerStatsManager.RegenerateStamina();
 

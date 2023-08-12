@@ -46711,14 +46711,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: DrainStaminaBasedOnAttack
+    functionName: CloseDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: CloseDamageCollider
+  - time: 0.53333336
+    functionName: DrainStaminaBasedOnAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

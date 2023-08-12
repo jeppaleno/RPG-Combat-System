@@ -161,8 +161,8 @@ public class CharacterAnimatorManager : MonoBehaviour
     public void PlayTargetAnimation(string targetAnimation, bool isInteracting, bool useRootMotion = false, bool canRotate = false, bool mirrorAnim = false)
     {
         character.animator.SetBool("isInteracting", isInteracting);
-        character.animator.SetBool("canRotate", canRotate);
         character.animator.SetBool("isUsingRootMotion", useRootMotion);
+        character.animator.SetBool("canRotate", canRotate);
         character.animator.SetBool("isMirrored", mirrorAnim);
         character.animator.CrossFade(targetAnimation, 0.2f);
     }
