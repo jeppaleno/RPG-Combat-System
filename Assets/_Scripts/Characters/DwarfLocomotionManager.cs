@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElfLocomotionManager : CharacterLocomotionManager
+public class DwarfLocomotionManager : CharacterLocomotionManager
 {
-    // Additional properties or methods specific to Elf locomotion can be added here
+    // Additional properties or methods specific to Dwarf locomotion can be added here
 
-    [Header("Elf Movement Stats")]
+    [Header("Dwarf Movement Stats")]
     [SerializeField]
-    float elfMovementSpeed = 8; // Faster movement speed for the Elf
+    float dwarfMovementSpeed = 4; // Slower movement speed for the Dwarf
 
     protected override void Awake()
     {
         base.Awake();
-        // Additional initialization specific to Elf if needed
-        Debug.Log("I'm the Elf!");
+        // Additional initialization specific to Dwarf if needed
+        Debug.Log("I'm the Dwarf!");
     }
 
-    // Override the HandleGroundedMovement method to use Elf's movement speed
+    // Override the HandleGroundedMovement method to use Dwarf's movement speed
     public override void HandleGroundedMovement()
     {
-        // Custom implementation for Elf's grounded movement
+        // Custom implementation for Dwarf's grounded movement
         if (player.inputManager.rollFlag)
             return;
 
@@ -37,14 +37,14 @@ public class ElfLocomotionManager : CharacterLocomotionManager
 
         if (player.isSprinting)
         {
-            player.characterController.Move(moveDirection * elfMovementSpeed * Time.deltaTime);
+            player.characterController.Move(moveDirection * dwarfMovementSpeed * Time.deltaTime);
             player.playerStatsManager.DeductSprintingStamina(sprintStaminaCost);
         }
         else
         {
             if (player.inputManager.moveAmount > 0.5f)
             {
-                player.characterController.Move(moveDirection * elfMovementSpeed * Time.deltaTime);
+                player.characterController.Move(moveDirection * dwarfMovementSpeed * Time.deltaTime);
             }
             else if (player.inputManager.moveAmount <= 0.5f)
             {
@@ -58,11 +58,11 @@ public class ElfLocomotionManager : CharacterLocomotionManager
         }
     }
 
-    // Add a new Elf-specific ability: Forest Dash
-    public void ForestDash()
+    // Add a new Dwarf-specific ability: Hammer Slam
+    public void HammerSlam()
     {
-        // Your custom Forest Dash logic here
+        // Your custom Hammer Slam logic here
     }
 
-    // Add other methods or properties specific to Elf locomotion here
+    // Add other methods or properties specific to Dwarf locomotion here
 }

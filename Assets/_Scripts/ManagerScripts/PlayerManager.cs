@@ -20,7 +20,7 @@ public class PlayerManager : CharacterManager
     public PlayerCombatManager playerCombatManager;
     public PlayerInventoryManager playerInventoryManager;
     public PlayerAnimatorManager playerAnimatorManager;
-    public PlayerLocomotionManager playerLocomotionManager;
+    public CharacterLocomotionManager characterLocomotionManager;
     public PlayerEffectsManager playerEffectsManager;
 
     [Header("Interactables")]
@@ -43,7 +43,7 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
-        playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
 
         WorldSaveGameManager.instance.player = this;
     }
@@ -69,8 +69,8 @@ public class PlayerManager : CharacterManager
         animator.SetBool("isDead", isDead);
 
         inputManager.HandleAllInputs();
-        playerLocomotionManager.HandleGroundedMovement();
-        playerLocomotionManager.HandleRotation();
+        characterLocomotionManager.HandleGroundedMovement();
+        characterLocomotionManager.HandleRotation();
 
 
         playerStatsManager.RegenerateStamina();

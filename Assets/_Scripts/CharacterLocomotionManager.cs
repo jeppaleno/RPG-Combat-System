@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterLocomotionManager : MonoBehaviour
 {
     CharacterManager character;
-    PlayerManager player;
+    protected PlayerManager player;
 
     public Vector3 moveDirection;
     public LayerMask groundLayer;

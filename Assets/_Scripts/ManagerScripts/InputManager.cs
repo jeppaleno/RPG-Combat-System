@@ -194,7 +194,7 @@ public class InputManager : MonoBehaviour
         if (jump_Input)
         {
             jump_Input = false;
-            player.playerLocomotionManager.HandleJumping();
+            player.characterLocomotionManager.HandleJumping();
         }
     }
 
@@ -498,7 +498,7 @@ public class InputManager : MonoBehaviour
         {
             rollFlag = true;
             b_input = false;
-            player.playerLocomotionManager.HandleRollingAndSprinting();
+            player.characterLocomotionManager.HandleRollingAndSprinting();
         }
     }
 

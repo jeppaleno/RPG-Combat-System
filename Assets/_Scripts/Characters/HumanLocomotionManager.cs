@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElfLocomotionManager : CharacterLocomotionManager
+public class HumanLocomotionManager : CharacterLocomotionManager
 {
-    // Additional properties or methods specific to Elf locomotion can be added here
+    // Additional properties or methods specific to Human locomotion can be added here
 
-    [Header("Elf Movement Stats")]
+    [Header("Human Movement Stats")]
     [SerializeField]
-    float elfMovementSpeed = 8; // Faster movement speed for the Elf
+    float humanMovementSpeed = 6; // Normal movement speed for the Human
 
     protected override void Awake()
     {
         base.Awake();
-        // Additional initialization specific to Elf if needed
-        Debug.Log("I'm the Elf!");
+        // Additional initialization specific to Human if needed
+        Debug.Log("I'm the Human!");
     }
 
-    // Override the HandleGroundedMovement method to use Elf's movement speed
+    // Override the HandleGroundedMovement method to use Human's movement speed
     public override void HandleGroundedMovement()
     {
-        // Custom implementation for Elf's grounded movement
+        // Custom implementation for Human's grounded movement
         if (player.inputManager.rollFlag)
             return;
 
@@ -37,14 +37,14 @@ public class ElfLocomotionManager : CharacterLocomotionManager
 
         if (player.isSprinting)
         {
-            player.characterController.Move(moveDirection * elfMovementSpeed * Time.deltaTime);
+            player.characterController.Move(moveDirection * humanMovementSpeed * Time.deltaTime);
             player.playerStatsManager.DeductSprintingStamina(sprintStaminaCost);
         }
         else
         {
             if (player.inputManager.moveAmount > 0.5f)
             {
-                player.characterController.Move(moveDirection * elfMovementSpeed * Time.deltaTime);
+                player.characterController.Move(moveDirection * humanMovementSpeed * Time.deltaTime);
             }
             else if (player.inputManager.moveAmount <= 0.5f)
             {
@@ -58,11 +58,11 @@ public class ElfLocomotionManager : CharacterLocomotionManager
         }
     }
 
-    // Add a new Elf-specific ability: Forest Dash
-    public void ForestDash()
+    // Add a new Human-specific ability: Shield Bash
+    public void ShieldBash()
     {
-        // Your custom Forest Dash logic here
+        // Your custom Shield Bash logic here
     }
 
-    // Add other methods or properties specific to Elf locomotion here
+    // Add other methods or properties specific to Human locomotion here
 }
