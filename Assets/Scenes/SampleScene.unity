@@ -4944,6 +4944,11 @@ MonoBehaviour:
   jumpHeight: 1
   gravityForce: -25
   groundCheckSphereRadius: 0.5
+  movementSpeed: 5
+  walkingSpeed: 1
+  sprintSpeed: 7
+  rotationSpeed: 10
+  rollStaminaCost: 15
 --- !u!114 &630826733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92430,15 +92435,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2348954552999528141, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.39
+      value: 11.91
       objectReference: {fileID: 0}
     - target: {fileID: 2348954552999528141, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.08
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 2348954552999528141, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.27
+      value: -16.39
       objectReference: {fileID: 0}
     - target: {fileID: 2348954552999528141, guid: 13108edc5149c8d4aa7857a93f5da7cb, type: 3}
       propertyPath: m_LocalRotation.w
